@@ -1,6 +1,6 @@
 :root {
 	--primary: #224870;
-	--secondary: #fda43e;
+	--secondary: #FFA500;
 	--grey: #dfe2e7;
 	--fwextrabold: 800;
 	--fwbold: 700;
@@ -17,11 +17,22 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+	height: 4000px;
 }
 
 /* Navbar Styles */
 .navbar-expand-lg {
+	transition: all 0.5s;
 	background-color: var(--primary);
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+.navbar-expand-lg.hidden {
+	top: -100px;
+	opacity: 0;
+	visibility: hidden;
 }
 
 .navbar .navbar-brand {
@@ -80,4 +91,12 @@ body {
 	background-color: var(--primary);
 	color: var(--secondary);
 	border: 1px solid var(--secondary);
+}
+
+/* Hero Styles */
+.hero-section {
+	background-color: var(--secondary);
+	height: 1500px;
+	margin-top: -71px;
+	z-index: 99999;
 }
