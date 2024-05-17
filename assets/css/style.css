@@ -11,16 +11,26 @@
 }
 
 @font-face {
-	font-family: Poppins;
-	src: url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+	font-family: "Raleway", sans-serif;
+	src: url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+}
+
+@font-face {
+	font-family: "Roboto", sans-serif;
+	src: url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 }
 
 body {
-	font-family: "Poppins", sans-serif;
+	font-family: "Roboto", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: var(--fwextrabold);
+	font-family: "Raleway", sans-serif;
 }
 
 /* Navbar Styles */
-#offcanvas-navbar {
+#offcanvas-navbar, .navbar2 {
 	display: none;
 }
 
@@ -66,7 +76,7 @@ body {
 }
 
 .btn-primary:hover, .btn-primary:hover:active {
-	background-color: var(--secondary);
+	background-color: transparent;
 	color: var(--primary);
 	border: 1px solid var(--primary);
 }
@@ -85,16 +95,37 @@ body {
 }
 
 .btn-secondary:hover, .btn-secondary:hover:active{
-	background-color: var(--primary);
+	background-color: transparent;
 	color: var(--secondary);
 	border: 1px solid var(--secondary);
 }
 
 /* Hero Styles */
 .hero-section {
-	background-color: var(--secondary);
-	height: 1500px;
+	background-color: var(--primary);
+	height: 100svh;
 }
+
+.hero-section .container #hero .container-fluid{	
+	height: 100%;
+	background-image: url(../images/hero-image.png);
+	background-repeat: no-repeat;
+	background-color: white;
+	background-size: cover;
+	background-position: center;
+	color: var(--primary);
+	border-radius: 20px;
+}
+
+.hero-section #hero, .hero-section #hero .row{
+	max-height: 535px;
+	height: 100%;
+}
+
+.hero-section .row .container {
+	border-radius: 20px;
+}
+
 
 
 /* Responsive Configuration Start*/
@@ -104,6 +135,7 @@ body {
 	margin-right: auto;
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;
+	height: 100%;
 }
 
 /* 2xl */
@@ -167,8 +199,11 @@ body {
 		opacity: 0;
 		visibility: hidden;
 	}
-	.hero-section {
+	.navbar2 {
+		display: block;
 		margin-top: -71px;
+		background-color: var(--primary);
+		color: white;
 	}
 }
 /* Responsive Configuration End*/
