@@ -32,7 +32,7 @@ h1 {
 }
 h2 {
 	font-size: 40px;
-	font-weight: var(--fwextrabold);
+	font-weight: var(--fwblack);
 	font-family: "Raleway", sans-serif;
 }
 h3 {
@@ -61,6 +61,8 @@ p {
 	font-size: 16px;
 	color: var(--grey);
 }
+
+
 
 /* Navbar Styles */
 #offcanvas-navbar,
@@ -218,7 +220,7 @@ p {
 
 .hero-section #hero,
 .hero-section #hero .row {
-	max-height: 535px;
+	max-height: 530px;
 	height: 100%;
 }
 
@@ -246,11 +248,81 @@ p {
 
 
 /* Watch Section Styles */
-.watch-section {
-	height: 1820px;
+.watch-section h2 {
+	color: var(--primary);
 }
 
-.watch-section h2 {
+.watch-section .row {
+	width: calc(50% + 50vw - 0.5rem);
+}
+
+.watch-section .owl-carousel, .watch-section .owl-carousel .owl-stage-outer {
+	padding-right: 0;
+	margin-right: 0;
+}
+
+.watch-section .owl-carousel .card {
+	width: 280px;
+	height: 400px;
+	border-radius: 20px;
+	border: 0;
+	background-color: var(--primary);
+}
+
+/* What Will You Do Section Styles */
+.wwyd-section h2 {
+	color: var(--primary);
+}
+
+.wwyd-section h3 {
+	color: var(--primary);
+}
+
+.wwyd-section .card {
+	background-color: var(--secondary);
+	height: 160px;
+	border-radius: 20px;
+}
+
+.wwyd-section .bg-icon {
+	border-radius: 50%;
+	flex-shrink: 0;
+	height: 50px;
+	width: 50px;
+	background-color: white;
+}
+
+.wwyd-section i{
+	font-size: 30px;
+	color: var(--primary);
+}
+
+
+/* What is Included Section Styles */
+.wii-section h2 {
+	color: var(--primary);
+}
+
+.wii-section h3 {
+	color: var(--primary);
+}
+
+.wii-section .card {
+	border: 3px solid var(--primary);
+	height: 160px;
+	border-radius: 20px;
+}
+
+.wii-section .bg-icon {
+	border-radius: 50%;
+	flex-shrink: 0;
+	height: 50px;
+	width: 50px;
+	background-color: var(--secondary);
+}
+
+.wii-section i{
+	font-size: 30px;
 	color: var(--primary);
 }
 

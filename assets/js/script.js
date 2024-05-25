@@ -8,3 +8,14 @@ document.addEventListener("scroll", () => {
         navbar.classList.add("hidden");
     }
 });
+
+$(document).ready(function(){
+    $(".owl-carousel").owlCarousel({
+        loop:false,
+        margin:24,
+        nav:false,
+        dots:false,
+        autoWidth:true,
+        
+    });
+});
