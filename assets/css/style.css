@@ -183,7 +183,7 @@ p {
 	background-color: var(--secondary);
 	color: white;
 	font-weight: var(--fwbold);
-	border-radius: 100%;
+	border-radius: 50%;
 	width: 100px;
 	height: 100px;
 	border: 2px solid var(--secondary);
@@ -278,6 +278,10 @@ p {
 	color: var(--primary);
 }
 
+.wwyd-section p {
+	color: white;
+}
+
 .wwyd-section .card {
 	background-color: var(--secondary);
 	height: 160px;
@@ -325,6 +329,104 @@ p {
 	font-size: 30px;
 	color: var(--primary);
 }
+
+
+/* How to Make a Booking? Section Styles */
+.booking-section {
+	background-color: var(--primary);
+}
+
+.booking-section h2 {
+	color: var(--secondary);
+}
+
+.booking-section p {
+	color: white;
+}
+
+.booking-section .card, .booking-section .card-header {
+	background-color: transparent;
+	border: 3px solid var(--secondary);
+	border-radius: 20px;
+	height: 200px;
+}
+
+.booking-section .bg-icon {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	background-color: white;
+	padding: 0;
+	margin: 0;
+}
+
+.booking-section h4 {
+	color: var(--secondary);
+}
+
+
+/* Call to Action Section Styles */
+.cta-section {
+	background-color: var(--primary);
+}
+
+.cta-section .container {
+	background-color: var(--secondary);
+	border-radius: 20px;
+	box-shadow: 0 0 8px 1px var(--secondary);
+	padding-block: 80px;
+}
+
+.cta-section h1 {
+	color: var(--primary);
+	font-size: 50px;
+}
+
+.cta-section p {
+	padding-inline: 270px;
+	color: white;
+}
+
+
+/* Benefits You Will Get Section Styles */
+.benefits-section {
+	background-color: var(--primary);
+}
+
+.benefits-section h2 {
+	color: var(--secondary);
+}
+
+.benefits-section h4 {
+	color: var(--primary);
+}
+
+.benefits-section p {
+	color: white;
+}
+
+.benefits-section .card, .benefits-section .card-header {
+	border-radius: 20px;
+}
+
+.benefits-section .bg-icon {
+	background-color: var(--secondary);
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.benefits-section i {
+	font-size: 32px;
+	color: var(--primary);
+}
+
+.benefits-section .card p {
+	color: var(--grey);
+}
+
 
 
 

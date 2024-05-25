@@ -9,6 +9,7 @@ document.addEventListener("scroll", () => {
     }
 });
 
+// Owl Carousel
 $(document).ready(function(){
     $(".owl-carousel").owlCarousel({
         loop:false,
@@ -16,6 +17,5 @@ $(document).ready(function(){
         nav:false,
         dots:false,
         autoWidth:true,
-        
     });
 });
