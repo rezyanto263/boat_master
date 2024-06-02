@@ -1,7 +1,7 @@
 :root {
 	--primary: #224870;
-	--secondary: #FDA43E;
-	--grey: #6D6D6D;
+	--secondary: #fda43e;
+	--grey: #6d6d6d;
 	--fwblack: 900;
 	--fwextrabold: 800;
 	--fwbold: 700;
@@ -61,8 +61,6 @@ p {
 	font-size: 16px;
 	color: var(--grey);
 }
-
-
 
 /* Navbar Styles */
 #offcanvas-navbar,
@@ -245,8 +243,6 @@ p {
 	color: white;
 }
 
-
-
 /* Watch Section Styles */
 .watch-section h2 {
 	color: var(--primary);
@@ -256,7 +252,8 @@ p {
 	width: calc(50% + 50vw - 0.5rem);
 }
 
-.watch-section .owl-carousel, .watch-section .owl-carousel .owl-stage-outer {
+.watch-section .owl-carousel,
+.watch-section .owl-carousel .owl-stage-outer {
 	padding-right: 0;
 	margin-right: 0;
 }
@@ -279,7 +276,7 @@ p {
 }
 
 .wwyd-section p {
-	color: white;
+	color: var(--grey);
 }
 
 .wwyd-section .card {
@@ -296,11 +293,10 @@ p {
 	background-color: white;
 }
 
-.wwyd-section i{
+.wwyd-section i {
 	font-size: 30px;
 	color: var(--primary);
 }
-
 
 /* What is Included Section Styles */
 .wii-section h2 {
@@ -325,11 +321,10 @@ p {
 	background-color: var(--secondary);
 }
 
-.wii-section i{
+.wii-section i {
 	font-size: 30px;
 	color: var(--primary);
 }
-
 
 /* How to Make a Booking? Section Styles */
 .booking-section {
@@ -344,7 +339,8 @@ p {
 	color: white;
 }
 
-.booking-section .card, .booking-section .card-header {
+.booking-section .card,
+.booking-section .card-header {
 	background-color: transparent;
 	border: 3px solid var(--secondary);
 	border-radius: 20px;
@@ -364,7 +360,6 @@ p {
 .booking-section h4 {
 	color: var(--secondary);
 }
-
 
 /* Call to Action Section Styles */
 .cta-section {
@@ -388,7 +383,6 @@ p {
 	color: white;
 }
 
-
 /* Benefits You Will Get Section Styles */
 .benefits-section {
 	background-color: var(--primary);
@@ -406,7 +400,8 @@ p {
 	color: white;
 }
 
-.benefits-section .card, .benefits-section .card-header {
+.benefits-section .card,
+.benefits-section .card-header {
 	border-radius: 20px;
 }
 
@@ -427,8 +422,86 @@ p {
 	color: var(--grey);
 }
 
+/* Meet Our Teams Section Styles */
+.teams-section {
+	background-color: white;
+}
+
+.teams-section h2 {
+	color: var(--primary);
+}
+
+.teams-section .card {
+	border-radius: 20px;
+	height: 560px;
+	width: 305px;
+	background-color: var(--primary);
+}
+
+.teams-section .card-header {
+	background-image: url("../images/kucing\ 1.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	border-radius: 20px 20px 0 0;
+}
+
+.teams-section .card :where(h3,p) {
+	color: white;
+}
+
+.teams-section .row {
+	width: calc(50% + 50vw - 0.5rem);
+}
+
+.teams-section .owl-carousel,
+.teams-section .owl-carousel .owl-outer-stage {
+	padding-right: 0;
+	margin-right: 0;
+}
+
+.teams-section .rating-star {
+	color: var(--secondary);
+}
+
+.teams-section .wrapper-langguage {
+	color: white;
+}
+
+.teams-section .wrapper-langguage i {
+	font-size: 22px;
+}
+
+/* Review Section Start */
+.review-section h2 {
+	color: var(--primary);
+}
+
+.review-section p {
+	color: var(--grey);
+}
+
+.review-section .row{
+	background-color: var(--primary);
+	border-radius: 20px;
+}
+
+.review-section .review-rating, .review-section .review-content {
+	border-radius: 20px;
+	background-color: white;
+}
+
+.review-section .review-content {
+	height: 150px;
+	margin-bottom: 24px;
+}
+
+.review-section .review-rating {
+	height: 400px;
+}
 
 
+/* Review Section End */
 
 /* Responsive Configuration Start*/
 .container {
@@ -507,7 +580,8 @@ p {
 }
 
 @media (max-width: 992px) {
-	ul.navbar-nav, .navbar-nav {
+	ul.navbar-nav,
+	.navbar-nav {
 		display: none !important;
 	}
 	.hero-section {

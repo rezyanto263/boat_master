@@ -11,7 +11,15 @@ document.addEventListener("scroll", () => {
 
 // Owl Carousel
 $(document).ready(function(){
-    $(".owl-carousel").owlCarousel({
+    $(".video-slider").owlCarousel({
+        loop:false,
+        margin:24,
+        nav:false,
+        dots:false,
+        autoWidth:true,
+    });
+
+    $(".teams-slider").owlCarousel({
         loop:false,
         margin:24,
         nav:false,
