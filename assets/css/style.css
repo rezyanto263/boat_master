@@ -472,7 +472,8 @@ p {
 	font-size: 22px;
 }
 
-/* Review Section Start */
+
+/* Review Section Styles */
 .review-section h2 {
 	color: var(--primary);
 }
@@ -500,8 +501,27 @@ p {
 	height: 400px;
 }
 
+/* Contact & FAQ Section Styles */
+.contact-faq-section {
+	background-color: var(--primary);
+}
 
-/* Review Section End */
+.contact-faq-section h2 {
+	color: var(--secondary);
+}
+
+.contact-faq-section p {
+	color: white;
+}
+
+.contact-faq-section :where(input, textarea)  {
+	border-radius: 20px;
+	border: 0;
+	min-height: 40px;
+	padding-block: 12px;
+	padding-inline: 20px;
+}
+
 
 /* Responsive Configuration Start*/
 .container {
