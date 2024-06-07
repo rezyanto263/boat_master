@@ -696,6 +696,20 @@ p {
 	font-weight: var(--fwbold);
 	color: var(--primary);
 }
+/* Review Section End */
+
+/* Step Section Styles */
+.circle {
+	width: 90px;
+	height: 90px;
+	border: 3px solid var(--primary);
+	color: var(--primary);
+	border-radius: 50%;
+}
+
+.step-section h5 {
+	color: var(--primary);
+	font-weight: var(--fwbold);
 
 /* Contact & FAQ Section Styles */
 .contact-faq-section {
@@ -773,11 +787,7 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-
-
-
-
-/* Header Boat Start*/
+/* Header Boat Styles*/
 .header-boat {
 	background-color: white;
 }
@@ -785,7 +795,6 @@ footer.blue :where(p, a) {
 .header-boat h2 {
 	color: var(--primary);
 }
-
 
 /*Boat Catalog Section Styles*/
 .boat-catalog-section h5 {
@@ -841,6 +850,94 @@ footer.blue :where(p, a) {
 	z-index: 1;
 }
 
+.circle.checked {
+	background-color: var(--primary);
+	color: var(--secondary);
+}
+
+.step-section i {
+	font-size: 40px;
+}
+
+/* Boat Section */
+.boat-header i {
+	font-size: 32px;
+	color: #224870;
+}
+.boat-header h3 {
+	color: var(--primary);
+}
+
+.boat-overview-slider {
+	height: 450px;
+}
+
+.details-order {
+	background-color: var(--lightgrey);
+	border-radius: 20px;
+	height: 650px;
+}
+
+.boat-overview-slider .owl-dots.disabled {
+	display: block !important;
+}
+
+.boat-overview-slider img{
+	border-radius: 20px;
+}
+
+.wrapper {
+	height: 40px;
+	min-width: 113px;
+	display: flex;
+	justify-content: center;
+	background: #fff;
+	border-radius: 20px;
+}
+
+.wrapper span {
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 16;
+	cursor: pointer;
+}
+
+.wrapper span.num{
+	font-size: 16px;
+	border-right: 5px solid rgba(0,0,0,0,2);
+	border-left: 5px solid rgba(0,0,0,0,2);
+	pointer-events: none;
+
+}
+button.max-people {
+	border: 0;
+	background-color: transparent;
+}
+
+/* section step 2 */
+.circle {
+	width: 90px;
+	height: 90px;
+	border: 3px solid var(--primary);
+	color: var(--primary);
+	border-radius: 50%;
+}
+
+.step-section h5 {
+	color: var(--primary);
+	font-weight: var(--fwbold);
+}
+
+.circle.checked {
+	background-color: var(--primary);
+	color: var(--secondary);
+}
+
+.step-section i {
+	font-size: 40px;
+}
+
 /* Responsive Configuration Start*/
 .container {
 	max-width: 1536px;
@@ -850,7 +947,7 @@ footer.blue :where(p, a) {
 	padding-right: 0.5rem;
 	height: 100%;
 }
-
+	
 /* 2xl */
 @media (max-width: 1536px) {
 	.container {
