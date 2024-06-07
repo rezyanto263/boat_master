@@ -666,15 +666,16 @@ p {
 .review-section .row{
 	background-color: var(--primary);
 	border-radius: 20px;
+	margin-inline: 1px;
 }
 
 .review-section .row .col-8 {
-	height: 500px;
+	height: 452px;
 	overflow-y: auto;
 	scrollbar-width: none;
 }
 
-.review-section .review-rating, .review-section .review-content {
+.review-section .review-content {
 	border-radius: 20px;
 	background-color: white;
 }
@@ -686,6 +687,14 @@ p {
 
 .review-section .review-rating {
 	height: 400px;
+	background-color: var(--secondary);
+	border-radius: 20px;
+}
+
+.review-section .review-rating h5 {
+	font-family: "Raleway", sans-serif;
+	font-weight: var(--fwbold);
+	color: var(--primary);
 }
 
 /* Contact & FAQ Section Styles */
