@@ -742,6 +742,80 @@ footer :where(p, a) {
 	color: var(--primary);
 }
 
+/* Header Boat Start*/
+.header-boat {
+	background-color: white;
+}
+
+.header-boat h2 {
+	color: var(--primary);
+}
+/* Header Boat End*/
+
+
+/*Boat Catalog Start*/
+
+.boat-catalog-section h5 {
+	color: var(--primary);
+}
+
+.price-idr{
+	font-family: "Raleway", sans-serif;
+	font-weight: var(--fwbold);
+	font-size: 20px;
+	color: var(--secondary);
+}
+.card-header {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+	font-family: "Raleway", sans-serif;
+	font-weight: var(--fwbold);
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: white;
+}
+
+.top-badge {
+    top: 15px;
+    right: 15px;
+    background-color: var(--secondary);
+}
+
+.badges {
+    position: absolute;
+	font-family: "Raleway", sans-serif;
+	font-weight: var(--fwbold);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: var(--primary);
+}
+
+.bottom-badge {
+    bottom: 15px;
+    right: 70px;
+    background-color: white;
+}
+
+.badges-icon {
+    position: absolute;
+	font-family: "Raleway", sans-serif;
+	font-weight: var(--fwbold);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    color: var(--primary);
+}
+
+.bottom-badge-icon {
+    bottom: 15px;
+    right: 15px;
+    background-color: white;
+}
 
 /* Responsive Configuration Start*/
 .container {
