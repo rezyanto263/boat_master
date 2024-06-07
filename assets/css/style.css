@@ -2,7 +2,7 @@
 	--primary: #224870;
 	--secondary: #fda43e;
 	--grey: #6d6d6d;
-	--lightgrey : #d9d9d9;
+	--lightgrey: #D9D9D9;
 	--fwblack: 900;
 	--fwextrabold: 800;
 	--fwbold: 700;
@@ -10,6 +10,7 @@
 	--fwmedium: 500;
 	--fwregular: 400;
 	--fwlight: 300;
+	--sidebarsize: 250px;
 }
 
 @font-face {
@@ -24,6 +25,10 @@
 
 body {
 	font-family: "Roboto", sans-serif;
+}
+
+body.dashboard {
+	background-color: var(--lightgrey);
 }
 
 h1 {
@@ -47,6 +52,16 @@ h4 {
 	font-family: "Raleway", sans-serif;
 }
 
+input, textarea  {
+	font-family: "Roboto", sans-serif, FontAwesome;
+	border-radius: 20px;
+	border: 0;
+	outline: 0;
+	min-height: 40px;
+	padding-block: 12px;
+	padding-inline: 20px;
+}
+
 .price {
 	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
@@ -61,6 +76,43 @@ h4 {
 p {
 	font-size: 16px;
 	color: var(--grey);
+}
+
+.minimize {
+	--sidebarsize: 100px !important;
+	transition: all 0.3s ease;
+}
+
+.minimize .min {
+	display: none !important;
+}
+
+:where(.dashboard-admin, .login) .max {
+	display: none !important;
+}
+
+.login .btn-icon {
+	display: contents !important;
+}
+
+.btn-icon {
+	display: none !important;
+}
+
+.minimize .max {
+	display: block !important;
+}
+
+.minimize .textmin {
+	font-size: 0 !important;
+	opacity: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.minimize .small {
+	width: 60px !important;
+	height: 60px !important;
 }
 
 /* Navbar Styles */
@@ -96,8 +148,131 @@ p {
 	color: var(--secondary);
 }
 
-/* Button Styles */
+/* Dashboard Navbar Styles */
+.dashboard-navbar {
+	width: 100%;
+	height: 90px;
+	z-index: 1;
+	position: fixed;
+	padding-left: var(--sidebarsize);
+	padding-right: 24px;
+	background-color: white;
+	transition: all 0.3s ease;
+}
 
+.dashboard-navbar h2 {
+	color: var(--primary);
+}
+
+.dashboard-navbar span {
+	color: var(--secondary);
+}
+
+.btn-icon a {
+	text-decoration: none;
+}
+
+.profile-user {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+}
+
+:where(.profile-user, .tickets) i {
+	font-size: 35px;
+	color: white;
+}
+
+
+
+:where(.profile-user, .tickets):hover i {
+	color: var(--secondary) !important;
+}
+
+.profile {
+	border-radius: 50%;
+	background-color: var(--secondary);
+	width: 55px;
+	height: 55px;
+}
+
+.profile i {
+	color: var(--primary);
+	font-size: 32px;
+}
+
+/* Dashboard Sidebar Styles */
+.dashboard-sidebar {
+	position: fixed;
+	width: var(--sidebarsize);
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: var(--primary);
+	z-index: 99;
+	transition: all 0.3s ease;
+}
+
+.dashboard-sidebar.minimize {
+	left: -220px;
+}
+
+.sidebar-logo img {
+	width: 122px;
+	height: 122px;
+	transition: all 0.3s ease;
+}
+
+.sidebar-logo h4 {
+	color: white;
+	font-weight: var(--fwextrabold);
+	opacity: 1;
+	transition: all 0.3s ease;
+}
+
+.sidebar-nav {
+	list-style-type: none;
+}
+
+.sidebar-item a {
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+	font-family: "Raleway", sans-serif;
+	display: flex;
+	align-items: center;
+	transition: all 0.3s ease;
+}
+
+.sidebar-item i {
+	font-size: 30px;
+}
+
+.icon {
+	width: 32px;
+}
+
+.btn-sidebar {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	background-color: var(--secondary);
+	outline: 0;
+	border: 0;
+	color: var(--primary);
+	font-size: 25px;
+}
+
+/* Content Section Styles */
+.content-section {
+	margin-left: var(--sidebarsize);
+	padding-top: 90px;
+	transition: all 0.3s ease;
+}
+
+
+
+/* Button Styles */
 .btn-primary {
 	background-color: var(--primary);
 	color: white;
@@ -108,6 +283,7 @@ p {
 	padding-left: 25px;
 	padding-right: 25px;
 	border: 2px solid var(--primary);
+	outline: 0;
 	transition: all 0.3s ease-in-out;
 }
 
@@ -128,6 +304,7 @@ p {
 	padding-left: 25px;
 	padding-right: 25px;
 	border: 2px solid var(--primary);
+	outline: 0;
 	transition: all 0.3s ease-in-out;
 }
 
@@ -148,6 +325,7 @@ p {
 	padding-left: 25px;
 	padding-right: 25px;
 	border: 2px solid var(--secondary);
+	outline: 0;
 	transition: all 0.3s ease-in-out;
 }
 
@@ -168,6 +346,7 @@ p {
 	padding-left: 25px;
 	padding-right: 25px;
 	border: 2px solid var(--secondary);
+	outline: 0;
 	transition: all 0.3s ease-in-out;
 }
 
@@ -186,6 +365,7 @@ p {
 	width: 100px;
 	height: 100px;
 	border: 2px solid var(--secondary);
+	outline: 0;
 	transition: all 0.3s ease-in-out;
 }
 
@@ -473,7 +653,8 @@ p {
 	font-size: 22px;
 }
 
-/* Review Section Start */
+
+/* Review Section Styles */
 .review-section h2 {
 	color: var(--primary);
 }
@@ -485,6 +666,12 @@ p {
 .review-section .row{
 	background-color: var(--primary);
 	border-radius: 20px;
+}
+
+.review-section .row .col-8 {
+	height: 500px;
+	overflow-y: auto;
+	scrollbar-width: none;
 }
 
 .review-section .review-rating, .review-section .review-content {
@@ -514,6 +701,144 @@ p {
 .step-section h5 {
 	color: var(--primary);
 	font-weight: var(--fwbold);
+
+/* Contact & FAQ Section Styles */
+.contact-faq-section {
+	background-color: var(--primary);
+}
+
+.contact-faq-section h2 {
+	color: var(--secondary);
+}
+
+.contact-faq-section p {
+	color: white;
+}
+
+.contact-faq-section textarea {
+	resize: none;
+	height: 150px;
+	scrollbar-width: none;
+}
+
+.contact-faq-section .accordion-button {
+	border-radius: 20px !important;
+	box-shadow: none;
+	height: 50px;
+	color: var(--primary);
+}
+
+.contact-faq-section .accordion-item {
+	background-color: transparent;
+	color: white;
+	border: 0;
+}
+
+.contact-faq-section iframe {
+	border-radius: 30px;
+}
+
+/* Footer Styles */
+footer {
+	background-color: var(--secondary);
+	height: 70px;
+}
+
+footer.blue {
+	background-color: var(--primary);
+}
+
+footer .social-media {
+	background-color: var(--primary);
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	text-decoration: none;
+}
+
+footer.blue .social-media {
+	background-color: var(--secondary);
+}
+
+footer i {
+	color: var(--secondary);
+	font-size: 20px;
+}
+
+footer.blue i {
+	color: var(--primary);
+}
+
+footer :where(p, a) {
+	color: var(--primary);
+}
+
+footer.blue :where(p, a) {
+	color: var(--secondary);
+}
+
+/* Header Boat Styles*/
+.header-boat {
+	background-color: white;
+}
+
+.header-boat h2 {
+	color: var(--primary);
+}
+
+/*Boat Catalog Section Styles*/
+.boat-catalog-section h5 {
+	color: var(--primary);
+	font-weight: var(--fwbold);
+}
+
+.price-idr{
+	font-family: "Roboto", sans-serif;
+	font-weight: var(--fwbold);
+	font-size: 20px;
+	color: var(--secondary);
+}
+.card-header {
+    position: relative;
+	z-index: 0;
+}
+
+.card-header img {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.badge {
+	font-family: "Roboto", sans-serif;
+	font-weight: var(--fwbold);
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.bottom-badges .badge {
+	color: var(--primary);
+	background-color: white;
+}
+
+.top-badges .badge {
+	color: white;
+	background-color: var(--secondary);
+}
+
+.top-badges {
+	position: absolute;
+    top: 8px;
+    right: 8px;
+	z-index: 1;
+}
+
+.bottom-badges {
+	position: absolute;
+    bottom: 8px;
+    right: 8px;
+	z-index: 1;
 }
 
 .circle.checked {
