@@ -12,19 +12,19 @@ if (navhidden != null) {
 });
 }
 
-// Booking Max People +-
+// Booking Max People
+check = document.querySelector(".adult");
+if(check!=null) {
 const plus = document.querySelector(".plus"),
 minus = document.querySelector(".minus"),
-num = document.querySelector(".num");
+num = document.querySelector(".num")
 
-if ((plus&&minus&&num)!=null) {
-  let a = 1;
+  a = 1;
 
   plus.addEventListener("click", ()=>{
   a++;
   a = (a < 10) ? "0" + a : a;
   num.innerText = a;
-  console.log(a);
   });
 
   minus.addEventListener("click", ()=>{
@@ -32,7 +32,6 @@ if ((plus&&minus&&num)!=null) {
           a--;
           a = (a < 10) ? "0" + a : a;
   num.innerText = a;
-  console.log(a);
       }
   });
 }
@@ -49,8 +48,9 @@ if (sidebarbtn != null) {
 // Owl Carousel
 videoSlider = document.querySelector(".video-slider");
 teamSlider = document.querySelector(".video-slider");
+boatOverviewSlider = document.querySelector(".boat-overview-slider");
 
-if ((videoSlider && teamSlider) != null) {
+if ((videoSlider || teamSlider || boatOverviewSlider) != null) {
 	$(document).ready(function () {
     
 		$(".video-slider").owlCarousel({
