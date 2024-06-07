@@ -25,7 +25,6 @@
 
 body {
 	font-family: "Roboto", sans-serif;
-	z-index: 2;
 }
 
 body.dashboard {
@@ -750,71 +749,60 @@ footer :where(p, a) {
 .header-boat h2 {
 	color: var(--primary);
 }
-/* Header Boat End*/
 
 
-/*Boat Catalog Start*/
-
+/*Boat Catalog Section Styles*/
 .boat-catalog-section h5 {
 	color: var(--primary);
+	font-weight: var(--fwbold);
 }
 
 .price-idr{
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
 	font-size: 20px;
 	color: var(--secondary);
 }
 .card-header {
     position: relative;
+	z-index: 0;
+}
+
+.card-header img {
+	min-width: 100%;
+	min-height: 100%;
 }
 
 .badge {
-    position: absolute;
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
     padding: 7px 12px;
     border-radius: 20px;
-    font-size: 10px;
-    color: white;
+    font-size: 14px;
 }
 
-.top-badge {
-    top: 15px;
-    right: 15px;
-    background-color: var(--secondary);
+.bottom-badges .badge {
+	color: var(--primary);
+	background-color: white;
 }
 
-.badges {
-    position: absolute;
-	font-family: "Raleway", sans-serif;
-	font-weight: var(--fwbold);
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    color: var(--primary);
+.top-badges .badge {
+	color: white;
+	background-color: var(--secondary);
 }
 
-.bottom-badge {
-    bottom: 15px;
-    right: 70px;
-    background-color: white;
+.top-badges {
+	position: absolute;
+    top: 8px;
+    right: 8px;
+	z-index: 1;
 }
 
-.badges-icon {
-    position: absolute;
-	font-family: "Raleway", sans-serif;
-	font-weight: var(--fwbold);
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    color: var(--primary);
-}
-
-.bottom-badge-icon {
-    bottom: 15px;
-    right: 15px;
-    background-color: white;
+.bottom-badges {
+	position: absolute;
+    bottom: 8px;
+    right: 8px;
+	z-index: 1;
 }
 
 /* Responsive Configuration Start*/
