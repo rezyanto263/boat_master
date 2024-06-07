@@ -33,7 +33,7 @@
 	</head>
 	<body>
 		<!-- Navbar Start -->
-		<nav class="navbar navbar-expand-lg sticky-top shadow hidden">
+		<nav class="navbar navbar-expand-lg sticky-top shadow login hidden">
 			<div class="container">
 				<a class="navbar-brand d-flex align-items-center" href="#">
 					<img src="../assets/images/logo.png" alt="" width="55px" />
@@ -65,7 +65,15 @@
 						<a class="nav-link" href="#">Contact</a>
 					</li>
 				</ul>
-				<a class="btn btn-secondary navbar-nav" href="#">SIGN IN</a>
+				<a class="btn btn-secondary btn-signin max navbar-nav" href="#">SIGN IN</a>
+				<div class="wrapper btn-icon d-flex flex-row">
+					<a class="tickets d-flex align-items-center justify-content-center me-3" href="#">
+						<i class="fa-solid fa-ticket"></i>
+					</a>
+					<a class="profile-user d-flex align-items-center justify-content-center" href="#">
+						<i class="fa-solid fa-circle-user text-white"></i>
+					</a>
+				</div>
 			</div>
 		</nav>
 		<!-- Navbar End -->
@@ -101,7 +109,7 @@
 			</div>
 		</section>
 
-		<main>
+		<main class="user">
 			<!-- Hero Section Start -->
 			<section class="hero-section pt-lg-0 pt-4">
 				<div class="container">
@@ -445,7 +453,7 @@
 								<div class="card-header border-0 d-flex align-items-center">
 									<span
 										class="bg-icon d-flex align-items-center justify-content-center me-2"
-										><h4>3</h4></span
+										><h4 class="mb-0">3</h4></span
 									>
 									<h4 class="mb-0">Choose the Boat</h4>
 								</div>
@@ -462,9 +470,9 @@
 								<div class="card-header border-0 d-flex align-items-center">
 									<span
 										class="bg-icon d-flex align-items-center justify-content-center me-2"
-										><h4>4</h4></span
+										><h4 class="mb-0">4</h4></span
 									>
-									<h4 class="mb-0">Make a Booking</h4>
+									<!-- <h4 class="mb-0">Make a Booking</h4>co -->
 								</div>
 								<div class="card-body">
 									<p class="mb-0 text-justify">
