@@ -668,6 +668,12 @@ p {
 	border-radius: 20px;
 }
 
+.review-section .row .col-8 {
+	height: 500px;
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
 .review-section .review-rating, .review-section .review-content {
 	border-radius: 20px;
 	background-color: white;
@@ -698,6 +704,7 @@ p {
 .contact-faq-section textarea {
 	resize: none;
 	height: 150px;
+	scrollbar-width: none;
 }
 
 .contact-faq-section .accordion-button {
@@ -723,6 +730,10 @@ footer {
 	height: 70px;
 }
 
+footer.blue {
+	background-color: var(--primary);
+}
+
 footer .social-media {
 	background-color: var(--primary);
 	width: 35px;
@@ -732,14 +743,30 @@ footer .social-media {
 	text-decoration: none;
 }
 
+footer.blue .social-media {
+	background-color: var(--secondary);
+}
+
 footer i {
 	color: var(--secondary);
 	font-size: 20px;
 }
 
+footer.blue i {
+	color: var(--primary);
+}
+
 footer :where(p, a) {
 	color: var(--primary);
 }
+
+footer.blue :where(p, a) {
+	color: var(--secondary);
+}
+
+
+
+
 
 /* Header Boat Start*/
 .header-boat {
