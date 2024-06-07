@@ -25,7 +25,6 @@
 
 body {
 	font-family: "Roboto", sans-serif;
-	z-index: 2;
 }
 
 body.dashboard {
@@ -667,16 +666,15 @@ p {
 .review-section .row{
 	background-color: var(--primary);
 	border-radius: 20px;
-	margin-inline: 1px;
 }
 
 .review-section .row .col-8 {
-	height: 452px;
+	height: 500px;
 	overflow-y: auto;
 	scrollbar-width: none;
 }
 
-.review-section .review-content {
+.review-section .review-rating, .review-section .review-content {
 	border-radius: 20px;
 	background-color: white;
 }
@@ -688,30 +686,6 @@ p {
 
 .review-section .review-rating {
 	height: 400px;
-	background-color: var(--secondary);
-	border-radius: 20px;
-}
-
-.review-section .review-rating h5 {
-	font-family: "Raleway", sans-serif;
-	font-weight: var(--fwbold);
-	color: var(--primary);
-}
-/* Review Section End */
-
-/* Step Section Styles */
-.circle {
-	width: 90px;
-	height: 90px;
-	border: 3px solid var(--primary);
-	color: var(--primary);
-	border-radius: 50%;
-}
-
-.step-section h5 {
-	color: var(--primary);
-	font-weight: var(--fwbold);
-
 }
 
 /* Contact & FAQ Section Styles */
@@ -790,7 +764,11 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-/* Header Boat Styles*/
+
+
+
+
+/* Header Boat Start*/
 .header-boat {
 	background-color: white;
 }
@@ -798,157 +776,60 @@ footer.blue :where(p, a) {
 .header-boat h2 {
 	color: var(--primary);
 }
-/* Header Boat End*/
+
 
 /*Boat Catalog Section Styles*/
 .boat-catalog-section h5 {
 	color: var(--primary);
+	font-weight: var(--fwbold);
 }
 
 .price-idr{
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
 	font-size: 20px;
 	color: var(--secondary);
 }
 .card-header {
     position: relative;
+	z-index: 0;
+}
+
+.card-header img {
+	min-width: 100%;
+	min-height: 100%;
 }
 
 .badge {
-    position: absolute;
-	font-family: "Raleway", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
     padding: 7px 12px;
     border-radius: 20px;
-    font-size: 10px;
-    color: white;
+    font-size: 14px;
 }
 
-.top-badge {
-    top: 15px;
-    right: 15px;
-    background-color: var(--secondary);
-}
-
-.badges {
-    position: absolute;
-	font-family: "Raleway", sans-serif;
-	font-weight: var(--fwbold);
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    color: var(--primary);
-}
-
-.bottom-badge {
-    bottom: 15px;
-    right: 70px;
-    background-color: white;
-}
-
-.badges-icon {
-    position: absolute;
-	font-family: "Raleway", sans-serif;
-	font-weight: var(--fwbold);
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    color: var(--primary);
-}
-
-.bottom-badge-icon {
-    bottom: 15px;
-    right: 15px;
-    background-color: white;
-}
-
-.circle.checked {
-	background-color: var(--primary);
-	color: var(--secondary);
-}
-
-.step-section i {
-	font-size: 40px;
-}
-
-/* Boat Section */
-.boat-header i {
-	font-size: 32px;
-	color: #224870;
-}
-.boat-header h3 {
+.bottom-badges .badge {
 	color: var(--primary);
+	background-color: white;
 }
 
-.boat-overview-slider {
-	height: 450px;
+.top-badges .badge {
+	color: white;
+	background-color: var(--secondary);
 }
 
-.details-order {
-	background-color: var(--lightgrey);
-	border-radius: 20px;
-	height: 650px;
+.top-badges {
+	position: absolute;
+    top: 8px;
+    right: 8px;
+	z-index: 1;
 }
 
-.boat-overview-slider .owl-dots.disabled {
-	display: block !important;
-}
-
-.boat-overview-slider img{
-	border-radius: 20px;
-}
-
-.details-order .wrapper {
-	height: 40px;
-	min-width: 113px;
-	display: flex;
-	justify-content: center;
-	background: #fff;
-	border-radius: 20px;
-}
-
-.details-order .wrapper span {
-	width: 100%;
-	text-align: center;
-	font-size: 16px;
-	font-weight: 16;
-	cursor: pointer;
-}
-
-.wrapper span.num{
-	font-size: 16px;
-	border-right: 5px solid rgba(0,0,0,0,2);
-	border-left: 5px solid rgba(0,0,0,0,2);
-	pointer-events: none;
-
-}
-button.max-people {
-	border: 0;
-	background-color: transparent;
-}
-
-/* section step 2 */
-.circle {
-	width: 90px;
-	height: 90px;
-	border: 3px solid var(--primary);
-	color: var(--primary);
-	border-radius: 50%;
-}
-
-.step-section h5 {
-	color: var(--primary);
-	font-weight: var(--fwbold);
-}
-
-.circle.checked {
-	background-color: var(--primary);
-	color: var(--secondary);
-}
-
-.step-section i {
-	font-size: 40px;
+.bottom-badges {
+	position: absolute;
+    bottom: 8px;
+    right: 8px;
+	z-index: 1;
 }
 
 /* Responsive Configuration Start*/
@@ -960,7 +841,7 @@ button.max-people {
 	padding-right: 0.5rem;
 	height: 100%;
 }
-	
+
 /* 2xl */
 @media (max-width: 1536px) {
 	.container {
