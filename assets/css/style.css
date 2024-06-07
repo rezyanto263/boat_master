@@ -2,6 +2,7 @@
 	--primary: #224870;
 	--secondary: #fda43e;
 	--grey: #6d6d6d;
+	--lightgrey : #d9d9d9;
 	--fwblack: 900;
 	--fwextrabold: 800;
 	--fwbold: 700;
@@ -499,18 +500,108 @@ p {
 .review-section .review-rating {
 	height: 400px;
 }
-
-
 /* Review Section End */
 
-/* Responsive Configuration Start*/
-.container {
-	max-width: 1536px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-	height: 100%;
+/* Step Section Styles */
+.circle {
+	width: 90px;
+	height: 90px;
+	border: 3px solid var(--primary);
+	color: var(--primary);
+	border-radius: 50%;
+}
+
+.step-section h5 {
+	color: var(--primary);
+	font-weight: var(--fwbold);
+}
+
+.circle.checked {
+	background-color: var(--primary);
+	color: var(--secondary);
+}
+
+.step-section i {
+	font-size: 40px;
+}
+
+/* Boat Section */
+.boat-header i {
+	font-size: 32px;
+	color: #224870;
+}
+.boat-header h3 {
+	color: var(--primary);
+}
+
+.boat-overview-slider {
+	height: 450px;
+}
+
+.details-order {
+	background-color: var(--lightgrey);
+	border-radius: 20px;
+	height: 650px;
+}
+
+.boat-overview-slider .owl-dots.disabled {
+	display: block !important;
+}
+
+.boat-overview-slider img{
+	border-radius: 20px;
+}
+
+.wrapper {
+	height: 40px;
+	min-width: 113px;
+	display: flex;
+	justify-content: center;
+	background: #fff;
+	border-radius: 20px;
+}
+
+.wrapper span {
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 16;
+	cursor: pointer;
+}
+
+.wrapper span.num{
+	font-size: 16px;
+	border-right: 5px solid rgba(0,0,0,0,2);
+	border-left: 5px solid rgba(0,0,0,0,2);
+	pointer-events: none;
+
+}
+button.max-people {
+	border: 0;
+	background-color: transparent;
+}
+
+/* section step 2 */
+.circle {
+	width: 90px;
+	height: 90px;
+	border: 3px solid var(--primary);
+	color: var(--primary);
+	border-radius: 50%;
+}
+
+.step-section h5 {
+	color: var(--primary);
+	font-weight: var(--fwbold);
+}
+
+.circle.checked {
+	background-color: var(--primary);
+	color: var(--secondary);
+}
+
+.step-section i {
+	font-size: 40px;
 }
 
 /* 2xl */
