@@ -1,31 +1,46 @@
 // Navbar Show Up and Hide In
+navhidden = document.querySelector(".hidden")
+if (navhidden != null) {
 document.addEventListener("scroll", () => {
-    const navbar = document.querySelector("nav");
+	const navbar = document.querySelector(".navbar");
 
-    if (window.scrollY > 95) {
-        navbar.classList.remove("hidden");
-    }else {
-        navbar.classList.add("hidden");
-    }
+	if (window.scrollY > 95) {
+		navbar.classList.remove("hidden");
+	} else {
+		navbar.classList.add("hidden");
+	}
 });
+}
+
+// Dashboard SideBar
+sidebarbtn = document.querySelector(".btn-sidebar");
+if (sidebarbtn != null) {
+	sidebarbtn.addEventListener("click", () => {
+		main = document.querySelector(".dashboard-admin");
+		main.classList.toggle("minimize");
+	});
+}
 
 // Owl Carousel
-$(document).ready(function(){
-    $(".video-slider").owlCarousel({
-        loop:false,
-        margin:24,
-        nav:false,
-        dots:false,
-        autoWidth:true,
-    });
+videoSlider = document.querySelector(".video-slider");
+teamSlider = document.querySelector(".video-slider");
 
-    $(".teams-slider").owlCarousel({
-        loop:false,
-        margin:24,
-        nav:false,
-        dots:false,
-        autoWidth:true,
-    });
-});
+if ((videoSlider && teamSlider) != null) {
+	$(document).ready(function () {
+		$(".video-slider").owlCarousel({
+			loop: false,
+			margin: 24,
+			nav: false,
+			dots: false,
+			autoWidth: true,
+		});
 
-// Icon Placeholder Input
+		$(".teams-slider").owlCarousel({
+			loop: false,
+			margin: 24,
+			nav: false,
+			dots: false,
+			autoWidth: true,
+		});
+	});
+}
