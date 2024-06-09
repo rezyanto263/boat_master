@@ -1115,6 +1115,105 @@ footer.blue :where(p, a) {
 	font-size: 14px;
 }
 
+/* Tickets Section Styles */
+.current-tickets-section {
+	background-color: var(--primary);
+}
+
+:where(.current-tickets-section, .tickets-history-section) h1.text-center {
+	font-size: 48px;
+	color: var(--secondary);
+}
+
+.qr-code-ticket {
+	background-color: white;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	height: 100%;
+	position: relative;
+}
+
+.details-ticket {
+	background-color: var(--secondary);
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	height: 100%;
+	position: relative;
+}
+
+.blue-circle {
+	background-color: var(--primary);
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -27.5px;
+	margin: auto;
+}
+
+.details-ticket .blue-circle {
+	left: unset;
+	right: -27.5px;
+}
+
+.details-ticket h1 {
+	color: var(--primary);
+	font-weight: var(--fwblack);
+	font-size: 48px;
+}
+
+.details-ticket :where(.place, .time) i{
+	font-size: 25px;
+	color: var(--primary);
+}
+
+.details-ticket :where(.place a, .time p)  {
+	font-size: 20px;
+	font-weight: var(--fwregular);
+}
+
+:where(.adult-box, .teen-box, .kid-box) {
+	background-color: white;
+	width: 150px;
+	height: 100px;
+	border-radius: 20px;
+}
+
+:where(.adult-box, .teen-box, .kid-box) p {
+	color: var(--primary);
+}
+
+:where(.adult-total, .teen-total, .kid-total) h1{
+	font-size: 48px;
+	font-family: "Roboto", sans-serif;
+	color: var(--primary);
+	margin-bottom: 0;
+}
+
+/* Tickets History Section Styles */
+.tickets-history-section {
+	background-color: var(--lightgrey);
+}
+
+.tickets-history-section h1.text-center {
+	color: var(--primary);
+}
+
+.tickets-history-section .blue-circle {
+	background-color: var(--lightgrey);
+}
+
+.modal-body img {
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
 /* Responsive Configuration Start*/
 .container {
 	max-width: 1536px;
