@@ -62,6 +62,25 @@ input, textarea  {
 	padding-inline: 20px;
 }
 
+input[type="date"] {
+	color: var(--secondary);
+	text-decoration: none;
+	
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	background: transparent;
+    color: transparent;
+    position: absolute;
+    cursor: pointer;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: auto;
+    width: auto;
+}
+
 .price {
 	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
@@ -144,7 +163,7 @@ p {
 	font-weight: var(--fwmedium);
 }
 
-.nav-link:hover {
+.nav-link:hover, .nav-link:focus {
 	color: var(--secondary);
 }
 
@@ -242,6 +261,11 @@ p {
 	display: flex;
 	align-items: center;
 	transition: all 0.3s ease;
+}
+
+.sidebar-item.active a {
+	color: var(--secondary);
+	font-weight: var(--fwbold);
 }
 
 .sidebar-item i {
@@ -784,6 +808,10 @@ footer.blue :where(p, a) {
 	font-weight: var(--fwbold);
 }
 
+.boat-catalog-section .card {
+	text-decoration: none;
+}
+
 .price-idr{
 	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
@@ -830,6 +858,261 @@ footer.blue :where(p, a) {
     bottom: 8px;
     right: 8px;
 	z-index: 1;
+}
+
+/* Step Section Styles */
+.step-section h5 {
+	color: var(--primary);
+	font-weight: var(--fwbold);
+}
+
+.step-section i {
+	font-size: 40px;
+}
+
+.step-section .circle {
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	border: 3px solid var(--primary);
+	color: var(--primary);
+}
+
+.step-section .checked {
+	background-color: var(--primary);
+	color: var(--secondary);
+}
+
+/* Boat Overview Section Styles */
+.booking-overview-section .header :where(h3, i){
+	color: var(--primary);
+}
+
+.booking-overview-section .header i {
+	font-size: 32px;
+}
+
+.boat-overview-slider :where(.owl-stage-outer) {
+	border-radius: 20px;
+	position: relative;
+}
+
+.boat-overview-slider .owl-dots {
+	position: absolute;
+	bottom: 20px;
+	right: 0;
+	left: 0;
+}
+
+.boat-overview-slider .item {
+	height: 500px;
+}
+
+.orange-badges.badge {
+	background-color: var(--secondary);
+	color: white;
+	border: 2px solid var(--secondary);
+}
+
+.white-badges.badge {
+	color: var(--primary);
+	border: 2px solid var(--primary);
+}
+
+/* Choose Tour Section Styles */
+.tour-section .subheader{
+	color: var(--secondary);
+	font-weight: var(--fwregular);
+	font-family: "Raleway", sans-serif;
+}
+
+.anchor-point .card {
+	background-color: var(--primary);
+	border-radius: 20px;
+	position: relative;
+}
+
+.anchor-point .card-image img {
+	border-radius: 20px;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.anchor-point .card-image {
+	border-radius: 20px !important;
+	height: 116px;
+	width: 200px;
+	position: relative;
+	z-index: 1;
+}
+
+.anchor-point .card-header {
+	background-color: var(--primary);
+}
+
+.anchor-point .card-header h4 {
+	color: var(--secondary);
+	font-size: 24px;
+}
+
+.anchor-point p {
+	color: white;
+}
+
+.anchor-point i {
+	color: var(--secondary);
+}
+
+.anchor-point .description {
+	font-size: 12px;
+}
+
+.anchor-point .maps {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.tour-packages :where(.accordion-item, .accordion-header, .accordion-body, .accordion-collapse) {
+	border-radius: 20px !important;
+}
+
+.tour-packages .accordion-button {
+	background-color: white;
+	box-shadow: none;
+	color: var(--primary);
+	width: 100%;
+	border-radius: 16px !important;
+	position: relative;
+}
+
+.tour-packages .accordion-button::after {
+	background-image: url(../images/accordion-icon.svg);
+	position: absolute;
+	top: 24px;
+	right: 24px;
+}
+
+.tour-packages .accordion-button:not(.collapsed) {
+	background-color: var(--primary) !important;
+	outline: 3px solid var(--primary) !important;
+	box-shadow: none !important;
+	color: var(--secondary);
+}
+
+.tour-packages :where(.accordion-body, .accordion-item){
+	background-color: var(--secondary);
+}
+
+.tour-packages .accordion-item {
+	border: 3px solid var(--primary);
+}
+
+.tour-packages .accordion-body h5{
+	font-size: 20px;
+	color: var(--primary);
+	font-weight: var(--fwbold);
+}
+
+.tour-packages .accordion-body p {
+	font-size: 14px;
+}
+
+.package-badges .badge{
+	background-color: white;
+	color: var(--secondary);
+	display: flex;
+	align-items: center;
+	padding: 5px 10px;
+}
+
+.package-badges .badge p {
+	color: var(--secondary);
+	font-size: 12px;
+}
+
+.package-badges .badge i {
+	font-size: 16px;
+}
+
+.accordion-button.collapsed .package-badges .badge {
+	background-color: var(--primary);
+	color: var(--secondary);
+}
+
+
+/* Extra Sections Styles */
+.extra-section .nav-item button{
+	border-radius: 20px;
+	color: var(--primary);
+	border: 2px solid var(--primary);
+	font-weight: var(--fwbold);
+	box-shadow: none !important;
+}
+
+.extra-section .nav-item button.active {
+	background-color: var(--primary);
+	color: white;
+}
+
+.extra-section .extra-image img{
+	border-radius: 10px;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.extra-section .extra-image {
+	position: relative;
+}
+
+.extra-section .extra-desc h5 {
+	color: var(--primary);
+	font-weight: var(--fwbold);
+}
+
+.extra-section .card button {
+	width: 50%;
+	padding: 5px 10px;
+}
+
+
+/* Details Order Section Styles */
+.details-order {
+	background-color: var(--lightgrey);
+	border-radius: 20px;
+	top: 100px;
+}
+
+.max-people {
+	border: 0;
+	border-radius: 20px;
+	background-color: transparent;
+	color: var(--secondary);
+}
+
+:where(.adult, .teen, .kids) .wrapper{
+	background-color: white;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.order-items {
+	background-color: white;
+	border-radius: 20px;
+}
+
+.item-name, .item-price {
+	font-size: 14px;
+	color: black;
+}
+
+.total-price p {
+	color: var(--secondary);
+}
+
+.discount-price,.discount-name {
+	color: var(--primary);
+	font-size: 14px;
 }
 
 /* Responsive Configuration Start*/

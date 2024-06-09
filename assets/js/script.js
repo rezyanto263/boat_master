@@ -1,39 +1,105 @@
 // Navbar Show Up and Hide In
-navhidden = document.querySelector(".hidden")
+navhidden = document.querySelector(".hidden");
 if (navhidden != null) {
-  document.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar");
+	document.addEventListener("scroll", () => {
+		const navbar = document.querySelector(".navbar");
 
-    if (window.scrollY > 95) {
-      navbar.classList.remove("hidden");
-    } else {
-      navbar.classList.add("hidden");
-    }
-});
+		if (window.scrollY > 95) {
+			navbar.classList.remove("hidden");
+		} else {
+			navbar.classList.add("hidden");
+		}
+	});
 }
 
 // Booking Max People
-check = document.querySelector(".adult");
-if(check!=null) {
-const plus = document.querySelector(".plus"),
-minus = document.querySelector(".minus"),
-num = document.querySelector(".num")
+check = document.querySelector(".details-order");
+if (check != null) {
+	// Adult
+	(aplus = document.querySelector(".adult-plus")),
+		(aminus = document.querySelector(".adult-minus")),
+		(atotal = document.querySelector(".adult-total")),
+		// Teen
+		(tplus = document.querySelector(".teen-plus")),
+		(tminus = document.querySelector(".teen-minus")),
+		(ttotal = document.querySelector(".teen-total")),
+		// Kids
+		(kplus = document.querySelector(".kids-plus")),
+		(kminus = document.querySelector(".kids-minus")),
+		(ktotal = document.querySelector(".kids-total"));
 
-  a = 1;
+	discPrice = document.querySelector(".discount-price");
+	totalPrice = document.querySelector(".final-price");
 
-  plus.addEventListener("click", ()=>{
-  a++;
-  a = (a < 10) ? "0" + a : a;
-  num.innerText = a;
-  });
+	let a = 1;
+	let t = 0;
+	let k = 0;
 
-  minus.addEventListener("click", ()=>{
-      if(a > 1){
-          a--;
-          a = (a < 10) ? "0" + a : a;
-  num.innerText = a;
-      }
-  });
+	aplus.addEventListener("click", () => {
+		a++;
+		atotal.innerText = a;
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	tplus.addEventListener("click", () => {
+		t++;
+		ttotal.innerText = t;
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	kplus.addEventListener("click", () => {
+		c++;
+		ktotal.innerText = k;
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	aminus.addEventListener("click", () => {
+		if (a > 0) {
+			a--;
+			atotal.innerText = a;
+		}
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	tminus.addEventListener("click", () => {
+		if (t > 0) {
+			t--;
+			ttotal.innerText = t;
+		}
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	kminus.addEventListener("click", () => {
+		if (k > 0) {
+			k--;
+			ktotal.innerText = k;
+		}
+		total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
 }
 
 // Dashboard SideBar
@@ -49,10 +115,12 @@ if (sidebarbtn != null) {
 videoSlider = document.querySelector(".video-slider");
 teamSlider = document.querySelector(".video-slider");
 boatOverviewSlider = document.querySelector(".boat-overview-slider");
+boatBadgesSlider = document.querySelector(".boat-badges-slider");
 
-if ((videoSlider || teamSlider || boatOverviewSlider) != null) {
+if (
+	(videoSlider || teamSlider || boatOverviewSlider || boatBadgesSlider) != null
+) {
 	$(document).ready(function () {
-    
 		$(".video-slider").owlCarousel({
 			loop: false,
 			margin: 24,
@@ -61,25 +129,30 @@ if ((videoSlider || teamSlider || boatOverviewSlider) != null) {
 			autoWidth: true,
 		});
 
-    $(".teams-slider").owlCarousel({
-      loop:false,
-      margin:24,
-      nav:false,
-      dots:false,
-      autoWidth:true,
-    });
+		$(".teams-slider").owlCarousel({
+			loop: false,
+			margin: 24,
+			nav: false,
+			dots: false,
+			autoWidth: true,
+		});
 
-    $(".boat-overview-slider").owlCarousel({
-      loop:true,
-      autoplay: false,
-      items: 1,
-      margin: 24,
-      nav: false,
-      center: true,
-      dots:true,
-    });
+		$(".boat-overview-slider").owlCarousel({
+			loop: true,
+			autoplay: true,
+			items: 1,
+			nav: false,
+			center: true,
+			dots: true,
+			
+		});
 
-  });
+		$(".boat-badges-slider").owlCarousel({
+			loop: false,
+			margin: 10,
+			nav: false,
+			dots: false,
+			autoWidth: true,
+		});
+	});
 }
-
-
