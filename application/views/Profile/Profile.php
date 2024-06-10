@@ -16,7 +16,6 @@
 
     <!-- My Styles -->
     <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/style-profile-2.css" />
 </head>
 
 <body>
@@ -184,7 +183,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- My Script -->
-    <script src="../assets/js/profile-script.js"></script>
     <script src="../assets/js/script.js"></script>
 </body>
 

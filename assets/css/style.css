@@ -576,6 +576,94 @@ footer :where(p, a) {
 	color: var(--primary);
 }
 
+/* Profile section */
+
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px 0;
+}
+
+.profile {
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-info img {
+    border-radius: 50%;
+}
+
+.profile-info .details p {
+    margin: 5px 0;
+}
+
+.profile-info .details button {
+    cursor: pointer;
+}
+
+#edit-profile-form {
+    display: grid;
+    grid-template-columns: none;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#edit-profile-form label {
+    font-weight: bold;
+}
+
+#edit-profile-form input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+#edit-profile-form button {
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.profile-password .details p {
+    margin: 5px 0;
+}
+
+#edit-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#edit-password-form input {
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+
+.bookings, .reviews {
+    margin-bottom: 20px;
+}
+
+.bookings ul, .reviews ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+:where(.bookings, .reviews) ul li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-top: 24px;
+    margin-bottom: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile section END */
+
 
 /* Responsive Configuration Start*/
 .container {
@@ -669,3 +757,4 @@ footer :where(p, a) {
 }
 
 /* Responsive Configuration End*/
+
