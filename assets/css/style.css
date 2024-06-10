@@ -30,23 +30,26 @@ h1 {
 	font-weight: var(--fwblack);
 	font-family: "Raleway", sans-serif;
 }
+
 h2 {
 	font-size: 40px;
 	font-weight: var(--fwblack);
 	font-family: "Raleway", sans-serif;
 }
+
 h3 {
 	font-size: 32px;
 	font-weight: var(--fwbold);
 	font-family: "Raleway", sans-serif;
 }
+
 h4 {
 	font-size: 24px;
 	font-weight: var(--fwbold);
 	font-family: "Raleway", sans-serif;
 }
 
-input, textarea  {
+input, textarea {
 	font-family: "Roboto", sans-serif, FontAwesome;
 	border-radius: 20px;
 	border: 0;
@@ -460,7 +463,7 @@ p {
 	border-radius: 20px 20px 0 0;
 }
 
-.teams-section .card :where(h3,p) {
+.teams-section .card :where(h3, p) {
 	color: white;
 }
 
@@ -496,7 +499,7 @@ p {
 	color: var(--grey);
 }
 
-.review-section .row{
+.review-section .row {
 	background-color: var(--primary);
 	border-radius: 20px;
 }
@@ -603,11 +606,13 @@ footer :where(p, a) {
 	.container {
 		max-width: 768px;
 	}
+
 	#offcanvas-navbar {
 		display: block;
 		color: white;
 		border: none;
 	}
+
 	#offcanvas-navbar:hover {
 		color: var(--secondary);
 		outline: none;
@@ -642,6 +647,7 @@ footer :where(p, a) {
 		opacity: 0;
 		visibility: hidden;
 	}
+
 	.navbar2 {
 		display: block;
 		margin-top: -71px;
@@ -651,12 +657,15 @@ footer :where(p, a) {
 }
 
 @media (max-width: 992px) {
+
 	ul.navbar-nav,
 	.navbar-nav {
 		display: none !important;
 	}
+
 	.hero-section {
 		height: 100svh;
 	}
 }
+
 /* Responsive Configuration End*/

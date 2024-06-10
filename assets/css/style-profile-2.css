@@ -1,0 +1,136 @@
+body {
+    overflow-x: hidden;
+}
+
+/* header .logo {
+    font-size: 24px;
+    font-weight: bold;
+} */
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+aside {
+    width: 20%;
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px 0;
+}
+
+main {
+    width: 100%;
+}
+
+.profile {
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-info img {
+    border-radius: 50%;
+}
+
+.profile-info .details p {
+    margin: 5px 0;
+}
+
+.profile-info .details button {
+    cursor: pointer;
+}
+
+#edit-profile-form {
+    display: grid;
+    grid-template-columns: none;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#edit-profile-form label {
+    font-weight: bold;
+}
+
+#edit-profile-form input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+#edit-profile-form button {
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+/* #edit-profile-form button:hover {
+    background-color: #0056b3;
+} */
+
+.profile-password .details p {
+    margin: 5px 0;
+}
+
+/* .profile-password .details button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #003580;
+    color: #fff;
+    border: none;
+    border-radius: 15%;
+    cursor: pointer;
+} */
+
+
+#edit-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#edit-password-form input {
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+
+.bookings, .reviews {
+    margin-bottom: 20px;
+}
+
+.bookings ul, .reviews ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+:where(.bookings, .reviews) ul li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-top: 24px;
+    margin-bottom: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
