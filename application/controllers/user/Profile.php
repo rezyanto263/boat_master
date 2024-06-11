@@ -6,13 +6,8 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
-        // if ($this->session->userdata('custId') == 0) {
-
-        //     redirect('usersProfile/login_temp');
-        // }
-
-        $this->load->model('Profile/M_profile');
+        
+        $this->load->model('user/M_profile');
         $this->load->helper('url');
         $this->load->library('form_validation');
     }
@@ -33,7 +28,7 @@ class Profile extends CI_Controller
         }
 
         // Load the edit view
-        $this->load->view('Profile/profile', $data);
+        $this->load->view('user/profile', $data);
     }
 
     // Update user profile
@@ -48,7 +43,7 @@ class Profile extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             // Validation failed, load the edit view again
             $data['user'] = $this->M_profile->get_user_by_id($custId);
-            $this->load->view('profile/profile', $data);
+            $this->load->view('user/profile', $data);
         } else {
             // Validation passed, update user data
             $data = array(
@@ -74,24 +69,7 @@ class Profile extends CI_Controller
             } else {
                 $this->session->set_flashdata('error', 'Failed to update profile.');
             }
-
-            if ($this->User_model->update_user($custId, $data)) {
-                // Update successful, redirect to success page or load a success view
-                redirect('usersProfile/user_profile/success');
-            } else {
-                // Update failed, load the edit view again with an error message
-                $data['user'] = $this->M_profile->get_user_by_id($custId);
-                $data['error'] = 'An error occurred while updating the profile.';
-                $this->load->view('usersProfile/edit_user', $data);
-            }
         }
-    }
-
-    // Success page
-    public function success()
-    {
-        // Load a success view
-        $this->load->view('usersProfile/success');
     }
 }
 
