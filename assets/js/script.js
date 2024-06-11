@@ -12,26 +12,152 @@ if (navhidden != null) {
 	});
 }
 
+
+// Booking Max People
+check = document.querySelector(".details-order");
+if (check != null) {
+	// Adult
+	(aplus = document.querySelector(".adult-plus")),
+		(aminus = document.querySelector(".adult-minus")),
+		(atotal = document.querySelector(".adult-total")),
+		// Teen
+		(tplus = document.querySelector(".teen-plus")),
+		(tminus = document.querySelector(".teen-minus")),
+		(ttotal = document.querySelector(".teen-total")),
+		// Kids
+		(kplus = document.querySelector(".kids-plus")),
+		(kminus = document.querySelector(".kids-minus")),
+		(ktotal = document.querySelector(".kids-total"));
+
+	discPrice = document.querySelector(".discount-price");
+	totalPrice = document.querySelector(".final-price");
+
+	let a = 1;
+	let t = 0;
+	let k = 0;
+
+	aplus.addEventListener("click", () => {
+		a++;
+		atotal.innerText = a;
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	tplus.addEventListener("click", () => {
+		t++;
+		ttotal.innerText = t;
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	kplus.addEventListener("click", () => {
+		c++;
+		ktotal.innerText = k;
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	aminus.addEventListener("click", () => {
+		if (a > 0) {
+			a--;
+			atotal.innerText = a;
+		}
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	tminus.addEventListener("click", () => {
+		if (t > 0) {
+			t--;
+			ttotal.innerText = t;
+		}
+    total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+
+	kminus.addEventListener("click", () => {
+		if (k > 0) {
+			k--;
+			ktotal.innerText = k;
+		}
+		total = a + t + k;
+		discount = -total * 0.1;
+
+		discPrice.innerText = discount;
+		totalPrice.innerText = total;
+	});
+}
+
+// Dashboard SideBar
+sidebarbtn = document.querySelector(".btn-sidebar");
+if (sidebarbtn != null) {
+	sidebarbtn.addEventListener("click", () => {
+		main = document.querySelector(".dashboard-admin");
+		main.classList.toggle("minimize");
+	});
+}
+
 // Owl Carousel
-$(document).ready(function () {
-	$(".video-slider").owlCarousel({
-		loop: false,
-		margin: 24,
-		nav: false,
-		dots: false,
-		autoWidth: true,
-	});
+videoSlider = document.querySelector(".video-slider");
+teamSlider = document.querySelector(".video-slider");
+boatOverviewSlider = document.querySelector(".boat-overview-slider");
+boatBadgesSlider = document.querySelector(".boat-badges-slider");
 
-	$(".teams-slider").owlCarousel({
-		loop: false,
-		margin: 24,
-		nav: false,
-		dots: false,
-		autoWidth: true,
-	});
-});
+if (
+	(videoSlider || teamSlider || boatOverviewSlider || boatBadgesSlider) != null
+) {
+	$(document).ready(function () {
+		$(".video-slider").owlCarousel({
+			loop: false,
+			margin: 24,
+			nav: false,
+			dots: false,
+			autoWidth: true,
+		});
 
-// Icon Placeholder Input
+		$(".teams-slider").owlCarousel({
+			loop: false,
+			margin: 24,
+			nav: false,
+			dots: false,
+			autoWidth: true,
+		});
+
+		$(".boat-overview-slider").owlCarousel({
+			loop: true,
+			autoplay: true,
+			items: 1,
+			nav: false,
+			center: true,
+			dots: true,
+			
+		});
+
+		$(".boat-badges-slider").owlCarousel({
+			loop: false,
+			margin: 10,
+			nav: false,
+			dots: false,
+			autoWidth: true,
+		});
+	});
+}
+
 
 // Profile
 
