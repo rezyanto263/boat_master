@@ -1106,7 +1106,7 @@ footer.blue :where(p, a) {
 	color: black;
 }
 
-.total-price p {
+.total-price p, .total-price {
 	color: var(--secondary);
 }
 
@@ -1210,7 +1210,45 @@ footer.blue :where(p, a) {
 	height: 100%;
 }
 
+/* Contact Details Section Styles */
+.contact-details {
+	background-color: var(--primary);
+	border-radius: 20px;
+}
 
+.contact-details .header {
+	color: var(--secondary);
+}
+
+.contact-details .header i {
+	font-size: 22px;
+}
+
+.contact-details .user-details textarea {
+	height: 150px;
+	scrollbar-width: none;
+	resize: none;
+}
+
+/* Payment Details Section Styles */
+.payment-details {
+	background-color: var(--lightgrey);
+	border-radius: 20px;
+}
+
+.payment-details .foto img{
+	border-radius: 20px;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.information-details .item{
+	border-radius: 10px;
+}
+
+.payment-details .inclusive-package i {
+	color: var(--secondary);
+}
 
 
 
