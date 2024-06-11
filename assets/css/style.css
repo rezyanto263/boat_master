@@ -36,23 +36,26 @@ h1 {
 	font-weight: var(--fwblack);
 	font-family: "Raleway", sans-serif;
 }
+
 h2 {
 	font-size: 40px;
 	font-weight: var(--fwblack);
 	font-family: "Raleway", sans-serif;
 }
+
 h3 {
 	font-size: 32px;
 	font-weight: var(--fwbold);
 	font-family: "Raleway", sans-serif;
 }
+
 h4 {
 	font-size: 24px;
 	font-weight: var(--fwbold);
 	font-family: "Raleway", sans-serif;
 }
 
-input, textarea  {
+input, textarea {
 	font-family: "Roboto", sans-serif, FontAwesome;
 	border-radius: 20px;
 	border: 0;
@@ -651,7 +654,7 @@ p {
 	border-radius: 20px 20px 0 0;
 }
 
-.teams-section .card :where(h3,p) {
+.teams-section .card :where(h3, p) {
 	color: white;
 }
 
@@ -687,7 +690,7 @@ p {
 	color: var(--grey);
 }
 
-.review-section .row{
+.review-section .row {
 	background-color: var(--primary);
 	border-radius: 20px;
 }
@@ -787,9 +790,6 @@ footer :where(p, a) {
 footer.blue :where(p, a) {
 	color: var(--secondary);
 }
-
-
-
 
 
 /* Header Boat Start*/
@@ -1259,6 +1259,88 @@ footer.blue :where(p, a) {
 }
 
 
+/* Profile section */
+
+aside ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px 0;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-info img {
+    border-radius: 50%;
+}
+
+.profile-info .details p {
+    margin: 5px 0;
+}
+
+.profile-info .details button {
+    cursor: pointer;
+}
+
+#edit-profile-form {
+    display: grid;
+    grid-template-columns: none;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#edit-profile-form label {
+    font-weight: bold;
+}
+
+#edit-profile-form input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+#edit-profile-form button {
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.profile-password .details p {
+    margin: 5px 0;
+}
+
+#edit-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#edit-password-form input {
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+
+.bookings, .reviews {
+    margin-bottom: 20px;
+}
+
+.bookings ul, .reviews ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+:where(.bookings, .reviews) ul li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-top: 24px;
+    margin-bottom: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Responsive Configuration Start*/
 .container {
@@ -1289,11 +1371,13 @@ footer.blue :where(p, a) {
 	.container {
 		max-width: 768px;
 	}
+
 	#offcanvas-navbar {
 		display: block;
 		color: white;
 		border: none;
 	}
+
 	#offcanvas-navbar:hover {
 		color: var(--secondary);
 		outline: none;
@@ -1328,6 +1412,7 @@ footer.blue :where(p, a) {
 		opacity: 0;
 		visibility: hidden;
 	}
+
 	.navbar2 {
 		display: block;
 		margin-top: -71px;
@@ -1337,12 +1422,15 @@ footer.blue :where(p, a) {
 }
 
 @media (max-width: 992px) {
+
 	ul.navbar-nav,
 	.navbar-nav {
 		display: none !important;
 	}
+
 	.hero-section {
 		height: 100svh;
 	}
 }
+
 /* Responsive Configuration End*/
