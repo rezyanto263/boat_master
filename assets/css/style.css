@@ -731,14 +731,14 @@ p {
 	scrollbar-width: none;
 }
 
-.contact-faq-section .accordion-button {
+:where(.contact-faq-section, .information-section) .accordion-button {
 	border-radius: 20px !important;
-	box-shadow: none;
+	box-shadow: none !important;
 	height: 50px;
-	color: var(--primary);
+	color: var(--primary) !important;
 }
 
-.contact-faq-section .accordion-item {
+:where(.contact-faq-section, .information-section) .accordion-item {
 	background-color: transparent;
 	color: white;
 	border: 0;
@@ -1248,6 +1248,14 @@ footer.blue :where(p, a) {
 
 .payment-details .inclusive-package i {
 	color: var(--secondary);
+}
+
+
+/* Information Section Styles */
+.information-section .accordion-button {
+	color: var(--primary);
+	border: 2px solid var(--primary);
+	background-color: white;
 }
 
 
