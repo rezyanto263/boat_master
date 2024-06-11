@@ -50,96 +50,86 @@
     </nav>
     <!-- Nav End -->
 
-    <main>
-        <div class="container">
-            <!-- <aside>
-                <ul>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">My Bookings</a></li>
-                    <li><a href="#">Reviews</a></li>
-                    <li><a href="#">Settings</a></li>
-                </ul>
-            </aside> -->
+    
             <main>
-                <section class="profile py-3">
-                    <h1>Profile</h1>
-                    <div class="profile-info">
-                        <img id="profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture">
-                        <div class="details">
-                            <p><strong>Name:</strong> <span id="profile-name"><?= set_value('profile-name', $user->custName) ?></span></p>
-                            <p><strong>Email:</strong> <span id="profile-email"><?= set_value('profile-name', $user->custEmail) ?></span></p>
-                            <p><strong>Address:</strong> <span id="profile-address"><?= set_value('profile-name', $user->custAddress) ?></span></p>
-                            <p><strong>Phone:</strong> <span id="profile-phone"><?= set_value('profile-name', $user->custPhone) ?></span></p>
-                            <button class="btn-primary" id="edit-profile-button">Edit</button>
-                        </div>
-                    </div>
-
+                <section class="profile-details py-5">
                     <div class="container">
-                        <?php if ($this->session->flashdata('success')) : ?>
-                            <p class="alert alert-success"><?= $this->session->flashdata('success') ?></p>
-                        <?php endif; ?>
-                        <?php if ($this->session->flashdata('error')) : ?>
-                            <p class="alert alert-danger"><?= $this->session->flashdata('error') ?></p>
-                        <?php endif; ?>
-
-                        <?= form_open_multipart('profile/profile/update', array('class' => 'form-edit', 'id' => 'edit-profile-form')); ?>
-                        <div class="row mt-1">
-                            <div class="col-md-6 mt-1">
-                                <label for="custName">Name:</label>
-                                <input class="mt-1 form-control" type="text" id="custName" name="custName" value="<?= set_value('custName', $user->custName) ?>"><br>
-                                <label for="custEmail">Email:</label>
-                                <input class="mt-1 form-control" type="email" id="custEmail" name="custEmail" value="<?= set_value('profile-name', $user->custEmail) ?>"><br>
-                                <label for="custAddress">Address:</label>
-                                <input class="mt-1 form-control" type="text" id="custAddress" name="custAddress" value="<?= set_value('profile-name', $user->custAddress) ?>">
-                            </div>
-                            <div class="col-md-6 mt-1">
-                                <label for="custPhone">Phone:</label>
-                                <input class="mt-1 form-control" type="text" id="custPhone" name="custPhone" value="<?= set_value('profile-name', $user->custPhone) ?>"><br>
-                                <label for="custPic">Profile Picture:</label>
-                                <input class="mt-1 form-control" type="file" id="custPic" name="custPic">
+                        <h1>Profile</h1>
+                        <div class="profile-info">
+                            <img id="profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture">
+                            <div class="details">
+                                <p><strong>Name:</strong> <span id="profile-name"><?= set_value('profile-name', $user->custName) ?></span></p>
+                                <p><strong>Email:</strong> <span id="profile-email"><?= set_value('profile-name', $user->custEmail) ?></span></p>
+                                <p><strong>Address:</strong> <span id="profile-address"><?= set_value('profile-name', $user->custAddress) ?></span></p>
+                                <p><strong>Phone:</strong> <span id="profile-phone"><?= set_value('profile-name', $user->custPhone) ?></span></p>
+                                <button class="btn-primary" id="edit-profile-button">Edit</button>
                             </div>
                         </div>
-                        <button class="btn-primary" type="submit" id="save-profile-btn" name="save-profile-btn">Save</button>
-                        <?= form_close(); ?>
-                    </div>
 
+                        <div class="container">
+                            <?php if ($this->session->flashdata('success')) : ?>
+                                <p class="alert alert-success"><?= $this->session->flashdata('success') ?></p>
+                            <?php endif; ?>
+                            <?php if ($this->session->flashdata('error')) : ?>
+                                <p class="alert alert-danger"><?= $this->session->flashdata('error') ?></p>
+                            <?php endif; ?>
+
+                            <?= form_open_multipart('profile/profile/update', array('class' => 'form-edit', 'id' => 'edit-profile-form')); ?>
+                            <div class="row mt-1">
+                                <div class="col-md-6 mt-1">
+                                    <label for="custName">Name:</label>
+                                    <input class="mt-1 form-control" type="text" id="custName" name="custName" value="<?= set_value('custName', $user->custName) ?>"><br>
+                                    <label for="custEmail">Email:</label>
+                                    <input class="mt-1 form-control" type="email" id="custEmail" name="custEmail" value="<?= set_value('profile-name', $user->custEmail) ?>"><br>
+                                    <label for="custAddress">Address:</label>
+                                    <input class="mt-1 form-control" type="text" id="custAddress" name="custAddress" value="<?= set_value('profile-name', $user->custAddress) ?>">
+                                </div>
+                                <div class="col-md-6 mt-1">
+                                    <label for="custPhone">Phone:</label>
+                                    <input class="mt-1 form-control" type="text" id="custPhone" name="custPhone" value="<?= set_value('profile-name', $user->custPhone) ?>"><br>
+                                    <label for="custPic">Profile Picture:</label>
+                                    <input class="mt-1 form-control" type="file" id="custPic" name="custPic">
+                                </div>
+                            </div>
+                            <button class="btn-primary" type="submit" id="save-profile-btn" name="save-profile-btn">Save</button>
+                            <?= form_close(); ?>
+                        </div>
+                    </div>
                 </section>
 
                 <section class="password my-3">
-                    <h2>Password</h2>
-                    <div class="profile-password">
-                        <label for="profile-password"><strong>Password:</strong></label>
-                        <input type="password" id="profile-password" value="<?= set_value('profile-password', $user->custPassword) ?>" readonly>
-                        <button class="btn-primary" id="edit-password-button">Edit</button>
-                    </div>
-                    <form class="form-edit" id="edit-password-form" style="display:none;">
-                        <div class="row mt-1">
-                            <div class="col-md-6 mt-1">
-                                <label for="newPass">New Password:</label>
-                                <input class="form-control" type="password" id="newPass" name="newPass">
-                                <label for="confirmPass">Confirm Password:</label>
-                                <input class="form-control" type="password" id="confirmPass" name="confirmPass">
-                            </div>
+                    <div class="container">
+                        <h2>Password</h2>
+                        <div class="profile-password">
+                            <label for="profile-password"><strong>Password:</strong></label>
+                            <input type="password" id="profile-password" value="<?= set_value('profile-password', $user->custPassword) ?>" readonly>
+                            <button class="btn-primary" id="edit-password-button">Edit</button>
                         </div>
-                        <button class="btn-primary mt-3" type="button" id="save-password-btn">Save</button>
-                    </form>
+                        <form class="form-edit" id="edit-password-form" style="display:none;">
+                            <div class="row mt-1">
+                                <div class="col-md-6 mt-1">
+                                    <label for="newPass">New Password:</label>
+                                    <input class="form-control" type="password" id="newPass" name="newPass">
+                                    <label for="confirmPass">Confirm Password:</label>
+                                    <input class="form-control" type="password" id="confirmPass" name="confirmPass">
+                                </div>
+                            </div>
+                            <button class="btn-primary mt-3" type="button" id="save-password-btn">Save</button>
+                        </form>
+                    </div>
                 </section>
 
                 <section class="reviews my-3">
-                    <h2>My Reviews</h2>
-                    <ul>
-                        <li>Review 1: Great stay at Hotel XYZ!</li>
-                        <li>Review 2: Wonderful experience at Resort ABC.</li>
-                        <li>Review 3: Cozy apartment at DEF.</li>
-                    </ul>
+                    <div class="container">
+                        <h2>My Reviews</h2>
+                        <ul>
+                            <li>Review 1: Great stay at Hotel XYZ!</li>
+                            <li>Review 2: Wonderful experience at Resort ABC.</li>
+                            <li>Review 3: Cozy apartment at DEF.</li>
+                        </ul>
+                    </div>
                 </section>
             </main>
-        </div>
-        <script src="/assets/js/profile-script.js"></script>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-    </main>
-
 
 
     <!-- Footer Section Start -->
