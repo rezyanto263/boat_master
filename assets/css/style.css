@@ -2,7 +2,7 @@
 	--primary: #224870;
 	--secondary: #fda43e;
 	--grey: #6d6d6d;
-	--lightgrey: #D9D9D9;
+	--lightgrey: #d9d9d9;
 	--fwblack: 900;
 	--fwextrabold: 800;
 	--fwbold: 700;
@@ -27,8 +27,23 @@ body {
 	font-family: "Roboto", sans-serif;
 }
 
-body.dashboard {
-	background-color: var(--lightgrey);
+html {
+	height: 100%;
+}
+body.dashboard{
+	background-image: url("../images/bgdashboard.svg");
+	background-repeat: repeat-y;
+	background-size: cover;
+	background-position: center;
+}
+
+.input-group-text.right{
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.input-group span {
+	padding-inline: 16px;
 }
 
 h1 {
@@ -55,33 +70,67 @@ h4 {
 	font-family: "Raleway", sans-serif;
 }
 
-input, textarea {
+input,
+textarea,
+select,
+.form-control,
+.form-select {
 	font-family: "Roboto", sans-serif, FontAwesome;
 	border-radius: 20px;
 	border: 0;
 	outline: 0;
 	min-height: 40px;
 	padding-block: 12px;
-	padding-inline: 20px;
+	padding-inline: 20px !important;
+	font-size: 16px;
+}
+
+.modal-body :where(input, textarea, select, .form-control, .form-select) {
+	border: 1px solid var(--lightgrey) !important;
+	width: 100%;
+	box-shadow: none !important;
+}
+
+:where(.modal-header, .modal-header .btn-close) {
+	background-color: var(--primary);
+	color: var(--secondary);
 }
 
 input[type="date"] {
 	color: var(--secondary);
 	text-decoration: none;
-	
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
 	background: transparent;
-    color: transparent;
-    position: absolute;
-    cursor: pointer;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: auto;
-    width: auto;
+	color: transparent;
+	position: absolute;
+	cursor: pointer;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: auto;
+	width: auto;
+}
+
+.del-checkbox{
+	position: absolute;
+	top: -10px !important;
+	right: 0 !important;
+	width: 20px !important;
+	height: 20px !important;
 }
 
 .price {
@@ -109,16 +158,42 @@ p {
 	display: none !important;
 }
 
-:where(.dashboard-admin, .login) .max {
+:where(.dashboard-admin, .login, .navbar2.login) .max {
 	display: none !important;
 }
 
-.login .btn-icon {
-	display: contents !important;
+.login .notification .notif-circle {
+	background-color: var(--secondary);
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	right: -5px;
+}
+
+.login .notification .notif-circle i {
+	margin-top: 1px;
+	font-size: 12px;
+	font-weight: var(--fwblack);
+	color: var(--primary) !important;
+}
+
+.notification :where(.notif-circle, .notif-icon) {
+	display: block !important;
+}
+
+.notif-circle,
+i.notif-icon {
+	display: none;
 }
 
 .btn-icon {
 	display: none !important;
+}
+
+:where(.login, .navbar2.login) .btn-icon {
+	display: contents !important;
 }
 
 .minimize .max {
@@ -166,7 +241,8 @@ p {
 	font-weight: var(--fwmedium);
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover,
+.nav-link:focus {
 	color: var(--secondary);
 }
 
@@ -205,8 +281,6 @@ p {
 	color: white;
 }
 
-
-
 :where(.profile-user, .tickets):hover i {
 	color: var(--secondary) !important;
 }
@@ -216,6 +290,32 @@ p {
 	background-color: var(--secondary);
 	width: 55px;
 	height: 55px;
+}
+
+.dashboard-navbar .dropdown-menu {
+	animation: rotateX 300ms ease-in-out forwards;
+	margin-top: 80px !important;
+	margin-right: 30px !important;
+	border: 0;
+	border-radius: 10px;
+}
+
+.dashboard-navbar .dropdown-item {
+	background-color: white;
+	color: red;
+	transition: all 0.3s ease;
+}
+
+.dashboard-navbar li:first-child .dropdown-item {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.dashboard-navbar .dropdown-item:hover {
+	background-color: red;
+	color: white;
 }
 
 .profile i {
@@ -266,6 +366,10 @@ p {
 	transition: all 0.3s ease;
 }
 
+.sidebar-item a:hover {
+	color: var(--secondary);
+}
+
 .sidebar-item.active a {
 	color: var(--secondary);
 	font-weight: var(--fwbold);
@@ -297,10 +401,95 @@ p {
 	transition: all 0.3s ease;
 }
 
+.content-section .table-content {
+	background-color: white;
+	padding: 24px;
+	border-radius: 20px;
+}
 
+.table-content :where(.table) {
+	border: 1px solid var(--lightgrey);
+	border-radius: 10px;
+}
+
+.content-section th:hover {
+	outline: 0 !important;
+	background-color: var(--primary) !important;
+	color: white;
+	transition: all 0.5s ease;
+}
+
+.content-section thead th:first-child {
+	border-top-left-radius: 10px !important;
+}
+
+.content-section thead th:last-child {
+	border-top-right-radius: 10px;
+}
+
+.content-section tfoot th:first-child {
+	border-bottom-left-radius: 10px !important;
+}
+
+.content-section tfoot th:last-child {
+	border-bottom-right-radius: 10px;
+}
+
+.table-content :where(thead, tbody, th, tr, td) {
+	border: 0;
+	outline: 0;
+}
+
+.content-section .dt-search input {
+	border-radius: 20px;
+	padding: 10px 10px;
+	width: 230px !important;
+	box-shadow: none !important;
+	border: 1px solid var(--lightgrey) !important;
+}
+
+.dt-paging .dt-paging-button a {
+	background-color: var(--primary);
+	border: 0;
+	color: white;
+	box-shadow: none !important;
+}
+
+.dt-paging :where(.dt-paging-button.active a, .dt-paging-button a:hover) {
+	background-color: var(--secondary) !important;
+	box-shadow: none !important;
+}
+
+.dt-paging .dt-paging-button:first-child a {
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+.dt-paging .dt-paging-button:last-child a {
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.dt-buttons button {
+	background-color: var(--primary);
+	border: 2px solid var(--primary);
+}
+
+.dt-buttons button:hover {
+	background-color: transparent !important;
+	border: 2px solid var(--primary) !important;
+	color: var(--primary) !important;
+}
+
+#datatable :where(thead, tfoot) tr th,
+.fixedHeader-floating thead tr th {
+	background-color: var(--primary) !important;
+	color: white !important;
+}
 
 /* Button Styles */
-.btn-primary {
+.btn-primary,
+.btn-primary:focus-visible {
 	background-color: var(--primary);
 	color: white;
 	font-weight: var(--fwbold);
@@ -312,6 +501,7 @@ p {
 	border: 2px solid var(--primary);
 	outline: 0;
 	transition: all 0.3s ease-in-out;
+	box-shadow: none;
 }
 
 .btn-primary:hover,
@@ -321,7 +511,8 @@ p {
 	border: 2px solid var(--primary);
 }
 
-.btn-outline-primary {
+.btn-outline-primary,
+.btn-outline-primary:focus-visible {
 	background-color: transparent;
 	color: var(--primary);
 	font-weight: var(--fwbold);
@@ -333,6 +524,7 @@ p {
 	border: 2px solid var(--primary);
 	outline: 0;
 	transition: all 0.3s ease-in-out;
+	box-shadow: none;
 }
 
 .btn-outline-primary:hover,
@@ -342,7 +534,8 @@ p {
 	border: 2px solid var(--primary);
 }
 
-.btn-secondary {
+.btn-secondary,
+.btn-secondary:focus-visible {
 	background-color: var(--secondary);
 	color: white;
 	font-weight: var(--fwbold);
@@ -354,6 +547,7 @@ p {
 	border: 2px solid var(--secondary);
 	outline: 0;
 	transition: all 0.3s ease-in-out;
+	box-shadow: none;
 }
 
 .btn-secondary:hover,
@@ -363,7 +557,8 @@ p {
 	border: 2px solid var(--secondary);
 }
 
-.btn-outline-secondary {
+.btn-outline-secondary,
+.btn-outline-secondary:focus-visible {
 	background-color: transparent;
 	color: var(--secondary);
 	font-weight: var(--fwbold);
@@ -375,6 +570,7 @@ p {
 	border: 2px solid var(--secondary);
 	outline: 0;
 	transition: all 0.3s ease-in-out;
+	box-shadow: none;
 }
 
 .btn-outline-secondary:hover,
@@ -680,7 +876,6 @@ p {
 	font-size: 22px;
 }
 
-
 /* Review Section Styles */
 .review-section h2 {
 	color: var(--primary);
@@ -701,7 +896,8 @@ p {
 	scrollbar-width: none;
 }
 
-.review-section .review-rating, .review-section .review-content {
+.review-section .review-rating,
+.review-section .review-content {
 	border-radius: 20px;
 	background-color: white;
 }
@@ -791,7 +987,6 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-
 /* Header Boat Start*/
 .header-boat {
 	background-color: white;
@@ -800,7 +995,6 @@ footer.blue :where(p, a) {
 .header-boat h2 {
 	color: var(--primary);
 }
-
 
 /*Boat Catalog Section Styles*/
 .boat-catalog-section h5 {
@@ -812,14 +1006,20 @@ footer.blue :where(p, a) {
 	text-decoration: none;
 }
 
-.price-idr{
+.price-idr {
 	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
 	font-size: 20px;
 	color: var(--secondary);
 }
+
+.action-button {
+	min-height: 100%;
+	display: flex;
+}
+
 .card-header {
-    position: relative;
+	position: relative;
 	z-index: 0;
 }
 
@@ -831,9 +1031,9 @@ footer.blue :where(p, a) {
 .badge {
 	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
-    padding: 7px 12px;
-    border-radius: 20px;
-    font-size: 14px;
+	padding: 7px 12px;
+	border-radius: 20px;
+	font-size: 14px;
 }
 
 .bottom-badges .badge {
@@ -848,15 +1048,15 @@ footer.blue :where(p, a) {
 
 .top-badges {
 	position: absolute;
-    top: 8px;
-    right: 8px;
+	top: 8px;
+	right: 8px;
 	z-index: 1;
 }
 
 .bottom-badges {
 	position: absolute;
-    bottom: 8px;
-    right: 8px;
+	bottom: 8px;
+	right: 8px;
 	z-index: 1;
 }
 
@@ -884,7 +1084,7 @@ footer.blue :where(p, a) {
 }
 
 /* Boat Overview Section Styles */
-.booking-overview-section .header :where(h3, i){
+.booking-overview-section .header :where(h3, i) {
 	color: var(--primary);
 }
 
@@ -920,7 +1120,7 @@ footer.blue :where(p, a) {
 }
 
 /* Choose Tour Section Styles */
-.tour-section .subheader{
+.tour-section .subheader {
 	color: var(--secondary);
 	font-weight: var(--fwregular);
 	font-family: "Raleway", sans-serif;
@@ -973,7 +1173,13 @@ footer.blue :where(p, a) {
 	right: 0;
 }
 
-.tour-packages :where(.accordion-item, .accordion-header, .accordion-body, .accordion-collapse) {
+.tour-packages
+	:where(
+		.accordion-item,
+		.accordion-header,
+		.accordion-body,
+		.accordion-collapse
+	) {
 	border-radius: 20px !important;
 }
 
@@ -1000,7 +1206,7 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-.tour-packages :where(.accordion-body, .accordion-item){
+.tour-packages :where(.accordion-body, .accordion-item) {
 	background-color: var(--secondary);
 }
 
@@ -1008,7 +1214,7 @@ footer.blue :where(p, a) {
 	border: 3px solid var(--primary);
 }
 
-.tour-packages .accordion-body h5{
+.tour-packages .accordion-body h5 {
 	font-size: 20px;
 	color: var(--primary);
 	font-weight: var(--fwbold);
@@ -1018,7 +1224,7 @@ footer.blue :where(p, a) {
 	font-size: 14px;
 }
 
-.package-badges .badge{
+.package-badges .badge {
 	background-color: white;
 	color: var(--secondary);
 	display: flex;
@@ -1040,9 +1246,8 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-
 /* Extra Sections Styles */
-.extra-section .nav-item button{
+.extra-section .nav-item button {
 	border-radius: 20px;
 	color: var(--primary);
 	border: 2px solid var(--primary);
@@ -1055,7 +1260,7 @@ footer.blue :where(p, a) {
 	color: white;
 }
 
-.extra-section .extra-image img{
+.extra-section .extra-image img {
 	border-radius: 10px;
 	min-width: 100%;
 	min-height: 100%;
@@ -1075,7 +1280,6 @@ footer.blue :where(p, a) {
 	padding: 5px 10px;
 }
 
-
 /* Details Order Section Styles */
 .details-order {
 	background-color: var(--lightgrey);
@@ -1090,7 +1294,7 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-:where(.adult, .teen, .kids) .wrapper{
+:where(.adult, .teen, .kids) .wrapper {
 	background-color: white;
 	border-radius: 20px;
 	padding: 10px;
@@ -1101,16 +1305,19 @@ footer.blue :where(p, a) {
 	border-radius: 20px;
 }
 
-.item-name, .item-price {
+.item-name,
+.item-price {
 	font-size: 14px;
 	color: black;
 }
 
-.total-price p, .total-price {
+.total-price p,
+.total-price {
 	color: var(--secondary);
 }
 
-.discount-price,.discount-name {
+.discount-price,
+.discount-name {
 	color: var(--primary);
 	font-size: 14px;
 }
@@ -1164,12 +1371,12 @@ footer.blue :where(p, a) {
 	font-size: 48px;
 }
 
-.details-ticket :where(.place, .time) i{
+.details-ticket :where(.place, .time) i {
 	font-size: 25px;
 	color: var(--primary);
 }
 
-.details-ticket :where(.place a, .time p)  {
+.details-ticket :where(.place a, .time p) {
 	font-size: 20px;
 	font-weight: var(--fwregular);
 }
@@ -1185,7 +1392,7 @@ footer.blue :where(p, a) {
 	color: var(--primary);
 }
 
-:where(.adult-total, .teen-total, .kid-total) h1{
+:where(.adult-total, .teen-total, .kid-total) h1 {
 	font-size: 48px;
 	font-family: "Roboto", sans-serif;
 	color: var(--primary);
@@ -1236,20 +1443,19 @@ footer.blue :where(p, a) {
 	border-radius: 20px;
 }
 
-.payment-details .foto img{
+.payment-details .foto img {
 	border-radius: 20px;
 	min-width: 100%;
 	min-height: 100%;
 }
 
-.information-details .item{
+.information-details .item {
 	border-radius: 10px;
 }
 
 .payment-details .inclusive-package i {
 	color: var(--secondary);
 }
-
 
 /* Information Section Styles */
 .information-section .accordion-button {
@@ -1258,89 +1464,228 @@ footer.blue :where(p, a) {
 	background-color: white;
 }
 
-
 /* Profile section */
 
 aside ul li a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    padding: 10px 0;
+	text-decoration: none;
+	color: #333;
+	display: block;
+	padding: 10px 0;
 }
 
 .profile-info {
-    display: flex;
-    align-items: center;
-    gap: 30px;
+	display: flex;
+	align-items: center;
+	gap: 30px;
 }
 
 .profile-info img {
-    border-radius: 50%;
+	border-radius: 50%;
 }
 
 .profile-info .details p {
-    margin: 5px 0;
+	margin: 5px 0;
 }
 
 .profile-info .details button {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #edit-profile-form {
-    display: grid;
-    grid-template-columns: none;
-    gap: 10px;
-    margin-top: 20px;
+	display: grid;
+	grid-template-columns: none;
+	gap: 10px;
+	margin-top: 20px;
 }
 
 #edit-profile-form label {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 #edit-profile-form input {
-    border: 1px solid #ccc;
-    border-radius: 20px;
+	border: 1px solid #ccc;
+	border-radius: 20px;
 }
 
 #edit-profile-form button {
-    margin-top: 5px;
-    cursor: pointer;
+	margin-top: 5px;
+	cursor: pointer;
 }
 
 .profile-password .details p {
-    margin: 5px 0;
+	margin: 5px 0;
 }
 
 #edit-password-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 20px;
 }
 
 #edit-password-form input {
-    border: 1px solid;
-    border-radius: 20px;
+	border: 1px solid;
+	border-radius: 20px;
 }
 
-
-.bookings, .reviews {
-    margin-bottom: 20px;
+.bookings,
+.reviews {
+	margin-bottom: 20px;
 }
 
-.bookings ul, .reviews ul {
-    list-style-type: none;
-    padding: 0;
+.bookings ul,
+.reviews ul {
+	list-style-type: none;
+	padding: 0;
 }
 
 :where(.bookings, .reviews) ul li {
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin-top: 24px;
-    margin-bottom: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	background-color: #f9f9f9;
+	padding: 10px;
+	margin-top: 24px;
+	margin-bottom: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Login Section Styles */
+body.auth {
+	display: flex;
+	align-items: center;
+	min-height: 100vh;
+	background-image: url("../images/bgauth.webp");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	backdrop-filter: blur(2px);
+}
+
+.login-logo {
+	width: 100px;
+	height: 100px;
+}
+
+.wrapper-auth {
+	width: 550px;
+	background-color: var(--primary);
+	color: white;
+	border-radius: 25px;
+	padding: 30px 40px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.wrapper-auth.registers {
+	width: 850px;
+}
+
+.wrapper-auth.admin {
+	background-color: white;
+}
+
+.wrapper-auth h3 {
+	font-size: 36px;
+	text-align: center;
+}
+
+.wrapper-auth.admin h3 {
+	color: var(--primary) !important;
+}
+
+.wrapper-auth .input-box {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	margin: 30px 0;
+}
+
+.input-box input {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: none;
+	outline: none;
+	border: 2px solid #ffffff;
+	border-radius: 40px;
+	font-size: 16px;
+	color: #fff;
+	padding: 20px 60px 20px 20px;
+	transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-box input::placeholder {
+	color: #ffffff;
+	transition: color 0.3s;
+}
+
+.input-box input:focus {
+	border-color: var(--secondary);
+	box-shadow: 0 0 5px rgba(253, 164, 62, 0.283);
+}
+
+.admin .input-box input {
+	border: 2px solid var(--primary);
+	color: var(--primary);
+}
+
+.admin .input-box input::placeholder {
+	color: var(--primary);
+}
+
+.admin .input-box input:focus {
+	border-color: var(--primary);
+	box-shadow: 0 0 5px rgba(62, 75, 253, 0.283);
+}
+
+.input-box input:focus::placeholder {
+	color: var(--secondary);
+}
+
+.admin .input-box input:focus::placeholder {
+	color: var(--primary);
+}
+
+.input-box i {
+	position: absolute;
+	right: 20px;
+	top: 30%;
+	transform: translate(-50%);
+	font-size: 20px;
+}
+
+.admin .input-box i {
+	color: var(--primary);
+}
+
+.remember-forgot label input {
+	accent-color: white;
+	margin-right: 3px;
+}
+
+.remember-forgot a {
+	color: white !important;
+}
+
+.remember-forgot a:hover {
+	color: var(--secondary) !important;
+}
+
+.sign-up,
+.sign-in {
+	font-size: 14px;
+}
+
+.sign-up a,
+.sign-in a {
+	color: white;
+	transition: all 0.3s ease;
+}
+
+:where(.sign-up, .sign-in) a:hover {
+	color: var(--secondary);
+}
+
+.admin :where(.sign-up, .sign-in) a:hover {
+	color: var(--primary);
+}
 
 /* Responsive Configuration Start*/
 .container {
@@ -1422,7 +1767,6 @@ aside ul li a {
 }
 
 @media (max-width: 992px) {
-
 	ul.navbar-nav,
 	.navbar-nav {
 		display: none !important;
@@ -1434,3 +1778,42 @@ aside ul li a {
 }
 
 /* Responsive Configuration End*/
+
+/* Animation */
+@keyframes growDown {
+	0% {
+		transform: scaleY(0);
+	}
+	80% {
+		transform: scaleY(1.1);
+	}
+	100% {
+		transform: scaleY(1);
+	}
+}
+
+@keyframes growOut {
+	0% {
+		transform: scale(0);
+	}
+	80% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes rotateX {
+	0% {
+		opacity: 0;
+		transform: rotateX(-90deg);
+	}
+	50% {
+		transform: rotateX(-20deg);
+	}
+	100% {
+		opacity: 1;
+		transform: rotateX(0deg);
+	}
+}
