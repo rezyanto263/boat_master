@@ -7,7 +7,7 @@ class Profile extends CI_Controller
     {
         parent::__construct();
         
-        $this->load->model('user/M_profile');
+        $this->load->model('M_profile');
         $this->load->helper('url');
         $this->load->library('form_validation');
     }
