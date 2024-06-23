@@ -273,4 +273,32 @@ function isLetterSpaceKey(evt) {
 	return true;
 }
 
+function addTour() {
+	var container  = document.querySelector('.add-tour-input')
+	var newContent = `
+	<label class="mt-3">Package Tour Details</label>
+	<div class="input-tour-container">
+		<div class="input-tour d-flex gap-3 mb-3">
+			<input class="form-control w-75" type="text" name="tourNames[]" placeholder="Tour Name">
+			<input class="form-control w-25" type="time" name="tourTimes[]">
+		</div>
+		<textarea class="form-control w-100" type="text" name="tourDescs[]" placeholder="Simple description about the tour..." maxlength="50"></textarea>
+	</div>`;
+	container.insertAdjacentHTML('beforeend', newContent);
+}
+
+function addTourEdit(packageId) {
+	var container  = document.querySelector('.edit-tour-input'+packageId);
+	var newContent = `
+	<label class="mt-3">Package Tour Details</label>
+	<div class="input-tour-container">
+		<div class="input-tour d-flex gap-3 mb-3">
+			<input class="form-control w-75" type="text" name="tourNames[]" placeholder="Tour Name">
+			<input class="form-control w-25" type="time" name="tourTimes[]">
+		</div>
+		<textarea class="form-control w-100" type="text" name="tourDescs[]" placeholder="Simple description about the tour..." maxlength="50"></textarea>
+	</div>`;
+	container.insertAdjacentHTML('beforeend', newContent);
+}
+
 $('.message').delay(3000).fadeOut(300);

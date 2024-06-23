@@ -133,6 +133,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	height: 20px !important;
 }
 
+input[type="checkbox" i].del-checkbox-tour{
+	top: 15px;
+	position: relative;
+	width: 20px !important;
+	height: 20px !important;
+}
+
 .price {
 	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
