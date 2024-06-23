@@ -39,7 +39,7 @@
                 <li class="sidebar-item <?= ($title=='BOOKINGS')? 'active':''; ?>">
                     <a class="gap-3" href="<?= base_url('dashboard/bookings'); ?>">
                         <div class="icon text-center">
-                            <i class="fa-solid fa-receipt"></i>
+                            <i class="fa-solid fa-ticket"></i>
                         </div>
                         <span class="textmin">Bookings</span>
                     </a>
@@ -58,14 +58,6 @@
                             <i class="fa-solid fa-ship"></i>
                         </div>
                         <span class="textmin">Boats</span>
-                    </a>
-                </li>
-                <li class="sidebar-item <?= ($title=='TOURS')? 'active':''; ?>">
-                    <a class="gap-3" href="<?= base_url('dashboard/tours'); ?>">
-                        <div class="icon text-center">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                        </div>
-                        <span class="textmin">Tours</span>
                     </a>
                 </li>
                 <li class="sidebar-item <?= ($title=='EXTRAS')? 'active':''; ?>">
@@ -87,9 +79,17 @@
                 <li class="sidebar-item <?= ($title=='GALLERY')? 'active':''; ?>">
                     <a class="gap-3" href="<?= base_url('dashboard/gallery'); ?>">
                         <div class="icon text-center">
-                            <i class="fa-solid fa-images"></i>
+                            <i class="fa-solid fa-photo-film"></i>
                         </div>
                         <span class="textmin">Gallery</span>
+                    </a>
+                </li>
+                <li class="sidebar-item <?= ($title=='BADGES')? 'active':''; ?>">
+                    <a class="gap-3" href="<?= base_url('dashboard/badges'); ?>">
+                        <div class="icon text-center">
+                            <i class="fa-solid fa-tags"></i>
+                        </div>
+                        <span class="textmin">Badges</span>
                     </a>
                 </li>
             </ul>
