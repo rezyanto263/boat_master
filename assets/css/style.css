@@ -68,20 +68,20 @@ input, textarea {
 input[type="date"] {
 	color: var(--secondary);
 	text-decoration: none;
-	
+
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
 	background: transparent;
-    color: transparent;
-    position: absolute;
-    cursor: pointer;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: auto;
-    width: auto;
+	color: transparent;
+	position: absolute;
+	cursor: pointer;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: auto;
+	width: auto;
 }
 
 .price {
@@ -812,14 +812,15 @@ footer.blue :where(p, a) {
 	text-decoration: none;
 }
 
-.price-idr{
+.price-idr {
 	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
 	font-size: 20px;
 	color: var(--secondary);
 }
+
 .card-header {
-    position: relative;
+	position: relative;
 	z-index: 0;
 }
 
@@ -831,9 +832,9 @@ footer.blue :where(p, a) {
 .badge {
 	font-family: "Roboto", sans-serif;
 	font-weight: var(--fwbold);
-    padding: 7px 12px;
-    border-radius: 20px;
-    font-size: 14px;
+	padding: 7px 12px;
+	border-radius: 20px;
+	font-size: 14px;
 }
 
 .bottom-badges .badge {
@@ -848,15 +849,15 @@ footer.blue :where(p, a) {
 
 .top-badges {
 	position: absolute;
-    top: 8px;
-    right: 8px;
+	top: 8px;
+	right: 8px;
 	z-index: 1;
 }
 
 .bottom-badges {
 	position: absolute;
-    bottom: 8px;
-    right: 8px;
+	bottom: 8px;
+	right: 8px;
 	z-index: 1;
 }
 
@@ -884,7 +885,7 @@ footer.blue :where(p, a) {
 }
 
 /* Boat Overview Section Styles */
-.booking-overview-section .header :where(h3, i){
+.booking-overview-section .header :where(h3, i) {
 	color: var(--primary);
 }
 
@@ -920,7 +921,7 @@ footer.blue :where(p, a) {
 }
 
 /* Choose Tour Section Styles */
-.tour-section .subheader{
+.tour-section .subheader {
 	color: var(--secondary);
 	font-weight: var(--fwregular);
 	font-family: "Raleway", sans-serif;
@@ -1000,7 +1001,7 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-.tour-packages :where(.accordion-body, .accordion-item){
+.tour-packages :where(.accordion-body, .accordion-item) {
 	background-color: var(--secondary);
 }
 
@@ -1008,7 +1009,7 @@ footer.blue :where(p, a) {
 	border: 3px solid var(--primary);
 }
 
-.tour-packages .accordion-body h5{
+.tour-packages .accordion-body h5 {
 	font-size: 20px;
 	color: var(--primary);
 	font-weight: var(--fwbold);
@@ -1018,7 +1019,7 @@ footer.blue :where(p, a) {
 	font-size: 14px;
 }
 
-.package-badges .badge{
+.package-badges .badge {
 	background-color: white;
 	color: var(--secondary);
 	display: flex;
@@ -1042,7 +1043,7 @@ footer.blue :where(p, a) {
 
 
 /* Extra Sections Styles */
-.extra-section .nav-item button{
+.extra-section .nav-item button {
 	border-radius: 20px;
 	color: var(--primary);
 	border: 2px solid var(--primary);
@@ -1055,7 +1056,7 @@ footer.blue :where(p, a) {
 	color: white;
 }
 
-.extra-section .extra-image img{
+.extra-section .extra-image img {
 	border-radius: 10px;
 	min-width: 100%;
 	min-height: 100%;
@@ -1090,7 +1091,7 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-:where(.adult, .teen, .kids) .wrapper{
+:where(.adult, .teen, .kids) .wrapper {
 	background-color: white;
 	border-radius: 20px;
 	padding: 10px;
@@ -1110,7 +1111,7 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-.discount-price,.discount-name {
+.discount-price, .discount-name {
 	color: var(--primary);
 	font-size: 14px;
 }
@@ -1164,12 +1165,12 @@ footer.blue :where(p, a) {
 	font-size: 48px;
 }
 
-.details-ticket :where(.place, .time) i{
+.details-ticket :where(.place, .time) i {
 	font-size: 25px;
 	color: var(--primary);
 }
 
-.details-ticket :where(.place a, .time p)  {
+.details-ticket :where(.place a, .time p) {
 	font-size: 20px;
 	font-weight: var(--fwregular);
 }
@@ -1185,7 +1186,7 @@ footer.blue :where(p, a) {
 	color: var(--primary);
 }
 
-:where(.adult-total, .teen-total, .kid-total) h1{
+:where(.adult-total, .teen-total, .kid-total) h1 {
 	font-size: 48px;
 	font-family: "Roboto", sans-serif;
 	color: var(--primary);
@@ -1236,13 +1237,13 @@ footer.blue :where(p, a) {
 	border-radius: 20px;
 }
 
-.payment-details .foto img{
+.payment-details .foto img {
 	border-radius: 20px;
 	min-width: 100%;
 	min-height: 100%;
 }
 
-.information-details .item{
+.information-details .item {
 	border-radius: 10px;
 }
 
@@ -1261,84 +1262,91 @@ footer.blue :where(p, a) {
 
 /* Profile section */
 
-aside ul li a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    padding: 10px 0;
+/* aside ul li a {
+	text-decoration: none;
+	color: #333;
+	display: block;
+	padding: 10px 0;
+} */
+
+.profile-details {}
+
+.profile-details .h1 {
+	color: var(--primary);
 }
 
 .profile-info {
-    display: flex;
-    align-items: center;
-    gap: 30px;
+	display: flex;
+	align-items: center;
+	gap: 30px;
 }
 
 .profile-info img {
-    border-radius: 50%;
+	border-radius: 50%;
 }
 
+
 .profile-info .details p {
-    margin: 5px 0;
+	margin: 5px 0;
 }
 
 .profile-info .details button {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #edit-profile-form {
-    display: grid;
-    grid-template-columns: none;
-    gap: 10px;
-    margin-top: 20px;
+	display: grid;
+	grid-template-columns: none;
+	gap: 10px;
+	margin-top: 20px;
 }
 
 #edit-profile-form label {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 #edit-profile-form input {
-    border: 1px solid #ccc;
-    border-radius: 20px;
+	border: 1px solid #ccc;
+	border-radius: 20px;
 }
 
 #edit-profile-form button {
-    margin-top: 5px;
-    cursor: pointer;
+	margin-top: 5px;
+	cursor: pointer;
 }
 
 .profile-password .details p {
-    margin: 5px 0;
+	margin: 5px 0;
 }
 
 #edit-password-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 20px;
 }
 
 #edit-password-form input {
-    border: 1px solid;
-    border-radius: 20px;
+	border: 1px solid;
+	border-radius: 20px;
 }
 
 
 .bookings, .reviews {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .bookings ul, .reviews ul {
-    list-style-type: none;
-    padding: 0;
+	list-style-type: none;
+	padding: 0;
 }
 
 :where(.bookings, .reviews) ul li {
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin-top: 24px;
-    margin-bottom: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	background-color: #f9f9f9;
+	padding: 10px;
+	margin-top: 24px;
+	margin-bottom: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 

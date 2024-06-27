@@ -24,6 +24,11 @@ class M_profile extends CI_Model
         $this->db->where('custId', $custId);
         return $this->db->update('customer', $data);
     }
+    public function updatePassword($custId, $hashedPassword)
+    {
+        $this->db->where('custId', $custId);
+        return $this->db->update('customers', ['password' => $hashedPassword]);
+    }
 }
 
 /* End of file M_profile.php */

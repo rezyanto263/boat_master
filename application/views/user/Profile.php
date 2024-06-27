@@ -16,6 +16,50 @@
 
     <!-- My Styles -->
     <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <style>
+        .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        }
+
+        .modal-header {
+            border-bottom: none;
+        }
+
+        .modal-header .close {
+            margin-top: -10px;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .modal-body p {
+            font-size: 1.1rem;
+        }
+
+        .modal.fade .modal-dialog {
+            transform: scale(0.7);
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal.fade.show .modal-dialog {
+            transform: scale(1);
+        }
+    </style>
+
 </head>
 
 <body>
@@ -50,7 +94,7 @@
     </nav>
     <!-- Nav End -->
 
-    
+
     <main>
         <section class="profile-details py-5">
             <div class="container">
@@ -67,35 +111,94 @@
                 </div>
 
                 <div class="container">
+                    <!-- Flashdata Start -->
                     <?php if ($this->session->flashdata('success')) : ?>
-                        <p class="alert alert-success"><?= $this->session->flashdata('success') ?></p>
+                        <div class="modal fade" id="flashMessageModal" tabindex="-1" role="dialog" aria-labelledby="flashMessageModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content alert-success">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="flashMessageModalLabel">Success</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><?= $this->session->flashdata('success') ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif ($this->session->flashdata('error')) : ?>
+                        <div class="modal fade" id="flashMessageModal" tabindex="-1" role="dialog" aria-labelledby="flashMessageModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content alert-danger">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="flashMessageModalLabel">Error</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><?= $this->session->flashdata('error') ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php endif; ?>
-                    <?php if ($this->session->flashdata('error')) : ?>
-                        <p class="alert alert-danger"><?= $this->session->flashdata('error') ?></p>
-                    <?php endif; ?>
+                    <!-- Flashdata END -->
 
-                    <?= form_open_multipart('user/profile/update', array('class' => 'form-edit', 'id' => 'edit-profile-form')); ?>
-                    <div class="row mt-1">
-                        <div class="col-md-6 mt-1">
-                            <label for="custName">Name:</label>
-                            <input class="mt-1 form-control" type="text" id="custName" name="custName" value="<?= set_value('custName', $user->custName) ?>"><br>
-                            <label for="custEmail">Email:</label>
-                            <input class="mt-1 form-control" type="email" id="custEmail" name="custEmail" value="<?= set_value('profile-name', $user->custEmail) ?>"><br>
-                            <label for="custAddress">Address:</label>
-                            <input class="mt-1 form-control" type="text" id="custAddress" name="custAddress" value="<?= set_value('profile-name', $user->custAddress) ?>">
+                    <form action="/user/profile/update/<?= htmlspecialchars($user->custId) ?>" method="post" enctype="multipart/form-data" class="form-edit needs-validation" id="edit-profile-form" style="display:none;" novalidate>
+                        <div class="row mt-1">
+                            <div class="col-md-6 mt-1">
+                                <input type="hidden" name="custId" value="<?= htmlspecialchars($user->custId) ?>">
+                                <div>
+                                    <label for="custName">Name:</label>
+                                    <input class="mt-1 form-control" type="text" id="custName" name="custName" required value="<?= htmlspecialchars($user->custName) ?>">
+                                    <div class="invalid-feedback">You must provide a name.</div>
+                                    <div class="valid-feedback">Looks Fine.</div>
+                                </div>
+                                <br>
+
+                                <label for="custEmail">Email:</label>
+                                <div>
+                                    <input class="mt-1 form-control" type="email" id="custEmail" name="custEmail" required value="<?= htmlspecialchars($user->custEmail) ?>">
+                                    <div class="invalid-feedback">You must provide a valid email.</div>
+                                    <div class="valid-feedback">Looks Fine.</div>
+                                </div>
+                                <br>
+
+                                <label for="custAddress">Address:</label>
+                                <div>
+                                    <input class="mt-1 form-control" type="text" id="custAddress" name="custAddress" required value="<?= htmlspecialchars($user->custAddress) ?>">
+                                    <div class="invalid-feedback">You must provide an address.</div>
+                                    <div class="valid-feedback">Looks Fine.</div>
+                                </div>
+                                <br>
+                            </div>
+
+                            <div class="col-md-6 mt-1">
+                                <label for="custPhone">Phone:</label>
+                                <input class="mt-1 form-control" type="text" id="custPhone" name="custPhone" value="<?= htmlspecialchars($user->custPhone) ?>">
+                                <br>
+
+                                <label for="custPic">Profile Picture:</label>
+                                <input class="mt-1 form-control" type="file" id="custPic" name="custPic">
+                            </div>
                         </div>
-                        <div class="col-md-6 mt-1">
-                            <label for="custPhone">Phone:</label>
-                            <input class="mt-1 form-control" type="text" id="custPhone" name="custPhone" value="<?= set_value('profile-name', $user->custPhone) ?>"><br>
-                            <label for="custPic">Profile Picture:</label>
-                            <input class="mt-1 form-control" type="file" id="custPic" name="custPic">
-                        </div>
-                    </div>
-                    <button class="btn-primary" type="submit" id="save-profile-btn" name="save-profile-btn">Save</button>
-                    <?= form_close(); ?>
+                        <button class="btn btn-primary" type="submit" id="save-profile-btn" name="save-profile-btn">Save</button>
+                    </form>
+
+
+
                 </div>
             </div>
         </section>
+        <div id="hasSuccessMessage" style="display:none;">
+            <?= json_encode($this->session->flashdata('success') ? true : false) ?>
+        </div>
+        <div id="hasErrorMessage" style="display:none;">
+            <?= json_encode($this->session->flashdata('error') ? true : false) ?>
+        </div>
 
         <section class="password my-3">
             <div class="container">
@@ -105,7 +208,7 @@
                     <input type="password" id="profile-password" value="<?= set_value('profile-password', $user->custPassword) ?>" readonly>
                     <button class="btn-primary" id="edit-password-button">Edit</button>
                 </div>
-                <form class="form-edit" id="edit-password-form" style="display:none;">
+                <form class="form-edit" id="edit-password-form" style="display: none;">
                     <div class="row mt-1">
                         <div class="col-md-6 mt-1">
                             <label for="newPass">New Password:</label>
@@ -114,7 +217,7 @@
                             <input class="form-control" type="password" id="confirmPass" name="confirmPass">
                         </div>
                     </div>
-                    <button class="btn-primary mt-3" type="button" id="save-password-btn">Save</button>
+                    <button class="btn-primary mt-3" type="submit" id="save-password-btn">Save</button>
                 </form>
             </div>
         </section>
@@ -129,6 +232,8 @@
                 </ul>
             </div>
         </section>
+
+
     </main>
 
 
@@ -174,6 +279,26 @@
 
     <!-- My Script -->
     <script src="../assets/js/script.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            var forms = document.querySelectorAll('.needs-validation');
+
+            Array.prototype.slice.call(forms).forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+
 </body>
 
 </html>

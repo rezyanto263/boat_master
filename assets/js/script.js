@@ -12,7 +12,6 @@ if (navhidden != null) {
 	});
 }
 
-
 // Booking Max People
 check = document.querySelector(".details-order");
 if (check != null) {
@@ -39,7 +38,7 @@ if (check != null) {
 	aplus.addEventListener("click", () => {
 		a++;
 		atotal.innerText = a;
-    total = a + t + k;
+		total = a + t + k;
 		discount = -total * 0.1;
 
 		discPrice.innerText = discount;
@@ -49,7 +48,7 @@ if (check != null) {
 	tplus.addEventListener("click", () => {
 		t++;
 		ttotal.innerText = t;
-    total = a + t + k;
+		total = a + t + k;
 		discount = -total * 0.1;
 
 		discPrice.innerText = discount;
@@ -59,7 +58,7 @@ if (check != null) {
 	kplus.addEventListener("click", () => {
 		c++;
 		ktotal.innerText = k;
-    total = a + t + k;
+		total = a + t + k;
 		discount = -total * 0.1;
 
 		discPrice.innerText = discount;
@@ -71,7 +70,7 @@ if (check != null) {
 			a--;
 			atotal.innerText = a;
 		}
-    total = a + t + k;
+		total = a + t + k;
 		discount = -total * 0.1;
 
 		discPrice.innerText = discount;
@@ -83,7 +82,7 @@ if (check != null) {
 			t--;
 			ttotal.innerText = t;
 		}
-    total = a + t + k;
+		total = a + t + k;
 		discount = -total * 0.1;
 
 		discPrice.innerText = discount;
@@ -145,7 +144,6 @@ if (
 			nav: false,
 			center: true,
 			dots: true,
-			
 		});
 
 		$(".boat-badges-slider").owlCarousel({
@@ -157,7 +155,6 @@ if (
 		});
 	});
 }
-
 
 // Profile
 
@@ -192,6 +189,61 @@ btn_edit_password = document.addEventListener("DOMContentLoaded", function () {
 				btn_edit_password.textContent = "Edit";
 			}
 		});
+	}
+});
+
+// Update Password
+
+update_password = document.getElementById("save-password-btn");
+var update_password = document.addEventListener("click", function () {
+	const newPassword = document.getElementById("newPass").value;
+	const confirmPassword = document.getElementById("confirmPass").value;
+
+	if (update_password != null) {
+		if (newPassword !== confirmPassword) {
+			alert("Passwords do not match!");
+			return;
+		}
+
+		fetch("/profile/updatePassword", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				newPass: newPassword,
+				confirmPass: confirmPassword,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.success) {
+					alert("Password updated successfully!");
+					document.getElementById("edit-password-form").style.display = "none";
+				} else {
+					alert("Failed to update password: " + data.message);
+				}
+			})
+			.catch((error) => console.error("Error:", error));
+	}
+});
+
+modal_popup = document.addEventListener("DOMContentLoaded", function () {
+	if (modal_popup != null) {
+		var hasSuccessMessage = JSON.parse(
+			document.getElementById("hasSuccessMessage").textContent
+		);
+		var hasErrorMessage = JSON.parse(
+			document.getElementById("hasErrorMessage").textContent
+		);
+
+		if (hasSuccessMessage || hasErrorMessage) {
+			var flashMessageModal = new bootstrap.Modal(
+				document.getElementById("flashMessageModal"),
+				{}
+			);
+			flashMessageModal.show();
+		}
 	}
 });
 
