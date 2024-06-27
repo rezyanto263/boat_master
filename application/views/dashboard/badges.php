@@ -97,10 +97,10 @@
         <form class="needs-validation" action="<?= base_url('dashboard/badges/editBadge'); ?>"  method="POST" novalidate>
             <div class="modal-body">
                 <div class="row gy-3">
-                    <input type="number" name="badgeId" value="<?= $key['badgeId']; ?>" hidden>
+                    <input type="number" name="badgeId" value="<?= $edit['badgeId']; ?>" hidden>
                     <div class="col-12">
                         <label for="files">Badge Name</label>
-                        <input class="form-control" type="text" placeholder="Badge Name" name="badgeName" value="<?= $key['badgeName']; ?>" required>
+                        <input class="form-control" type="text" placeholder="Badge Name" name="badgeName" value="<?= $edit['badgeName']; ?>" required>
                         <div class="invalid-feedback">
                             You must provide a name!
                         </div>

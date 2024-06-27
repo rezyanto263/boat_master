@@ -301,4 +301,6 @@ function addTourEdit(packageId) {
 	container.insertAdjacentHTML('beforeend', newContent);
 }
 
+
+
 $('.message').delay(3000).fadeOut(300);

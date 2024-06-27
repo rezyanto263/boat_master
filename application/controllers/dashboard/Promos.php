@@ -53,7 +53,7 @@ class Promos extends CI_Controller {
                 'procodeName' => $this->input->post('procodeName'),
                 'procodeDiscount' => $this->input->post('procodeDiscount'),
             );
-            $this->M_promos->editPromo($promoDatas);
+            $this->M_promos->editPromo($procodeId, $promoDatas);
 
             $this->session->set_flashdata('message', '<div class="alert alert-info message" role="alert">The promo code has been updated successfully!</div>');
             redirect('dashboard/promos');

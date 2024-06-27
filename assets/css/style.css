@@ -72,7 +72,6 @@ h4 {
 
 input,
 textarea,
-select,
 .form-control,
 .form-select {
 	font-family: "Roboto", sans-serif, FontAwesome;
@@ -85,7 +84,7 @@ select,
 	font-size: 16px;
 }
 
-.modal-body :where(input, textarea, select, .form-control, .form-select) {
+.modal-body :where(input, textarea, .form-control, .form-select) {
 	border: 1px solid var(--lightgrey) !important;
 	width: 100%;
 	box-shadow: none !important;
@@ -125,12 +124,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	width: auto;
 }
 
+.btn-light, .btn-light:hover, .btn-light.dropdown-toggle:focus{
+	background-color: white !important;
+	padding: 12px 15px !important;
+	border-radius: 20px !important;
+	border: 1px solid var(--lightgrey) !important;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
 .del-checkbox{
 	position: absolute;
 	top: -10px !important;
 	right: 0 !important;
 	width: 20px !important;
 	height: 20px !important;
+}
+
+#displayFinalPrice {
+	border: 1px solid var(--lightgrey);
+	padding: 10px 15px;
+	border-radius: 20px;
+	font-size: 20px;
+	color: var(--secondary);
 }
 
 input[type="checkbox" i].del-checkbox-tour{

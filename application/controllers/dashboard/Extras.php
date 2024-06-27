@@ -38,7 +38,7 @@ class Extras extends CI_Controller {
         $newPictureName = md5(time() . $_FILES['extraPicture']['name']) . '.' . $pictureExtension;
 
         $config['upload_path'] = './assets/uploads/';
-        $config['allowed_types'] = 'jpg|jpeg|gif|png|webp';
+        $config['allowed_types'] = 'jpg|jpeg|png|webp';
         $config['file_name'] = $newPictureName;
         $config['max_size']             = 2000;
         $config['max_width']            = 0;
@@ -122,8 +122,8 @@ class Extras extends CI_Controller {
 
     public function deleteExtra($extraId) {
         $this->M_extras->deleteExtra($extraId);
-        $this->session->set_flashdata('message', '<div class="alert alert-danger message" role="alert">The Extra has been deleted successfully!</div>');
-        redirect('dashboard/extras');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger message" role="alert">The Extra has been deleted successfully!</div>');
+            redirect('dashboard/extras');
     }
 
 }

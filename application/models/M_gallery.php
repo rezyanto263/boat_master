@@ -1,34 +1,67 @@
-<?php
+<?php 
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_gallery extends CI_Model
-{
-    function edit_data($where,$table)
-    {
-        return $this->db->get_where($table,$where);
+class M_gallery extends CI_Model {
+
+    public function getAllGalleryWithMedias() {
+        $this->db->select('g.*, gf.gafileId, m.mediaId, m.mediaFile, m.mediaType');
+        $this->db->from('gallery g');
+        $this->db->join('gallery_file gf', 'g.galleryId = gf.galleryId', 'left');
+        $this->db->join('media m', 'gf.mediaId = m.mediaId', 'left');
+        $this->db->group_by('g.galleryId');
+        return $this->db->get()->result_array();
     }
 
-    function get_data($table, $where = NULL) {
-        if($where) {
-            $this->db->where($where);
-        }
-        return $this->db->get($table);
+    public function checkGallery($param, $galleryData) {
+        return $this->db->get_where('gallery',  array($param => $galleryData));
     }
 
-    function insert_data($data,$table)
-    {
-        $this->db->insert($table,$data);
+    public function insertGallery($galleryDatas) {
+        $this->db->insert('gallery', $galleryDatas);
+        return $this->db->insert_id();
     }
 
-    function update_data($where,$data,$table)
-    {
-        $this->db->where($where);
-        $this->db->update($table,$data);
+    public function insertMedia($mediaDatas) {
+        $this->db->insert('media', $mediaDatas);
+        return $this->db->insert_id();
     }
 
-    function delete_data($where,$table)
-    {
-        $this->db->where($where);
-        $this->db->update($table);
+    public function insertGalleryFile($gafileDatas) {
+        return $this->db->insert('gallery_file', $gafileDatas);
     }
+
+    public function editGallery($galleryId, $galleryDatas) {
+        $this->db->where('galleryId', $galleryId);
+        return $this->db->update('gallery', $galleryDatas);
+    }
+
+    public function deleteGallery($galleryId) {
+        $this->db->where('galleryId', $galleryId);
+        $gafileData = $this->db->get_where('gallery_file', array('galleryId' => $galleryId))->row_array();
+        $mediaId = $gafileData['mediaId'];
+        
+        $this->db->where('galleryId', $galleryId);
+        $this->db->delete('gallery_file');
+
+        $this->db->where('mediaId', $mediaId);
+        $this->db->delete('media');
+        
+        $this->db->where('galleryId', $galleryId);
+        return $this->db->delete('gallery');
+    }
+
+    public function deleteGafile($galleryId) {
+        $this->db->where('galleryId', $galleryId);
+        return $this->db->delete('gallery_file');
+    }
+    public function deleteMedia($mediaId) {
+        $this->db->where('mediaId', $mediaId);
+        return $this->db->delete('media');
+    }
+
 }
+
+/* End of file M_gallery.php */
+
+?>
