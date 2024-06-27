@@ -244,9 +244,9 @@
                 <div class="col-6">
                     <label>Status</label>
                     <select class="form-select" name="boatStatus" required>
-                        <option value="Repair" <?= $edit['bookStatus']=='Repair'?'selected':''; ?>>Repair</option>
-                        <option value="Booked" <?= $edit['bookStatus']=='Booked'?'selected':''; ?>>Booked</option>
-                        <option value="Ready" <?= $edit['bookStatus']=='Ready'?'selected':''; ?>>Ready</option>
+                        <option value="Repair" <?= $edit['boatStatus']=='Repair'?'selected':''; ?>>Repair</option>
+                        <option value="Booked" <?= $edit['boatStatus']=='Booked'?'selected':''; ?>>Booked</option>
+                        <option value="Ready" <?= $edit['boatStatus']=='Ready'?'selected':''; ?>>Ready</option>
                     </select>
                     <div class="invalid-feedback">
                         You must provide a status!

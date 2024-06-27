@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_gallery extends CI_Model {
 
     public function getAllGalleryWithMedias() {
-        $this->db->select('g.*, gf.gafileId, m.mediaId, m.mediaFile, m.mediaType');
+        $this->db->select('g.*, gf.gafileId, gf.mediaId, m.mediaFile, m.mediaType');
         $this->db->from('gallery g');
         $this->db->join('gallery_file gf', 'g.galleryId = gf.galleryId', 'left');
         $this->db->join('media m', 'gf.mediaId = m.mediaId', 'left');
@@ -14,7 +14,7 @@ class M_gallery extends CI_Model {
     }
 
     public function checkGallery($param, $galleryData) {
-        return $this->db->get_where('gallery',  array($param => $galleryData));
+        return $this->db->get_where('gallery', array($param => $galleryData));
     }
 
     public function insertGallery($galleryDatas) {
@@ -51,11 +51,10 @@ class M_gallery extends CI_Model {
         return $this->db->delete('gallery');
     }
 
-    public function deleteGafile($galleryId) {
-        $this->db->where('galleryId', $galleryId);
-        return $this->db->delete('gallery_file');
-    }
-    public function deleteMedia($mediaId) {
+    public function deleteGafileAndMedia($mediaId) {
+        $this->db->where('mediaId', $mediaId);
+        $this->db->delete('gallery_file');
+
         $this->db->where('mediaId', $mediaId);
         return $this->db->delete('media');
     }

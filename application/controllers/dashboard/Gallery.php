@@ -87,10 +87,9 @@ class Gallery extends CI_Controller {
             );
             $this->M_gallery->editGallery($galleryId, $galleryDatas);
 
-            if (!empty($_FILES['galleryMedia'])) {
+            if ($_FILES['galleryMedia']['name']) {
 
-                $this->M_gallery->deleteGafile($galleryId);
-                $this->M_gallery->deleteMedia($mediaId);
+                $this->M_gallery->deleteGafileAndMedia($mediaId);
 
                 $fileNameCmps = explode('.', trim($_FILES['galleryMedia']['name']));
                 $pictureExtension = strtolower(end($fileNameCmps));

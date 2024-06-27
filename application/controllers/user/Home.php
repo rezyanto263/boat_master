@@ -8,8 +8,8 @@ class Home extends CI_Controller {
     {
         $datas = array(
             'title' => 'Home',
-            'color' => '',
-            'hidden' => 'hidden'
+            'hidden' => 'hidden',
+            'color' => ''
         );
 
         $partials = array(
@@ -20,6 +20,7 @@ class Home extends CI_Controller {
             'script' => 'partials/user/script',
         );
         $this->load->vars($datas);
+        log_message('debug', 'Home controller index method called');
         $this->load->view('master', $partials);
     }
 
