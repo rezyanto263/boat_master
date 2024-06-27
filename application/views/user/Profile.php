@@ -5,17 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boat Master</title>
-    <link rel="web icon" href="../assets/images/logo.png" />
+    <link rel="web icon" href="<?= base_url('assets/images/logo.png') ?>" />
 
     <!-- Bootstrap 5.3.3 CSS -->
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?= base_url('node_modules/bootstrap/dist/css/bootstrap.min.css') ?> " />
 
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- My Styles -->
-    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" />
 
     <style>
         .modal-content {
@@ -67,7 +67,7 @@
     <nav class="navbar navbar-expand-lg sticky-top shadow">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="../assets/images/logo.png" alt="" width="55px" />
+                <img src="<?= base_url('assets/images/logo.png') ?> " alt="" width="55px" />
             </a>
             <button class="btn" id="offcanvas-navbar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-navbar" aria-controls="offcanvasExample">
                 <i class="fa-solid fa-bars"></i>
@@ -147,13 +147,13 @@
                     <?php endif; ?>
                     <!-- Flashdata END -->
 
-                    <form action="/user/profile/update/<?= htmlspecialchars($user->custId) ?>" method="post" enctype="multipart/form-data" class="form-edit needs-validation" id="edit-profile-form" style="display:none;" novalidate>
+                    <form action="<?= base_url('user/profile/update/' . ($user->custId)) ?>" method="post" enctype="multipart/form-data" class="form-edit needs-validation" id="edit-profile-form" style="display:none;" novalidate>
                         <div class="row mt-1">
                             <div class="col-md-6 mt-1">
-                                <input type="hidden" name="custId" value="<?= htmlspecialchars($user->custId) ?>">
+                                <input type="number" name="custId" value="<?= htmlspecialchars($user->custId) ?>" hidden>
                                 <div>
                                     <label for="custName">Name:</label>
-                                    <input class="mt-1 form-control" type="text" id="custName" name="custName" required value="<?= htmlspecialchars($user->custName) ?>">
+                                    <input class="mt-1 form-control" type="text" id="custName" name="custName" value="<?= htmlspecialchars($user->custName) ?>" required>
                                     <div class="invalid-feedback">You must provide a name.</div>
                                     <div class="valid-feedback">Looks Fine.</div>
                                 </div>
@@ -161,24 +161,24 @@
 
                                 <label for="custEmail">Email:</label>
                                 <div>
-                                    <input class="mt-1 form-control" type="email" id="custEmail" name="custEmail" required value="<?= htmlspecialchars($user->custEmail) ?>">
+                                    <input class="mt-1 form-control" type="email" id="custEmail" name="custEmail" value="<?= htmlspecialchars($user->custEmail) ?>" required readonly>
                                     <div class="invalid-feedback">You must provide a valid email.</div>
-                                    <div class="valid-feedback">Looks Fine.</div>
                                 </div>
                                 <br>
 
                                 <label for="custAddress">Address:</label>
                                 <div>
-                                    <input class="mt-1 form-control" type="text" id="custAddress" name="custAddress" required value="<?= htmlspecialchars($user->custAddress) ?>">
+                                    <input class="mt-1 form-control" type="text" id="custAddress" name="custAddress" value="<?= htmlspecialchars($user->custAddress) ?>" required>
                                     <div class="invalid-feedback">You must provide an address.</div>
-                                    <div class="valid-feedback">Looks Fine.</div>
                                 </div>
                                 <br>
                             </div>
-
                             <div class="col-md-6 mt-1">
                                 <label for="custPhone">Phone:</label>
-                                <input class="mt-1 form-control" type="text" id="custPhone" name="custPhone" value="<?= htmlspecialchars($user->custPhone) ?>">
+                                <div>
+                                    <input class="mt-1 form-control" type="text" id="custPhone" name="custPhone" value="<?= htmlspecialchars($user->custPhone) ?>" required>
+                                    <div class="invalid-feedback">You must provide your Phone Number.</div>
+                                </div>
                                 <br>
 
                                 <label for="custPic">Profile Picture:</label>
@@ -208,13 +208,20 @@
                     <input type="password" id="profile-password" value="<?= set_value('profile-password', $user->custPassword) ?>" readonly>
                     <button class="btn-primary" id="edit-password-button">Edit</button>
                 </div>
-                <form class="form-edit" id="edit-password-form" style="display: none;">
+                <form class="form-edit needs-validation" id="edit-password-form" style="display: none;" novalidate>
                     <div class="row mt-1">
                         <div class="col-md-6 mt-1">
                             <label for="newPass">New Password:</label>
-                            <input class="form-control" type="password" id="newPass" name="newPass">
+                            <div>
+                                <input class="form-control" type="password" id="newPass" name="newPass" required>
+                                <div class="invalid-feedback">You must provide Password</div>
+                            </div>
+                            <br>
                             <label for="confirmPass">Confirm Password:</label>
-                            <input class="form-control" type="password" id="confirmPass" name="confirmPass">
+                            <div>
+                                <input class="form-control" type="password" id="confirmPass" name="confirmPass" required>
+                                <div class="invalid-feedback">You must provide Confirm Password</div>
+                            </div>
                         </div>
                     </div>
                     <button class="btn-primary mt-3" type="submit" id="save-password-btn">Save</button>
@@ -268,7 +275,7 @@
     <!-- Footer Section End -->
 
     <!-- Bootstrap 5.3.3 Script-->
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')  ?>"></script>
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/1a07ed5a89.js" crossorigin="anonymous"></script>
@@ -278,7 +285,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- My Script -->
-    <script src="../assets/js/script.js"></script>
+    <script src="<?= base_url('assets/js/script.js') ?>"></script>
     <script>
         (function() {
             'use strict';
