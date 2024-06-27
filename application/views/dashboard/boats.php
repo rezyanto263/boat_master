@@ -20,14 +20,15 @@
                         <th class="text-start">Type</th>
                         <th class="text-start">Price</th>
                         <th class="text-start">Max People</th>
-                        <th class="text-start">Stock</th>
-                        <th class="text-start">Starting Point</th>
+                        <th class="text-start">Status</th>
+                        <th class="text-start">Badges</th>
+                        <th class="text-start">Anchor Point</th>
                         <th class="text-start">Description</th>
                         <th class="text-start">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach($boat as $key): ?>
+                    <?php foreach($boat as $key): ?>
                     <tr>
                         <td class="d-flex justify-content-center">
                             <img src="<?= base_url('assets/uploads/'.trim(explode(',', $key['boatPictures'])[0])); ?>" width="70px" height="70px">
@@ -35,8 +36,21 @@
                         <td><?= $key['boatName']; ?></td>
                         <td><?= $key['boatType']; ?></td>
                         <td><?= $key['boatPrice']; ?></td>
-                        <td><?= $key['maxPeople']; ?></td>
-                        <td><?= $key['boatStock']; ?></td>
+                        <td class="text-center"><?= $key['maxPeople']; ?></td>
+                        <td class="text-center"><?= $key['boatStatus']; ?></td>
+                        <td>
+                            <?php if ($key['boatbadgeNames']!=null) { ?>
+                            <?php $id=0; foreach(explode(',', $key['boatbadgeNames']) as $badges): $id++;?>
+                                <?php if ($id==1) { ?>
+                                    <?= trim($badges); ?>
+                                <?php }else { ?>
+                                    <?= ', '.trim($badges); ?>
+                                <?php } ?>
+                            <?php endforeach; ?>
+                            <?php }else { ?>
+                                No Badges
+                            <?php } ?>
+                        </td>
                         <td><?= $key['boatStartPoint']; ?></td>
                         <td class="overflow-hidden"><?= $key['boatDesc']; ?></td>
                         <td class="action-button d-flex justify-content-end">
@@ -59,8 +73,9 @@
                         <th class="text-start">Type</th>
                         <th class="text-start">Price</th>
                         <th class="text-start">Max People</th>
-                        <th class="text-start">Stock</th>
-                        <th class="text-start">Starting Point</th>
+                        <th class="text-start">Status</th>
+                        <th class="text-start">Badges</th>
+                        <th class="text-start">Anchor Point</th>
                         <th class="text-start">Description</th>
                         <th class="text-start">Actions</th>
                     </tr>
@@ -92,9 +107,9 @@
                 <div class="col-6">
                     <label>Boat Type</label>
                     <select class="w-100 form-select" placeholder="Type" name="boatType" required>
-                        <option value="private">Private</option>
-                        <option value="shared">Shared</option>
-                        <option value="prishare">Private & Share</option>
+                        <option value="Private">Private</option>
+                        <option value="Shared">Shared</option>
+                        <option value="PriShare">Private & Share</option>
                     </select>
                     <div class="invalid-feedback">
                         You must provide a type!
@@ -102,37 +117,49 @@
                 </div>
                 <div class="col-12">
                     <label>Boat Name</label>
-                    <input class="form-control" type="text" placeholder="Boat Name" name="boatName" required>
+                    <input class="form-control" type="text" placeholder="Boat Name" name="boatName" maxlength="50" required>
                     <div class="invalid-feedback">
                         You must provide a name!
                     </div>
                 </div>
                 <div class="col-6">
-                    <label>Price</label>
-                    <input class="form-control" type="number" placeholder="Price" onkeypress="return isNumberKey(event)" name="boatPrice" required>
-                    <div class="invalid-feedback">
-                        You must provide a price!
-                    </div>
-                </div>
-                <div class="col-6">
                     <label>Max People</label>
-                    <input class="form-control" type="number" placeholder="Max People" name="maxPeople" required>
+                    <input class="form-control" type="number" placeholder="Max People" name="maxPeople" min="1" required>
                     <div class="invalid-feedback">
                         You must set the max people!
                     </div>
                 </div>
                 <div class="col-6">
-                    <label>Stock</label>
-                    <input class="form-control" type="number" placeholder="Stock" name="boatStock" required>
+                    <label>Status</label>
+                    <select class="form-select" name="boatStatus" required>
+                        <option value="Repair">Repair</option>
+                        <option value="Booked">Booked</option>
+                        <option value="Ready">Ready</option>
+                    </select>
                     <div class="invalid-feedback">
-                        You must provide a stock!
+                        You must provide a status!
                     </div>
                 </div>
                 <div class="col-6">
                     <label>Anchor Point</label>
-                    <select class="form-select" class="w-100" placeholder="Type" name="boatStartPoint" value="<?= set_value('boatStartPoint'); ?>" required>
-                        <option value="nusapenida">Nusa Penida</option>
-                        <option value="bali">Bali</option>
+                    <select class="form-select" class="w-100" placeholder="Type" name="boatStartPoint" required>
+                        <option value="Nusa Penida">Nusa Penida</option>
+                        <option value="Bali">Bali</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label>Price</label>
+                    <input class="form-control" type="number" placeholder="Price" onkeypress="return isNumberKey(event)" name="boatPrice" min="0" required>
+                    <div class="invalid-feedback">
+                        You must provide a price!
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label>Badge</label>
+                    <select class="selectpicker w-100" data-live-search="true" name="badgeIds[]" multiple>
+                        <?php foreach($badge as $key): ?>
+                            <option value="<?= $key['badgeId']; ?>"><?= $key['badgeName']; ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="col-12">
@@ -152,7 +179,6 @@
         </div>
     </div>
 </div>
-
 
 <?php foreach($boat as $edit): ?>
 <!-- Modal Edit -->
@@ -186,9 +212,9 @@
                 <div class="col-6">
                     <label>Boat Type</label>
                     <select class="form-select" class="w-100" placeholder="Type" name="boatType" required>
-                        <option value="private" <?= $edit['boatType'] == 'private'? 'selected':''; ?>>Private</option>
-                        <option value="shared" <?= $edit['boatType'] == 'shared'? 'selected':''; ?>>Shared</option>
-                        <option value="prishare" <?= $edit['boatType'] == 'prishare'? 'selected':''; ?>>Private & Share</option>
+                        <option value="Private" <?= $edit['boatType'] == 'Private'? 'selected':''; ?>>Private</option>
+                        <option value="Shared" <?= $edit['boatType'] == 'Shared'? 'selected':''; ?>>Shared</option>
+                        <option value="PriShare" <?= $edit['boatType'] == 'PriShare'? 'selected':''; ?>>Private & Share</option>
                     </select>
                     <div class="invalid-feedback">
                         You must select boat type!
@@ -203,36 +229,52 @@
                 </div>
                 <div class="col-6">
                     <label>Price</label>
-                    <input class="form-control" type="number" placeholder="Price" onkeypress="return isNumberKey(event)" name="boatPrice" value="<?= $edit['boatPrice']; ?>" required>
+                    <input class="form-control" type="number" placeholder="Price" onkeypress="return isNumberKey(event)" name="boatPrice" min="0" value="<?= $edit['boatPrice']; ?>" required>
                     <div class="invalid-feedback">
                         You must provide a price!
                     </div>
                 </div>
                 <div class="col-6">
                     <label>Max People</label>
-                    <input class="form-control" type="number" placeholder="Max People" name="maxPeople" value="<?= $edit['maxPeople']; ?>" required>
+                    <input class="form-control" type="number" placeholder="Max People" name="maxPeople" value="<?= $edit['maxPeople']; ?>" min="1" required>
                     <div class="invalid-feedback">
                         You must set the boat max people!
                     </div>
                 </div>
                 <div class="col-6">
-                    <label>Stock</label>
-                    <input class="form-control" type="number" placeholder="Stock" name="boatStock" value="<?= $edit['boatStock']; ?>" required>
+                    <label>Status</label>
+                    <select class="form-select" name="boatStatus" required>
+                        <option value="Repair" <?= $edit['bookStatus']=='Repair'?'selected':''; ?>>Repair</option>
+                        <option value="Booked" <?= $edit['bookStatus']=='Booked'?'selected':''; ?>>Booked</option>
+                        <option value="Ready" <?= $edit['bookStatus']=='Ready'?'selected':''; ?>>Ready</option>
+                    </select>
                     <div class="invalid-feedback">
-                        You must provide a stock!
+                        You must provide a status!
                     </div>
                 </div>
                 <div class="col-6">
                     <label>Starting Point</label>
                     <select class="form-select" class="w-100" placeholder="Type" name="boatStartPoint" required>
-                        <option value="nusapenida" <?= $edit['boatStartPoint'] == 'nusapenida'? 'selected':''; ?>>
+                        <option value="Nusa Penida" <?= $edit['boatStartPoint'] == 'nusapenida'? 'selected':''; ?>>
                             Nusa Penida
                         </option>
-                        <option value="bali" <?= $edit['boatStartPoint'] == 'bali'? 'selected':''; ?>>Bali</option>
+                        <option value="Bali" <?= $edit['boatStartPoint'] == 'bali'? 'selected':''; ?>>Bali</option>
                     </select>
                     <div class="invalid-feedback">
                         You must select the anchor point!
                     </div>
+                </div>
+                <div class="col-12">
+                    <label>Badge</label>
+                    <select class="selectpicker w-100" data-live-search="true" name="badgeIds[]" multiple>
+                        <?php 
+                        $selectedBadgeIds = explode(',', $edit['boatbadgeIds']); 
+                        foreach ($badge as $key): 
+                            $selected = in_array($key['badgeId'], $selectedBadgeIds) ? 'selected' : '';
+                        ?>
+                            <option value="<?= htmlspecialchars($key['badgeId']); ?>" <?= $selected; ?>><?= htmlspecialchars($key['badgeName']); ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="col-12">
                     <label>Description</label>

@@ -9,6 +9,7 @@ class Packages extends CI_Controller {
         parent::__construct();
 
         $this->load->model('M_packages');
+        $this->load->model('M_badges');
 
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -19,7 +20,8 @@ class Packages extends CI_Controller {
     {
         $datas = array(
             'title' => 'PACKAGES',
-            'package' => $this->M_packages->getAllPackagesWithTours(),
+            'package' => $this->M_packages->getAllPackagesWithToursAndBadges(),
+            'badge' => $this->M_badges->getAllBadges()
         );
         $partials = array(
             'head' => 'partials/dashboard/head',
@@ -57,6 +59,18 @@ class Packages extends CI_Controller {
                 $this->M_packages->insertPattraction($pattractionDatas);
             }
         }
+
+        if ($_POST['badgeIds']) {
+            $countBadge = count($_POST['badgeIds']);
+            for ($i = 0; $i < $countBadge; $i++) {
+                $boatbadgesDatas = array(
+                    'packageId' => $packageId,
+                    'badgeId' => $_POST['badgeIds'][$i],
+                );
+                $this->M_boats->insertBadges($boatbadgesDatas);
+            }
+        }
+
         redirect('dashboard/packages');
     }
 
@@ -70,6 +84,18 @@ class Packages extends CI_Controller {
             // for ($i=0; $i < $countDelTour; $i++) { 
             //     $this->M_packages->deleteTour($_POST['delTour'][$i]);
             // }
+
+            if ($this->input->post('badgeIds')) {
+                $this->M_packages->deleteAllBadges($packageId);
+                $countBadge = count($_POST['badgeIds']);
+                for ($i = 0; $i < $countBadge; $i++) {
+                    $packagebadgesDatas = array(
+                        'packageId' => $packageId,
+                        'badgeId' => $_POST['badgeIds'][$i],
+                    );
+                    $this->M_packages->insertBadges($packagebadgesDatas);
+                }
+            }
 
             $packageDatas = array(
                 'packageName' => $this->input->post('packageName'),

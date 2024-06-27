@@ -21,7 +21,8 @@ class M_promos extends CI_Model {
         return $this->db->delete('promo_code');
     }
 
-    public function editPromo($promoDatas) {
+    public function editPromo($procodeId, $promoDatas) {
+        $this->db->where('procodeId', $procodeId);
         return $this->db->update('promo_code', $promoDatas);
     }
 

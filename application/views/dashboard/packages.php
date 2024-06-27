@@ -19,6 +19,7 @@
                         <th class="text-start">Package Name</th>
                         <th class="text-start">Tour</th>
                         <th class="text-start">Type</th>
+                        <th class="text-start">Badges</th>
                         <th class="text-start">Price</th>
                         <th class="text-start">Actions</th>
                     </tr>
@@ -29,11 +30,28 @@
                         <td class="text-center"><?= $num; ?></td>
                         <td><?= $key['packageName']; ?></td>
                         <td>
-                            <?php foreach(explode(',', $key['tourNames']) as $tourNames): ?>
-                                <?= $tourNames ?>
+                            <?php $id=0; foreach(explode(',', $key['tourNames']) as $tourNames): $id++;?>
+                                <?php if ($id==1) { ?>
+                                    <?= $tourNames ?>
+                                <?php }else { ?>
+                                    <?= ', '.$tourNames ?>
+                                <?php } ?>
                             <?php endforeach; ?>
                         </td>
                         <td><?= $key['packageType']; ?></td>
+                        <td>
+                            <?php if ($key['packagebadgeNames']!=null) { ?>
+                            <?php $id=0; foreach(explode(',', $key['packagebadgeNames']) as $badges): $id++;?>
+                                <?php if ($id==1) { ?>
+                                    <?= trim($badges); ?>
+                                <?php }else { ?>
+                                    <?= ', '.trim($badges); ?>
+                                <?php } ?>
+                            <?php endforeach; ?>
+                            <?php }else { ?>
+                                No Badges
+                            <?php } ?>
+                        </td>
                         <td><?= number_format($key['packagePrice']); ?></td>
                         <td class="action-button d-flex justify-content-end">
                             <div class="d-flex flex-row gap-1">
@@ -54,6 +72,7 @@
                         <th class="text-start">Package Name</th>
                         <th class="text-start">Tour</th>
                         <th class="text-start">Type</th>
+                        <th class="text-start">Badges</th>
                         <th class="text-start">Price</th>
                         <th class="text-start">Actions</th>
                     </tr>
@@ -65,12 +84,12 @@
 <!-- Content Section End -->
 
 <!-- Modal Add -->
-<div class="modal fade" id="addpackage" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="addpackage" data-bs-backdrop="static"  aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title fs-5 mb-0" id="staticBackdropLabel">ADD PACKAGE</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" tab-index="-1" aria-label="Close"></button>
         </div>
         <form class="needs-validation" action="<?= base_url('dashboard/packages/addPackage'); ?>"  method="POST" novalidate>
         <div class="modal-body">
@@ -85,9 +104,9 @@
                 <div class="col-6">
                     <label>Package Type</label>
                     <select class="w-100 form-select" placeholder="Type" name="packageType" required>
-                        <option value="private">Private</option>
-                        <option value="shared">Shared</option>
-                        <option value="prishare">Private & Share</option>
+                        <option value="Private">Private</option>
+                        <option value="Shared">Shared</option>
+                        <option value="PriShare">Private & Share</option>
                     </select>
                     <div class="invalid-feedback">
                         You must provide a Category!
@@ -98,6 +117,17 @@
                     <input class="form-control" type="number" placeholder="Price" onkeypress="return isNumberKey(event)" name="packagePrice" required>
                     <div class="invalid-feedback">
                         You must provide a price!
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label>Badge</label>
+                    <select class="selectpicker w-100" data-live-search="true" name="badgeIds[]" multiple>
+                        <?php foreach($badge as $key): ?>
+                            <option value="<?= $key['badgeId']; ?>"><?= $key['badgeName']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <div class="invalid-feedback">
+                        You must provide a badge!
                     </div>
                 </div>
                 <div class="col-12 add-tour-input">
@@ -150,9 +180,9 @@
                 <div class="col-6">
                     <label>Package Type</label>
                     <select class="w-100 form-select" placeholder="Type" name="packageType" required>
-                        <option value="private" <?= $edit['packageType'] == 'private'? 'selected':''; ?>>Private</option>
-                        <option value="shared" <?= $edit['packageType'] == 'shared'? 'selected':''; ?>>Shared</option>
-                        <option value="prishare" <?= $edit['packageType'] == 'prishare'? 'selected':''; ?>>Private & Share</option>
+                        <option value="Private" <?= $edit['packageType'] == 'Private'? 'selected':''; ?>>Private</option>
+                        <option value="Shared" <?= $edit['packageType'] == 'Shared'? 'selected':''; ?>>Shared</option>
+                        <option value="PriShare" <?= $edit['packageType'] == 'PriShare'? 'selected':''; ?>>Private & Share</option>
                     </select>
                     <div class="invalid-feedback">
                         You must provide a Category!
@@ -164,6 +194,18 @@
                     <div class="invalid-feedback">
                         You must provide a price!
                     </div>
+                </div>
+                <div class="col-12">
+                    <label>Badge</label>
+                    <select class="selectpicker w-100" data-live-search="true" name="badgeIds[]" multiple>
+                        <?php 
+                        $selectedBadgeIds = explode(',', $edit['packagebadgeIds']); 
+                        foreach ($badge as $key): 
+                            $selected = in_array($key['badgeId'], $selectedBadgeIds) ? 'selected' : '';
+                        ?>
+                            <option value="<?= htmlspecialchars($key['badgeId']); ?>" <?= $selected; ?>><?= htmlspecialchars($key['badgeName']); ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="col-12 edit-tour-input<?= $edit['packageId']; ?>">
                     <?php $id=0; foreach(explode(',', $edit['tourIds']) as $tourId): ?>

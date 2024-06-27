@@ -110,10 +110,10 @@
         <form class="needs-validation" action="<?= base_url('dashboard/promos/editPromo'); ?>"  method="POST" novalidate>
             <div class="modal-body">
                 <div class="row gy-3">
-                    <input type="number" name="procodeId" value="<?= $key['procodeId']; ?>" hidden>
+                    <input type="number" name="procodeId" value="<?= $edit['procodeId']; ?>" hidden>
                     <div class="col-8">
                         <label for="files">Promo Name</label>
-                        <input class="form-control" type="text" placeholder="Promo Name" name="procodeName" value="<?= $key['procodeName']; ?>" required>
+                        <input class="form-control" type="text" placeholder="Promo Name" name="procodeName" value="<?= $edit['procodeName']; ?>" required>
                         <div class="invalid-feedback">
                             You must provide a name!
                         </div>
@@ -121,7 +121,7 @@
                     <div class="col-4">
                     <label for="files">Promo Discount (%)</label>
                         <div class="input-group">
-                            <input class="form-control" type="number" placeholder="Example: 10" name="procodeDiscount" value="<?= $key['procodeDiscount']; ?>" required>
+                            <input class="form-control" type="number" placeholder="Example: 10" name="procodeDiscount" value="<?= $edit['procodeDiscount']; ?>" required>
                             <span class="input-group-text right fw-bold">%</span>
                         </div>
                         <div class="invalid-feedback">

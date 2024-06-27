@@ -65,7 +65,7 @@
                         <hr>
                         <div class="sign-in text-center d-flex align-items-center justify-content-center gap-1">
                             Already have an account?
-                            <a class="my-0"  href="<?= base_url('auth') ?>">Login</a>
+                            <a class="my-0"  href="<?= base_url('login') ?>">Login</a>
                         </div>
                     </div>
                 </div>

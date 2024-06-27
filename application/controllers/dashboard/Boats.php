@@ -9,6 +9,7 @@ class Boats extends CI_Controller {
         parent::__construct();
 
         $this->load->model('M_boats');
+        $this->load->model('M_badges');
 
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -19,7 +20,8 @@ class Boats extends CI_Controller {
     {
         $datas = array(
             'title' => 'BOATS',
-            'boat' => $this->M_boats->getAllBoatsWithPictures()
+            'boat' => $this->M_boats->getAllBoatsWithPicturesAndBadges(),
+            'badge' => $this->M_badges->getAllBadges()
         );
         $partials = array(
             'head' => 'partials/dashboard/head',
@@ -37,7 +39,7 @@ class Boats extends CI_Controller {
             'boatName' => $this->input->post('boatName'),
             'boatPrice' => $this->input->post('boatPrice'),
             'boatType' => $this->input->post('boatType'),
-            'boatStock' => $this->input->post('boatStock'),
+            'boatStatus' => $this->input->post('boatStatus'),
             'boatDesc' => $this->input->post('boatDesc'),
             'boatStartPoint' => $this->input->post('boatStartPoint'),
             'maxPeople' => $this->input->post('maxPeople'),
@@ -57,7 +59,7 @@ class Boats extends CI_Controller {
             $pictureExtension = strtolower(end($fileNameCmps));
             $newPictureName = md5(time() . $_FILES['file']['name']) . '.' . $pictureExtension;
             $config['upload_path'] = './assets/uploads/';
-            $config['allowed_types'] = 'jpg|jpeg|gif|png|webp';
+            $config['allowed_types'] = 'jpg|jpeg|png|webp';
             $config['file_name'] = $newPictureName;
             $config['max_size']             = 2000;
             $config['max_width']            = 0;
@@ -85,6 +87,18 @@ class Boats extends CI_Controller {
             }
         
         }
+
+        if ($_POST['badgeIds']) {
+            $countBadge = count($_POST['badgeIds']);
+            for ($i = 0; $i < $countBadge; $i++) {
+                $boatbadgesDatas = array(
+                    'boatId' => $boatId,
+                    'badgeId' => $_POST['badgeIds'][$i],
+                );
+                $this->M_boats->insertBadges($boatbadgesDatas);
+            }
+        }
+
         redirect('dashboard/boats');
     }
 
@@ -92,6 +106,18 @@ class Boats extends CI_Controller {
         $boatId = $this->input->post('boatId');
         $checkBoat = $this->M_boats->checkBoat('boatId', $boatId);
         if ($checkBoat) {
+
+            if ($this->input->post('badgeIds')) {
+                $this->M_boats->deleteAllBadges($boatId);
+                $countBadge = count($_POST['badgeIds']);
+                for ($i = 0; $i < $countBadge; $i++) {
+                    $boatbadgesDatas = array(
+                        'boatId' => $boatId,
+                        'badgeId' => $_POST['badgeIds'][$i],
+                    );
+                    $this->M_boats->insertBadges($boatbadgesDatas);
+                }
+            }
 
             if($this->input->post('delpict')) {
                 $delPictures = $this->input->post('delpict');
@@ -110,14 +136,13 @@ class Boats extends CI_Controller {
                 'boatName' => $this->input->post('boatName'),
                 'boatPrice' => $this->input->post('boatPrice'),
                 'boatType' => $this->input->post('boatType'),
-                'boatStock' => $this->input->post('boatStock'),
+                'boatStatus' => $this->input->post('boatStatus'),
                 'boatDesc' => $this->input->post('boatDesc'),
                 'boatStartPoint' => $this->input->post('boatStartPoint'),
                 'maxPeople' => $this->input->post('maxPeople'),
             );
             $this->M_boats->editBoat($boatId, $boatData);
 
-            
             if (!empty($_FILES['files']['name'][0])) {
                 $countPictures = count($_FILES['files']['name']);
                 
@@ -132,7 +157,7 @@ class Boats extends CI_Controller {
                     $pictureExtension = strtolower(end($fileNameCmps));
                     $newPictureName = md5(time() . $_FILES['file']['name']) . '.' . $pictureExtension;
                     $config['upload_path'] = './assets/uploads/';
-                    $config['allowed_types'] = 'jpg|jpeg|gif|png|webp';
+                    $config['allowed_types'] = 'jpg|jpeg|png|webp';
                     $config['file_name'] = $newPictureName;
                     $config['max_size']             = 2000;
                     $config['max_width']            = 10000; 
