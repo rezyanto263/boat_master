@@ -192,58 +192,9 @@ btn_edit_password = document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 
-// Update Password
-
-update_password = document.getElementById("save-password-btn");
-var update_password = document.addEventListener("click", function () {
-	const newPassword = document.getElementById("newPass").value;
-	const confirmPassword = document.getElementById("confirmPass").value;
-
-	if (update_password != null) {
-		if (newPassword !== confirmPassword) {
-			alert("Passwords do not match!");
-			return;
-		}
-
-		fetch("/profile/updatePassword", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				newPass: newPassword,
-				confirmPass: confirmPassword,
-			}),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.success) {
-					alert("Password updated successfully!");
-					document.getElementById("edit-password-form").style.display = "none";
-				} else {
-					alert("Failed to update password: " + data.message);
-				}
-			})
-			.catch((error) => console.error("Error:", error));
-	}
-});
-
-modal_popup = document.addEventListener("DOMContentLoaded", function () {
-	if (modal_popup != null) {
-		var hasSuccessMessage = JSON.parse(
-			document.getElementById("hasSuccessMessage").textContent
-		);
-		var hasErrorMessage = JSON.parse(
-			document.getElementById("hasErrorMessage").textContent
-		);
-
-		if (hasSuccessMessage || hasErrorMessage) {
-			var flashMessageModal = new bootstrap.Modal(
-				document.getElementById("flashMessageModal"),
-				{}
-			);
-			flashMessageModal.show();
-		}
+$(document).ready(function () {
+	if ($("#flashMessageModal").length > 0) {
+		$("#flashMessageModal").modal("show");
 	}
 });
 

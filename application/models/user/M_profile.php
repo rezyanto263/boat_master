@@ -24,10 +24,12 @@ class M_profile extends CI_Model
         $this->db->where('custId', $custId);
         return $this->db->update('customer', $data);
     }
-    public function updatePassword($custId, $hashedPassword)
+
+    // Update password
+    public function updatePassword($custId, $data)
     {
         $this->db->where('custId', $custId);
-        return $this->db->update('customers', ['password' => $hashedPassword]);
+        return $this->db->update('customer', $data);
     }
 }
 

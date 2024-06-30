@@ -17,49 +17,6 @@
     <!-- My Styles -->
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" />
 
-    <style>
-        .modal-content {
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-        }
-
-        .modal-header {
-            border-bottom: none;
-        }
-
-        .modal-header .close {
-            margin-top: -10px;
-        }
-
-        .modal-body {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-
-        .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-
-        .modal-body p {
-            font-size: 1.1rem;
-        }
-
-        .modal.fade .modal-dialog {
-            transform: scale(0.7);
-            transition: transform 0.3s ease-out;
-        }
-
-        .modal.fade.show .modal-dialog {
-            transform: scale(1);
-        }
-    </style>
-
 </head>
 
 <body>
@@ -112,40 +69,23 @@
 
                 <div class="container">
                     <!-- Flashdata Start -->
-                    <?php if ($this->session->flashdata('success')) : ?>
+                    <?php if ($this->session->flashdata('success') || $this->session->flashdata('error')) : ?>
                         <div class="modal fade" id="flashMessageModal" tabindex="-1" role="dialog" aria-labelledby="flashMessageModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content alert-success">
+                                <div class="modal-content <?= $this->session->flashdata('success') ? 'alert-success' : 'alert-danger' ?>">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="flashMessageModalLabel">Success</h5>
+                                        <h5 class="modal-title" id="flashMessageModalLabel"><?= $this->session->flashdata('success') ? 'Success' : 'Error' ?></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p><?= $this->session->flashdata('success') ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php elseif ($this->session->flashdata('error')) : ?>
-                        <div class="modal fade" id="flashMessageModal" tabindex="-1" role="dialog" aria-labelledby="flashMessageModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content alert-danger">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="flashMessageModalLabel">Error</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p><?= $this->session->flashdata('error') ?></p>
+                                        <p><?= $this->session->flashdata('success') ? $this->session->flashdata('success') : $this->session->flashdata('error') ?></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php endif; ?>
-                    <!-- Flashdata END -->
 
                     <form action="<?= base_url('user/profile/update/' . ($user->custId)) ?>" method="post" enctype="multipart/form-data" class="form-edit needs-validation" id="edit-profile-form" style="display:none;" novalidate>
                         <div class="row mt-1">
@@ -154,7 +94,7 @@
                                 <div>
                                     <label for="custName">Name:</label>
                                     <input class="mt-1 form-control" type="text" id="custName" name="custName" value="<?= htmlspecialchars($user->custName) ?>" required>
-                                    <div class="invalid-feedback">You must provide a name.</div>
+                                    <div class="invalid-feedback">You must provide a Name</div>
                                     <div class="valid-feedback">Looks Fine.</div>
                                 </div>
                                 <br>
@@ -187,15 +127,15 @@
                         </div>
                         <button class="btn btn-primary" type="submit" id="save-profile-btn" name="save-profile-btn">Save</button>
                     </form>
-
-
-
                 </div>
             </div>
+
+
         </section>
+
         <div id="hasSuccessMessage" style="display:none;">
             <?= json_encode($this->session->flashdata('success') ? true : false) ?>
-        </div>
+        </div>git
         <div id="hasErrorMessage" style="display:none;">
             <?= json_encode($this->session->flashdata('error') ? true : false) ?>
         </div>
@@ -208,19 +148,19 @@
                     <input type="password" id="profile-password" value="<?= set_value('profile-password', $user->custPassword) ?>" readonly>
                     <button class="btn-primary" id="edit-password-button">Edit</button>
                 </div>
-                <form class="form-edit needs-validation" id="edit-password-form" style="display: none;" novalidate>
+                <form class="form-edit needs-validation" action="<?= base_url('user/profile/updatePassword/' . ($user->custId)) ?>" id="edit-password-form" style="display: none;" method="post" novalidate>
                     <div class="row mt-1">
                         <div class="col-md-6 mt-1">
-                            <label for="newPass">New Password:</label>
+                            <label for="password">New Password:</label>
                             <div>
-                                <input class="form-control" type="password" id="newPass" name="newPass" required>
-                                <div class="invalid-feedback">You must provide Password</div>
+                                <input class="form-control" type="password" id="password" name="newPass" required>
+                                <div class="invalid-feedback">You must provide a Password</div>
                             </div>
                             <br>
-                            <label for="confirmPass">Confirm Password:</label>
+                            <label for="password_confirm">Confirm Password:</label>
                             <div>
-                                <input class="form-control" type="password" id="confirmPass" name="confirmPass" required>
-                                <div class="invalid-feedback">You must provide Confirm Password</div>
+                                <input class="form-control" type="password" id="password_confirm" name="password_confirm" required>
+                                <div class="invalid-feedback">You must provide a Confirm Password</div>
                             </div>
                         </div>
                     </div>
@@ -284,6 +224,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
     <!-- My Script -->
     <script src="<?= base_url('assets/js/script.js') ?>"></script>
     <script>
@@ -304,7 +245,6 @@
             });
         })();
     </script>
-
 
 </body>
 

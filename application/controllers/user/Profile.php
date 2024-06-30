@@ -10,6 +10,7 @@ class Profile extends CI_Controller
         $this->load->model('user/M_profile');
         $this->load->library('form_validation');
         $this->load->library('session');
+        $this->session->keep_flashdata('message');
     }
 
 
@@ -30,6 +31,7 @@ class Profile extends CI_Controller
         // Load the edit view
         $this->load->view('user/profile', $data);
     }
+
 
     // Update user profile
     public function update($custId)
@@ -69,24 +71,30 @@ class Profile extends CI_Controller
         redirect('user/profile');
     }
 
-
-    public function updatePassword()
+    // Update Password
+    public function updatePassword($custId)
     {
-        // Validation successful, proceed to update the password
-        $data = array(
-            'newPass' => password_hash($this->input->post('custPassword'), PASSWORD_BCRYPT),
-        );
+        $newPass = $this->input->post('newPass');
+        $confirmPass = $this->input->post('password_confirm');
 
-        $user_id = $this->session->userdata('user_id');
-
-        if ($this->user_model->updatePassword($user_id, $data)) {
-            // Password updated successfully
-            $this->session->set_flashdata('message', 'Password changed successfully.');
-            redirect('profile');
+        if ($newPass != $confirmPass) {
+            $this->session->set_flashdata('error', 'Password and confirm password do not match.');
+            redirect(site_url('user/profile'));
         } else {
-            // Failed to update the password
-            $this->session->set_flashdata('message', 'Failed to change the password. Please try again.');
-            redirect('change_password');
+            // Validation successful, proceed to update the password
+            $data = array(
+                'custId' => $custId,
+                'custPassword' => password_hash($this->input->post('newPass'), PASSWORD_DEFAULT),
+            );
+
+            if ($this->M_profile->updatePassword($custId, $data)) {
+                // Password updated successfully
+                $this->session->set_flashdata('message', 'Password changed successfully.');
+            } else {
+                // Failed to update the password
+                $this->session->set_flashdata('error', 'Failed to change the password. Please try again.');
+            }
+            redirect(site_url('user/profile'));
         }
     }
 }
