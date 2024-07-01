@@ -158,39 +158,37 @@ if (
 
 // Profile
 
-btn_edit_profile = document.addEventListener("DOMContentLoaded", function () {
-	var btn_edit_profile = document.getElementById("edit-profile-button");
 
-	if (btn_edit_profile != null) {
-		btn_edit_profile.addEventListener("click", function () {
-			var form = document.getElementById("edit-profile-form");
-			if (form.style.display === "none" || form.style.display === "") {
-				form.style.display = "block";
-				btn_edit_profile.textContent = "Cancel";
-			} else {
-				form.style.display = "none";
-				btn_edit_profile.textContent = "Edit";
-			}
-		});
-	}
-});
+var btn_edit_profile = document.getElementById("edit-profile-button");
 
-btn_edit_password = document.addEventListener("DOMContentLoaded", function () {
-	var btn_edit_password = document.getElementById("edit-password-button");
+if (btn_edit_profile != null) {
+	btn_edit_profile.addEventListener("click", function () {
+		var form = document.getElementById("edit-profile-form");
+		if (form.style.display === "none" || form.style.display === "") {
+			form.style.display = "block";
+			btn_edit_profile.textContent = "Cancel";
+		} else {
+			form.style.display = "none";
+			btn_edit_profile.textContent = "Edit";
+		}
+	});
+}
 
-	if (btn_edit_password != null) {
-		btn_edit_password.addEventListener("click", function () {
-			var form = document.getElementById("edit-password-form");
-			if (form.style.display === "none" || form.style.display === "") {
-				form.style.display = "block";
-				btn_edit_password.textContent = "Cancel";
-			} else {
-				form.style.display = "none";
-				btn_edit_password.textContent = "Edit";
-			}
-		});
-	}
-});
+var btn_edit_password = document.getElementById("edit-password-button");
+
+if (btn_edit_password != null) {
+	btn_edit_password.addEventListener("click", function () {
+		var form = document.getElementById("edit-password-form");
+		if (form.style.display === "none" || form.style.display === "") {
+			form.style.display = "block";
+			btn_edit_password.textContent = "Cancel";
+		} else {
+			form.style.display = "none";
+			btn_edit_password.textContent = "Edit";
+		}
+	});
+}
+
 
 // Profile END
 
@@ -301,6 +299,73 @@ function addTourEdit(packageId) {
 	container.insertAdjacentHTML('beforeend', newContent);
 }
 
+var checkFancyBox = document.querySelector('.fancybox');
+if (checkFancyBox != null) {
+	Fancybox.bind("[data-fancybox]", {
+		buttons: [
+			"zoom",
+			"slideShow",
+			"fullScreen",
+			"thumbs",
+			"close"
+		],
+		youtube: {
+			controls: 1,
+			showinfo: 0
+		},
+		vimeo: {
+			color: "f00"
+		},
+		iframe: {
+			css: {
+				width: '80%',
+				height: '80%'
+			}
+		},
+		protect: true,             
+		loop: true,                
+		transitionEffect: "slide", 
+		transitionDuration: 500,   
+		thumbs: {
+			autoStart: true, 
+			axis: "x"        
+		}
+	});
+}
 
+
+
+const playButton = document.getElementById('playButton');
+const videoContainer = document.getElementById('videoContainer');
+const video = document.getElementById('fullscreenVideo');
+
+if ((video && playButton && videoContainer) != null) {
+	let isPlaying = false;
+	playButton.addEventListener('click', () => {
+		if (isPlaying) {
+			video.pause();
+			video.currentTime = 0
+			videoContainer.style.display = 'none';
+		} else {
+			videoContainer.style.display = 'block';
+			video.play();
+		}
+		isPlaying = !isPlaying;
+	});
+	
+
+	function stopVideo() {
+		if (isPlaying) {
+			video.pause();
+			video.currentTime = 0
+			videoContainer.style.display = 'none';
+			isPlaying = false
+		}
+	}
+
+	window.addEventListener('scroll', stopVideo);
+	window.addEventListener('touchmove', stopVideo);
+	window.addEventListener('resize', stopVideo);
+}
 
 $('.message').delay(3000).fadeOut(300);

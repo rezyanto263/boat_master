@@ -35,7 +35,7 @@
                         </td>
                         <td><?= $key['boatName']; ?></td>
                         <td><?= $key['boatType']; ?></td>
-                        <td><?= $key['boatPrice']; ?></td>
+                        <td><?= number_format($key['boatPrice']); ?></td>
                         <td class="text-center"><?= $key['maxPeople']; ?></td>
                         <td class="text-center"><?= $key['boatStatus']; ?></td>
                         <td>

@@ -13,11 +13,7 @@ class Auth extends CI_Controller {
 	
     public function index() {
 
-		if ($this->session->userdata('custId')) {
-			redirect('home');
-		}else {
-			$this->login();
-		}
+		redirect('home');
 
     }
 
@@ -72,12 +68,12 @@ class Auth extends CI_Controller {
 				redirect('home');
 			}else {
 				$this->session->set_flashdata('message', '<small class="text-warning">Wrong password, try again!</small>');
-				redirect('auth');
+				redirect('login');
 			}
 			
         }else if (empty($custData)) {
 			$this->session->set_flashdata('message', '<small class="text-warning">Account not found, please register!</small>');
-			redirect('auth');
+			redirect('login');
 		}
 
 	}
@@ -157,7 +153,7 @@ class Auth extends CI_Controller {
 				'custPhone' => htmlspecialchars($this->input->post('custPhone')),
 			);
 			$this->M_auth->registerAccount($custDetails);
-			redirect('auth');
+			redirect('login');
 		}
 
 	}

@@ -8,8 +8,6 @@ class Profile extends CI_Controller
         parent::__construct();
         
         $this->load->model('M_profile');
-        $this->load->helper('url');
-        $this->load->library('form_validation');
     }
 
 
@@ -54,7 +52,7 @@ class Profile extends CI_Controller
             );
 
             if (!empty($_FILES['custPic']['name'])) {
-                $config['upload_path'] = './uploads/';
+                $config['upload_path'] = 'assets/uploads/';
                 $config['allowed_types'] = 'gif|jpg|png';
                 $this->load->library('upload', $config);
 

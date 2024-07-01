@@ -23,6 +23,7 @@ class Boats extends CI_Controller {
             'boat' => $this->M_boats->getAllBoatsWithPicturesAndBadges(),
             'badge' => $this->M_badges->getAllBadges()
         );
+
         $partials = array(
             'head' => 'partials/dashboard/head',
             'navigation' => 'partials/dashboard/navigation',

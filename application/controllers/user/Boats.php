@@ -4,12 +4,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Boats extends CI_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->load->model('M_boats');
+    }
+
     public function index()
     {
         $datas = array(
             'title' => 'Boats',
             'hidden' => '',
-            'color' => 'blue'
+            'color' => 'blue',
+            'boat' => $this->M_boats->getAllBoatsWithPicturesAndBadges()
         );
 
         $partials = array(
