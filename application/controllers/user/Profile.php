@@ -7,30 +7,61 @@ class Profile extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model('user/M_profile');
+        $this->load->model('M_profile');
+        $this->load->model('M_auth');
+
+        $this->load->helper('url');
         $this->load->library('form_validation');
         $this->load->library('session');
         $this->session->keep_flashdata('message');
+
+        if (!$this->session->userdata('custId')) {
+            redirect('login');
+        }
     }
 
 
     // Fetch user profile for editing
-    public function index($custId = 1)
+    public function index()
     {
-        if ($custId === null) {
+        // Retrieve the customer ID from session data
+        $custData = $this->session->userdata('custId');
+        if ($custData === null) {
             show_error('No identifier provided', 500);
+            return;
         }
 
-        // Fetch user data
-        $data['user'] = $this->M_profile->get_user_by_id($custId);
+        // Fetch user data from the model
+        $data = $this->M_profile->get_user_by_id($custData);
 
-        if (empty($data['user'])) {
+        // Check if user data exists
+        if (empty($data)) {
             show_error('User not found', 404);
+            return;
         }
 
-        // Load the edit view
-        $this->load->view('user/profile', $data);
+        // Prepare data for the view
+        $datas = array(
+            'title' => 'PROFILE',
+            'user' => $data,
+            'color' => '',
+            'hidden' => '',
+        );
+
+        $partials = array(
+            'head' => 'partials/user/head',
+            'navbar' => 'partials/user/navbar',
+            'content' => 'user/profile',
+            'footer' => 'partials/user/footer',
+            'script' => 'partials/user/script',
+        );
+        $this->load->vars($datas);
+        $this->load->view('master', $partials);
+
+        // Load the profile view with the user data
+        // $this->load->view('user/profile', $datas);
     }
+
 
 
     // Update user profile
@@ -38,10 +69,10 @@ class Profile extends CI_Controller
     {
         // Validasi berhasil, perbarui data pengguna
         $data = array(
-            'custName' => $this->input->post('custName'),
-            'custEmail' => $this->input->post('custEmail'),
-            'custAddress' => $this->input->post('custAddress'),
-            'custPhone' => $this->input->post('custPhone')
+            'custName' => htmlspecialchars($this->input->post('custName')),
+            'custEmail' => htmlspecialchars($this->input->post('custEmail')),
+            'custAddress' => htmlspecialchars($this->input->post('custAddress')),
+            'custPhone' => htmlspecialchars($this->input->post('custPhone'))
         );
 
         // $this->M_profile->update_user($custId, $data);
@@ -68,33 +99,58 @@ class Profile extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Gagal memperbarui profil.');
         }
+        $this->session->set_flashdata('message', '<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body">
+    Hello, world! This is a toast message.
+   </div>
+    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>');
+
         redirect('user/profile');
     }
 
     // Update Password
     public function updatePassword($custId)
     {
+        $current_password = $this->input->post('current_password');
         $newPass = $this->input->post('newPass');
         $confirmPass = $this->input->post('password_confirm');
+        $data['user'] = $this->db->get('customer', $custId)->row_array();
 
-        if ($newPass != $confirmPass) {
-            $this->session->set_flashdata('error', 'Password and confirm password do not match.');
+
+        //validation if current password Wrong 
+        if (!password_verify($current_password, $data['user']['custPassword'])) {
+            $this->session->set_flashdata('error', 'Wrong Current Password');
             redirect(site_url('user/profile'));
         } else {
-            // Validation successful, proceed to update the password
-            $data = array(
-                'custId' => $custId,
-                'custPassword' => password_hash($this->input->post('newPass'), PASSWORD_DEFAULT),
-            );
-
-            if ($this->M_profile->updatePassword($custId, $data)) {
-                // Password updated successfully
-                $this->session->set_flashdata('message', 'Password changed successfully.');
+            //Validating if the current password matches the new password
+            if ($current_password == $newPass) {
+                $this->session->set_flashdata('error', 'New Password Cannot Be same with Current Password');
+                redirect(site_url('user/profile'));
             } else {
-                // Failed to update the password
-                $this->session->set_flashdata('error', 'Failed to change the password. Please try again.');
+                // Validating that the new password is not the same as the confirm password.
+                if ($newPass != $confirmPass) {
+                    $this->session->set_flashdata('error', 'Password and confirm password do not match.');
+                    redirect(site_url('user/profile'));
+                } else {
+                    // Validation successful, proceed to update the password
+                    $data = array(
+                        'custId' => $custId,
+                        'custPassword' => password_hash($this->input->post('newPass'), PASSWORD_DEFAULT, ['cost' => 10]),
+                    );
+
+                    if ($this->M_profile->updatePassword($custId, $data)) {
+                        // Password updated successfully
+                        $this->session->set_flashdata('succes', 'Password changed successfully.');
+                    } else {
+                        // Failed to update the password
+                        $this->session->set_flashdata('error', 'Failed to change the password. Please try again.');
+                    }
+                    redirect(site_url('user/profile'));
+                }
             }
-            redirect(site_url('user/profile'));
         }
     }
 }

@@ -199,3 +199,114 @@ $(document).ready(function () {
 });
 
 // Profile END
+
+// Data Tables
+dashboard = document.querySelector(".dashboard");
+if (dashboard != null) {
+	new DataTable("#datatable", {
+		buttons: [
+			"copy",
+			"csv",
+			"excel",
+			{
+				extend: "pdfHtml5",
+				text: "PDF",
+				exportOptions: {
+					columns: ":visible",
+				},
+			},
+			{
+				extend: "colvis",
+				collectionLayout: "dropdown",
+				text: "Column Visibility",
+			},
+		],
+		layout: {
+			topStart: "buttons",
+		},
+		// fixedHeader: {
+		// 	headerOffset: $('#dashnav').outerHeight(),
+		// },
+		colReorder: true,
+		responsive: true,
+		paging: true,
+		searching: true,
+		ordering: true,
+		autoWidth: true,
+	});
+}
+
+(() => {
+	"use strict";
+
+	// Fetch all the forms we want to apply custom Bootstrap validation styles to
+	const forms = document.querySelectorAll(".needs-validation");
+
+	// Loop over them and prevent submission
+	Array.from(forms).forEach((form) => {
+		form.addEventListener(
+			"submit",
+			(event) => {
+				if (!form.checkValidity()) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
+
+				form.classList.add("was-validated");
+			},
+			false
+		);
+	});
+})();
+
+function isNumberKey(evt) {
+	var kodeASCII = evt.which ? evt.which : event.keyCode;
+	if (kodeASCII > 31 && (kodeASCII < 48 || kodeASCII > 57)) {
+		return false;
+	}
+	return true;
+}
+
+function isLetterSpaceKey(evt) {
+	var charCode = evt.which ? evt.which : event.keyCode;
+	if (
+		(charCode < 65 || charCode > 90) &&
+		(charCode < 97 || charCode > 122) &&
+		charCode != 32
+	) {
+		return false;
+	}
+	return true;
+}
+
+function addTour() {
+	var container  = document.querySelector('.add-tour-input')
+	var newContent = `
+	<label class="mt-3">Package Tour Details</label>
+	<div class="input-tour-container">
+		<div class="input-tour d-flex gap-3 mb-3">
+			<input class="form-control w-75" type="text" name="tourNames[]" placeholder="Tour Name">
+			<input class="form-control w-25" type="time" name="tourTimes[]">
+		</div>
+		<textarea class="form-control w-100" type="text" name="tourDescs[]" placeholder="Simple description about the tour..." maxlength="50"></textarea>
+	</div>`;
+	container.insertAdjacentHTML('beforeend', newContent);
+}
+
+function addTourEdit(packageId) {
+	var container  = document.querySelector('.edit-tour-input'+packageId);
+	var newContent = `
+	<label class="mt-3">Package Tour Details</label>
+	<div class="input-tour-container">
+		<div class="input-tour d-flex gap-3 mb-3">
+			<input class="form-control w-75" type="text" name="tourNames[]" placeholder="Tour Name">
+			<input class="form-control w-25" type="time" name="tourTimes[]">
+		</div>
+		<textarea class="form-control w-100" type="text" name="tourDescs[]" placeholder="Simple description about the tour..." maxlength="50"></textarea>
+	</div>`;
+	container.insertAdjacentHTML('beforeend', newContent);
+}
+
+
+
+$('.message').delay(3000).fadeOut(300);
