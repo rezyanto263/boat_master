@@ -63,17 +63,23 @@
                                         Sapiente totam fuga nam ab explicabo enim beatae, quod,
                                     </p>
                                     <a class="btn btn-secondary me-3" href="<?= base_url('boats') ?>">BOOK NOW</a>
-                                    <button class="btn btn-outline-primary">
+                                    <a class="btn btn-outline-primary" href="#wwyd-section">
                                         LEARN MORE
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                             <div
                                 class="col-6 d-flex align-items-center justify-content-center"
                             >
-                                <button class="btn btn-play">
+                                <button class="btn btn-play" id="playButton">
                                     <i class="fa-solid fa-play ms-1"></i>
                                 </button>
+                                <div id="videoContainer">
+                                    <video id="fullscreenVideo" playsinline loop>
+                                        <source src="<?= base_url('assets/uploads/hero-video.mp4') ?>" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,53 +88,59 @@
             <div class="row mt-3 tour-package">
                 <div class="col-6 col-lg-4">
                     <div class="container bg-white px-5 py-3">
-                        <div class="row m-0 p-0">
-                            <div class="col-10 m-0 p-0">
-                                <h4>PRIVATE TOUR</h4>
+                        <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
+                            <div class="row m-0 p-0">
+                                <div class="col-10 m-0 p-0">
+                                    <h4>PRIVATE TOUR</h4>
+                                </div>
+                                <div class="col-2 d-flex align-items-center">
+                                    <i class="fa-solid fa-star mb-2"></i>
+                                </div>
                             </div>
-                            <div class="col-2 d-flex align-items-center">
-                                <i class="fa-solid fa-star mb-2"></i>
+                            <hr class="mt-0" />
+                            <p>Have a wonderful boat ride with your dearest ones!</p>
+                            <div class="row">
+                                <div class="price">1.200.00 IDR</div>
                             </div>
-                        </div>
-                        <hr class="mt-0" />
-                        <p>Have a wonderful boat ride with your dearest ones!</p>
-                        <div class="row">
-                            <div class="price">1.200.00 IDR</div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-6 col-lg-4">
                     <div class="container bg-white px-5 py-3">
-                        <div class="row m-0 p-0">
-                            <div class="col-10 m-0 p-0">
-                                <h4>SHARED TOUR</h4>
+                        <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
+                            <div class="row m-0 p-0">
+                                <div class="col-10 m-0 p-0">
+                                    <h4>SHARED TOUR</h4>
+                                </div>
+                                <div class="col-2 d-flex align-items-center">
+                                    <i class="fa-solid fa-users mb-2"></i>
+                                </div>
                             </div>
-                            <div class="col-2 d-flex align-items-center">
-                                <i class="fa-solid fa-users mb-2"></i>
+                            <hr class="mt-0" />
+                            <p>Have a wonderful boat ride with your dearest ones!</p>
+                            <div class="row">
+                                <div class="price">1.200.00 IDR</div>
                             </div>
-                        </div>
-                        <hr class="mt-0" />
-                        <p>Have a wonderful boat ride with your dearest ones!</p>
-                        <div class="row">
-                            <div class="price">1.200.00 IDR</div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="container px-5 py-3 design-a-tour">
-                        <div class="row m-0 p-0">
-                            <div class="col-10 m-0 p-0">
-                                <h4>DESIGN A TOUR</h4>
+                        <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
+                            <div class="row m-0 p-0">
+                                <div class="col-10 m-0 p-0">
+                                    <h4>DESIGN A TOUR</h4>
+                                </div>
+                                <div class="col-2 d-flex align-items-center">
+                                    <i class="fa-solid fa-sailboat mb-2"></i>
+                                </div>
                             </div>
-                            <div class="col-2 d-flex align-items-center">
-                                <i class="fa-solid fa-sailboat mb-2"></i>
+                            <hr class="mt-0" />
+                            <p>Have a wonderful boat ride with your dearest ones!</p>
+                            <div class="row">
+                                <div class="price">Book Online</div>
                             </div>
-                        </div>
-                        <hr class="mt-0" />
-                        <p>Have a wonderful boat ride with your dearest ones!</p>
-                        <div class="row">
-                            <div class="price">Book Online</div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -143,13 +155,13 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             <div class="row mt-5">
                 <div class="video-slider owl-carousel owl-theme">
-                    <div class="item"><div class="card"></div></div>
-                    <div class="item"><div class="card"></div></div>
-                    <div class="item"><div class="card"></div></div>
-                    <div class="item"><div class="card"></div></div>
-                    <div class="item"><div class="card"></div></div>
-                    <div class="item"><div class="card"></div></div>
-                    <div class="item"><div class="card"></div></div>
+                    <div class="item card"><a class="fancybox" data-fancybox="video" data-width="470" data-height="835" data-caption="Single image" src="https://youtube.com/embed/pI1Fm3wDNDg?si=l_yI6teYIBQss_a_"><img src="https://img.youtube.com/vi/pI1Fm3wDNDg/maxresdefault.jpg" alt=""><span class="btn-play"><i class="fa-solid fa-play"></i></span></a></div>
+                    <div class="item card"><a class="fancybox" data-fancybox="video" data-width="470" data-height="835" data-caption="Single image" src="https://youtube.com/embed/2jIkrnyFJFA?si=vkeFIAxj2GkPi9wW"><img src="https://img.youtube.com/vi/2jIkrnyFJFA/maxresdefault.jpg" alt=""><span class="btn-play"><i class="fa-solid fa-play"></i></span></a></div>
+                    <div class="item card"><a class="fancybox" data-fancybox="video" data-width="470" data-height="835" data-caption="Single image" src="https://youtube.com/shorts/0IHun0xT4tQ?si=YmYBxog0Z3AeVsVN"><img src="https://img.youtube.com/vi/0IHun0xT4tQ/maxresdefault.jpg" alt=""><span class="btn-play"><i class="fa-solid fa-play"></i></span></a></div>
+                    <div class="item card"><a class="fancybox" data-fancybox="video" data-width="470" data-height="835" data-caption="Single image" src="https://youtube.com/shorts/jvg5F6lYiOY?si=hrLpEHIFzv24OEc9"><img src="https://img.youtube.com/vi/jvg5F6lYiOY/maxresdefault.jpg" alt=""><span class="btn-play"><i class="fa-solid fa-play"></i></span></a></div>
+                    <div class="item card"><a class="fancybox" data-fancybox="video" data-width="470" data-height="835" data-caption="Single image" src="https://youtube.com/shorts/Vx_IJmIU6bE?si=kT8QZf1tjZGx03lp"><img src="https://img.youtube.com/vi/Vx_IJmIU6bE/maxresdefault.jpg" alt=""><span class="btn-play"><i class="fa-solid fa-play"></i></span></a></div>
+                    <div class="item card"><a class="fancybox" data-fancybox="video" data-width="470" data-height="835" data-caption="Single image" src="https://youtube.com/shorts/7QMlc3Tg4Dc?si=1VTk39KBgZjiwUNS"><img src="https://img.youtube.com/vi/7QMlc3Tg4Dc/maxresdefault.jpg" alt=""><span class="btn-play"><i class="fa-solid fa-play"></i></span></a></div>
+                    <div class="item card"><a class="fancybox" data-fancybox="video" data-width="470" data-height="835" data-caption="Single image" src="https://youtube.com/shorts/skE8JMm0YKg?si=N0QOHzNzhOoxVXnH"><img src="https://img.youtube.com/vi/skE8JMm0YKg/maxresdefault.jpg" alt=""><span class="btn-play"><i class="fa-solid fa-play"></i></span></a></div>
                 </div>
             </div>
         </div>
@@ -157,7 +169,7 @@
     <!-- Watch Section End -->
 
     <!-- What Will You Do Section Start -->
-    <section class="wwyd-section py-5">
+    <section class="wwyd-section py-5" id="wwyd-section">
         <div class="container my-5">
             <h2>WHAT YOU WILL DO</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -359,7 +371,7 @@
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">1</h4></span
                             >
-                            <h4 class="mb-0">Get Started</h4>
+                            <h4 class="mb-0">Choose a Boat</h4>
                         </div>
                         <div class="card-body">
                             <p class="mb-0 text-justify">
@@ -376,7 +388,7 @@
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">2</h4></span
                             >
-                            <h4 class="mb-0">Choose the Tour</h4>
+                            <h4 class="mb-0">Choose The Tour</h4>
                         </div>
                         <div class="card-body">
                             <p class="mb-0 text-justify">
@@ -393,7 +405,7 @@
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">3</h4></span
                             >
-                            <h4 class="mb-0">Choose the Boat</h4>
+                            <h4 class="mb-0">Make a Booking</h4>
                         </div>
                         <div class="card-body">
                             <p class="mb-0 text-justify">
@@ -410,7 +422,7 @@
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">4</h4></span
                             >
-                            <!-- <h4 class="mb-0">Make a Booking</h4>co -->
+                            <h4 class="mb-0">Enjoy!</h4>
                         </div>
                         <div class="card-body">
                             <p class="mb-0 text-justify">
@@ -437,7 +449,7 @@
                 tortor. Suspendisse egestas urna elementum, imperdiet elit ac,
                 elementum magna.
             </p>
-            <button class="btn-primary">BOOK NOW</button>
+            <a class="btn btn-primary" href="<?= base_url('boats') ?>">BOOK NOW</a>
         </div>
     </section>
     <!-- Call to Action Section End -->
@@ -738,7 +750,7 @@
     <!-- Review Section End -->
 
     <!-- Contact & FAQ Section Start -->
-    <section class="contact-faq-section py-5">
+    <section class="contact-faq-section py-5" id="contactfaq">
         <div class="container py-5">
             <div class="row">
                 <div class="col-4 p-0">
@@ -746,27 +758,40 @@
                     <p class="mb-5">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </p>
-                    <form action="#" method="post">
-                        <div class="form-group">
+                    <form action="<?= base_url('user/Home/sendEmail') ?>" method="post">
+                        <div class="mb-3">
                             <input
-                                class="w-100 mb-3"
+                                class="w-100"
+                                name="custName"
                                 type="text"
                                 placeholder="&#xF007;   Your name"
+                                value="<?= set_value('custName'); ?>"
                             />
+                            <?= form_error('custName', '<small class="text-warning ms-3">', '</small>'); ?>
                         </div>
-                        <input
-                            class="w-100 mb-3"
-                            type="text"
-                            placeholder="&#xF0E0;   Your Email"
-                        />
-                        <textarea
-                            class="w-100 mb-3"
-                            name=""
-                            id=""
-                            placeholder="Message..."
-                        ></textarea>
+                        <div class="mb-3">
+                            <input
+                                class="w-100"
+                                name="custEmail"
+                                type="text"
+                                placeholder="&#xF0E0;   Your Email"
+                                value="<?= set_value('custEmail'); ?>"
+                            />
+                            <?= form_error('custEmail', '<small class="text-warning ms-3">', '</small>'); ?>
+                        </div>
+                        <div class="mb-3">
+                            <textarea
+                                class="w-100"
+                                name="message"
+                                type="text"
+                                placeholder="Message..."
+                                value="<?= set_value('message'); ?>"
+                            ></textarea>
+                            <?= form_error('message', '<small class="text-warning ms-3">', '</small>'); ?>
+                        </div>
                         <button type="submit" class="btn-secondary">SUBMIT</button>
                     </form>
+                    <?= $this->session->flashdata('message'); ?>
                 </div>
                 <div class="col-7 offset-1 p-0">
                     <h2>FREQUENTLY ASK QUESTION</h2>
@@ -871,3 +896,5 @@
     </section>
     <!-- Contact & FAQ Section End -->
 </main>
+
+
