@@ -970,6 +970,74 @@ i.notif-icon {
 	border-radius: 30px;
 }
 
+/* Contact Styles */
+.contact-section {
+	background-color: var(--primary);
+}
+
+.contact-section h2 {
+	color: var(--secondary);
+}
+
+.contact-section h1 {
+	color: var(--secondary);
+}
+
+.contact-section p {
+	color: white;
+}
+
+.contact-section textarea {
+	resize: none;
+	height: 150px;
+	scrollbar-width: none;
+}
+
+.contact-section .accordion-button {
+	border-radius: 20px !important;
+	box-shadow: none;
+	height: 50px;
+	color: var(--primary);
+}
+
+.contact-section .accordion-item {
+	background-color: transparent;
+	color: white;
+	border: 0;
+}
+
+.contact-section iframe {
+	border-radius: 20px;
+	
+}
+
+.social-media-box {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    width: 60px;
+    height: 45px;
+    background-color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:  var(--primary);
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.find-us-container {
+    padding-top: 55px; 
+}
+
+.find-us-paragraph {
+    margin-bottom: 10px;
+}
+
 /* Footer Styles */
 footer {
 	background-color: var(--secondary);
