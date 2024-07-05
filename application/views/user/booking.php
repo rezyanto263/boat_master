@@ -1,0 +1,747 @@
+<!-- Step Section Start -->
+<section class="step-section pt-5 pb-2">
+    <div
+        class="container d-flex gap-3 align-items-center justify-content-center"
+    >
+        <!-- align-items-center mengatur tata letak secara vertikal -->
+        <!-- justify-content-center mengatur tata letak secara horizontal-->
+        <div class="step-boat">
+            <div
+                class="circle checked mx-auto d-flex justify-content-center align-items-center"
+            >
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h5 class="mb-0 mt-2 text-center">CHOOSE BOAT</h5>
+        </div>
+        <svg
+            width="162"
+            height="24"
+            viewBox="0 0 162 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M161.061 13.0607C161.646 12.4749 161.646 11.5251 161.061 10.9393L151.515 1.3934C150.929 0.807611 149.979 0.807611 149.393 1.3934C148.808 1.97919 148.808 2.92893 149.393 3.51472L157.879 12L149.393 20.4853C148.808 21.0711 148.808 22.0208 149.393 22.6066C149.979 23.1924 150.929 23.1924 151.515 22.6066L161.061 13.0607ZM0 13.5H2V10.5H0V13.5ZM6 13.5H10V10.5H6V13.5ZM14 13.5H18V10.5H14V13.5ZM22 13.5H26V10.5H22V13.5ZM30 13.5H34V10.5H30V13.5ZM38 13.5H42V10.5H38V13.5ZM46 13.5H50V10.5H46V13.5ZM54 13.5H58V10.5H54V13.5ZM62 13.5H66V10.5H62V13.5ZM70 13.5H74V10.5H70V13.5ZM78 13.5H82V10.5H78V13.5ZM86 13.5H90V10.5H86V13.5ZM94 13.5H98V10.5H94V13.5ZM102 13.5H106V10.5H102V13.5ZM110 13.5H114V10.5H110V13.5ZM118 13.5H122V10.5H118V13.5ZM126 13.5H130V10.5H126V13.5ZM134 13.5H138V10.5H134V13.5ZM142 13.5H146V10.5H142V13.5ZM150 13.5H154V10.5H150V13.5ZM158 13.5H160V10.5H158V13.5ZM161.061 13.0607C161.646 12.4749 161.646 11.5251 161.061 10.9393L151.515 1.3934C150.929 0.807611 149.979 0.807611 149.393 1.3934C148.808 1.97919 148.808 2.92893 149.393 3.51472L157.879 12L149.393 20.4853C148.808 21.0711 148.808 22.0208 149.393 22.6066C149.979 23.1924 150.929 23.1924 151.515 22.6066L161.061 13.0607ZM0 13.5H2V10.5H0V13.5ZM6 13.5H10V10.5H6V13.5ZM14 13.5H18V10.5H14V13.5ZM22 13.5H26V10.5H22V13.5ZM30 13.5H34V10.5H30V13.5ZM38 13.5H42V10.5H38V13.5ZM46 13.5H50V10.5H46V13.5ZM54 13.5H58V10.5H54V13.5ZM62 13.5H66V10.5H62V13.5ZM70 13.5H74V10.5H70V13.5ZM78 13.5H82V10.5H78V13.5ZM86 13.5H90V10.5H86V13.5ZM94 13.5H98V10.5H94V13.5ZM102 13.5H106V10.5H102V13.5ZM110 13.5H114V10.5H110V13.5ZM118 13.5H122V10.5H118V13.5ZM126 13.5H130V10.5H126V13.5ZM134 13.5H138V10.5H134V13.5ZM142 13.5H146V10.5H142V13.5ZM150 13.5H154V10.5H150V13.5ZM158 13.5H160V10.5H158V13.5Z"
+                fill="#FDA43E"
+            />
+        </svg>
+        <div class="step-tour">
+            <div
+                class="circle mx-auto d-flex justify-content-center align-items-center"
+            >
+                <i class="fa-solid fa-umbrella-beach"></i>
+            </div>
+            <h5 class="mb-0 mt-2 text-center">CHOOSE TOUR</h5>
+        </div>
+        <svg
+            width="162"
+            height="24"
+            viewBox="0 0 162 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M161.061 13.0607C161.646 12.4749 161.646 11.5251 161.061 10.9393L151.515 1.3934C150.929 0.807611 149.979 0.807611 149.393 1.3934C148.808 1.97919 148.808 2.92893 149.393 3.51472L157.879 12L149.393 20.4853C148.808 21.0711 148.808 22.0208 149.393 22.6066C149.979 23.1924 150.929 23.1924 151.515 22.6066L161.061 13.0607ZM0 13.5H2V10.5H0V13.5ZM6 13.5H10V10.5H6V13.5ZM14 13.5H18V10.5H14V13.5ZM22 13.5H26V10.5H22V13.5ZM30 13.5H34V10.5H30V13.5ZM38 13.5H42V10.5H38V13.5ZM46 13.5H50V10.5H46V13.5ZM54 13.5H58V10.5H54V13.5ZM62 13.5H66V10.5H62V13.5ZM70 13.5H74V10.5H70V13.5ZM78 13.5H82V10.5H78V13.5ZM86 13.5H90V10.5H86V13.5ZM94 13.5H98V10.5H94V13.5ZM102 13.5H106V10.5H102V13.5ZM110 13.5H114V10.5H110V13.5ZM118 13.5H122V10.5H118V13.5ZM126 13.5H130V10.5H126V13.5ZM134 13.5H138V10.5H134V13.5ZM142 13.5H146V10.5H142V13.5ZM150 13.5H154V10.5H150V13.5ZM158 13.5H160V10.5H158V13.5ZM161.061 13.0607C161.646 12.4749 161.646 11.5251 161.061 10.9393L151.515 1.3934C150.929 0.807611 149.979 0.807611 149.393 1.3934C148.808 1.97919 148.808 2.92893 149.393 3.51472L157.879 12L149.393 20.4853C148.808 21.0711 148.808 22.0208 149.393 22.6066C149.979 23.1924 150.929 23.1924 151.515 22.6066L161.061 13.0607ZM0 13.5H2V10.5H0V13.5ZM6 13.5H10V10.5H6V13.5ZM14 13.5H18V10.5H14V13.5ZM22 13.5H26V10.5H22V13.5ZM30 13.5H34V10.5H30V13.5ZM38 13.5H42V10.5H38V13.5ZM46 13.5H50V10.5H46V13.5ZM54 13.5H58V10.5H54V13.5ZM62 13.5H66V10.5H62V13.5ZM70 13.5H74V10.5H70V13.5ZM78 13.5H82V10.5H78V13.5ZM86 13.5H90V10.5H86V13.5ZM94 13.5H98V10.5H94V13.5ZM102 13.5H106V10.5H102V13.5ZM110 13.5H114V10.5H110V13.5ZM118 13.5H122V10.5H118V13.5ZM126 13.5H130V10.5H126V13.5ZM134 13.5H138V10.5H134V13.5ZM142 13.5H146V10.5H142V13.5ZM150 13.5H154V10.5H150V13.5ZM158 13.5H160V10.5H158V13.5Z"
+                fill="#FDA43E"
+            />
+        </svg>
+        <div class="step-co">
+            <div
+                class="circle mx-auto d-flex justify-content-center align-items-center"
+            >
+                <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <h5 class="mb-0 mt-2 text-center">CHECKOUT & PAY</h5>
+        </div>
+        <svg
+            width="162"
+            height="24"
+            viewBox="0 0 162 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M161.061 13.0607C161.646 12.4749 161.646 11.5251 161.061 10.9393L151.515 1.3934C150.929 0.807611 149.979 0.807611 149.393 1.3934C148.808 1.97919 148.808 2.92893 149.393 3.51472L157.879 12L149.393 20.4853C148.808 21.0711 148.808 22.0208 149.393 22.6066C149.979 23.1924 150.929 23.1924 151.515 22.6066L161.061 13.0607ZM0 13.5H2V10.5H0V13.5ZM6 13.5H10V10.5H6V13.5ZM14 13.5H18V10.5H14V13.5ZM22 13.5H26V10.5H22V13.5ZM30 13.5H34V10.5H30V13.5ZM38 13.5H42V10.5H38V13.5ZM46 13.5H50V10.5H46V13.5ZM54 13.5H58V10.5H54V13.5ZM62 13.5H66V10.5H62V13.5ZM70 13.5H74V10.5H70V13.5ZM78 13.5H82V10.5H78V13.5ZM86 13.5H90V10.5H86V13.5ZM94 13.5H98V10.5H94V13.5ZM102 13.5H106V10.5H102V13.5ZM110 13.5H114V10.5H110V13.5ZM118 13.5H122V10.5H118V13.5ZM126 13.5H130V10.5H126V13.5ZM134 13.5H138V10.5H134V13.5ZM142 13.5H146V10.5H142V13.5ZM150 13.5H154V10.5H150V13.5ZM158 13.5H160V10.5H158V13.5ZM161.061 13.0607C161.646 12.4749 161.646 11.5251 161.061 10.9393L151.515 1.3934C150.929 0.807611 149.979 0.807611 149.393 1.3934C148.808 1.97919 148.808 2.92893 149.393 3.51472L157.879 12L149.393 20.4853C148.808 21.0711 148.808 22.0208 149.393 22.6066C149.979 23.1924 150.929 23.1924 151.515 22.6066L161.061 13.0607ZM0 13.5H2V10.5H0V13.5ZM6 13.5H10V10.5H6V13.5ZM14 13.5H18V10.5H14V13.5ZM22 13.5H26V10.5H22V13.5ZM30 13.5H34V10.5H30V13.5ZM38 13.5H42V10.5H38V13.5ZM46 13.5H50V10.5H46V13.5ZM54 13.5H58V10.5H54V13.5ZM62 13.5H66V10.5H62V13.5ZM70 13.5H74V10.5H70V13.5ZM78 13.5H82V10.5H78V13.5ZM86 13.5H90V10.5H86V13.5ZM94 13.5H98V10.5H94V13.5ZM102 13.5H106V10.5H102V13.5ZM110 13.5H114V10.5H110V13.5ZM118 13.5H122V10.5H118V13.5ZM126 13.5H130V10.5H126V13.5ZM134 13.5H138V10.5H134V13.5ZM142 13.5H146V10.5H142V13.5ZM150 13.5H154V10.5H150V13.5ZM158 13.5H160V10.5H158V13.5Z"
+                fill="#FDA43E"
+            />
+        </svg>
+        <div class="step-enjoy">
+            <div
+                class="circle mx-auto d-flex justify-content-center align-items-center"
+            >
+                <i class="fa-solid fa-champagne-glasses"></i>
+            </div>
+            <h5 class="mb-0 mt-2 text-center">ENJOY!</h5>
+        </div>
+    </div>
+</section>
+
+<!-- Step Section End -->
+
+<!-- Booking Section Start -->
+<section class="booking-overview-section py-5">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-8 boat-content">
+                <!-- Boat Overview Section Start -->
+                <section class="boat-overview">
+                    <div class="row">
+                        <div class="header d-flex align-items-center gap-3 mb-3">
+                            <i class="fa-solid fa-ship"></i>
+                            <h3 class="mb-0 text-left">Yatch Jagoan Monalisa</h3>
+                        </div>
+                        <div
+                            class="boat-overview-slider owl-carousel owl-theme owl-loaded"
+                        >
+                            <div class="item">
+                                <img class="img-fluid" src="../assets/images/boats.png" alt="" />
+                            </div>
+                            <div class="item">
+                                <img class="img-fluid" src="../assets/images/boats2.png" alt="" />
+                            </div>
+                            <div class="item">
+                                <img class="img-fluid" src="../assets/images/boats3.jpg" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boat-badges-slider owl-carousel owl-theme mt-3 w-100">
+                        <div class="item">
+                            <span class="badge white-badges">
+                                <i class="fa-solid fa-users me-2"></i>
+                                13
+                            </span>
+                        </div>
+                        <div class="item">
+                            <span class="badge white-badges">PRIVATE</span>
+                        </div>
+                        <div class="item">
+                            <span class="badge white-badges">NUSA PENIDA</span>
+                        </div>
+                        <div class="item">
+                            <span class="badge white-badges">PADANG BAI</span>
+                        </div>
+                        <div class="item">
+                            <span class="badge white-badges">LOMBOK</span>
+                        </div>
+                        <div class="item">
+                            <span class="badge white-badges">FLY BRIDGE</span>
+                        </div>
+                        <div class="item">
+                            <span class="badge orange-badges">BEST CHOICE!</span>
+                        </div>
+                        <div class="item">
+                            <span class="badge orange-badges">NEW!</span>
+                        </div>
+                    </div>
+                </section>
+                <!-- Boat Overview Section End -->
+
+                <!-- Choose Tour Section Start -->
+                <section class="tour-section my-5 py-5">
+                    <div class="header d-flex align-items-center gap-3 mb-3">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                        <h3 class="mb-0 text-left">Choose Your Tour Package</h3>
+                    </div>
+                    <div class="anchor-point">
+                        <h5 class="subheader">Anchor Point</h5>
+                        <div class="card p-3 d-flex flex-row gap-3 align-items-center">
+                            <div class="card-image d-flex">
+                                <img
+                                    src="../assets/images/nusapenida.png"
+                                    class="img-fluid"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                class="card-details d-flex flex-column position-relative"
+                            >
+                                <div class="card-header border-0 p-0">
+                                    <h4 class="mb-0">Boat Master Sanur Branch, Bali</h4>
+                                    <p class="mb-0">Jl. Kemana Hatiku Senang No.1, Sanur</p>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="time d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-clock"></i>
+                                        <p class="mb-0 fw-bold">08:00 - 09:00 AM</p>
+                                    </div>
+                                    <p class="description mb-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Morbi non libero nec purus mollis posuere sed eget
+                                        ligula. Morbi non libero nec purus mollis posuere sed
+                                        eget ligula.
+                                    </p>
+                                </div>
+                                <a class="maps" href="#">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour-packages mt-4">
+                        <h5 class="subheader">Tour Packages (Click to Choose!)</h5>
+                        <div class="accordion" id="boat-tour-package">
+                            <div class="accordion-item mb-3">
+                                <div class="accordion-header">
+                                    <button
+                                        class="accordion-button flex-column align-items-start"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#boat-tour"
+                                        aria-expanded="true"
+                                    >
+                                        <h4 class="mb-0">Boat Tour</h4>
+                                        <div class="package-badges d-flex gap-2">
+                                            <span class="badge gap-1">
+                                                <i class="fa-solid fa-person-swimming"></i>
+                                                <p class="mb-0">SWIMMING</p>
+                                            </span>
+                                            <span class="badge gap-1">
+                                                <i class="fa-solid fa-mask"></i>
+                                                <p class="mb-0">SNORKELING</p>
+                                            </span>
+                                            <span class="badge gap-1">
+                                                <i class="fa-solid fa-bell-concierge"></i>
+                                                <p class="mb-0">LUNCH</p>
+                                            </span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div
+                                    id="boat-tour"
+                                    class="accordion-collapse collapse show"
+                                    data-bs-parent="#boat-tour-package"
+                                >
+                                    <div class="accordion-body">
+                                        <div class="anchor d-flex align-items-center gap-1">
+                                            <embed
+                                                src="../assets/images/start-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">09:00 AM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="way-point d-flex align-items-end gap-1">
+                                            <embed
+                                                src="../assets/images/way-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">11:00 AM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="way-point d-flex align-items-end gap-1">
+                                            <embed
+                                                src="../assets/images/way-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">01:00 PM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="way-point d-flex align-items-end gap-1">
+                                            <embed
+                                                src="../assets/images/way-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">03:00 PM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="way-point d-flex align-items-end gap-1">
+                                            <embed
+                                                src="../assets/images/way-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">05:00 PM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="end-point d-flex align-items-end gap-1">
+                                            <div>
+                                                <embed
+                                                    src="../assets/images/end-point.svg"
+                                                    class="d-flex align-items-start"
+                                                />
+                                                <br />
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">07:00 PM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <div class="accordion-header">
+                                    <button
+                                        class="accordion-button flex-column align-items-start"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#boat-cliff-tour"
+                                        aria-expanded="true"
+                                    >
+                                        <h4 class="mb-0">Boat Tour & Cliff</h4>
+                                        <div class="package-badges d-flex gap-2">
+                                            <span class="badge gap-1">
+                                                <i class="fa-solid fa-person-swimming"></i>
+                                                <p class="mb-0">SWIMMING</p>
+                                            </span>
+                                            <span class="badge gap-1">
+                                                <i class="fa-solid fa-mask"></i>
+                                                <p class="mb-0">SNORKELING</p>
+                                            </span>
+                                            <span class="badge gap-1">
+                                                <i class="fa-solid fa-bell-concierge"></i>
+                                                <p class="mb-0">LUNCH</p>
+                                            </span>
+                                            <span class="badge gap-1">
+                                                <i class="fa-solid fa-mountain-sun"></i>
+                                                <p class="mb-0">CLIFF</p>
+                                            </span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div
+                                    id="boat-cliff-tour"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#boat-tour-package"
+                                >
+                                    <div class="accordion-body">
+                                        <div class="anchor d-flex align-items-center gap-1">
+                                            <embed
+                                                src="../assets/images/start-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">09:00 AM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="way-point d-flex align-items-end gap-1">
+                                            <embed
+                                                src="../assets/images/way-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">11:00 AM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="way-point d-flex align-items-end gap-1">
+                                            <embed
+                                                src="../assets/images/way-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">01:00 PM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="way-point d-flex align-items-end gap-1">
+                                            <embed
+                                                src="../assets/images/way-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">03:00 PM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="way-point d-flex align-items-end gap-1">
+                                            <embed
+                                                src="../assets/images/way-point.svg"
+                                                class="d-flex"
+                                            />
+                                            <div>
+                                                <h5 class="mb-0">05:00 PM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                        <div class="end-point d-flex align-items-end gap-1">
+                                            <div>
+                                                <embed
+                                                    src="../assets/images/end-point.svg"
+                                                    class="d-flex align-items-start"
+                                                />
+                                                <br />
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">07:00 PM</h5>
+                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Choose Tour Section End -->
+
+                <!-- Extra Section Start -->
+                <section class="extra-section">
+                    <div class="header d-flex align-items-center gap-3 mb-3">
+                        <i class="fa-solid fa-icons"></i>
+                        <h3 class="mb-0 text-left">Exclusive Cruise Add-Ons</h3>
+                    </div>
+                    <ul class="nav nav-pills mb-3 extras-nav gap-2">
+                        <li class="nav-item recommended-extra">
+                            <button
+                                class="nav-link active"
+                                data-bs-toggle="pill"
+                                data-bs-target="#recommended"
+                                type="button"
+                                aria-selected="true"
+                            >
+                                <i class="fa-solid fa-thumbs-up me-1"></i>
+                                Recommended
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button
+                                class="nav-link"
+                                data-bs-toggle="pill"
+                                data-bs-target="#free"
+                                type="button"
+                                aria-selected="false"
+                            >
+                                <i class="fa-solid fa-hand-holding-heart me-1"></i>
+                                Free
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button
+                                class="nav-link"
+                                data-bs-toggle="pill"
+                                data-bs-target="#addons"
+                                type="button"
+                                aria-selected="false"
+                            >
+                                Add-Ons
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content extras-tab">
+                        <div
+                            class="tab-pane fade show active"
+                            id="recommended"
+                            tabindex="0"
+                        >
+                            <div class="row">
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="free" tabindex="0">
+                            <div class="row">
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="addons" tabindex="0">
+                            <div class="row">
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                                <div class="col-4 mb-4">
+                                    <div class="card border-0 d-flex justify-content-center">
+                                        <div class="extra-image d-flex">
+                                            <img src="../assets/images/extra-image.png" alt="" />
+                                        </div>
+                                        <div class="extra-desc px-1 my-1">
+                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <p class="mb-1">
+                                                Private transfer to the meeting point and back
+                                            </p>
+                                            <hr class="my-1" />
+                                            <span class="price">800.000 IDR</span>
+                                        </div>
+                                        <button class="btn-outline-primary">ADD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Extra Section End -->
+            </div>
+            <div class="col-4 pt-1 ps-0">
+                <div class="details-order sticky-top mt-5 p-4">
+                    <div class="details-header">
+                        <h3 class="mb-1">Order Details</h3>
+                        <hr class="border-2 mb-3 mt-2" />
+                    </div>
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            Dewasa
+                            <div class="adult">
+                                <div
+                                    class="wrapper d-flex align-items-center justify-content-between"
+                                >
+                                    <button class="max-people">
+                                        <span class="adult-minus">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </span>
+                                    </button>
+                                    <span class="adult-total">1</span>
+                                    <button class="max-people">
+                                        <span class="adult-plus">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            Remaja
+                            <div class="teen">
+                                <div
+                                    class="wrapper d-flex align-items-center justify-content-between"
+                                >
+                                    <button class="max-people">
+                                        <span class="teen-minus">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </span>
+                                    </button>
+                                    <span class="teen-total">0</span>
+                                    <button class="max-people">
+                                        <span class="teen-plus">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            Anak-anak
+                            <div class="kids">
+                                <div
+                                    class="wrapper d-flex align-items-center justify-content-between"
+                                >
+                                    <button class="max-people">
+                                        <span class="kids-minus">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </span>
+                                    </button>
+                                    <span class="kids-total">0</span>
+                                    <button class="max-people">
+                                        <span class="kids-plus">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-12 position-relative">
+                            <input class="w-100 text-center" type="date" />
+                        </div>
+                    </div>
+                    <div class="order-items p-3 mb-2">
+                        <div class="row g-0">
+                            <div class="col-lg-8 col text-start">
+                                <p class="item-name mb-1">Yacth Jagoan Monalisa 12</p>
+                                <p class="item-name mb-1">Yacth Jagoan Monalisa 12</p>
+                                <p class="item-name mb-1">Yacth Jagoan Monalisa 12</p>
+                                <p class="item-name mb-1">Yacth Jagoan Monalisa 12</p>
+                                <p class="discount-name mb-1">Discount 10%</p>
+                            </div>
+                            <div class="col-lg-4 text-end">
+                                <p class="item-price mb-1">130.000.000</p>
+                                <p class="item-price mb-1">130.000.000</p>
+                                <p class="item-price mb-1">130.000.000</p>
+                                <p class="item-price mb-1">130.000.000</p>
+                                <p class="discount-price mb-1">-</p>
+                            </div>
+                        </div>
+                        <hr class="mt-1 mb-3" />
+                        <div class="total-price d-flex justify-content-between">
+                            <p class="m-0 fw-bold">Total Price</p>
+                            <p class="mb-0 fw-bold final-price">1.200.000.000 IDR</p>
+                        </div>
+                    </div>
+                    <button class="btn-secondary w-100">CHECKOUT!</button>
+                    <hr class="border-2 my-4" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Boat Section End -->

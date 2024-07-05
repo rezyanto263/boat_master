@@ -25,5 +25,8 @@
     referrerpolicy="no-referrer"
 />
 
+<!-- Fancy Box -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+
 <!-- My Styles -->
 <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" />
