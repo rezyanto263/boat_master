@@ -103,15 +103,23 @@ class Home extends CI_Controller {
             if($this->email->send()) {
                 $this->session->set_flashdata('message', '
                 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <div id="liveToast" class="toast show message" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div id="liveToast" class="toast toast-success show message" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="toast-body">
-                            Your message has been sent!
+                            Your message has been sent. Thank you for contacting us!
                         </div>
                     </div>
                 </div>');
                 redirect('home/#contactfaq');
             }else {
-                echo $this->email->print_debugger();
+                $this->session->set_flashdata('message', '
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-body">
+                            Sorry, your message could not be send!
+                        </div>
+                    </div>
+                </div>');
+                redirect('home/#contactfaq');
             }
         }
     }

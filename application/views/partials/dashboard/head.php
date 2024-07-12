@@ -11,7 +11,6 @@ rel="stylesheet"
 href="<?= base_url('node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>"
 />
 
-
 <!-- Data Tables CSS -->
 <link rel="stylesheet" href="<?= base_url('node_modules/datatables/datatables.min.css'); ?>">
 

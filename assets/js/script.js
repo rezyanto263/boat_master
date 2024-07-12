@@ -12,96 +12,6 @@ if (navhidden != null) {
 	});
 }
 
-// Booking Max People
-check = document.querySelector(".details-order");
-if (check != null) {
-	// Adult
-	(aplus = document.querySelector(".adult-plus")),
-		(aminus = document.querySelector(".adult-minus")),
-		(atotal = document.querySelector(".adult-total")),
-		// Teen
-		(tplus = document.querySelector(".teen-plus")),
-		(tminus = document.querySelector(".teen-minus")),
-		(ttotal = document.querySelector(".teen-total")),
-		// Kids
-		(kplus = document.querySelector(".kids-plus")),
-		(kminus = document.querySelector(".kids-minus")),
-		(ktotal = document.querySelector(".kids-total"));
-
-	discPrice = document.querySelector(".discount-price");
-	totalPrice = document.querySelector(".final-price");
-
-	let a = 1;
-	let t = 0;
-	let k = 0;
-
-	aplus.addEventListener("click", () => {
-		a++;
-		atotal.innerText = a;
-		total = a + t + k;
-		discount = -total * 0.1;
-
-		discPrice.innerText = discount;
-		totalPrice.innerText = total;
-	});
-
-	tplus.addEventListener("click", () => {
-		t++;
-		ttotal.innerText = t;
-		total = a + t + k;
-		discount = -total * 0.1;
-
-		discPrice.innerText = discount;
-		totalPrice.innerText = total;
-	});
-
-	kplus.addEventListener("click", () => {
-		c++;
-		ktotal.innerText = k;
-		total = a + t + k;
-		discount = -total * 0.1;
-
-		discPrice.innerText = discount;
-		totalPrice.innerText = total;
-	});
-
-	aminus.addEventListener("click", () => {
-		if (a > 0) {
-			a--;
-			atotal.innerText = a;
-		}
-		total = a + t + k;
-		discount = -total * 0.1;
-
-		discPrice.innerText = discount;
-		totalPrice.innerText = total;
-	});
-
-	tminus.addEventListener("click", () => {
-		if (t > 0) {
-			t--;
-			ttotal.innerText = t;
-		}
-		total = a + t + k;
-		discount = -total * 0.1;
-
-		discPrice.innerText = discount;
-		totalPrice.innerText = total;
-	});
-
-	kminus.addEventListener("click", () => {
-		if (k > 0) {
-			k--;
-			ktotal.innerText = k;
-		}
-		total = a + t + k;
-		discount = -total * 0.1;
-
-		discPrice.innerText = discount;
-		totalPrice.innerText = total;
-	});
-}
-
 // Dashboard SideBar
 sidebarbtn = document.querySelector(".btn-sidebar");
 if (sidebarbtn != null) {
@@ -216,9 +126,6 @@ if (dashboard != null) {
 		layout: {
 			topStart: "buttons",
 		},
-		// fixedHeader: {
-		// 	headerOffset: $('#dashnav').outerHeight(),
-		// },
 		colReorder: true,
 		responsive: true,
 		paging: true,
@@ -301,7 +208,7 @@ function addTourEdit(packageId) {
 
 var checkFancyBox = document.querySelector('.fancybox');
 if (checkFancyBox != null) {
-	Fancybox.bind("[data-fancybox]", {
+	Fancybox.bind('[data-fancybox="video"]', {
 		buttons: [
 			"zoom",
 			"slideShow",
@@ -332,6 +239,7 @@ if (checkFancyBox != null) {
 		}
 	});
 }
+
 
 
 
@@ -369,3 +277,16 @@ if ((video && playButton && videoContainer) != null) {
 }
 
 $('.message').delay(3000).fadeOut(300);
+
+var datepicker = document.querySelector('.datepicker');
+if (datepicker != null) {
+	var date = new Date();
+	date.setDate(date.getDate() + 2);
+	$('.datepicker').datepicker({
+		autoclose: true,
+		format: "dd-mm-yyyy",
+		maxViewMode: "years",
+		startDate: date,
+		todayHighlight: true,
+	});
+}

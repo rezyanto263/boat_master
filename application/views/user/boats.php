@@ -84,24 +84,85 @@
             <div class="row">
                 <h2 class="text-center">CHOOSE YOUR BOAT !</h2>
             </div>
-            <div class="row mt-5">
-                <div class="col-3">
-                    <button class="btn-outline-primary w-100">STARTING POINT</button>
+            <form action="<?= base_url('boats') ?>" method="post">
+            <div class="row mt-5 gx-2">
+                <div class="col-11">
+                    <div class="row gx-2">
+                        <div class="col-3">
+                            <select class="btn-outline-primary w-100 form-select text-center px-0" name="boatStartPoint">
+                                <option value="All" <?= !empty($boatStartPoint)?($boatStartPoint=='All'? 'selected':''):''; ?>>ALL ANCHOR POINT</option>
+                                <option value="Bali" <?= !empty($boatStartPoint)?($boatStartPoint=='Bali'? 'selected':''):''; ?>>BALI</option>
+                                <option value="Nusa Penida" <?= !empty($boatStartPoint)?($boatStartPoint=='Nusa Penida'? 'selected':''):''; ?>>NUSA PENIDA</option>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <select class="btn-outline-primary w-100 form-select text-center px-0" name="boatType">
+                                <option value="All" <?= !empty($boatType)?($boatType=='All'? 'selected':''):''; ?>>ALL TOUR TYPE</option>
+                                <option value="Private" <?= !empty($boatType)?($boatType=='Private'? 'selected':''):''; ?>>PRIVATE</option>
+                                <option value="Shared" <?= !empty($boatType)?($boatType=='Shared'? 'selected':''):''; ?>>SHARED</option>
+                            </select>
+                        </div>
+                        <div class="col-3 position-relative">
+                            <input class="datepicker btn-outline-primary w-100 text-center" value="<?= !empty($bookSchedule)?(date('d-m-Y', strtotime($bookSchedule))):(date('d-m-Y', strtotime('+2 days'))); ?>" placeholder="TOUR DATE" data-date-format="dd-mm-yyyy" name="bookSchedule" readonly>
+                        </div>
+                        <div class="col-3">
+                            <div class="dropdown">
+                                <button class="btn-outline-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    PASSENGGER
+                                </button>
+                                <ul class="dropdown-menu w-100">
+                                    <li><p class="text-center mb-0 mt-2 fw-bold text-white">Adults (14-60)</p></li>
+                                    <li class="d-flex mx-3">
+                                        <button type="button" class="max-people">
+                                            <span class="adult-minus">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <input class="form-control text-center" type="number" name="bookAdults" <?= !empty($bookAdults)?'value="'.$bookAdults.'"':'value="1"'; ?> readonly>
+                                        <button type="button" class="max-people">
+                                            <span class="adult-plus">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </li>
+                                    <li><p class="text-center mb-0 mt-2 fw-bold text-white">Teens (6-13)</p></li>
+                                    <li class="d-flex mx-3">
+                                        <button type="button" class="max-people">
+                                            <span class="teen-minus">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <input class="form-control text-center" type="number" name="bookTeens" <?= !empty($bookTeens)?'value="'.$bookTeens.'"':'value="0"'; ?> readonly>
+                                        <button type="button" class="max-people">
+                                            <span class="teen-plus">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </li>
+                                    <li><p class="text-center mb-0 mt-2 fw-bold text-white">Toddlers (0-5)</p></li>
+                                    <li class="d-flex mx-3">
+                                        <button type="button" class="max-people">
+                                            <span class="toddler-minus">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </span>
+                                        </button>
+                                        <input class="form-control text-center" type="number" name="bookToddlers" <?= !empty($bookToddlers)?'value="'.$bookToddlers.'"':'value="0"'; ?> readonly>
+                                        <button type="button" class="max-people">
+                                            <span class="toddler-plus">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <button class="btn-outline-primary w-100">PRIVATE TOUR</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn-outline-primary w-100">
-                        18/5/2024-20/5/2024
-                    </button>
-                </div>
-                <div class="col-3">
-                    <button class="btn-outline-primary w-100">
-                        <i class="fa-solid fa-users me-2"></i>13
-                    </button>
+                <div class="col-1">
+                    <button type="submit" class="btn-secondary w-100 text-center px-0"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </div>
+            </form>
         </div>
     </section>
     <!-- Header Boat End-->
@@ -110,9 +171,18 @@
     <section class="boat-catalog-section my-5">
         <div class="container">
             <div class="row h-100">
-                <?php foreach($boat as $key): ?>
+                <?php if (empty($boat)) { ?>
+                    <div class="col-12 d-flex justify-self-center flex-column align-items-center boat-not-found">
+                        <img src="<?= base_url('assets/images/boat-not-found.png') ?>" alt="" width="700px">
+                        <h4>Oops! We couldn't find the boat you're looking for.</h4>
+                        <p class="text-center mx-5" style="width:60%;">It seems the boat you're searching for isn't available right now. Please try again later or explore our other options. We're here to help you navigate through our services.</p>
+                    </div>
+                <?php 
+                    }else {
+                    foreach($boat as $key): 
+                ?>
                 <div class="col-3">
-                    <a class="card border-0" href="<?= base_url('') ?>">
+                    <a class="card border-0" aria-hidden="true" href="<?= base_url('user/Booking/index/'.$key['boatId'].'/'.(!empty($bookAdults)?$bookAdults:1).'/'.(!empty($bookTeens)?$bookTeens:0).'/'.(!empty($bookToddlers)?$bookToddlers:0).'/'.(!empty($bookSchedule)?date('d-m-Y', strtotime($bookSchedule)):date('d-m-Y', strtotime('+2 days')))) ?>" target="_blank">
                         <div class="card-header border-0 p-0">
                             <div class="boat-image d-flex">
                                 <img src="<?= base_url('assets/uploads/'.explode(', ', $key['boatPictures'])[0]) ?>" alt="" />
@@ -138,9 +208,62 @@
                         </div>
                     </a>
                 </div>
-                <?php endforeach; ?>
+                <?php endforeach;} ?>
             </div>
         </div>
     </section>
     <!-- Boat Catalog End -->
 </main>
+
+<script text="text/javascript">
+    if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, '<?= base_url(); ?>');
+    }
+    // plus minus button
+    var aplus = document.querySelector('.adult-plus');
+    var tplus = document.querySelector('.teen-plus');
+    var tdplus = document.querySelector('.toddler-plus');
+    var aminus = document.querySelector('.adult-minus');
+    var tminus = document.querySelector('.teen-minus');
+    var tdminus = document.querySelector('.toddler-minus');
+
+    var atotal = document.querySelector('input[name="bookAdults"]');
+    var ttotal = document.querySelector('input[name="bookTeens"]');
+    var tdtotal = document.querySelector('input[name="bookToddlers"]');
+
+    aplus.addEventListener('click', function() {
+        if (parseInt(atotal.value) < 20) {
+            atotal.value = parseInt(atotal.value) + 1;
+        }
+    });
+
+    aminus.addEventListener('click', function() {
+        if (parseInt(atotal.value) > 1) {
+            atotal.value = parseInt(atotal.value) - 1;
+        }
+    });
+
+    tplus.addEventListener('click', function() {
+        if (parseInt(ttotal.value) < 20) {
+            ttotal.value = parseInt(ttotal.value) + 1;
+        }
+    });
+
+    tminus.addEventListener('click', function() {
+        if (parseInt(ttotal.value) > 0) {
+            ttotal.value = parseInt(ttotal.value) - 1;
+        }
+    });
+
+    tdplus.addEventListener('click', function() {
+        if (parseInt(tdtotal.value) < 5) {
+            tdtotal.value = parseInt(tdtotal.value) + 1;
+        }
+    });
+
+    tdminus.addEventListener('click', function() {
+        if (parseInt(tdtotal.value) > 0) {
+            tdtotal.value = parseInt(tdtotal.value) - 1;
+        }
+    });
+</script>

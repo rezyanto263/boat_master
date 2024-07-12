@@ -9,6 +9,12 @@
     href="<?= base_url('node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>"
 />
 
+<!-- Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- Bootstrap Date Picker -->
+<link rel="stylesheet" href="<?= base_url('node_modules/bootstrap-datepicker/css/bootstrap-datepicker.css') ?>">
+
 <!-- Owl Carousel -->
 <link
     rel="stylesheet"

@@ -80,11 +80,18 @@ class Packages extends CI_Controller {
         $checkPackage = $this->M_packages->checkPackage($packageId);
         if ($checkPackage) {
 
-            // $countDelTour = count($_POST['delTour']);
+            if($this->input->post('delTour')) {
+                $delTours = $this->input->post('delTour');
 
-            // for ($i=0; $i < $countDelTour; $i++) { 
-            //     $this->M_packages->deleteTour($_POST['delTour'][$i]);
-            // }
+                if (count($delTours) == $this->input->post('countTour')) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger message" role="alert">You cannot delete all tours!</div>');
+                    redirect('dashboard/packages');
+                }else {
+                    foreach($delTours as $tourId) {
+                        $this->M_packages->deleteTour($tourId);
+                    }
+                }
+            }
 
             if ($this->input->post('badgeIds')) {
                 $this->M_packages->deleteAllBadges($packageId);
@@ -129,19 +136,6 @@ class Packages extends CI_Controller {
                             'packageId' => $packageId
                         );
                         $this->M_packages->insertPattraction($pattractionDatas);
-                    }
-                }
-
-                if($this->input->post('delTour')) {
-                    $delTours = $this->input->post('delTour');
-
-                    if (count($delTours) == $this->input->post('countTour')) {
-                        $this->session->set_flashdata('message', '<div class="alert alert-danger message" role="alert">You cannot delete all tours!</div>');
-                        redirect('dashboard/packages');
-                    }else {
-                        foreach($delTours as $tourId) {
-                            $this->M_packages->deleteTour($tourId);
-                        }
                     }
                 }
 

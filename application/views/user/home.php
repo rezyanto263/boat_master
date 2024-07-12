@@ -59,8 +59,7 @@
                                 <div class="box w-100">
                                     <h1>EXPLORE HEAVEN WITH BOAT MASTER</h1>
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Sapiente totam fuga nam ab explicabo enim beatae, quod,
+                                        Experience the ultimate marine escape with Boat Master. Sail through crystal-clear waters, relax in style, and enjoy unparalleled ocean views. Start your adventure now!
                                     </p>
                                     <a class="btn btn-secondary me-3" href="<?= base_url('boats') ?>">BOOK NOW</a>
                                     <a class="btn btn-outline-primary" href="#wwyd-section">
@@ -117,7 +116,7 @@
                                 </div>
                             </div>
                             <hr class="mt-0" />
-                            <p>Have a wonderful boat ride with your dearest ones!</p>
+                            <p>Join others for a fun boat ride and make new friends along the way.</p>
                             <div class="row">
                                 <div class="price">1.200.00 IDR</div>
                             </div>
@@ -136,7 +135,7 @@
                                 </div>
                             </div>
                             <hr class="mt-0" />
-                            <p>Have a wonderful boat ride with your dearest ones!</p>
+                            <p>Customize your boat tour for a unique adventure. Book online now!</p>
                             <div class="row">
                                 <div class="price">Book Online</div>
                             </div>
@@ -152,7 +151,7 @@
     <section class="watch-section py-5">
         <div class="container my-5">
             <h2>WATCH OUR TOUR VIDEOS</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p>Get a sneak peek into our unforgettable boat adventures and experiences.</p>
             <div class="row mt-5">
                 <div class="video-slider owl-carousel owl-theme">
                     <div class="item card"><a class="fancybox" data-fancybox="video" data-width="470" data-height="835" data-caption="Single image" src="https://youtube.com/embed/pI1Fm3wDNDg?si=l_yI6teYIBQss_a_"><img src="https://img.youtube.com/vi/pI1Fm3wDNDg/maxresdefault.jpg" alt=""><span class="btn-play"><i class="fa-solid fa-play"></i></span></a></div>
@@ -172,7 +171,7 @@
     <section class="wwyd-section py-5" id="wwyd-section">
         <div class="container my-5">
             <h2>WHAT YOU WILL DO</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p>Unforgettable adventure awaits.</p>
             <div class="row mt-4 gx-4 gy-4">
                 <div class="col-lg-6">
                     <div class="card p-4">
@@ -189,8 +188,7 @@
                         </div>
                         <div class="row px-3 mt-2">
                             <p class="p-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Experience a breathtaking sunset cruise. Relax and enjoy the stunning views as the sun dips below the horizon.
                             </p>
                         </div>
                     </div>
@@ -210,8 +208,7 @@
                         </div>
                         <div class="row px-3 mt-2">
                             <p class="p-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Explore the underwater world with snorkeling at four amazing spots. Discover vibrant marine life and beautiful coral reefs.
                             </p>
                         </div>
                     </div>
@@ -231,8 +228,7 @@
                         </div>
                         <div class="row px-3 mt-2">
                             <p class="p-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Get up close with majestic manta rays. A unique and unforgettable swimming experience with these gentle giants.
                             </p>
                         </div>
                     </div>
@@ -247,13 +243,12 @@
                                 ></span>
                             </div>
                             <div class="col-11 d-flex align-items-center">
-                                <h3 class="mb-0">Lunch in Nice Restaurant</h3>
+                                <h3 class="mb-0">Lunch in Restaurant</h3>
                             </div>
                         </div>
                         <div class="row px-3 mt-2">
                             <p class="p-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Savor a delicious lunch at a fine restaurant. Enjoy a variety of culinary delights in a pleasant atmosphere.
                             </p>
                         </div>
                     </div>
@@ -267,7 +262,7 @@
     <section class="wii-section py-5">
         <div class="container my-5">
             <h2>WHAT IS INCLUDED</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p>Cruise Bali's waters, snorkel reefs, and see amazing sights!</p>
             <div class="row mt-4 gx-4 gy-4">
                 <div class="col-lg-6">
                     <div class="card p-4">
@@ -284,8 +279,7 @@
                         </div>
                         <div class="row px-3 mt-2">
                             <p class="p-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                We provide all the snorkeling gear you’ll need, including fins, a mask, and a snorkel. Just bring your swimsuit and sense of adventure!
                             </p>
                         </div>
                     </div>
@@ -305,8 +299,7 @@
                         </div>
                         <div class="row px-3 mt-2">
                             <p class="p-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Capture stunning underwater memories with our complimentary underwater cameras available for rent.
                             </p>
                         </div>
                     </div>
@@ -326,8 +319,7 @@
                         </div>
                         <div class="row px-3 mt-2">
                             <p class="p-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Indulge in a delicious and satisfying lunch buffet prepared with fresh, local ingredients.
                             </p>
                         </div>
                     </div>
@@ -347,8 +339,7 @@
                         </div>
                         <div class="row px-3 mt-2">
                             <p class="p-0">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Elevate your Balinese getaway with our selection of optional extras, designed to curate an unforgettable experience tailored to your desires.
                             </p>
                         </div>
                     </div>
