@@ -47,7 +47,7 @@
                         <td><?= $key['procodeName']; ?></td>
                         <td><?= number_format($key['bookPrice']); ?> IDR</td>
                         <td class="overflow-hidden"><?= $key['bookNotes']; ?></td>
-                        <td class="action-button d-flex justify-content-end">
+                        <td class="action-button justify-content-end">
                             <div class="d-flex flex-row gap-1">
                                 <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#delbooking<?= $key['bookId']; ?>">
                                     <i class="fa-solid fa-trash"></i>
@@ -133,21 +133,21 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <label>Adults</label>
+                        <label>Adults (14-60)</label>
                         <input class="text-center" type="number" name="bookAdults" value="1" min="1" max="12" required>
                         <div class="invalid-feedback">
                             You must provide an adult people!
                         </div>
                     </div>
                     <div class="col-4">
-                        <label>Teens</label>
+                        <label>Teens (6-13)</label>
                         <input class="text-center" type="number" name="bookTeens" value="0" min="0" max="5" required>
                         <div class="invalid-feedback">
                             You must provide a teens people!
                         </div>
                     </div>
                     <div class="col-4">
-                        <label>Toddlers</label>
+                        <label>Toddlers (0-5)</label>
                         <input class="text-center" type="number" name="bookToddlers" value="0" min="0" max="5" required>
                         <div class="invalid-feedback">
                             You must provide a toddlers people!
@@ -156,6 +156,7 @@
                     <div class="col-6">
                         <label>Status</label>
                         <select class="form-select w-100" name="bookStatus">
+                            <option value="Waiting">Waiting for Approvals</option>
                             <option value="Not Paid">Not Paid</option>
                             <option value="Paid">Paid</option>
                             <option value="Searching Guides">Searching Guides</option>
@@ -326,26 +327,32 @@
 <?php
 $boatPrices = [];
 foreach ($boat as $b) {
-    $boatPrices[$b['boatId']] = $b['boatPrice']; // Asumsikan ada 'boatPrice' di data boat
+    $boatPrices[$b['boatId']] = $b['boatPrice'];
+}
+$packagePrices = [];
+foreach ($package as $p) {
+    $packagePrices[$p['packageId']] = $p['packagePrice'];
 }
 $procodeDiscount = [];
 foreach ($promo as $p) {
-    $procodeDiscount[$p['procodeId']] = $p['procodeDiscount']; // Asumsikan ada 'boatPrice' di data boat
+    $procodeDiscount[$p['procodeId']] = $p['procodeDiscount'];
 }
 $extraPrices = [];
 foreach ($extra as $e) {
-    $extraPrices[$e['extraId']] = $e['extraPrice']; // Asumsikan ada 'boatPrice' di data boat
+    $extraPrices[$e['extraId']] = $e['extraPrice'];
 }
 ?>
 
 <script>
 var boatPrices = <?= json_encode($boatPrices); ?>;
+var packagePrices = <?= json_encode($packagePrices); ?>;
 var procodeDiscount = <?= json_encode($procodeDiscount); ?>;
 var extraPrices = <?= json_encode($extraPrices); ?>;
 
 document.addEventListener('DOMContentLoaded', function() {
     function updateTotalPrice(modal) {
-        var boatSelect = modal.querySelector('select[name="boatId"], select[name="boatIds"]'); // Menggunakan nama elemen yang tepat
+        var boatSelect = modal.querySelector('select[name="boatId"]');
+        var packageSelect = modal.querySelector('select[name="packageId"]');
         var adultsInput = modal.querySelector('input[name="bookAdults"]');
         var teensInput = modal.querySelector('input[name="bookTeens"]');
         var toddlersInput = modal.querySelector('input[name="bookToddlers"]');
@@ -354,20 +361,21 @@ document.addEventListener('DOMContentLoaded', function() {
         var finalPriceInput = modal.querySelector('input[name="bookPrice"]');
         var displayTotalPrice = modal.querySelector('.displayFinalPrice');
 
-        if (!boatSelect || !adultsInput || !teensInput || !toddlersInput || !promoSelect || !extraSelect || !finalPriceInput || !displayTotalPrice) {
+        if (!boatSelect || !packageSelect || !adultsInput || !teensInput || !toddlersInput || !promoSelect || !extraSelect || !finalPriceInput || !displayTotalPrice) {
             console.warn("Elemen tidak ditemukan di modal:", modal);
             return;
         }
 
         var boatPrice = parseFloat(boatPrices[boatSelect.value]) || 0;
+        var packagePrice = parseFloat(packagePrices[packageSelect.value]) || 0;
         var promoDiscount = parseFloat(procodeDiscount[promoSelect.value]) || 0;
         var adults = parseInt(adultsInput.value, 10) || 0;
         var teens = parseInt(teensInput.value, 10) || 0;
         var toddlers = parseInt(toddlersInput.value, 10) || 0;
 
         var perAdultPrice = 400000;
-        var perTeenPrice = 25000;
-        var perToddlerPrice = 100000;
+        var perTeenPrice = 250000;
+        var perToddlerPrice = 50000;
 
         var extraPrice = 0;
         var selectedExtras = [].slice.call(extraSelect.selectedOptions);
@@ -377,8 +385,9 @@ document.addEventListener('DOMContentLoaded', function() {
             extraPrice += parseFloat(extraPrices[extraId]) || 0;
         });
 
-        var finalPrice = boatPrice + extraPrice + (adults * perAdultPrice) + (teens * perTeenPrice) + (toddlers * perToddlerPrice);
-        finalPrice = finalPrice - (finalPrice * (promoDiscount / 100));
+        var finalPrice = boatPrice + packagePrice + extraPrice + (adults * perAdultPrice) + (teens * perTeenPrice) + (toddlers * perToddlerPrice);
+        var webDiscount = finalPrice - (finalPrice * 0.1);
+        finalPrice = webDiscount - (webDiscount * (promoDiscount / 100));
 
         finalPriceInput.value = finalPrice;
         displayTotalPrice.textContent = new Intl.NumberFormat('id-ID', {
@@ -388,7 +397,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addEventListeners(modal) {
-        var boatSelect = modal.querySelector('select[name="boatId"], select[name="boatIds"]');
+        var boatSelect = modal.querySelector('select[name="boatId"]');
+        var packageSelect = modal.querySelector('select[name="packageId"]');
         var adultsInput = modal.querySelector('input[name="bookAdults"]');
         var teensInput = modal.querySelector('input[name="bookTeens"]');
         var toddlersInput = modal.querySelector('input[name="bookToddlers"]');
@@ -396,6 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var extraSelect = modal.querySelector('select[name="extraIds[]"]');
 
         if (boatSelect) boatSelect.addEventListener('change', function() { updateTotalPrice(modal); });
+        if (packageSelect) packageSelect.addEventListener('change', function() { updateTotalPrice(modal); });
         if (adultsInput) adultsInput.addEventListener('input', function() { updateTotalPrice(modal); });
         if (teensInput) teensInput.addEventListener('input', function() { updateTotalPrice(modal); });
         if (toddlersInput) toddlersInput.addEventListener('input', function() { updateTotalPrice(modal); });
@@ -403,11 +414,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (extraSelect) extraSelect.addEventListener('change', function() { updateTotalPrice(modal); });
     }
 
-    // Perbarui harga dan tambahkan event listeners saat modal "shown"
     document.querySelectorAll('.modal').forEach(function(modal) {
         modal.addEventListener('shown.bs.modal', function() {
-            updateTotalPrice(modal);  // Hitung total harga ketika modal terbuka
-            addEventListeners(modal); // Tambahkan event listener ke elemen dalam modal aktif
+            updateTotalPrice(modal);  
+            addEventListeners(modal); 
         });
     });
 });

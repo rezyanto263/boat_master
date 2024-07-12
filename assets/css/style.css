@@ -75,7 +75,7 @@ h4 {
 input,
 textarea,
 .form-control,
-.form-select {
+.form-select{
 	font-family: "Roboto", sans-serif, FontAwesome;
 	border-radius: 20px;
 	border: 0;
@@ -97,9 +97,16 @@ textarea,
 	color: var(--secondary);
 }
 
-.toast {
+.toast-succes {
+	background-color: var(--primary);
+	color: var(--secondary);
+	border: 3px solid white;
+}
+
+.toast-error {
 	background-color: var(--secondary);
-	color: var(--primary);
+	color: var(--white);
+	border: 3px solid var(--white);
 }
 
 input[type="date"] {
@@ -129,6 +136,62 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	top: 0;
 	height: auto;
 	width: auto;
+}
+
+.datepicker-dropdown {
+	background-color: var(--primary);
+	color: white;
+	border-radius: 10px;
+	border: 2px solid var(--secondary);
+}
+
+.datepicker-dropdown.datepicker-orient-bottom {
+	margin-top: 5px !important;
+}
+
+.datepicker-dropdown.datepicker-orient-top:before, .datepicker-dropdown.datepicker-orient-bottom:before, .datepicker-dropdown.datepicker-orient-top::after, .datepicker-dropdown.datepicker-orient-bottom::after {
+	display: none;
+}
+
+.datepicker-dropdown td {
+	padding: 7px 10px;
+	border-radius: 50%;
+}
+
+.datepicker-dropdown .datepicker-days table tbody td.disabled {
+	background-color: transparent !important;
+}
+
+.datepicker-dropdown .datepicker-days table tbody :where(td.today.disabled, td.today.disabled:hover) {
+	background-image: none !important;
+	color: var(--secondary) !important;
+}
+
+
+.datepicker-dropdown .datepicker-days table tbody :where(td.day:hover, td.active.day,) {
+	background-color: var(--secondary) !important;
+	background-image: none !important;
+}
+
+.datepicker-dropdown table thead :where(.prev, .next, .datepicker-switch):hover {
+	background-color: var(--secondary) !important;
+	border-radius: 20px;
+}
+
+.datepicker-dropdown :where(.datepicker-months, .datepicker-years) span {
+	padding: 6px 6px !important;
+	height: 50px !important;
+	width: 50px !important;
+	line-height: unset !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.datepicker-dropdown :where(.datepicker-months, .datepicker-years) :where(span:hover, span.focused, span.focused.active) {
+	background-color: var(--secondary) !important;
+	border-radius: 50% !important;
+	background-image: none !important;
 }
 
 .btn-light,
@@ -1086,6 +1149,45 @@ footer.blue :where(p, a) {
 	color: var(--primary);
 }
 
+.header-boat .form-select {
+	background-image: none;
+	cursor: pointer;
+}
+
+.header-boat .form-control {
+	border-radius: 0 !important;
+	background-color: var(--primary);
+	color: white;
+	box-shadow: none !important;
+	cursor: unset;
+}
+
+.header-boat .dropdown-toggle::after, .header-boat .dropdown-toggle::before {
+	display: none;
+}
+
+.header-boat .dropdown-menu {
+	padding: 0;
+	z-index: 1;
+	border-radius: 10px;
+	background-color: var(--primary);
+	color: white;
+	border: 2px solid var(--secondary);
+}
+
+.header-boat .datepicker {
+	cursor: pointer;
+}
+
+.header-boat .datepicker::placeholder {
+	color: var(--primary) !important;
+	transition: all 0.3s ease;
+}
+
+.header-boat .datepicker:hover::placeholder {
+	color: white !important;
+}
+
 /*Boat Catalog Section Styles*/
 .boat-catalog-section h5 {
 	color: var(--primary);
@@ -1161,6 +1263,12 @@ footer.blue :where(p, a) {
 	z-index: 1;
 }
 
+.boat-not-found h4{
+	color: var(--primary);
+	font-size: 28px;
+	font-weight: var(--fwblack);
+}
+
 /* Step Section Styles */
 .step-section h5 {
 	color: var(--primary);
@@ -1198,6 +1306,10 @@ footer.blue :where(p, a) {
 	position: relative;
 }
 
+.boat-badges-slider .owl-stage {
+	width: 100% !important;
+}
+
 .boat-overview-slider .owl-dots {
 	position: absolute;
 	bottom: 20px;
@@ -1206,7 +1318,18 @@ footer.blue :where(p, a) {
 }
 
 .boat-overview-slider .item {
-	height: 500px;
+	overflow-anchor: hidden;
+	padding-bottom: 55%;
+}
+
+.boat-overview-slider .item img {
+	border-radius: 10px;
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .orange-badges.badge {
@@ -1218,6 +1341,16 @@ footer.blue :where(p, a) {
 .white-badges.badge {
 	color: var(--primary);
 	border: 2px solid var(--primary);
+}
+
+.private-boat-only-badge {
+	background-color: var(--secondary);
+	color: white;
+	align-self: center;
+	padding: 2px 10px;
+	border-radius: 20px;
+	font-weight: var(--fwsemibold);
+	font-size: 10px;
 }
 
 /* Choose Tour Section Styles */
@@ -1234,7 +1367,7 @@ footer.blue :where(p, a) {
 }
 
 .anchor-point .card-image img {
-	border-radius: 20px;
+	border-radius: 10px;
 	min-width: 100%;
 	min-height: 100%;
 }
@@ -1301,9 +1434,9 @@ footer.blue :where(p, a) {
 }
 
 .tour-packages .accordion-button:not(.collapsed) {
-	background-color: var(--primary) !important;
-	outline: 3px solid var(--primary) !important;
-	box-shadow: none !important;
+	background-color: var(--primary);
+	outline: 3px solid var(--primary);
+	box-shadow: none;
 	color: var(--secondary);
 }
 
@@ -1381,11 +1514,17 @@ footer.blue :where(p, a) {
 	padding: 5px 10px;
 }
 
+.added {
+	background-color: var(--primary) !important;
+	color: white !important;
+}
+
 /* Details Order Section Styles */
 .details-order {
 	background-color: var(--lightgrey);
 	border-radius: 20px;
 	top: 100px;
+	z-index: 1;
 }
 
 .max-people {
@@ -1395,10 +1534,21 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-:where(.adult, .teen, .kids) .wrapper {
+.max-people span {
+	border-radius: 50%;
+	padding: 5px;
+}
+
+.max-people span:active {
+	background-color: var(--lightgrey);
+	border-radius: 50%;
+	transition: all 0.3s ease;
+}
+
+:where(.adult, .teen, .toddler) .wrapper {
 	background-color: white;
 	border-radius: 20px;
-	padding: 10px;
+	padding-block: 4px;
 }
 
 .order-items {
@@ -1407,7 +1557,9 @@ footer.blue :where(p, a) {
 }
 
 .item-name,
-.item-price {
+.item-price,
+.extra-name,
+.extra-price {
 	font-size: 14px;
 	color: black;
 }
@@ -1421,6 +1573,10 @@ footer.blue :where(p, a) {
 .discount-name {
 	color: var(--primary);
 	font-size: 14px;
+}
+
+.details-order :where(.adult-total, .teen-total, .toddler-total) {
+	width: 20px;
 }
 
 /* Tickets Section Styles */
@@ -1786,6 +1942,74 @@ body.auth {
 
 .admin :where(.sign-up, .sign-in) a:hover {
 	color: var(--primary);
+}
+
+/* Contact Section Styles */
+.contact-section {
+	background-color: var(--primary);
+}
+
+.contact-section h2 {
+	color: var(--secondary);
+}
+
+.contact-section h1 {
+	color: var(--secondary);
+}
+
+.contact-section p {
+	color: white;
+}
+
+.contact-section textarea {
+	resize: none;
+	height: 150px;
+	scrollbar-width: none;
+}
+
+.contact-section .accordion-button {
+	border-radius: 20px !important;
+	box-shadow: none;
+	height: 50px;
+	color: var(--primary);
+}
+
+.contact-section .accordion-item {
+	background-color: transparent;
+	color: white;
+	border: 0;
+}
+
+.contact-section iframe {
+	border-radius: 20px;
+
+}
+
+.social-media-box {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    width: 60px;
+    height: 45px;
+    background-color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:  var(--primary);
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.find-us-container {
+    padding-top: 55px; 
+}
+
+.find-us-paragraph {
+    margin-bottom: 10px;
 }
 
 /* Responsive Configuration Start*/

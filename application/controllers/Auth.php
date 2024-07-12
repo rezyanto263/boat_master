@@ -3,8 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
 		//Do your magic here
 		$this->load->model('M_auth');
@@ -79,6 +78,8 @@ class Auth extends CI_Controller {
 	}
 
 	public function register() {
+		$custEmail = $this->input->post('custEmail');
+		$checkAccount = $this->M_auth->checkAccount('customer', 'custEmail', $custEmail);
 
 		$validate = array(
 			array(
@@ -138,6 +139,22 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_rules($validate);
 
 		if ($this->form_validation->run() == false) {
+			$partials = array(
+				'title' => 'Register',
+				'head' => 'partials/user/head',
+				'script' => 'partials/user/script'
+			);
+			$this->load->view('user/register', $partials);
+		}else if($checkAccount == null) {
+			$this->session->set_flashdata('message', '
+			<div class="toast-container position-fixed bottom-0 end-0 p-3">
+				<div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="toast-body">
+						Email is registered!
+					</div>
+				</div>
+			</div>');
+
 			$partials = array(
 				'title' => 'Register',
 				'head' => 'partials/user/head',

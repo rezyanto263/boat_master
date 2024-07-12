@@ -30,7 +30,7 @@
                         <td class="text-center"><?= $num; ?></td>
                         <td><?= $key['packageName']; ?></td>
                         <td>
-                            <?php $id=0; foreach(explode(',', $key['tourNames']) as $tourNames): $id++;?>
+                            <?php $id=0; foreach(explode('`', $key['tourNames']) as $tourNames): $id++;?>
                                 <?php if ($id==1) { ?>
                                     <?= $tourNames ?>
                                 <?php }else { ?>
@@ -41,7 +41,7 @@
                         <td><?= $key['packageType']; ?></td>
                         <td>
                             <?php if ($key['packagebadgeNames']!=null) { ?>
-                            <?php $id=0; foreach(explode(',', $key['packagebadgeNames']) as $badges): $id++;?>
+                            <?php $id=0; foreach(explode('`', $key['packagebadgeNames']) as $badges): $id++;?>
                                 <?php if ($id==1) { ?>
                                     <?= trim($badges); ?>
                                 <?php }else { ?>
@@ -106,7 +106,6 @@
                     <select class="w-100 form-select" placeholder="Type" name="packageType" required>
                         <option value="Private">Private</option>
                         <option value="Shared">Shared</option>
-                        <option value="PriShare">Private & Share</option>
                     </select>
                     <div class="invalid-feedback">
                         You must provide a Category!
@@ -182,7 +181,6 @@
                     <select class="w-100 form-select" placeholder="Type" name="packageType" required>
                         <option value="Private" <?= $edit['packageType'] == 'Private'? 'selected':''; ?>>Private</option>
                         <option value="Shared" <?= $edit['packageType'] == 'Shared'? 'selected':''; ?>>Shared</option>
-                        <option value="PriShare" <?= $edit['packageType'] == 'PriShare'? 'selected':''; ?>>Private & Share</option>
                     </select>
                     <div class="invalid-feedback">
                         You must provide a Category!
@@ -199,7 +197,7 @@
                     <label>Badge</label>
                     <select class="selectpicker w-100" data-live-search="true" name="badgeIds[]" multiple>
                         <?php 
-                        $selectedBadgeIds = explode(',', $edit['packagebadgeIds']); 
+                        $selectedBadgeIds = explode('`', $edit['packagebadgeIds']); 
                         foreach ($badge as $key): 
                             $selected = in_array($key['badgeId'], $selectedBadgeIds) ? 'selected' : '';
                         ?>
@@ -208,18 +206,18 @@
                     </select>
                 </div>
                 <div class="col-12 edit-tour-input<?= $edit['packageId']; ?>">
-                    <?php $id=0; foreach(explode(',', $edit['tourIds']) as $tourId): ?>
+                    <?php $id=0; foreach(explode('`', $edit['tourIds']) as $tourId): ?>
                     <input type="checkbox" class="del-checkbox-tour me-2" name="delTour[]" value="<?= trim($tourId); ?>"><label>Package Tour (Check the box to Delete!)</label>
                     <div class="input-tour-container">
                         <input type="number" name="tourIds[]" value="<?= trim($tourId); ?>" hidden>
                         <div class="input-tour d-flex gap-3 mb-3">
-                            <input class="form-control w-75" type="text" name="tourNames[]" placeholder="Tour Name" value="<?= explode(', ', $edit['tourNames'])[$id]; ?>" required>
-                            <input class="form-control w-25" type="time" name="tourTimes[]" value="<?= explode(', ', $edit['tourTimes'])[$id]; ?>" required>
+                            <input class="form-control w-75" type="text" name="tourNames[]" placeholder="Tour Name" value="<?= explode('`', $edit['tourNames'])[$id]; ?>" required>
+                            <input class="form-control w-25" type="time" name="tourTimes[]" value="<?= explode('`', $edit['tourTimes'])[$id]; ?>" required>
                         </div>
-                        <textarea class="form-control w-100 mb-3" type="text" name="tourDescs[]" placeholder="Simple description about the tour..." maxlength="50" required><?= explode(', ', $edit['tourDescs'])[$id]; ?></textarea>
+                        <textarea class="form-control w-100 mb-3" type="text" name="tourDescs[]" placeholder="Simple description about the tour..." maxlength="50" required><?= explode('`', $edit['tourDescs'])[$id]; ?></textarea>
                     </div>
                     <?php $id++; endforeach; ?>
-                    <input type="number" value="<?= count(explode(',', $edit['tourIds'])); ?>" name="countTour" hidden>
+                    <input type="number" value="<?= count(explode('`', $edit['tourIds'])); ?>" name="countTour" hidden>
                 </div>
                 <div class="col-12">
                     <button type="button" class="btn-outline-primary w-100" onclick="addTourEdit(<?=$edit['packageId'];?>)">

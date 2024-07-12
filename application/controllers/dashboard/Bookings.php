@@ -20,8 +20,7 @@ class Bookings extends CI_Controller {
         }
     }
 
-    public function index()
-    {
+    public function index() {
         $datas = array(
             'title' => 'BOOKINGS',
             'booking' => $this->M_bookings->getAllBookings(),
@@ -111,6 +110,10 @@ class Bookings extends CI_Controller {
         $this->M_bookings->deleteBooking($bookId);
         $this->session->set_flashdata('message', '<div class="alert alert-danger message" role="alert">The booking has been deleted successfully!</div>');
         redirect('dashboard/bookings');
+    }
+
+    public function approveBooking() {
+        
     }
 
 }

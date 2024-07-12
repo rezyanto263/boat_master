@@ -20,7 +20,6 @@ class M_bookings extends CI_Model {
         return $this->db->get()->result_array();
     }
 
-    
     public function checkBooking($bookId) {
         return $this->db->get_where('booking_ticket', array('bookId' => $bookId));
     }

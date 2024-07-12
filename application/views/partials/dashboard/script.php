@@ -4,7 +4,11 @@
 <!-- Bootstrap 5.3.3 Script-->
 <script src="<?= base_url('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'); ?>"></script>
 
+<!-- Bootstrap Select -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+
+<!-- Bootstrap Date Picker -->
+<script src="<?= base_url('node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js') ?>"></script>
 
 <!-- Font Awesome -->
 <script
