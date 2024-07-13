@@ -57,13 +57,6 @@ $route['logout'] = 'Auth/logout';
 // Dashboard Admin
 $route['loginadmin'] ='Auth/loginAdmin';
 $route['dashboard'] = 'dashboard/Dashboard';
-$route['dashboard/bookings'] = 'dashboard/Bookings';
-$route['dashboard/packages'] = 'dashboard/Packages';
-$route['dashboard/boats'] = 'dashboard/Boats';
-$route['dashboard/tours'] = 'dashboard/Tours';
-$route['dashboard/extras'] = 'dashboard/Extras';
-$route['dashboard/promos'] = 'dashboard/Promos';
-$route['dashboard/gallery'] = 'dashboard/Gallery';
 
 // User
 $route['login'] = 'Auth/login';

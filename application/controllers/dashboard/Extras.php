@@ -50,7 +50,6 @@ class Extras extends CI_Controller {
             $fileData = $this->upload->data();
 
             $extraDatas = array(
-                'extraId' => $this->input->post('extraId'),
                 'extraName' => $this->input->post('extraName'),
                 'extraCategory' => $this->input->post('extraCategory'),
                 'extraPrice' => $this->input->post('extraPrice'),

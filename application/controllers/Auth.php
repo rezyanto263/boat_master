@@ -146,7 +146,7 @@ class Auth extends CI_Controller {
 				'script' => 'partials/user/script'
 			);
 			$this->load->view('user/register', $partials);
-		}else if($checkAccount == null) {
+		}else if($checkAccount != null) {
 			$this->session->set_flashdata('message', '
 			<div class="toast-container position-fixed bottom-0 end-0 p-3">
 				<div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">

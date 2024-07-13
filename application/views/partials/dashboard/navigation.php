@@ -92,6 +92,14 @@
                         <span class="textmin">Badges</span>
                     </a>
                 </li>
+                <li class="sidebar-item <?= ($title=='GUIDES')? 'active':''; ?>">
+                    <a class="gap-3" href="<?= base_url('dashboard/guides'); ?>">
+                        <div class="icon text-center">
+                            <i class="fa-solid fa-id-badge"></i>
+                        </div>
+                        <span class="textmin">Guides</span>
+                    </a>
+                </li>
             </ul>
             <button class="btn-sidebar mx-auto">
                 <i class="fa-solid fa-chevron-left min"></i>

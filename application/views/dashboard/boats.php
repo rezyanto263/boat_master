@@ -297,7 +297,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="mb-0 fs-5">DELETE DATA</h3>
+                <h1 class="mb-0 fs-5">DELETE BOAT</h3>
             </div>
             <div class="modal-body">
                 Are you sure want to delete this data?
