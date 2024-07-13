@@ -548,11 +548,14 @@
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
             <div class="row mt-5">
                 <div class="teams-slider owl-carousel owl-theme h-100">
+                    <?php foreach($guides as $key): ?>
                     <div class="item">
                         <div class="card border-0">
-                            <div class="card-header h-50 border-0"></div>
+                            <div class="card-header h-50 border-0">
+                                <img src="<?= base_url('assets/uploads/'.$key['guidesPicture']) ?>" alt="">
+                            </div>
                             <div class="card-body">
-                                <h3>Deku</h3>
+                                <h3><?= $key['guidesName'] ?></h3>
                                 <hr class="my-2" />
                                 <div class="row">
                                     <div class="d-flex align-items-center">
@@ -569,150 +572,17 @@
                                     </div>
                                     <div class="wrapper-langguage d-flex align-items-center">
                                         <i class="fa-solid fa-globe"></i>
-                                        <p class="ms-3 mb-0">Indonesia, English, Spain</p>
+                                        <p class="ms-3 mb-0">Indonesia, English</p>
                                     </div>
                                 </div>
                                 <hr class="my-2" />
                                 <p class="text-justify">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Odit maiores sit fugit facere veritatis qui debitis
-                                    corrupti sapiente voluptate exercitationem!
+                                    <?= $key['guidesBio'] ?>
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="card border-0">
-                            <div class="card-header h-50 border-0"></div>
-                            <div class="card-body">
-                                <h3>Deku</h3>
-                                <hr class="my-2" />
-                                <div class="row">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 text-white">5.0</p>
-                                        <div
-                                            class="ms-3 rating-star d-flex align-items-center gap-1"
-                                        >
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="wrapper-langguage d-flex align-items-center">
-                                        <i class="fa-solid fa-globe"></i>
-                                        <p class="ms-3 mb-0">Indonesia, English, Spain</p>
-                                    </div>
-                                </div>
-                                <hr class="my-2" />
-                                <p class="text-justify">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Odit maiores sit fugit facere veritatis qui debitis
-                                    corrupti sapiente voluptate exercitationem!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card border-0">
-                            <div class="card-header h-50 border-0"></div>
-                            <div class="card-body">
-                                <h3>Deku</h3>
-                                <hr class="my-2" />
-                                <div class="row">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 text-white">5.0</p>
-                                        <div
-                                            class="ms-3 rating-star d-flex align-items-center gap-1"
-                                        >
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="wrapper-langguage d-flex align-items-center">
-                                        <i class="fa-solid fa-globe"></i>
-                                        <p class="ms-3 mb-0">Indonesia, English, Spain</p>
-                                    </div>
-                                </div>
-                                <hr class="my-2" />
-                                <p class="text-justify">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Odit maiores sit fugit facere veritatis qui debitis
-                                    corrupti sapiente voluptate exercitationem!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card border-0">
-                            <div class="card-header h-50 border-0"></div>
-                            <div class="card-body">
-                                <h3>Deku</h3>
-                                <hr class="my-2" />
-                                <div class="row">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 text-white">5.0</p>
-                                        <div
-                                            class="ms-3 rating-star d-flex align-items-center gap-1"
-                                        >
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="wrapper-langguage d-flex align-items-center">
-                                        <i class="fa-solid fa-globe"></i>
-                                        <p class="ms-3 mb-0">Indonesia, English, Spain</p>
-                                    </div>
-                                </div>
-                                <hr class="my-2" />
-                                <p class="text-justify">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Odit maiores sit fugit facere veritatis qui debitis
-                                    corrupti sapiente voluptate exercitationem!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card border-0">
-                            <div class="card-header h-50 border-0"></div>
-                            <div class="card-body">
-                                <h3>Deku</h3>
-                                <hr class="my-2" />
-                                <div class="row">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 text-white">5.0</p>
-                                        <div
-                                            class="ms-3 rating-star d-flex align-items-center gap-1"
-                                        >
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="wrapper-langguage d-flex align-items-center">
-                                        <i class="fa-solid fa-globe"></i>
-                                        <p class="ms-3 mb-0">Indonesia, English, Spain</p>
-                                    </div>
-                                </div>
-                                <hr class="my-2" />
-                                <p class="text-justify">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Odit maiores sit fugit facere veritatis qui debitis
-                                    corrupti sapiente voluptate exercitationem!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

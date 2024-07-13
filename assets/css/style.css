@@ -3,6 +3,7 @@
 	--secondary: #fda43e;
 	--grey: #6d6d6d;
 	--lightgrey: #d9d9d9;
+	--lightgrey2: #f0f0f0;
 	--fwblack: 900;
 	--fwextrabold: 800;
 	--fwbold: 700;
@@ -456,6 +457,12 @@ i.notif-icon {
 
 .sidebar-nav {
 	list-style-type: none;
+	padding-left: 50px;
+	transition: all 0.3s ease;
+}
+
+.minimize .sidebar-nav {
+	padding-left: 32px;
 }
 
 .sidebar-item a {
@@ -1002,12 +1009,12 @@ i.notif-icon {
 	background-color: var(--primary);
 }
 
-.teams-section .card-header {
-	background-image: url("../images/kucing\ 1.jpeg");
+.teams-section .card-header img {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 	border-radius: 20px 20px 0 0;
+	height: 285px;
 }
 
 .teams-section .card :where(h3, p) {
@@ -1665,7 +1672,7 @@ footer.blue :where(p, a) {
 
 /* Tickets History Section Styles */
 .tickets-history-section {
-	background-color: var(--lightgrey);
+	background-color: var(--lightgrey2);
 }
 
 .tickets-history-section h1.text-center {
@@ -1673,7 +1680,7 @@ footer.blue :where(p, a) {
 }
 
 .tickets-history-section .blue-circle {
-	background-color: var(--lightgrey);
+	background-color: var(--lightgrey2);
 }
 
 .modal-body img {
