@@ -60,7 +60,8 @@ class Auth extends CI_Controller {
 					'custEmail' => $custData['custEmail'],
 					'custPassword' => $custData['custPassword'],
 					'custAddress' => $custData['custAddress'],
-					'custPhone' => $custData['custPhone']
+					'custPhone' => $custData['custPhone'],
+					'custPicture' => $custData['custPicture'],
 				);
 				$this->session->set_userdata($custSession);
 	
