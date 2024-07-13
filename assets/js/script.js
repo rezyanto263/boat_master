@@ -66,9 +66,8 @@ if (
 	});
 }
 
+
 // Profile
-
-
 var btn_edit_profile = document.getElementById("edit-profile-button");
 
 if (btn_edit_profile != null) {
@@ -76,10 +75,10 @@ if (btn_edit_profile != null) {
 		var form = document.getElementById("edit-profile-form");
 		if (form.style.display === "none" || form.style.display === "") {
 			form.style.display = "block";
-			btn_edit_profile.textContent = "Cancel";
+			btn_edit_profile.textContent = "CANCEL";
 		} else {
 			form.style.display = "none";
-			btn_edit_profile.textContent = "Edit";
+			btn_edit_profile.textContent = "EDIT";
 		}
 	});
 }
@@ -91,16 +90,14 @@ if (btn_edit_password != null) {
 		var form = document.getElementById("edit-password-form");
 		if (form.style.display === "none" || form.style.display === "") {
 			form.style.display = "block";
-			btn_edit_password.textContent = "Cancel";
+			btn_edit_password.textContent = "CANCEL";
 		} else {
 			form.style.display = "none";
-			btn_edit_password.textContent = "Edit";
+			btn_edit_password.textContent = "EDIT";
 		}
 	});
 }
 
-
-// Profile END
 
 // Data Tables
 dashboard = document.querySelector(".dashboard");
@@ -229,6 +226,24 @@ if (checkFancyBox != null) {
 				height: '80%'
 			}
 		},
+		protect: true,             
+		loop: true,                
+		transitionEffect: "slide", 
+		transitionDuration: 500,   
+		thumbs: {
+			autoStart: true, 
+			axis: "x"        
+		}
+	});
+
+	Fancybox.bind('[data-fancybox="gallery"]', {
+		buttons: [
+			"zoom",
+			"slideShow",
+			"fullScreen",
+			"thumbs",
+			"close"
+		],
 		protect: true,             
 		loop: true,                
 		transitionEffect: "slide", 

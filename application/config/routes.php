@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = true;
+$route['logout'] = 'Auth/logout';
 
 // Dashboard Admin
 $route['loginadmin'] ='Auth/loginAdmin';
@@ -71,7 +72,7 @@ $route['home'] = 'user/Home';
 $route['boats'] = 'user/Boats';
 $route['booking'] = 'user/Booking';
 $route['tickets'] = 'user/Tickets';
-$route['profile'] = 'user/Profile';
+$route['profile'] = 'user/Profile'; 
 $route['checkout'] = 'user/Checkout';
 $route['gallery'] = 'user/Gallery';
 $route['about'] = 'user/About';
