@@ -6,8 +6,11 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
         $this->load->model('M_customers');
+
+        if (!$this->session->userdata('custId')){
+            redirect('login');
+        }
     }
 
     public function index()

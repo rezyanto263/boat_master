@@ -21,7 +21,7 @@
         <aside class="dashboard-sidebar shadow d-flex flex-column">
             <div class="sidebar-logo py-3">
                 <img
-                    class="d-flex mx-auto small"
+                    class="d-flex mx-auto small-logo"
                     src="<?= base_url('assets/images/logo.png') ?>"
                     alt=""
                 />
