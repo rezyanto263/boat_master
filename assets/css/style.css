@@ -1611,6 +1611,25 @@ footer.blue :where(p, a) {
 	position: relative;
 }
 
+.qr-code-ticket img {
+	max-width: 62.5%;
+	min-width: 120px !important;
+	height: auto;
+}
+
+.booking-status {
+	font-size: 10px;
+}
+
+.booking-status span {
+	color: var(--secondary);
+	font-size: 10px;
+}
+
+body.modal-open {
+	padding-right: 0 !important;
+}
+
 .details-ticket {
 	background-color: var(--secondary);
 	border-top-right-radius: 20px;
@@ -1643,12 +1662,12 @@ footer.blue :where(p, a) {
 }
 
 .details-ticket :where(.place, .time) i {
-	font-size: 25px;
+	font-size: 23px;
 	color: var(--primary);
 }
 
 .details-ticket :where(.place a, .time p) {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: var(--fwregular);
 }
 

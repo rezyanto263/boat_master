@@ -20,6 +20,23 @@ class M_bookings extends CI_Model {
         return $this->db->get()->result_array();
     }
 
+    public function getAllBookingsByCustomerId($custId) {
+        $this->db->select('bt.*, 
+        c.custId, c.custName, c.custEmail, b.boatId, b.boatName, b.boatType, bp.packageName, pc.procodeName, pc.procodeDiscount, b.boatStartPoint, 
+        GROUP_CONCAT(DISTINCT be.extraId ORDER BY be.extraId SEPARATOR ",") as bookextraIds, 
+        GROUP_CONCAT(DISTINCT e.extraName ORDER BY e.extraName SEPARATOR ",") as bookextraNames');
+        $this->db->from('booking_ticket bt');
+        $this->db->join('customer c', 'bt.custId = c.custId');
+        $this->db->join('boat b', 'bt.boatId = b.boatId');
+        $this->db->join('booking_packages bp', 'bt.packageId = bp.packageId');
+        $this->db->join('promo_code pc', 'bt.procodeId = pc.procodeId');
+        $this->db->join('booking_extras be', 'bt.bookId = be.bookId', 'left');
+        $this->db->join('extra e', 'be.extraId = e.extraId', 'left');
+        $this->db->group_by('bt.bookId');
+        $this->db->where('c.custId', $custId);
+        return $this->db->get()->result_array();
+    }
+
     public function checkBooking($bookId) {
         return $this->db->get_where('booking_ticket', array('bookId' => $bookId));
     }
