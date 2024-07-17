@@ -37,9 +37,9 @@ class Tickets extends CI_Controller {
 
         foreach ($ticketsDatas as $key) {
             if ($key['bookStatus'] != 'Waiting') {
-                $qr[$key['bookId']] = $this->generateQR(base_url('checkout'));
+                $qr[$key['bookId']] = $this->generateQR('Bayar Lah Dulu Bang, Cem mana abang ni?');
             }else {
-                $qr[$key['bookId']] = $this->generateQR('https://nusapenida.one');
+                $qr[$key['bookId']] = $this->generateQR(base_url('checkout/'.$key['bookId']));
             }
         }
         

@@ -13,16 +13,28 @@
                         class="qr-code-ticket py-5 ps-4 pe-2 d-flex flex-column align-items-center justify-content-center"
                     >   
                         <div class="d-flex justify-content-center p-0">
-                            <img src="data:image/png;base64,<?= base64_encode($qrcode[$key['bookId']]); ?>" alt="" />
+                            <img <?= $key['bookStatus']=='Waiting'?'class="blur-qr"':'' ?> src="data:image/png;base64,<?= base64_encode($qrcode[$key['bookId']]); ?>" alt="" />
                         </div>
                         <p class="mt-1 booking-status fw-bold">STATUS: <span><?= $key['bookStatus']!='Waiting'?strtoupper($key['bookStatus']):'WAITING FOR APPROVALS'; ?></span></p>
+                        <?php if ($key['bookStatus'] == 'Not Paid') { ?>
+                        <a class="btn-secondary text-decoration-none text-center" href="<?= base_url('checkout/'.$key['bookId']); ?>">
+                            PAY NOW!
+                        </a>
+                        <?php }else if ($key['bookStatus'] == 'Waiting') { ?>
                         <button
-                            class="btn-secondary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#qr-code<?= $key['bookId']; ?>"
-                        >
+                        class="btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#qr-code<?= $key['bookId']; ?>" disabled>
+                            WAITING...
+                        </button>
+                        <?php }else { ?>
+                        <button
+                        class="btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#qr-code<?= $key['bookId']; ?>">
                             SCAN THIS CODE!
                         </button>
+                        <?php } ?>
                         <div class="blue-circle"></div>
                     </div>
                 </div>
@@ -105,7 +117,10 @@
     </section>
     <!-- Tickets Section End -->
 
-    <?php foreach($tickets as $modal): ?>
+    <?php 
+    foreach($tickets as $modal): 
+        if ($modal['bookStatus'] != 'Waiting' && $modal['bookStatus'] != 'Not Paid') {
+    ?>
     <div class="modal" tabindex="-1" aria-hidden="true" id="qr-code<?= $modal['bookId']; ?>">
         <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -133,7 +148,7 @@
             </div>
         </div>
     </div>
-    <?php endforeach; ?>
+    <?php }endforeach; ?>
 
 
     <!-- Tickets History Section Start -->

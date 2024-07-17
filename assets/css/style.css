@@ -1617,6 +1617,10 @@ footer.blue :where(p, a) {
 	height: auto;
 }
 
+.qr-code-ticket img.blur-qr {
+	filter: blur(5px);
+}
+
 .booking-status {
 	font-size: 10px;
 }
@@ -1734,7 +1738,7 @@ body.modal-open {
 }
 
 .payment-details .foto img {
-	border-radius: 20px;
+	border-radius: 10px;
 	min-width: 100%;
 	min-height: 100%;
 }
