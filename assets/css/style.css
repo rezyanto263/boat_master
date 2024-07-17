@@ -2098,8 +2098,24 @@ body.auth {
     height: 200px !important; /* Adjust as needed */
 }
 
+/* About Section Styles */
+.about-details {
+	background-color: var(--primary);
+	border-radius: 20px;
 
+}
 
+.about-details h1 {
+	font-size: 60px;
+}
+
+.about-details h5{
+	color: var(--secondary);
+}
+
+.about-details h3 {
+	text-align: justify;
+}
 /* Responsive Configuration Start*/
 .container {
 	max-width: 1536px;
