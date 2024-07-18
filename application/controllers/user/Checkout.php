@@ -20,8 +20,8 @@ class Checkout extends CI_Controller {
             redirect('login');
         }
 
-        $clientKey = getenv('MIDTRANS_CLIENT_KEY');
-        $serverKey = getenv('MIDTRANS_SERVER_KEY');
+        $clientKey = $_ENV['MIDTRANS_CLIENT_KEY'];
+        $serverKey = $_ENV['MIDTRANS_SERVER_KEY'];
 
         Config::$serverKey = $serverKey;
         Config::$clientKey = $clientKey;

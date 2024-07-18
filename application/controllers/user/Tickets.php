@@ -35,7 +35,7 @@ class Tickets extends CI_Controller {
 
         foreach ($ticketsDatas as $key) {
             if ($key['bookStatus'] != 'Waiting') {
-                $qr[$key['bookId']] = $this->generateQR();
+                $qr[$key['bookId']] = $this->generateQR('ap aja');
             }else if ($key['bookStatus'] == 'Done' || $key['bookStatus'] == 'Canceled') {
                 $qr[$key['bookId']] = $this->generateQR('Dah koid ni booking bang, udahlah!');
             }else {
