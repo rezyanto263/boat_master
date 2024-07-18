@@ -292,7 +292,6 @@
                     founded.style.display = 'contents';
                     procode.setAttribute('readonly', true);
                     var data = JSON.parse(xhr.responseText);
-                    console.log(data);
                     showPromo(data);
                 }else {
                     founded.style.display = 'none';
