@@ -6,80 +6,157 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
-        $this->load->model('M_profile');
-        $this->load->model('M_auth');
-        $this->load->helper('url');
-        $this->load->library('form_validation');
-        $this->load->library('session');
-        $this->session->keep_flashdata('message');
+        $this->load->model('M_customers');
 
         if (!$this->session->userdata('custId')) {
             redirect('login');
         }
     }
 
-
-    // Fetch user profile for editing
     public function index()
     {
-        // Retrieve the customer ID from session data
-        $custData = $this->session->userdata('custId');
-        if ($custData === null) {
-            show_error('No identifier provided', 500);
-            return;
-        }
+        $custId = $this->session->userdata('custId');
+        $datas = array(
+            'title' => 'Profile',
+            'hidden' => '',
+            'color' => 'blue',
+            'customer' => $this->M_customers->getCustomerById($custId),
+        );
 
-        // Fetch user data from the model
-        $data = $this->M_profile->get_user_by_id($custData);
-
-        if (empty($data['user'])) {
-            show_error('User not found', 404);
-        }
-
-        // Load the edit view
-        $this->load->view('user/profile', $data);
+        $partials = array(
+            'head' => 'partials/user/head',
+            'navbar' => 'partials/user/navbar',
+            'content' => 'user/profile',
+            'footer' => 'partials/user/footer',
+            'script' => 'partials/user/script',
+        );
+        $this->load->vars($datas);
+        $this->load->view('master', $partials);
     }
 
-    // Update user profile
-    public function update($custId)
+    public function editCustomer()
     {
-        // Set form validation rules
-        $this->form_validation->set_rules('custName', 'Customer Name', 'required');
-        $this->form_validation->set_rules('custEmail', 'Customer Email', 'required|valid_email');
-        $this->form_validation->set_rules('custAddress', 'Customer Address', 'required');
-        $this->form_validation->set_rules('custPhone', 'Customer Phone', 'required');
+        $custId = $this->session->userdata('custId');
+        $customerDatas = array(
+            'custName' => htmlspecialchars($this->input->post('custName')),
+            'custEmail' => htmlspecialchars($this->input->post('custEmail')),
+            'custAddress' => htmlspecialchars($this->input->post('custAddress')),
+            'custPhone' => htmlspecialchars($this->input->post('custPhone'))
+        );
+        $this->M_customers->editCustomer($custId, $customerDatas);
 
-        if ($this->form_validation->run() == FALSE) {
-            // Validation failed, load the edit view again
-            $data['user'] = $this->M_profile->get_user_by_id($custId);
-            $this->load->view('user/profile', $data);
-        } else {
-            // Validation passed, update user data
-            $data = array(
-                'custName' => $this->input->post('custName'),
-                'custEmail' => $this->input->post('custEmail'),
-                'custAddress' => $this->input->post('custAddress'),
-                'custPhone' => $this->input->post('custPhone')
-            );
+        if (!empty($_FILES['custPicture']['name'][0])) {
+            $fileNameCmps = explode('.', trim($_FILES['custPicture']['name']));
+            $pictureExtension = strtolower(end($fileNameCmps));
+            $newPictureName = md5(time() . $_FILES['custPicture']['name']) . '.' . $pictureExtension;
 
-            if (!empty($_FILES['custPic']['name'])) {
-                $config['upload_path'] = 'assets/uploads/';
-                $config['allowed_types'] = 'gif|jpg|png';
-                $this->load->library('upload', $config);
+            $config['upload_path'] = './assets/uploads/';
+            $config['allowed_types'] = 'jpg|jpeg|png|webp';
+            $config['file_name'] = $newPictureName;
+            $config['max_size']             = 2048;
+            $config['max_width']            = 0;
+            $config['max_height']           = 0;
 
-                if ($this->upload->do_upload('custPic')) {
-                    $uploadData = $this->upload->data();
-                    $data['custPic'] = $uploadData['file_name'];
-                }
-            }
+            $this->upload->initialize($config);
 
-            if ($this->profile_model->update_profile($data)) {
-                $this->session->set_flashdata('success', 'Profile updated successfully.');
+            if ($this->upload->do_upload('custPicture')) {
+                $fileData = $this->upload->data();
+                $custPicture['custPicture'] = $newPictureName;
+                $this->M_customers->editCustomer($custId, $custPicture);
+                $this->session->set_userdata('custPicture', $newPictureName);
             } else {
-                $this->session->set_flashdata('error', 'Failed to update profile.');
+                $this->session->set_flashdata('message', '<div id="liveToast" class="toast show message toast-error" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            Gagal memperbarui foto!
+                        </div>
+                    </div>
+                </div>');
+                redirect('profile');
             }
         }
+
+        if ($this->M_customers->editCustomer($custId, $customerDatas)) {
+            $this->session->set_userdata($customerDatas);
+            $this->session->set_flashdata('message', '<div id="liveToast" class="toast show message toast-success" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        Profile berhasil diperbarui!
+                    </div>
+                </div>
+            </div>');
+        } else {
+            $this->session->set_flashdata('message', '<div id="liveToast" class="toast show message toast-error" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        Gagal memperbarui profile!
+                    </div>
+                </div>
+            </div>');
+        }
+
+        redirect('profile');
+    }
+
+    public function changePassword()
+    {
+        $custId = $this->session->userdata('custId');
+        $oldcustPassword = $this->input->post('oldcustPassword');
+        $newcustPassword = $this->input->post('newcustPassword');
+        $confirmNewPassword = $this->input->post('confirmNewPassword');
+
+        if (!password_verify($oldcustPassword, $this->session->userdata('custPassword'))) {
+            $this->session->set_flashdata('message', '<div id="liveToast" class="toast show message toast-error" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        Wrong Current Password!
+                    </div>
+                </div>
+            </div>');
+        } else {
+            if ($oldcustPassword == $newcustPassword) {
+                $this->session->set_flashdata('message', '<div id="liveToast" class="toast show message toast-error" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            New Password cannot be same with Current Password!
+                        </div>
+                    </div>
+                </div>');
+            } else {
+                if ($newcustPassword != $confirmNewPassword) {
+                    $this->session->set_flashdata('message', '<div id="liveToast" class="toast show message toast-error" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            New Password and Confirm Password does not match!
+                        </div>
+                    </div>
+                </div>');
+                } else {
+                    $custPassword = password_hash($newcustPassword, PASSWORD_DEFAULT);
+                    $this->M_customers->editCustomerPassword($custId, $custPassword);
+                    if ($this->M_customers->editCustomerPassword($custId, $custPassword)) {
+                        $this->session->set_userdata('custPassword', $custPassword);
+                        $this->session->set_flashdata('message', '<div id="liveToast" class="toast show message toast-success" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    Password changed succesfully!
+                                </div>
+                            </div>
+                        </div>');
+                    } else {
+                        $this->session->set_flashdata('message', '<div id="liveToast" class="toast show message toast-error" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    Failed to change the password. Please try again!
+                                </div>
+                            </div>
+                        </div>');
+                    }
+                }
+            }
+        }
+
+        redirect('profile');
     }
 }
 
