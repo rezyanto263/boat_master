@@ -3,6 +3,7 @@
 	--secondary: #fda43e;
 	--grey: #6d6d6d;
 	--lightgrey: #d9d9d9;
+	--lightgrey2: #f0f0f0;
 	--fwblack: 900;
 	--fwextrabold: 800;
 	--fwbold: 700;
@@ -75,7 +76,7 @@ h4 {
 input,
 textarea,
 .form-control,
-.form-select {
+.form-select{
 	font-family: "Roboto", sans-serif, FontAwesome;
 	border-radius: 20px;
 	border: 0;
@@ -97,9 +98,16 @@ textarea,
 	color: var(--secondary);
 }
 
-.toast {
+.toast-success {
+	background-color: var(--primary);
+	color: var(--secondary);
+	border: 3px solid white;
+}
+
+.toast-error {
 	background-color: var(--secondary);
-	color: var(--primary);
+	color: var(--white);
+	border: 3px solid var(--white);
 }
 
 input[type="date"] {
@@ -129,6 +137,62 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	top: 0;
 	height: auto;
 	width: auto;
+}
+
+.datepicker-dropdown {
+	background-color: var(--primary);
+	color: white;
+	border-radius: 10px;
+	border: 2px solid var(--secondary);
+}
+
+.datepicker-dropdown.datepicker-orient-bottom {
+	margin-top: 5px !important;
+}
+
+.datepicker-dropdown.datepicker-orient-top:before, .datepicker-dropdown.datepicker-orient-bottom:before, .datepicker-dropdown.datepicker-orient-top::after, .datepicker-dropdown.datepicker-orient-bottom::after {
+	display: none;
+}
+
+.datepicker-dropdown td {
+	padding: 7px 10px;
+	border-radius: 50%;
+}
+
+.datepicker-dropdown .datepicker-days table tbody td.disabled {
+	background-color: transparent !important;
+}
+
+.datepicker-dropdown .datepicker-days table tbody :where(td.today.disabled, td.today.disabled:hover) {
+	background-image: none !important;
+	color: var(--secondary) !important;
+}
+
+
+.datepicker-dropdown .datepicker-days table tbody :where(td.day:hover, td.active.day,) {
+	background-color: var(--secondary) !important;
+	background-image: none !important;
+}
+
+.datepicker-dropdown table thead :where(.prev, .next, .datepicker-switch):hover {
+	background-color: var(--secondary) !important;
+	border-radius: 20px;
+}
+
+.datepicker-dropdown :where(.datepicker-months, .datepicker-years) span {
+	padding: 6px 6px !important;
+	height: 50px !important;
+	width: 50px !important;
+	line-height: unset !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+.datepicker-dropdown :where(.datepicker-months, .datepicker-years) :where(span:hover, span.focused, span.focused.active) {
+	background-color: var(--secondary) !important;
+	border-radius: 50% !important;
+	background-image: none !important;
 }
 
 .btn-light,
@@ -239,7 +303,7 @@ i.notif-icon {
 	padding: 0 !important;
 }
 
-.minimize .small {
+.minimize .small-logo {
 	width: 60px !important;
 	height: 60px !important;
 }
@@ -278,6 +342,13 @@ i.notif-icon {
 	color: var(--secondary);
 }
 
+.profile-image {
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	border: 2.5px solid white;
+}
+
 /* Dashboard Navbar Styles */
 .dashboard-navbar {
 	width: 100%;
@@ -311,6 +382,7 @@ i.notif-icon {
 :where(.profile-user, .tickets) i {
 	font-size: 35px;
 	color: white;
+	transition: all 0.3s ease-in-out;
 }
 
 :where(.profile-user, .tickets):hover i {
@@ -386,6 +458,12 @@ i.notif-icon {
 
 .sidebar-nav {
 	list-style-type: none;
+	padding-left: 50px;
+	transition: all 0.3s ease;
+}
+
+.minimize .sidebar-nav {
+	padding-left: 32px;
 }
 
 .sidebar-item a {
@@ -637,7 +715,6 @@ i.notif-icon {
 	font-size: 35px;
 }
 
-
 /* Hero Styles */
 .hero-section {
 	background-color: var(--primary);
@@ -659,10 +736,6 @@ i.notif-icon {
 .hero-section #hero .row {
 	max-height: 530px;
 	height: 100%;
-}
-
-.hero-section .row .container {
-	border-radius: 20px;
 }
 
 .tour-package h4 {
@@ -697,6 +770,10 @@ i.notif-icon {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.hero-choices {
+	border-radius: 20px;
 }
 
 /* Watch Section Styles */
@@ -929,7 +1006,7 @@ i.notif-icon {
 }
 
 .cta-section p {
-	padding-inline: 270px;
+	max-width: 75%;
 	color: white;
 }
 
@@ -988,12 +1065,12 @@ i.notif-icon {
 	background-color: var(--primary);
 }
 
-.teams-section .card-header {
-	background-image: url("../images/kucing\ 1.jpeg");
+.teams-section .card-header img {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
 	border-radius: 20px 20px 0 0;
+	height: 285px;
 }
 
 .teams-section .card :where(h3, p) {
@@ -1076,14 +1153,14 @@ i.notif-icon {
 	scrollbar-width: none;
 }
 
-:where(.contact-faq-section, .information-section) .accordion-button {
+:where(.contact-faq-section, .information-section, .about-section) .accordion-button {
 	border-radius: 20px !important;
 	box-shadow: none !important;
 	height: 50px;
 	color: var(--primary) !important;
 }
 
-:where(.contact-faq-section, .information-section) .accordion-item {
+:where(.contact-faq-section, .information-section, .about-section) .accordion-item {
 	background-color: transparent;
 	color: white;
 	border: 0;
@@ -1140,6 +1217,45 @@ footer.blue :where(p, a) {
 
 .header-boat h2 {
 	color: var(--primary);
+}
+
+.header-boat .form-select {
+	background-image: none;
+	cursor: pointer;
+}
+
+.header-boat .form-control {
+	border-radius: 0 !important;
+	background-color: var(--primary);
+	color: white;
+	box-shadow: none !important;
+	cursor: unset;
+}
+
+.header-boat .dropdown-toggle::after, .header-boat .dropdown-toggle::before {
+	display: none;
+}
+
+.header-boat .dropdown-menu {
+	padding: 0;
+	z-index: 1;
+	border-radius: 10px;
+	background-color: var(--primary);
+	color: white;
+	border: 2px solid var(--secondary);
+}
+
+.header-boat .datepicker {
+	cursor: pointer;
+}
+
+.header-boat .datepicker::placeholder {
+	color: var(--primary) !important;
+	transition: all 0.3s ease;
+}
+
+.header-boat .datepicker:hover::placeholder {
+	color: white !important;
 }
 
 /*Boat Catalog Section Styles*/
@@ -1217,6 +1333,12 @@ footer.blue :where(p, a) {
 	z-index: 1;
 }
 
+.boat-not-found h4{
+	color: var(--primary);
+	font-size: 28px;
+	font-weight: var(--fwblack);
+}
+
 /* Step Section Styles */
 .step-section h5 {
 	color: var(--primary);
@@ -1254,6 +1376,10 @@ footer.blue :where(p, a) {
 	position: relative;
 }
 
+.boat-badges-slider .owl-stage {
+	width: 100% !important;
+}
+
 .boat-overview-slider .owl-dots {
 	position: absolute;
 	bottom: 20px;
@@ -1262,7 +1388,18 @@ footer.blue :where(p, a) {
 }
 
 .boat-overview-slider .item {
-	height: 500px;
+	overflow-anchor: hidden;
+	padding-bottom: 55%;
+}
+
+.boat-overview-slider .item img {
+	border-radius: 10px;
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .orange-badges.badge {
@@ -1274,6 +1411,16 @@ footer.blue :where(p, a) {
 .white-badges.badge {
 	color: var(--primary);
 	border: 2px solid var(--primary);
+}
+
+.private-boat-only-badge {
+	background-color: var(--secondary);
+	color: white;
+	align-self: center;
+	padding: 2px 10px;
+	border-radius: 20px;
+	font-weight: var(--fwsemibold);
+	font-size: 10px;
 }
 
 /* Choose Tour Section Styles */
@@ -1290,7 +1437,7 @@ footer.blue :where(p, a) {
 }
 
 .anchor-point .card-image img {
-	border-radius: 20px;
+	border-radius: 10px;
 	min-width: 100%;
 	min-height: 100%;
 }
@@ -1354,9 +1501,9 @@ footer.blue :where(p, a) {
 }
 
 .tour-packages .accordion-button:not(.collapsed) {
-	background-color: var(--primary) !important;
-	outline: 3px solid var(--primary) !important;
-	box-shadow: none !important;
+	background-color: var(--primary);
+	outline: 3px solid var(--primary);
+	box-shadow: none;
 	color: var(--secondary);
 }
 
@@ -1434,11 +1581,17 @@ footer.blue :where(p, a) {
 	padding: 5px 10px;
 }
 
+.added {
+	background-color: var(--primary) !important;
+	color: white !important;
+}
+
 /* Details Order Section Styles */
 .details-order {
 	background-color: var(--lightgrey);
 	border-radius: 20px;
 	top: 100px;
+	z-index: 1;
 }
 
 .max-people {
@@ -1448,10 +1601,21 @@ footer.blue :where(p, a) {
 	color: var(--secondary);
 }
 
-:where(.adult, .teen, .kids) .wrapper {
+.max-people span {
+	border-radius: 50%;
+	padding: 5px;
+}
+
+.max-people span:active {
+	background-color: var(--lightgrey);
+	border-radius: 50%;
+	transition: all 0.3s ease;
+}
+
+:where(.adult, .teen, .toddler) .wrapper {
 	background-color: white;
 	border-radius: 20px;
-	padding: 10px;
+	padding-block: 4px;
 }
 
 .order-items {
@@ -1460,7 +1624,9 @@ footer.blue :where(p, a) {
 }
 
 .item-name,
-.item-price {
+.item-price,
+.extra-name,
+.extra-price {
 	font-size: 14px;
 	color: black;
 }
@@ -1474,6 +1640,10 @@ footer.blue :where(p, a) {
 .discount-name {
 	color: var(--primary);
 	font-size: 14px;
+}
+
+.details-order :where(.adult-total, .teen-total, .toddler-total) {
+	width: 20px;
 }
 
 /* Tickets Section Styles */
@@ -1492,6 +1662,29 @@ footer.blue :where(p, a) {
 	border-bottom-left-radius: 20px;
 	height: 100%;
 	position: relative;
+}
+
+.qr-code-ticket img {
+	max-width: 62.5%;
+	min-width: 120px !important;
+	height: auto;
+}
+
+.qr-code-ticket img.blur-qr {
+	filter: blur(5px);
+}
+
+.booking-status {
+	font-size: 10px;
+}
+
+.booking-status span {
+	color: var(--secondary);
+	font-size: 10px;
+}
+
+body.modal-open {
+	padding-right: 0 !important;
 }
 
 .details-ticket {
@@ -1526,12 +1719,12 @@ footer.blue :where(p, a) {
 }
 
 .details-ticket :where(.place, .time) i {
-	font-size: 25px;
+	font-size: 23px;
 	color: var(--primary);
 }
 
 .details-ticket :where(.place a, .time p) {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: var(--fwregular);
 }
 
@@ -1555,7 +1748,7 @@ footer.blue :where(p, a) {
 
 /* Tickets History Section Styles */
 .tickets-history-section {
-	background-color: var(--lightgrey);
+	background-color: var(--lightgrey2);
 }
 
 .tickets-history-section h1.text-center {
@@ -1563,7 +1756,7 @@ footer.blue :where(p, a) {
 }
 
 .tickets-history-section .blue-circle {
-	background-color: var(--lightgrey);
+	background-color: var(--lightgrey2);
 }
 
 .modal-body img {
@@ -1598,7 +1791,7 @@ footer.blue :where(p, a) {
 }
 
 .payment-details .foto img {
-	border-radius: 20px;
+	border-radius: 10px;
 	min-width: 100%;
 	min-height: 100%;
 }
@@ -1609,6 +1802,11 @@ footer.blue :where(p, a) {
 
 .payment-details .inclusive-package i {
 	color: var(--secondary);
+}
+
+#founded {
+	color: var(--primary);
+	font-size: 14px;
 }
 
 /* Information Section Styles */
@@ -1637,6 +1835,10 @@ footer.blue :where(p, a) {
 
 /* Profile section */
 
+:where(.profile-details-section, .change-password-section, .reviews-section) :where(h1, h2) {
+	color: var(--primary) !important;
+}
+
 aside ul li a {
 	text-decoration: none;
 	color: #333;
@@ -1658,7 +1860,7 @@ aside ul li a {
 	margin: 5px 0;
 }
 
-.profile-info .details button {
+:where(.profile-details-section, .change-password-section) button.btn-primary {
 	cursor: pointer;
 }
 
@@ -1699,18 +1901,17 @@ aside ul li a {
 	border-radius: 20px;
 }
 
-.bookings,
-.reviews {
+
+.reviews-section {
 	margin-bottom: 20px;
 }
 
-.bookings ul,
-.reviews ul {
+.reviews-section ul {
 	list-style-type: none;
 	padding: 0;
 }
 
-:where(.bookings, .reviews) ul li {
+.reviews-section ul li {
 	background-color: #f9f9f9;
 	padding: 10px;
 	margin-top: 24px;
@@ -1858,6 +2059,145 @@ body.auth {
 	color: var(--primary);
 }
 
+/* Contact Section Styles */
+.contact-section {
+	background-color: var(--primary);
+}
+
+.contact-section h2 {
+	color: var(--secondary);
+}
+
+.contact-section h1 {
+	color: var(--secondary);
+}
+
+.contact-section p {
+	color: white;
+}
+
+.contact-section textarea {
+	resize: none;
+	height: 150px;
+	scrollbar-width: none;
+}
+
+.contact-section .accordion-button {
+	border-radius: 20px !important;
+	box-shadow: none;
+	height: 50px;
+	color: var(--primary);
+}
+
+.contact-section .accordion-item {
+	background-color: transparent;
+	color: white;
+	border: 0;
+}
+
+.contact-section iframe {
+	border-radius: 20px;
+
+}
+
+.social-media-box {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.social-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:  var(--primary);
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.find-us-container {
+    padding-top: 55px; 
+}
+
+.find-us-paragraph {
+    margin-bottom: 10px;
+}
+
+
+/* Gallery Section Styles */
+.gallery-section h2 {
+	color: var(--primary);
+}
+
+.gallery-section .col-6 {
+    position: relative;
+    
+}
+
+.gallery-section .fancybox {
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-section .fancybox img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.gallery-section .fancybox:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.gallery-section .fancybox:hover img {
+    transform: scale(1.05);
+}
+
+.big {
+    height: 417px !important;
+}
+
+.small {
+    height: 200px !important; /* Adjust as needed */
+}
+
+
+/* About Section Styles */
+.about-details {
+	background-color: var(--primary);
+	border-radius: 20px;
+}
+
+:where(.about-details, .about-hero) h5{
+	color: var(--secondary);
+}
+
+.about-story h5, .about-vision h2 {
+	color: var(--primary);
+}
+
+.about-details h3 {
+	text-align: justify;
+}
+
+.accordion-button {
+	background-color: white !important;
+	border: 1px solid var(--primary);
+}
+
+
+
 /* Responsive Configuration Start*/
 .container {
 	max-width: 1536px;
@@ -1878,12 +2218,13 @@ body.auth {
 /* xl */
 @media (max-width: 1280px) {
 	.container {
-		max-width: 1024px;
+		max-width: 1080px;
+		padding-inline: 0;
 	}
 }
 
 /* lg */
-@media (max-width: 1024px) {
+@media (max-width: 1080px) {
 	.container {
 		max-width: 768px;
 	}
@@ -1945,7 +2286,7 @@ body.auth {
 	}
 
 	.hero-section {
-		height: 100svh;
+		height: 100vh;
 	}
 }
 

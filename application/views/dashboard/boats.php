@@ -30,8 +30,8 @@
                 <tbody>
                     <?php foreach($boat as $key): ?>
                     <tr>
-                        <td class="d-flex justify-content-center">
-                            <img src="<?= base_url('assets/uploads/'.trim(explode(',', $key['boatPictures'])[0])); ?>" width="70px" height="70px">
+                        <td>
+                            <img class="d-flex justify-self-center" src="<?= base_url('assets/uploads/'.trim(explode(',', $key['boatPictures'])[0])); ?>" width="70px" height="70px">
                         </td>
                         <td><?= $key['boatName']; ?></td>
                         <td><?= $key['boatType']; ?></td>
@@ -53,7 +53,7 @@
                         </td>
                         <td><?= $key['boatStartPoint']; ?></td>
                         <td class="overflow-hidden"><?= $key['boatDesc']; ?></td>
-                        <td class="action-button d-flex justify-content-end">
+                        <td class="action-button justify-content-end">
                             <div class="d-flex flex-row gap-1">
                                 <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#delboat<?= $key['boatId']; ?>">
                                     <i class="fa-solid fa-trash"></i>
@@ -109,7 +109,6 @@
                     <select class="w-100 form-select" placeholder="Type" name="boatType" required>
                         <option value="Private">Private</option>
                         <option value="Shared">Shared</option>
-                        <option value="PriShare">Private & Share</option>
                     </select>
                     <div class="invalid-feedback">
                         You must provide a type!
@@ -133,7 +132,6 @@
                     <label>Status</label>
                     <select class="form-select" name="boatStatus" required>
                         <option value="Repair">Repair</option>
-                        <option value="Booked">Booked</option>
                         <option value="Ready">Ready</option>
                     </select>
                     <div class="invalid-feedback">
@@ -214,7 +212,6 @@
                     <select class="form-select" class="w-100" placeholder="Type" name="boatType" required>
                         <option value="Private" <?= $edit['boatType'] == 'Private'? 'selected':''; ?>>Private</option>
                         <option value="Shared" <?= $edit['boatType'] == 'Shared'? 'selected':''; ?>>Shared</option>
-                        <option value="PriShare" <?= $edit['boatType'] == 'PriShare'? 'selected':''; ?>>Private & Share</option>
                     </select>
                     <div class="invalid-feedback">
                         You must select boat type!
@@ -245,7 +242,6 @@
                     <label>Status</label>
                     <select class="form-select" name="boatStatus" required>
                         <option value="Repair" <?= $edit['boatStatus']=='Repair'?'selected':''; ?>>Repair</option>
-                        <option value="Booked" <?= $edit['boatStatus']=='Booked'?'selected':''; ?>>Booked</option>
                         <option value="Ready" <?= $edit['boatStatus']=='Ready'?'selected':''; ?>>Ready</option>
                     </select>
                     <div class="invalid-feedback">
@@ -301,7 +297,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="mb-0 fs-5">DELETE DATA</h3>
+                <h1 class="mb-0 fs-5">DELETE BOAT</h3>
             </div>
             <div class="modal-body">
                 Are you sure want to delete this data?

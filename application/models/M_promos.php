@@ -8,6 +8,10 @@ class M_promos extends CI_Model {
         return $this->db->get('promo_code')->result_array();
     }
 
+    public function getPromoByName($procodeName) {
+        return $this->db->get_where('promo_code', array('procodeName' => $procodeName))->row_array();
+    }
+
     public function checkPromo($procodeId) {
         return $this->db->get_where('promo_code', array('procodeId' => $procodeId));
     }

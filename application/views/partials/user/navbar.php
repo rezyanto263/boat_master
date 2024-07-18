@@ -48,8 +48,9 @@
                 class="profile-user d-flex align-items-center justify-content-center"
                 href="<?= base_url('profile'); ?>"
             >
-                <i class="fa-solid fa-circle-user"></i>
+                <?= empty($this->session->userdata('custPicture'))?'<i class="fa-solid fa-circle-user"></i>':'<img class="profile-image" src="'.base_url('assets/uploads/'.$this->session->userdata('custPicture')).'">'; ?>
             </a>
+            
         </div>
     </div>
 </nav>

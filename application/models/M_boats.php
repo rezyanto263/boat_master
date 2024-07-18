@@ -18,7 +18,57 @@ class M_Boats extends CI_Model {
         $this->db->group_by('b.boatId');
         return $this->db->get()->result_array();
     }
-    
+
+    public function getAllBoatWithPicturesAndBadgesById($boatId) {
+        $this->db->select('b.*, 
+            GROUP_CONCAT(DISTINCT bp.boatpictId ORDER BY bp.boatpictId SEPARATOR ",") as boatpictIds, 
+            GROUP_CONCAT(DISTINCT m.mediaFile ORDER BY m.mediaFile SEPARATOR ",") as boatPictures, 
+            GROUP_CONCAT(DISTINCT bb.badgeId ORDER BY bb.badgeId SEPARATOR ",") as boatbadgeIds, 
+            GROUP_CONCAT(DISTINCT bg.badgeName ORDER BY bg.badgeName SEPARATOR ",") as boatbadgeNames');
+        $this->db->from('boat b');
+        $this->db->join('boat_pictures bp', 'b.boatId = bp.boatId', 'left');
+        $this->db->join('media m', 'bp.mediaId = m.mediaId', 'left');
+        $this->db->join('boat_badges bb', 'b.boatId = bb.boatId', 'left');
+        $this->db->join('badge bg', 'bb.badgeId = bg.badgeId', 'left');
+        $this->db->group_by('b.boatId');
+        $this->db->where('b.boatId', $boatId);
+        return $this->db->get()->result_array();
+    }
+
+    public function searchBoat($searchDatas) {
+        if ($searchDatas['bookSchedule'] != 'All') {
+            $this->db->select('bt.boatId');
+            $this->db->from('booking_ticket bt');
+            $this->db->where('bt.bookSchedule', $searchDatas['bookSchedule']);
+            $bookDatas = $this->db->get()->result_array();
+        }
+
+        $this->db->select('b.*, 
+            GROUP_CONCAT(DISTINCT bp.boatpictId ORDER BY bp.boatpictId SEPARATOR ",") as boatpictIds, 
+            GROUP_CONCAT(DISTINCT m.mediaFile ORDER BY m.mediaFile SEPARATOR ",") as boatPictures, 
+            GROUP_CONCAT(DISTINCT bb.badgeId ORDER BY bb.badgeId SEPARATOR ",") as boatbadgeIds, 
+            GROUP_CONCAT(DISTINCT bg.badgeName ORDER BY bg.badgeName SEPARATOR ",") as boatbadgeNames');
+        $this->db->from('boat b');
+        $this->db->join('boat_pictures bp', 'b.boatId = bp.boatId', 'left');
+        $this->db->join('media m', 'bp.mediaId = m.mediaId', 'left');
+        $this->db->join('boat_badges bb', 'b.boatId = bb.boatId', 'left');
+        $this->db->join('badge bg', 'bb.badgeId = bg.badgeId', 'left');
+        $this->db->group_by('b.boatId');
+
+        if ($searchDatas['boatStartPoint'] != 'All') {
+            $this->db->where('b.boatStartPoint', $searchDatas['boatStartPoint']);
+        }
+        if ($searchDatas['boatType'] != 'All') {
+            $this->db->where_in('b.boatType', array('PriShare', $searchDatas['boatType']));
+        }
+        $this->db->where('b.maxPeople >=', $searchDatas['maxPeople']);
+        if (!empty($bookDatas)) {
+            $bookedBoatIds = array_column($bookDatas, 'boatId');
+            $this->db->where_not_in('b.boatId', $bookedBoatIds);
+        }
+
+        return $this->db->get()->result_array();
+    }
 
     public function insertBadges($boatbadgesDatas) {
         return $this->db->insert('boat_badges', $boatbadgesDatas);
@@ -40,6 +90,11 @@ class M_Boats extends CI_Model {
 
     public function checkBoat($param, $value) {
         return $this->db->get_where('boat', array($param => $value));
+    }
+
+    public function checkBoatWithBookingSchedule($bookSchedule) {
+        $this->db->where('bookSchedule', $bookSchedule);
+        return $this->db->get('booking_ticket')->result_array();
     }
 
     public function editBoat($boatId , $boatData) {

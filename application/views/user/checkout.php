@@ -3,8 +3,6 @@
     <div
         class="container d-flex gap-3 align-items-center justify-content-center"
     >
-        <!-- align-items-center mengatur tata letak secara vertikal -->
-        <!-- justify-content-center mengatur tata letak secara horizontal-->
         <div class="step-boat">
             <div
                 class="circle checked mx-auto d-flex justify-content-center align-items-center"
@@ -27,9 +25,9 @@
         </svg>
         <div class="step-tour">
             <div
-                class="circle mx-auto d-flex justify-content-center align-items-center"
+                class="circle checked mx-auto d-flex justify-content-center align-items-center"
             >
-                <i class="fa-solid fa-umbrella-beach"></i>
+                <i class="fa-solid fa-check"></i>
             </div>
             <h5 class="mb-0 mt-2 text-center">CHOOSE TOUR</h5>
         </div>
@@ -86,30 +84,13 @@
                 <section class="contact-details p-5">
                     <div class="header d-flex align-items-center gap-3">
                         <i class="fa-solid fa-message"></i>
-                        <h3 class="mb-0 text text-left">Any notes for us?</h3>
+                        <h2 class="my-0 text text-left">Any notes for us?</h2>
                     </div>
-                    <p class="mb-0 text-white">Please fill the form for a good communication</p>
+                    <p class="mb-0 text-white">Please fill the form for a good communication.</p>
                     <div class="user-details mt-4">
-                        <div class="row gy-4">
-                            <div class="col-6 d-flex flex-column">
-                                    <span class="details text-white">Name</span>
-                                    <input type="text" placeholder="Input your name">
-                            </div>
-                            <div class="col-6 d-flex flex-column">
-                                    <span class="details text-white">E-mail</span>
-                                    <input type="text" placeholder="Input your e-mail">
-                            </div>
-                            <div class="col-6 d-flex flex-column">
-                                    <span class="details text-white">Phone number</span>
-                                    <input type="text" placeholder="Input your phone number">
-                            </div>
-                            <div class="col-6 d-flex flex-column">
-                                    <span class="details text-white">Backup phone number</span>
-                                    <input type="text" placeholder="Input your backup number">
-                            </div>
+                        <div class="row">
                             <div class="col-12 d-flex flex-column">									
-                                    <span class="details text-white">Message</span>
-                                    <textarea type="text" placeholder="Any notes?"></textarea>
+                                <textarea type="text" placeholder="Message.."></textarea>
                             </div>
                         </div>
                     </div>
@@ -195,67 +176,94 @@
                     <div class="row">
                         <div class="col-4 pe-0">
                             <div class="foto d-flex">
-                                <img src="../assets/images/boats.png" alt=""/>
+                                <img src="<?= base_url('assets/uploads/'.explode(', ', $checkout['boatPicture'])[0]); ?>" alt="Boat Picture"/>
                             </div>
                         </div>
                         <div class="col-8">
-                            <h5 class="fw-bold text-start">Yatch Jagoan Monalisa</h5>
+                            <h5 class="fw-bold text-start"><?= $checkout['boatName']; ?></h5>
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-6">
-                            <h5 class="fw-bold mb-0">Tour Package :</h5>
+                        <div class="d-flex flex-row justify-content-between">
+                            <h5 class="fw-bold mb-0">Boat Tour Type</h5>
+                            <h5 class="fw-bold mb-0"><?= $checkout['boatType']; ?></h5>
                         </div>
-                        <div class="col-6">
-                            <h5 class="fw-bold text-end mb-0">Private</h5>
-                        </div>
-                        <div class="col-6">
-                            <p class="mb-0">20.06.2024</p>
+                        <div class="col-12">
+                            <p class="mb-0"><?= date('l, d-m-Y', strtotime($checkout['bookSchedule'])); ?></p>
                         </div>
                     </div>
                     <hr class="border-2 my-2" />
                     <div class="d-flex flex-row justify-content-between">
-                        <h5 class="fw-bold mb-0">Tour Price</h5>
-                        <h5 class="fw-bold mb-0">1.200.000</h5>
+                        <h5 class="fw-bold mb-0">Boat Price</h5>
+                        <h5 class="fw-bold mb-0"><?= number_format($checkout['boatPrice']); ?> IDR</h5>
                     </div>
+                    <div class="d-flex flex-row justify-content-between">
+                        <h5 class="fw-bold mb-0">Tour Price</h5>
+                        <h5 class="fw-bold mb-0"><?= number_format($checkout['packagePrice']); ?> IDR</h5>
+                    </div>
+                    <p class="mb-0">Passengger :</p>
+                    <?php if ($checkout['bookAdults'] != 0) { ?>
+                    <div class="d-flex justify-content-between">
+                        <p class="item-name mb-1">Adults x <?= $checkout['bookAdults'] ?></p>
+                        <p class="item-price mb-1"><?= number_format($checkout['bookAdults']*400000) ?></p>
+                    </div>
+                    <?php } ?>
+                    <?php if ($checkout['bookTeens'] != 0) { ?>
+                    <div class="d-flex justify-content-between">
+                        <p class="item-name mb-1">Teens x <?= $checkout['bookTeens'] ?></p>
+                        <p class="item-price mb-1"><?= number_format($checkout['bookTeens']*250000) ?></p>
+                    </div>
+                    <?php } ?>
+                    <?php if ($checkout['bookToddlers'] != 0) { ?>
+                    <div class="d-flex justify-content-between">
+                        <p class="item-name mb-1">Toddlers x <?= $checkout['bookToddlers'] ?></p>
+                        <p class="item-price mb-1"><?= number_format($checkout['bookToddlers']*50000) ?></p>
+                    </div>
+                    <?php } ?>
                     <p class="mb-0">Extras :</p>
-                    <div class="row g-0">
+                    <div class="row g-0 p-0">
+                    <?php 
+                    $id=0;
+                    $totalExtraPrice=0;
+                    if ($checkout['bookextraIds']) {
+                    foreach(explode(',', $checkout['bookextraIds']) as $extra):
+                    ?>
                         <div class="d-flex justify-content-between">
-                            <p class="item-name mb-1">Pro photographer</p>
-                            <p class="item-price mb-1">2.000.000</p>
+                            <p class="item-name mb-1"><?= explode(', ', $checkout['bookextraNames'])[$id] ?></p>
+                            <p class="item-price mb-1"><?= number_format(explode(', ', $checkout['bookextraPrices'])[$id]) ?></p>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="item-name mb-1">Drinking</p>
-                            <p class="item-price mb-1">130.000.000</p>
+                    <?php 
+                        $totalExtraPrice += explode(', ', $checkout['bookextraPrices'])[$id];
+                        $id++;
+                        endforeach;
+                    }else { 
+                    ?>
+                        <div class="d-flex justify-content-center">
+                            <p>- NO EXTRA -</p>
                         </div>
+                    <?php } ?>
                     </div>
                     <hr class="border-2 mb-3 mt-2" />
-                    <p class="discount-name mb-0">Discount 10%</p>
-                    <input class="w-100 my-3" type="text" placeholder="Have a promo code?">
+                    <div class="d-flex justify-content-between">
+                        <p class="discount-name mb-1">Discount 10%</p>
+                        <p class="discount-name mb-1">-<?= number_format($checkout['bookPrice']*0.1) ?></p>
+                    </div>
+                    <div class="d-flex justify-content-between w-100">
+                        <p class="discount-name mb-0 text-start" id="promoName"></p>
+                        <p class="discount-name mb-0 text-end" id="promoPrice"></p>
+                        <input type="number" id="procodeId" hidden>
+                    </div>
+                    <div class="procode-search my-3 d-flex flex-column align-items-center">
+                        <input class="w-100 text-center" type="text" placeholder="Have a promo code?" id="procodeName" <?= $checkout['procodeName']=='NO PROMO'?'':'value="'.$checkout['procodeName'].'"'; ?>>
+                        <p class="mb-0" id="founded">Promo code founded!</p>
+                    </div>
                     <div class="total-price d-flex justify-content-between">
                         <h5 class="fw-bold mb-0">Total Price</h5>
-                        <h5 class="fw-bold mb-0">3.640.000 IDR</h5>
+                        <h5 class="fw-bold mb-0" id="showPrice"><?= number_format($checkout['bookPrice']); ?> IDR</h5>
+                        <input type="number" id="totalPrice" value="<?= $checkout['bookPrice']; ?>" hidden>
                     </div>
                     <hr class="border-2 my-2" />
-                    <h5 class="mb-1 fw-bold">All Inclusive Package :</h5>
-                    <div class="d-flex align-items-center gap-2 inclusive-package">
-                        <i class="fa-solid fa-check"></i>
-                        <p class="item-name mb-0">Swimming with mantas</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 inclusive-package">
-                        <i class="fa-solid fa-check"></i>
-                        <p class="item-name mb-0">Swimming with mantas</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 inclusive-package">
-                        <i class="fa-solid fa-check"></i>
-                        <p class="item-name mb-0">Swimming with mantas</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 inclusive-package">
-                        <i class="fa-solid fa-check"></i>
-                        <p class="item-name mb-0">Swimming with mantas</p>
-                    </div>
-                    <hr class="border-2 mb-3 mt-2" />
-                    <button class="btn-secondary w-100">PAY NOW!</button>
+                    <button class="btn-secondary w-100" id="pay-button">PAY NOW!</button>
                 </div>
                 <!-- Detail Payment Section End -->
             </div>
@@ -263,3 +271,92 @@
     </div>
 </section>
 <!-- Checkout Section End -->
+
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= $clientKey?>"></script>
+<script type="text/javascript">
+    var founded = document.querySelector('#founded');
+    var promoName = document.querySelector('#promoName');
+    var promoPrice = document.querySelector('#promoPrice');
+    var procode = document.querySelector('#procodeName');
+    var bookPrice = document.querySelector('#totalPrice');
+    var showPrice = document.querySelector('#showPrice');
+    var procodeId = document.querySelector('#procodeId');
+    var totalPrice = <?= $checkout['boatPrice'] + $checkout['packagePrice'] + $totalExtraPrice + ($checkout['bookAdults']*400000)+($checkout['bookTeens']*250000)+($checkout['bookToddlers']*50000); ?>;
+    var finalPrice = totalPrice - (totalPrice * 0.1);
+
+    function checkPromo() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.status == 200) {
+                if (xhr.readyState == 4 && xhr.responseText != 'notfound') {
+                    founded.style.display = 'contents';
+                    procode.setAttribute('readonly', true);
+                    var data = JSON.parse(xhr.responseText);
+                    console.log(data);
+                    showPromo(data);
+                }else {
+                    founded.style.display = 'none';
+                    promoName.style.display = 'none';
+                    promoPrice.style.display = 'none';
+                }
+            }
+        }
+
+        xhr.open('GET', "<?= base_url('user/Checkout/checkPromo/'); ?>"+(procodeName.value? procodeName.value : "NO PROMO"), true);
+        xhr.send();
+    }
+
+    checkPromo();
+
+    procode.addEventListener('keyup', function() {
+        checkPromo();
+    });
+
+
+    function showPromo(data) {
+        promoName.style.display = 'block';
+        promoPrice.style.display = 'block';
+        procodeId.value = data.procodeId;
+        promoName.textContent = data.procodeName;
+        promoDiscount = finalPrice * (data.procodeDiscount/100);
+        bookPrice.value = finalPrice - promoDiscount;
+        promoPrice.textContent = '-' + new Intl.NumberFormat({style: 'currency',}).format(promoDiscount);
+        showPrice.textContent = new Intl.NumberFormat({style: 'currency',}).format(bookPrice.value) + ' IDR';
+    }
+
+
+    document.getElementById('pay-button').onclick = function(){
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    const token = xhr.responseText;
+                    snap.pay(token, {
+                        onSuccess: function(result){
+                            var url = "<?= base_url('user/Checkout/paymentSuccess/'.$checkout['bookId']) ?>/"+(procodeId.value?procodeId.value:'NO PROMO')+"/"+bookPrice.value;
+                            window.location.href = url;
+                        },
+                        onPending: function(result){
+                            
+                        },
+                        onError: function(result){
+                            
+                        },
+                    });
+                }else {
+                    console.error("Failed to get token:", xhr.statusText);
+                }
+            }   
+        }
+
+        var params = "bookPrice=" + parseFloat(bookPrice.value)+ "&bookStatus=" + "<?= $checkout['bookStatus'] ?>";    
+        console.log(params);
+        xhr.open('POST', "<?= base_url('user/Checkout/initMidtrans') ?>", true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+    };
+
+    
+</script>

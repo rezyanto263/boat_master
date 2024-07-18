@@ -88,50 +88,36 @@
                     <div class="row">
                         <div class="header d-flex align-items-center gap-3 mb-3">
                             <i class="fa-solid fa-ship"></i>
-                            <h3 class="mb-0 text-left">Yatch Jagoan Monalisa</h3>
+                            <h3 class="mb-0 text-left"><?= $boat[0]['boatName'] ?></h3>
                         </div>
                         <div
                             class="boat-overview-slider owl-carousel owl-theme owl-loaded"
                         >
+                        <?php foreach(explode(',', $boat[0]['boatPictures']) as $boatPict): ?>
                             <div class="item">
-                                <img class="img-fluid" src="../assets/images/boats.png" alt="" />
+                                <img src="<?= base_url('assets/uploads/'.trim($boatPict)) ?>" alt="" />
                             </div>
-                            <div class="item">
-                                <img class="img-fluid" src="../assets/images/boats2.png" alt="" />
-                            </div>
-                            <div class="item">
-                                <img class="img-fluid" src="../assets/images/boats3.jpg" alt="" />
-                            </div>
+                        <?php endforeach; ?>
                         </div>
                     </div>
                     <div class="boat-badges-slider owl-carousel owl-theme mt-3 w-100">
                         <div class="item">
                             <span class="badge white-badges">
                                 <i class="fa-solid fa-users me-2"></i>
-                                13
+                                <?= $boat[0]['maxPeople'] ?>
                             </span>
                         </div>
                         <div class="item">
-                            <span class="badge white-badges">PRIVATE</span>
+                            <span class="badge white-badges"><?= strtoupper($boat[0]['boatType']) ?></span>
                         </div>
                         <div class="item">
-                            <span class="badge white-badges">NUSA PENIDA</span>
+                            <span class="badge white-badges"><?= strtoupper($boat[0]['boatStartPoint']) ?></span>
                         </div>
+                        <?php foreach(explode(',', $boat[0]['boatbadgeNames']) as $badges): ?>
                         <div class="item">
-                            <span class="badge white-badges">PADANG BAI</span>
+                            <span class="badge orange-badges"><?= trim($badges) ?></span>
                         </div>
-                        <div class="item">
-                            <span class="badge white-badges">LOMBOK</span>
-                        </div>
-                        <div class="item">
-                            <span class="badge white-badges">FLY BRIDGE</span>
-                        </div>
-                        <div class="item">
-                            <span class="badge orange-badges">BEST CHOICE!</span>
-                        </div>
-                        <div class="item">
-                            <span class="badge orange-badges">NEW!</span>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </section>
                 <!-- Boat Overview Section End -->
@@ -144,12 +130,13 @@
                     </div>
                     <div class="anchor-point">
                         <h5 class="subheader">Anchor Point</h5>
+                        <?php if ($boat[0]['boatStartPoint'] == 'Bali') { ?>
                         <div class="card p-3 d-flex flex-row gap-3 align-items-center">
                             <div class="card-image d-flex">
                                 <img
-                                    src="../assets/images/nusapenida.png"
+                                    src="<?= base_url('assets/images/bali.jpg') ?>"
                                     class="img-fluid"
-                                    alt=""
+                                    alt="Bali"
                                 />
                             </div>
                             <div
@@ -171,220 +158,258 @@
                                         eget ligula.
                                     </p>
                                 </div>
-                                <a class="maps" href="#">
+                                <a class="maps" href="https://maps.app.goo.gl/uejex2vhLu7Lb17U7" target="blank">
                                     <i class="fa-solid fa-map-location-dot"></i>
                                 </a>
                             </div>
                         </div>
+                        <?php }else if($boat[0]['boatStartPoint'] == 'Nusa Penida') { ?>
+                        <div class="card p-3 d-flex flex-row gap-3 align-items-center">
+                            <div class="card-image d-flex">
+                                <img
+                                    src="<?= base_url('assets/images/nusapenida.jpg') ?>"
+                                    class="img-fluid"
+                                    alt="Nusa Penida"
+                                />
+                            </div>
+                            <div
+                                class="card-details d-flex flex-column position-relative"
+                            >
+                                <div class="card-header border-0 p-0">
+                                    <h4 class="mb-0">Boat Master, Nusa Penida</h4>
+                                    <p class="mb-0">Jl. Kemana Hatiku Senang No.1, Sanur</p>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="time d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-clock"></i>
+                                        <p class="mb-0 fw-bold">08:00 - 09:00 AM</p>
+                                    </div>
+                                    <p class="description mb-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Morbi non libero nec purus mollis posuere sed eget
+                                        ligula. Morbi non libero nec purus mollis posuere sed
+                                        eget ligula.
+                                    </p>
+                                </div>
+                                <a class="maps" href="https://maps.app.goo.gl/QJ3kaQBUeSvZBhVK8" target="blank">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <?php } ?>
                     </div>
                     <div class="tour-packages mt-4">
                         <h5 class="subheader">Tour Packages (Click to Choose!)</h5>
                         <div class="accordion" id="boat-tour-package">
-                            <div class="accordion-item mb-3">
-                                <div class="accordion-header">
-                                    <button
-                                        class="accordion-button flex-column align-items-start"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#boat-tour"
-                                        aria-expanded="true"
+                            <?php 
+                                foreach($package as $key): 
+                                    if ($boat[0]['boatType'] == 'Private') {
+                            ?>
+                                <div class="accordion-item mb-3">
+                                    <div class="accordion-header">
+                                        <button
+                                            class="accordion-button flex-column align-items-start collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#boat-tour<?= $key['packageId']; ?>"
+                                            aria-expanded="false"
+                                        >
+                                            <div class="d-flex gap-2">
+                                                <h4 class="mb-1"><?= $key['packageName']; ?></h4>
+                                                <?= $key['packageType'] == 'Private'? '<div class="private-boat-only-badge mb-3">SPECIAL FOR PRIVATE BOAT!</div>':''; ?>
+                                            </div>
+                                            <div class="package-badges d-flex gap-2">
+                                                <?php 
+                                                    foreach(explode('`', $key['packagebadgeNames']) as $badge): 
+                                                        if (trim($badge)=='BOAT TOUR') {
+                                                ?>    
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-ship"></i>
+                                                    <p class="mb-0">BOAT TOUR</p>
+                                                </span>
+                                                <?php }else if(trim($badge)=='SWIMMING') { ?>
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-mask"></i>
+                                                    <p class="mb-0">SWIMMING</p>
+                                                </span>
+                                                <?php }else if(trim($badge)=='SNORKELING') { ?>
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-mask"></i>
+                                                    <p class="mb-0">SNORKELING</p>
+                                                </span>
+                                                <?php }else if(trim($badge)=='LUNCH') { ?>
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-bell-concierge"></i>
+                                                    <p class="mb-0">LUNCH</p>
+                                                </span>
+                                                <?php }else if(trim($badge)=='CLIFF') { ?>
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-mountain-sun"></i>
+                                                    <p class="mb-0">CLIFF</p>
+                                                </span>
+                                                <?php }else { ?>
+                                                <span class="badge">
+                                                    <p class="mb-0"><?= trim($badge) ?></p>
+                                                </span>
+                                                <?php }endforeach; ?>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div
+                                        id="boat-tour<?= $key['packageId'] ?>"
+                                        class="accordion-collapse collapse"
+                                        data-bs-parent="#boat-tour-package"
                                     >
-                                        <h4 class="mb-0">Boat Tour</h4>
-                                        <div class="package-badges d-flex gap-2">
-                                            <span class="badge gap-1">
-                                                <i class="fa-solid fa-person-swimming"></i>
-                                                <p class="mb-0">SWIMMING</p>
-                                            </span>
-                                            <span class="badge gap-1">
-                                                <i class="fa-solid fa-mask"></i>
-                                                <p class="mb-0">SNORKELING</p>
-                                            </span>
-                                            <span class="badge gap-1">
-                                                <i class="fa-solid fa-bell-concierge"></i>
-                                                <p class="mb-0">LUNCH</p>
-                                            </span>
-                                        </div>
-                                    </button>
-                                </div>
-                                <div
-                                    id="boat-tour"
-                                    class="accordion-collapse collapse show"
-                                    data-bs-parent="#boat-tour-package"
-                                >
-                                    <div class="accordion-body">
-                                        <div class="anchor d-flex align-items-center gap-1">
-                                            <embed
-                                                src="../assets/images/start-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">09:00 AM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="way-point d-flex align-items-end gap-1">
-                                            <embed
-                                                src="../assets/images/way-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">11:00 AM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="way-point d-flex align-items-end gap-1">
-                                            <embed
-                                                src="../assets/images/way-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">01:00 PM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="way-point d-flex align-items-end gap-1">
-                                            <embed
-                                                src="../assets/images/way-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">03:00 PM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="way-point d-flex align-items-end gap-1">
-                                            <embed
-                                                src="../assets/images/way-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">05:00 PM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="end-point d-flex align-items-end gap-1">
-                                            <div>
+                                        <div class="accordion-body" data-value="<?= $key['packageId']; ?>">
+                                            <div class="anchor d-flex align-items-center gap-1">
                                                 <embed
-                                                    src="../assets/images/end-point.svg"
-                                                    class="d-flex align-items-start"
+                                                    src="<?= base_url('assets/images/start-point.svg') ?>"
+                                                    class="d-flex"
                                                 />
-                                                <br />
+                                                <div>
+                                                    <h5 class="mb-0">08:00 AM</h5>
+                                                    <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h5 class="mb-0">07:00 PM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            <?php 
+                                                $id=0;
+                                                $countTour = count(explode('`', $key['tourIds']));
+                                                foreach(explode('`', $key['tourIds']) as $tourId): 
+                                            ?>
+                                            <?php if ($id == ($countTour-1)) { ?>
+                                            <div class="end-point d-flex align-items-end gap-1">
+                                                <div>
+                                                    <embed
+                                                        src="<?= base_url('assets/images/end-point.svg') ?>"
+                                                        class="d-flex align-items-start"
+                                                    />
+                                                    <br />
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0"><?= date("h:i A", strtotime(explode('`', $key['tourTimes'])[$id])) ?></h5>
+                                                    <p class="mb-0"><?= explode('`', $key['tourDescs'])[$id] ?></p>
+                                                </div>
                                             </div>
+                                            <?php }else { ?>
+                                            <div class="way-point d-flex align-items-end gap-1">
+                                                <embed
+                                                    src="<?= base_url('assets/images/way-point.svg') ?>"
+                                                    class="d-flex"
+                                                />
+                                                <div>
+                                                    <h5 class="mb-0"><?= date("h:i A", strtotime(explode('`', $key['tourTimes'])[$id])) ?></h5>
+                                                    <p class="mb-0"><?= explode('`', $key['tourDescs'])[$id] ?></p>
+                                                </div>
+                                            </div>
+                                            <?php } $id++; endforeach; ?>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="accordion-item">
-                                <div class="accordion-header">
-                                    <button
-                                        class="accordion-button flex-column align-items-start"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#boat-cliff-tour"
-                                        aria-expanded="true"
+                            <?php }else if (($boat[0]['boatType'] == 'Shared') && ($key['packageType'] == 'Shared')) { ?>
+                                <div class="accordion-item mb-3">
+                                    <div class="accordion-header">
+                                        <button
+                                            class="accordion-button flex-column align-items-start collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#boat-tour<?= $key['packageId']; ?>"
+                                            aria-expanded="false"
+                                        >
+                                            <h4 class="mb-1"><?= $key['packageName']; ?></h4>
+                                            <div class="package-badges d-flex gap-2">
+                                                <?php 
+                                                    foreach(explode('`', $key['packagebadgeNames']) as $badge): 
+                                                        if (trim($badge)=='BOAT TOUR') {
+                                                ?>    
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-ship"></i>
+                                                    <p class="mb-0">BOAT TOUR</p>
+                                                </span>
+                                                <?php }else if(trim($badge)=='SWIMMING') { ?>
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-mask"></i>
+                                                    <p class="mb-0">SWIMMING</p>
+                                                </span>
+                                                <?php }else if(trim($badge)=='SNORKELING') { ?>
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-mask"></i>
+                                                    <p class="mb-0">SNORKELING</p>
+                                                </span>
+                                                <?php }else if(trim($badge)=='LUNCH') { ?>
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-bell-concierge"></i>
+                                                    <p class="mb-0">LUNCH</p>
+                                                </span>
+                                                <?php }else if(trim($badge)=='CLIFF') { ?>
+                                                <span class="badge gap-1">
+                                                    <i class="fa-solid fa-mountain-sun"></i>
+                                                    <p class="mb-0">CLIFF</p>
+                                                </span>
+                                                <?php }else { ?>
+                                                <span class="badge">
+                                                    <p class="mb-0"><?= trim($badge) ?></p>
+                                                </span>
+                                                <?php }endforeach; ?>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div
+                                        id="boat-tour<?= $key['packageId'] ?>"
+                                        class="accordion-collapse collapse"
+                                        data-bs-parent="#boat-tour-package"
                                     >
-                                        <h4 class="mb-0">Boat Tour & Cliff</h4>
-                                        <div class="package-badges d-flex gap-2">
-                                            <span class="badge gap-1">
-                                                <i class="fa-solid fa-person-swimming"></i>
-                                                <p class="mb-0">SWIMMING</p>
-                                            </span>
-                                            <span class="badge gap-1">
-                                                <i class="fa-solid fa-mask"></i>
-                                                <p class="mb-0">SNORKELING</p>
-                                            </span>
-                                            <span class="badge gap-1">
-                                                <i class="fa-solid fa-bell-concierge"></i>
-                                                <p class="mb-0">LUNCH</p>
-                                            </span>
-                                            <span class="badge gap-1">
-                                                <i class="fa-solid fa-mountain-sun"></i>
-                                                <p class="mb-0">CLIFF</p>
-                                            </span>
-                                        </div>
-                                    </button>
-                                </div>
-                                <div
-                                    id="boat-cliff-tour"
-                                    class="accordion-collapse collapse"
-                                    data-bs-parent="#boat-tour-package"
-                                >
-                                    <div class="accordion-body">
-                                        <div class="anchor d-flex align-items-center gap-1">
-                                            <embed
-                                                src="../assets/images/start-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">09:00 AM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="way-point d-flex align-items-end gap-1">
-                                            <embed
-                                                src="../assets/images/way-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">11:00 AM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="way-point d-flex align-items-end gap-1">
-                                            <embed
-                                                src="../assets/images/way-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">01:00 PM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="way-point d-flex align-items-end gap-1">
-                                            <embed
-                                                src="../assets/images/way-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">03:00 PM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="way-point d-flex align-items-end gap-1">
-                                            <embed
-                                                src="../assets/images/way-point.svg"
-                                                class="d-flex"
-                                            />
-                                            <div>
-                                                <h5 class="mb-0">05:00 PM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
-                                            </div>
-                                        </div>
-                                        <div class="end-point d-flex align-items-end gap-1">
-                                            <div>
+                                        <div class="accordion-body" data-value="<?= $key['packageId']; ?>">
+                                            <div class="anchor d-flex align-items-center gap-1">
                                                 <embed
-                                                    src="../assets/images/end-point.svg"
-                                                    class="d-flex align-items-start"
+                                                    src="<?= base_url('assets/images/start-point.svg') ?>"
+                                                    class="d-flex"
                                                 />
-                                                <br />
+                                                <div>
+                                                    <h5 class="mb-0">08:00 AM</h5>
+                                                    <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h5 class="mb-0">07:00 PM</h5>
-                                                <p class="mb-0">Departure (Bali or Nusa Penida)</p>
+                                            <?php 
+                                                $id=0;
+                                                $countTour = count(explode('`', $key['tourIds']));
+                                                foreach(explode('`', $key['tourIds']) as $tourId): 
+                                            ?>
+                                            <?php if ($id == ($countTour-1)) { ?>
+                                            <div class="end-point d-flex align-items-end gap-1">
+                                                <div>
+                                                    <embed
+                                                        src="<?= base_url('assets/images/end-point.svg') ?>"
+                                                        class="d-flex align-items-start"
+                                                    />
+                                                    <br />
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0"><?= date("h:i A", strtotime(explode('`', $key['tourTimes'])[$id])) ?></h5>
+                                                    <p class="mb-0"><?= explode('`', $key['tourDescs'])[$id] ?></p>
+                                                </div>
                                             </div>
+                                            <?php }else { ?>
+                                            <div class="way-point d-flex align-items-end gap-1">
+                                                <embed
+                                                    src="<?= base_url('assets/images/way-point.svg') ?>"
+                                                    class="d-flex"
+                                                />
+                                                <div>
+                                                    <h5 class="mb-0"><?= date("h:i A", strtotime(explode('`', $key['tourTimes'])[$id])) ?></h5>
+                                                    <p class="mb-0"><?= explode('`', $key['tourDescs'])[$id] ?></p>
+                                                </div>
+                                            </div>
+                                            <?php } $id++; endforeach; ?>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php }endforeach; ?>
                         </div>
                     </div>
                 </section>
                 <!-- Choose Tour Section End -->
-
+                
+                <?php if ($boat[0]['boatType'] == 'Private') { ?>
                 <!-- Extra Section Start -->
                 <section class="extra-section">
                     <div class="header d-flex align-items-center gap-3 mb-3">
@@ -435,232 +460,105 @@
                             tabindex="0"
                         >
                             <div class="row">
+                                <?php 
+                                    foreach($extra as $key): 
+                                        if ($key['extraCategory'] == 'Recommended') {
+                                ?>
                                 <div class="col-4 mb-4">
                                     <div class="card border-0 d-flex justify-content-center">
                                         <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
+                                            <img src="<?= base_url('assets/uploads/'.$key['extraPicture']) ?>" alt="" />
                                         </div>
                                         <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <h5 class="mb-1"><?= $key['extraName'] ?></h5>
                                             <p class="mb-1">
-                                                Private transfer to the meeting point and back
+                                                <?= $key['extraDesc'] ?>
                                             </p>
                                             <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
+                                            <span class="price"><?= number_format($key['extraPrice']) ?> IDR</span>
                                         </div>
-                                        <button class="btn-outline-primary">ADD</button>
+                                        <button class="btn-outline-primary" id="addextra" data-value="<?= $key['extraId']; ?>">ADD</button>
                                     </div>
                                 </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
+                                <?php }endforeach; ?>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="free" tabindex="0">
                             <div class="row">
+                                <?php 
+                                    foreach($extra as $key): 
+                                        if ($key['extraCategory'] == 'Free') {
+                                ?>
                                 <div class="col-4 mb-4">
                                     <div class="card border-0 d-flex justify-content-center">
                                         <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
+                                            <img src="<?= base_url('assets/uploads/'.$key['extraPicture']) ?>" alt="" />
                                         </div>
                                         <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <h5 class="mb-1"><?= $key['extraName'] ?></h5>
                                             <p class="mb-1">
-                                                Private transfer to the meeting point and back
+                                                <?= $key['extraDesc'] ?>
                                             </p>
                                             <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
+                                            <span class="price"><?= number_format($key['extraPrice']) ?> IDR</span>
                                         </div>
-                                        <button class="btn-outline-primary">ADD</button>
+                                        <button class="btn-outline-primary" id="addextra" data-value="<?= $key['extraId']; ?>">ADD</button>
                                     </div>
                                 </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
+                                <?php }endforeach; ?>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="addons" tabindex="0">
                             <div class="row">
+                            <?php 
+                                    foreach($extra as $key): 
+                                        if ($key['extraCategory'] == 'Add-Ons') {
+                                ?>
                                 <div class="col-4 mb-4">
                                     <div class="card border-0 d-flex justify-content-center">
                                         <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
+                                            <img src="<?= base_url('assets/uploads/'.$key['extraPicture']) ?>" alt="" />
                                         </div>
                                         <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
+                                            <h5 class="mb-1"><?= $key['extraName'] ?></h5>
                                             <p class="mb-1">
-                                                Private transfer to the meeting point and back
+                                                <?= $key['extraDesc'] ?>
                                             </p>
                                             <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
+                                            <span class="price"><?= number_format($key['extraPrice']) ?> IDR</span>
                                         </div>
-                                        <button class="btn-outline-primary">ADD</button>
+                                        <button class="btn-outline-primary" id="addextra" data-value="<?= $key['extraId']; ?>">ADD</button>   
                                     </div>
                                 </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
-                                <div class="col-4 mb-4">
-                                    <div class="card border-0 d-flex justify-content-center">
-                                        <div class="extra-image d-flex">
-                                            <img src="../assets/images/extra-image.png" alt="" />
-                                        </div>
-                                        <div class="extra-desc px-1 my-1">
-                                            <h5 class="mb-1">Pick Up & Drop Off</h5>
-                                            <p class="mb-1">
-                                                Private transfer to the meeting point and back
-                                            </p>
-                                            <hr class="my-1" />
-                                            <span class="price">800.000 IDR</span>
-                                        </div>
-                                        <button class="btn-outline-primary">ADD</button>
-                                    </div>
-                                </div>
+                                <?php }endforeach; ?>
                             </div>
                         </div>
                     </div>
                 </section>
                 <!-- Extra Section End -->
+                <?php } ?>
             </div>
             <div class="col-4 pt-1 ps-0">
                 <div class="details-order sticky-top mt-5 p-4">
+                <form action="<?= base_url('user/Booking/addBooking') ?>" method="post">
                     <div class="details-header">
                         <h3 class="mb-1">Order Details</h3>
                         <hr class="border-2 mb-3 mt-2" />
                     </div>
-                    <div class="row">
+                    <div class="row gx-2">
                         <div class="col-4 text-center">
-                            Dewasa
+                            Adults (14-60)
                             <div class="adult">
                                 <div
                                     class="wrapper d-flex align-items-center justify-content-between"
                                 >
-                                    <button class="max-people">
+                                    <button type="button" class="max-people">
                                         <span class="adult-minus">
                                             <i class="fa-solid fa-minus"></i>
                                         </span>
                                     </button>
-                                    <span class="adult-total">1</span>
-                                    <button class="max-people">
+                                    <input type="number" class="adult-total p-0 text-center bg-white" name="bookAdults" min="1" max="<?= $boat[0]['maxPeople']; ?>" <?= $bookAdults==null? 'value="1"':'value="'.$bookAdults.'"'; ?> readonly>
+                                    <button type="button" class="max-people">
                                         <span class="adult-plus">
                                             <i class="fa-solid fa-plus"></i>
                                         </span>
@@ -669,18 +567,18 @@
                             </div>
                         </div>
                         <div class="col-4 text-center">
-                            Remaja
+                            Teens (6-13)
                             <div class="teen">
                                 <div
                                     class="wrapper d-flex align-items-center justify-content-between"
                                 >
-                                    <button class="max-people">
+                                    <button type="button" class="max-people">
                                         <span class="teen-minus">
                                             <i class="fa-solid fa-minus"></i>
                                         </span>
                                     </button>
-                                    <span class="teen-total">0</span>
-                                    <button class="max-people">
+                                    <input type="number" class="teen-total p-0 text-center bg-white" name="bookTeens" min="0" max="5" <?= $bookTeens==null? 'value="0"':'value="'.$bookTeens.'"'; ?> readonly>
+                                    <button type="button" class="max-people">
                                         <span class="teen-plus">
                                             <i class="fa-solid fa-plus"></i>
                                         </span>
@@ -689,19 +587,19 @@
                             </div>
                         </div>
                         <div class="col-4 text-center">
-                            Anak-anak
-                            <div class="kids">
+                            Toddlers (0-5)
+                            <div class="toddler">
                                 <div
                                     class="wrapper d-flex align-items-center justify-content-between"
                                 >
-                                    <button class="max-people">
-                                        <span class="kids-minus">
+                                    <button type="button" class="max-people">
+                                        <span class="toddler-minus">
                                             <i class="fa-solid fa-minus"></i>
                                         </span>
                                     </button>
-                                    <span class="kids-total">0</span>
-                                    <button class="max-people">
-                                        <span class="kids-plus">
+                                    <input type="number" class="toddler-total p-0 text-center bg-white" name="bookToddlers" min="0" max="3" <?= $bookToddlers==null? 'value="0"':'value="'.$bookToddlers.'"'; ?> readonly>
+                                    <button type="button" class="max-people">
+                                        <span class="toddler-plus">
                                             <i class="fa-solid fa-plus"></i>
                                         </span>
                                     </button>
@@ -711,37 +609,237 @@
                     </div>
                     <div class="row my-2">
                         <div class="col-12 position-relative">
-                            <input class="w-100 text-center" type="date" />
+                            <input class="w-100 text-center bg-white" type="date" value="<?= date('Y-m-d', strtotime($bookSchedule)); ?>" disabled>
+                            <input class="w-100 text-center bg-white" type="date" name="bookSchedule" value="<?= date('Y-m-d', strtotime($bookSchedule)); ?>" hidden>
                         </div>
                     </div>
                     <div class="order-items p-3 mb-2">
                         <div class="row g-0">
                             <div class="col-lg-8 col text-start">
-                                <p class="item-name mb-1">Yacth Jagoan Monalisa 12</p>
-                                <p class="item-name mb-1">Yacth Jagoan Monalisa 12</p>
-                                <p class="item-name mb-1">Yacth Jagoan Monalisa 12</p>
-                                <p class="item-name mb-1">Yacth Jagoan Monalisa 12</p>
+                                <p class="item-name mb-1"><?= $boat[0]['boatName']; ?></p>
+                                <input type="number" name="boatId" value="<?= $boat[0]['boatId']; ?>" hidden>
+                                <p class="item-name mb-1" id="package-name"></p>
+                                <input type="number" name="packageId" hidden>
+                                <div class="extra-name-container"></div>
                                 <p class="discount-name mb-1">Discount 10%</p>
                             </div>
                             <div class="col-lg-4 text-end">
-                                <p class="item-price mb-1">130.000.000</p>
-                                <p class="item-price mb-1">130.000.000</p>
-                                <p class="item-price mb-1">130.000.000</p>
-                                <p class="item-price mb-1">130.000.000</p>
-                                <p class="discount-price mb-1">-</p>
+                                <p class="item-price mb-1"><?= number_format($boat[0]['boatPrice']); ?></p>
+                                <span class="packagePrice" hidden></span>
+                                <p class="item-price mb-1" id="package-price"></p>
+                                <div class="extra-price-container"></div>
+                                <p class="discount-price mb-1">- <?= number_format(($boat[0]['boatPrice']+400000)*0.1); ?></p>
                             </div>
                         </div>
                         <hr class="mt-1 mb-3" />
                         <div class="total-price d-flex justify-content-between">
                             <p class="m-0 fw-bold">Total Price</p>
-                            <p class="mb-0 fw-bold final-price">1.200.000.000 IDR</p>
+                            <input type="number" name="bookPrice" hidden>
+                            <p class="mb-0 fw-bold final-price"><?= number_format(($boat[0]['boatPrice']+400000)-($boat[0]['boatPrice']+400000)*0.1); ?> IDR</p>
                         </div>
                     </div>
-                    <button class="btn-secondary w-100">CHECKOUT!</button>
+                    <button type="submit" class="btn-secondary w-100">CHECKOUT!</button>
                     <hr class="border-2 my-4" />
+                </form>                
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- Boat Section End -->
+
+<?php
+$packageNames = [];
+foreach ($package as $p) {
+    $packageNames[$p['packageId']] = $p['packageName'];
+}
+$packagePrices = [];
+foreach ($package as $p) {
+    $packagePrices[$p['packageId']] = $p['packagePrice'];
+}
+$extraNames = [];
+foreach ($extra as $e) {
+    $extraNames[$e['extraId']] = $e['extraName'];
+}
+$extraPrices = [];
+foreach ($extra as $e) {
+    $extraPrices[$e['extraId']] = $e['extraPrice'];
+}
+?>
+
+<script>
+
+var packageNames = <?= json_encode($packageNames); ?>;
+var packagePrices = <?= json_encode($packagePrices); ?>;
+var extraNames = <?= json_encode($extraNames); ?>;
+var extraPrices = <?= json_encode($extraPrices); ?>;
+
+    
+document.addEventListener('DOMContentLoaded', function() {
+    var boatPrice = <?= $boat[0]['boatPrice']; ?>;
+    var maxPeople = <?= $boat[0]['maxPeople']; ?>;
+
+    var finalPrice = document.querySelector('input[name="bookPrice"]');
+    var displayFinalPrice = document.querySelector('.final-price')
+
+    // plus minus button
+    var aplus = document.querySelector('.adult-plus');
+    var tplus = document.querySelector('.teen-plus');
+    var tdplus = document.querySelector('.toddler-plus');
+    var aminus = document.querySelector('.adult-minus');
+    var tminus = document.querySelector('.teen-minus');
+    var tdminus = document.querySelector('.toddler-minus');
+
+    var atotal = document.querySelector('.adult-total');
+    var ttotal = document.querySelector('.teen-total');
+    var tdtotal = document.querySelector('.toddler-total');
+
+    var adultPrice = 400000;
+    var teenPrice = 250000;
+    var toddlerPrice = 50000;
+
+    var discountPrice = document.querySelector('.discount-price');
+    var packPrice = document.querySelector('.packagePrice');
+    packPrice.value = '';
+        displayPrice();
+
+    // adults
+    aplus.addEventListener('click', function() {
+        var totalPeople = parseInt(atotal.value) + parseInt(ttotal.value);
+        if (totalPeople < maxPeople) {
+            atotal.value = parseInt(atotal.value) + 1;
+            displayPrice();
+        }
+    });
+    aminus.addEventListener('click', function() {
+        if (parseInt(atotal.value) > 1) {
+            atotal.value = parseInt(atotal.value) - 1;
+            displayPrice();
+        }
+    });
+
+    // teens
+    tplus.addEventListener('click', function() {
+        var totalPeople = parseInt(atotal.value) + parseInt(ttotal.value);
+        if (totalPeople < maxPeople) {
+            ttotal.value = parseInt(ttotal.value) + 1;
+            displayPrice();
+        }
+    });
+    tminus.addEventListener('click', function() {
+        if (parseInt(ttotal.value) > 0) {
+            ttotal.value = parseInt(ttotal.value) - 1;
+            displayPrice();
+        }
+    });
+
+    // toddlers
+    tdplus.addEventListener('click', function() {
+        if (parseInt(tdtotal.value) < 5) {
+            tdtotal.value = parseInt(tdtotal.value) + 1;
+            displayPrice();
+        }
+    });
+    tdminus.addEventListener('click', function() {
+        if (parseInt(tdtotal.value) > 0) {
+            tdtotal.value = parseInt(tdtotal.value) - 1;
+            displayPrice();
+        }
+    });
+
+    var accordion = document.querySelector('#boat-tour-package');
+    var inputPackage = document.querySelector('input[name="packageId"]');
+    accordion.addEventListener('shown.bs.collapse', event => {
+        var selectedValue = $(event.target).find('.accordion-body').data('value');
+        inputPackage.value = selectedValue;
+        var packageName = packageNames[selectedValue];
+        var packagePrice = packagePrices[selectedValue];
+        packPrice.value = packagePrice;
+        document.querySelector('#package-name').textContent = packageName;
+        document.querySelector('#package-price').textContent = new Intl.NumberFormat({style: 'currency',}).format(packagePrice);
+        displayPrice();
+    });
+    accordion.addEventListener('hidden.bs.collapse', event => {
+        var selectedValue = $(event.target).find('.accordion-body').data('value');
+        inputPackage.value = null;
+        var packageName = packageNames[selectedValue];
+        var packagePrice = packagePrices[selectedValue];
+        packPrice.value = ''; 
+        document.querySelector('#package-name').textContent = '';
+        document.querySelector('#package-price').textContent = '';
+        displayPrice();
+    });
+
+    var extraNameContainer = $('.extra-name-container');
+    var extraPriceContainer = $('.extra-price-container');
+    $('.extra-section').on('click', '#addextra', event => {
+        var extraId = $(event.target).data('value');
+        var extraPrice = extraPrices[extraId];
+        var extraName = extraNames[extraId];
+        var extraNameText = extraNameContainer.find('.extra-name').text();
+        var checkExtra = extraNameText.includes(extraName);
+        if (!checkExtra) {
+            event.target.classList.add('added');
+            $(event.target).text('ADDED');
+            extraNameContainer.append('<p class="extra-name mb-1" id="extra-name-'+ extraId +'">'+ extraName +'</p>');
+            extraPriceContainer.append('<p class="extra-price mb-1" id="extra-price-'+ extraId +'">'+ new Intl.NumberFormat({
+                style: 'currency',
+            }).format(extraPrice) +'</p>');
+            addInputExtra(extraId);
+        }else {
+            event.target.classList.remove('added');
+            $(event.target).text('ADD');
+            extraNameContainer.find('#extra-name-'+ extraId).remove();
+            extraPriceContainer.find('#extra-price-'+ extraId).remove();
+            delInputExtra(extraId);
+        }
+        console.log(document.querySelector('input[name="extraIds[]"]').value);
+        displayPrice();
+    });
+
+    function parseInput(value) {
+        return isNaN(parseFloat(value)) ? 0 : parseFloat(value);
+    }
+
+    function addInputExtra(value) {
+        var newInput = document.createElement('input');
+        newInput.type = 'number';
+        newInput.name = 'extraIds[]';
+        newInput.hidden = true;
+        newInput.value = value;
+
+        extraNameContainer.append(newInput);
+    }
+
+    function delInputExtra(value) {
+        var allInput = document.querySelectorAll('input[name="extraIds[]"]');
+
+        allInput.forEach(function(input) {
+            if (input.value == value) {
+                input.remove();
+            }
+        });
+    }
+
+    function displayPrice() {
+        if (packPrice.value == '') {
+            var totalPrice = boatPrice + (parseInt(atotal.value)*adultPrice) + (parseInt(ttotal.value)*teenPrice) + (parseInt(tdtotal.value)*toddlerPrice);
+        }else {
+            var totalPrice = boatPrice + parseFloat(packPrice.value) + (parseInt(atotal.value)*adultPrice) + (parseInt(ttotal.value)*teenPrice) + (parseInt(tdtotal.value)*toddlerPrice);
+        }
+        
+        $('.extra-price').each(function() {
+            totalPrice = totalPrice + parseFloat($(this).text().replace(',', ''));
+        });
+        discountPrice.textContent = '- ' + new Intl.NumberFormat({
+        style: 'currency',
+        }).format(totalPrice * 0.1);
+        finalPrice.value = totalPrice - (totalPrice * 0.1);
+        displayFinalPrice.textContent = new Intl.NumberFormat({
+        style: 'currency',
+        }).format(parseFloat(finalPrice.value))+' IDR';
+    }
+    
+
+});
+</script>

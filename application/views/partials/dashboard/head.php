@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="<?= base_url('node_modules/bootstrap/dist/css/bootstrap.min.css'); ?>" />
 
-
 <!-- Data Tables CSS -->
 <link rel="stylesheet" href="<?= base_url('node_modules/datatables/datatables.min.css'); ?>">
 

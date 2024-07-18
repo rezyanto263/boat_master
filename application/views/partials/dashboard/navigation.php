@@ -21,7 +21,7 @@
         <aside class="dashboard-sidebar shadow d-flex flex-column">
             <div class="sidebar-logo py-3">
                 <img
-                    class="d-flex mx-auto small"
+                    class="d-flex mx-auto small-logo"
                     src="<?= base_url('assets/images/logo.png') ?>"
                     alt=""
                 />
@@ -90,6 +90,14 @@
                             <i class="fa-solid fa-tags"></i>
                         </div>
                         <span class="textmin">Badges</span>
+                    </a>
+                </li>
+                <li class="sidebar-item <?= ($title=='GUIDES')? 'active':''; ?>">
+                    <a class="gap-3" href="<?= base_url('dashboard/guides'); ?>">
+                        <div class="icon text-center">
+                            <i class="fa-solid fa-id-badge"></i>
+                        </div>
+                        <span class="textmin">Guides</span>
                     </a>
                 </li>
             </ul>

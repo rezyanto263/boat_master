@@ -33,111 +33,51 @@ class Profile extends CI_Controller
         // Fetch user data from the model
         $data = $this->M_profile->get_user_by_id($custData);
 
-        // Check if user data exists
-        if (empty($data)) {
+        if (empty($data['user'])) {
             show_error('User not found', 404);
-            return;
         }
 
-        // Prepare data for the view
-        $datas = array(
-            'title' => 'PROFILE',
-            'user' => $data,
-            'color' => '',
-            'hidden' => '',
-        );
-
-        $partials = array(
-            'head' => 'partials/user/head',
-            'navbar' => 'partials/user/navbar',
-            'content' => 'user/profile',
-            'footer' => 'partials/user/footer',
-            'script' => 'partials/user/script',
-        );
-        $this->load->vars($datas);
-        $this->load->view('master', $partials);
+        // Load the edit view
+        $this->load->view('user/profile', $data);
     }
-
-
 
     // Update user profile
     public function update($custId)
     {
-        // Validasi berhasil, perbarui data pengguna
-        $data = array(
-            'custName' => htmlspecialchars($this->input->post('custName')),
-            'custEmail' => htmlspecialchars($this->input->post('custEmail')),
-            'custAddress' => htmlspecialchars($this->input->post('custAddress')),
-            'custPhone' => htmlspecialchars($this->input->post('custPhone'))
-        );
+        // Set form validation rules
+        $this->form_validation->set_rules('custName', 'Customer Name', 'required');
+        $this->form_validation->set_rules('custEmail', 'Customer Email', 'required|valid_email');
+        $this->form_validation->set_rules('custAddress', 'Customer Address', 'required');
+        $this->form_validation->set_rules('custPhone', 'Customer Phone', 'required');
 
-        // $this->M_profile->update_user($custId, $data);
-
-        if (!empty($_FILES['custPic']['name'])) {
-            $config['upload_path'] = './assets/images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = 2048; // Maksimal ukuran file 2MB
-
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('custPic')) {
-                $uploadData = $this->upload->data();
-                $data['custPic'] = $uploadData['file_name'];
-            } else {
-                // Tangani kesalahan upload file
-                $this->session->set_flashdata('error', $this->upload->display_errors());
-                redirect('profile/update/' . $custId);
-            }
-        }
-
-        if ($this->M_profile->update_user($custId, $data)) {
-            $this->session->set_flashdata('success', 'Profil berhasil diperbarui.');
+        if ($this->form_validation->run() == FALSE) {
+            // Validation failed, load the edit view again
+            $data['user'] = $this->M_profile->get_user_by_id($custId);
+            $this->load->view('user/profile', $data);
         } else {
-            $this->session->set_flashdata('error', 'Gagal memperbarui profil.');
-        }
+            // Validation passed, update user data
+            $data = array(
+                'custName' => $this->input->post('custName'),
+                'custEmail' => $this->input->post('custEmail'),
+                'custAddress' => $this->input->post('custAddress'),
+                'custPhone' => $this->input->post('custPhone')
+            );
 
-        redirect('user/profile');
-    }
+            if (!empty($_FILES['custPic']['name'])) {
+                $config['upload_path'] = 'assets/uploads/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $this->load->library('upload', $config);
 
-    // Update Password
-    public function updatePassword($custId)
-    {
-        $current_password = $this->input->post('current_password');
-        $newPass = $this->input->post('newPass');
-        $confirmPass = $this->input->post('password_confirm');
-        $data['user'] = $this->db->get('customer', $custId)->row_array();
-
-
-        //validation if current password Wrong 
-        if (!password_verify($current_password, $data['user']['custPassword'])) {
-            $this->session->set_flashdata('error', 'Wrong Current Password');
-            redirect(site_url('user/profile'));
-        } else {
-            //Validating if the current password matches the new password
-            if ($current_password == $newPass) {
-                $this->session->set_flashdata('error', 'New Password Cannot Be same with Current Password');
-                redirect(site_url('user/profile'));
-            } else {
-                // Validating that the new password is not the same as the confirm password.
-                if ($newPass != $confirmPass) {
-                    $this->session->set_flashdata('error', 'Password and confirm password do not match.');
-                    redirect(site_url('user/profile'));
-                } else {
-                    // Validation successful, proceed to update the password
-                    $data = array(
-                        'custId' => $custId,
-                        'custPassword' => password_hash($this->input->post('newPass'), PASSWORD_DEFAULT, ['cost' => 10]),
-                    );
-
-                    if ($this->M_profile->updatePassword($custId, $data)) {
-                        // Password updated successfully
-                        $this->session->set_flashdata('succes', 'Password changed successfully.');
-                    } else {
-                        // Failed to update the password
-                        $this->session->set_flashdata('error', 'Failed to change the password. Please try again.');
-                    }
-                    redirect(site_url('user/profile'));
+                if ($this->upload->do_upload('custPic')) {
+                    $uploadData = $this->upload->data();
+                    $data['custPic'] = $uploadData['file_name'];
                 }
+            }
+
+            if ($this->profile_model->update_profile($data)) {
+                $this->session->set_flashdata('success', 'Profile updated successfully.');
+            } else {
+                $this->session->set_flashdata('error', 'Failed to update profile.');
             }
         }
     }

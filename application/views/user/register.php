@@ -71,6 +71,7 @@
                 </div>
             </div>
         </div>
+        <?= $this->session->userdata('message'); ?>
         <?php $this->load->view($script); ?>
     </body>
 </html>
