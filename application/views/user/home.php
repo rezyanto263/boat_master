@@ -86,7 +86,7 @@
             </div>
             <div class="row mt-3 tour-package">
                 <div class="col-6 col-lg-4">
-                    <div class="container bg-white px-5 py-3">
+                    <div class="bg-white px-5 py-3 h-100 hero-choices">
                         <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
                             <div class="row m-0 p-0">
                                 <div class="col-10 m-0 p-0">
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <hr class="mt-0" />
-                            <p>Have a wonderful boat ride with your dearest ones!</p>
+                            <p>Have a wonderful boat tour ride with your dearest ones! Book now!</p>
                             <div class="row">
                                 <div class="price">1.200.00 IDR</div>
                             </div>
@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-lg-4">
-                    <div class="container bg-white px-5 py-3">
+                    <div class="bg-white px-5 py-3 hero-choices">
                         <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
                             <div class="row m-0 p-0">
                                 <div class="col-10 m-0 p-0">
@@ -124,7 +124,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
-                    <div class="container px-5 py-3 design-a-tour">
+                    <div class="px-5 py-3 design-a-tour h-100 hero-choices">
                         <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
                             <div class="row m-0 p-0">
                                 <div class="col-10 m-0 p-0">
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
                             <hr class="mt-0" />
-                            <p>Customize your boat tour for a unique adventure. Book online now!</p>
+                            <p>Customize your boat tour for a unique adventure. Book now!</p>
                             <div class="row">
                                 <div class="price">Book Online</div>
                             </div>
@@ -353,7 +353,7 @@
     <section class="booking-section py-5">
         <div class="container my-5">
             <h2>HOW TO MAKE A BOOKING?</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p>Follow this step to make a booking.</p>
             <div class="row mt-5">
                 <div class="col-3">
                     <div class="card p-2">
@@ -366,8 +366,7 @@
                         </div>
                         <div class="card-body">
                             <p class="mb-0 text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                First, click the "Book Now" button or click the boats menu to choose the boat you want to use for your boat tour.
                             </p>
                         </div>
                     </div>
@@ -383,8 +382,7 @@
                         </div>
                         <div class="card-body">
                             <p class="mb-0 text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Select the tour package you want, and set the number of passengers and additional extras (for private tours only).
                             </p>
                         </div>
                     </div>
@@ -396,12 +394,11 @@
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">3</h4></span
                             >
-                            <h4 class="mb-0">Make a Booking</h4>
+                            <h4 class="mb-0">Checkout & Pay</h4>
                         </div>
                         <div class="card-body">
                             <p class="mb-0 text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Checkout your order to book the ticket and wait for admin confirmation to pay for your boat tour ticket.
                             </p>
                         </div>
                     </div>
@@ -417,8 +414,7 @@
                         </div>
                         <div class="card-body">
                             <p class="mb-0 text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Debitis quam qui optio voluptatibus repellat molestiae.
+                                Lastly, the admin will arrange a guide for you. Wait for your boat tour day to arrive. Enjoy your boat tour!
                             </p>
                         </div>
                     </div>
@@ -430,15 +426,10 @@
 
     <!-- Call to Action Section Start -->
     <section class="cta-section pb-5">
-        <div class="container text-center mb-5">
-            <h1 class="my-3">READY TO EXPLORE THE HEAVEN?</h1>
-            <p class="my-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                lorem purus, venenatis faucibus varius id, rutrum eget nisl. Quisque
-                vitae nisl elit. Duis dapibus sodales arcu vel tristique.
-                Pellentesque ipsum nisl, feugiat tristique suscipit sed, blandit eu
-                tortor. Suspendisse egestas urna elementum, imperdiet elit ac,
-                elementum magna.
+        <div class="container text-center mb-5 d-flex flex-column align-items-center">
+            <h1 class="mt-3 mb-2">READY TO EXPLORE THE HEAVEN?</h1>
+            <p class="mt-3 mb-4 text-center">
+                Embark on a breathtaking journey across the crystal-clear waters of Nusa Penida. Discover hidden beaches, vibrant coral reefs, and mesmerizing sea life. Whether you're seeking adventure or a relaxing escape, our boat tours offer an unforgettable experience. Book your tour now and create memories that will last a lifetime!
             </p>
             <a class="btn btn-primary" href="<?= base_url('boats') ?>">BOOK NOW</a>
         </div>
@@ -590,7 +581,7 @@
     <!-- Meet Our Teams Section End -->
 
     <!-- Review Section Start -->
-    <section class="review-section py-5">
+    <!-- <section class="review-section py-5">
         <div class="container">
             <h2>REVIEW FROM CUSTOMERS</h2>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
@@ -607,7 +598,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Review Section End -->
 
     <!-- Contact & FAQ Section Start -->

@@ -11,6 +11,7 @@
         "source": "https://github.com/bcit-ci/CodeIgniter"
     },
     "require": {
-        "chillerlan/php-qrcode": "^5.0"
+        "chillerlan/php-qrcode": "^5.0",
+        "midtrans/midtrans-php": "^2.5"
     }
 }

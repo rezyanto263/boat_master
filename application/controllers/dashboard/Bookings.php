@@ -113,7 +113,69 @@ class Bookings extends CI_Controller {
     }
 
     public function approveBooking() {
+        $bookId = $this->input->post('bookId');
+        $custEmail = $this->input->post('custEmail');
+        $this->M_bookings->insertBookExpiredDateTime($bookId, date('Y-m-d H:i:s', strtotime('+1 days')));
+
+        $config = array(
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'rezyanto263@gmail.com',
+            'smtp_pass' => 'ehju llty rjht asbu',
+            'smtp_port' => 587,
+            'smtp_crypto' => 'tls',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+            'send_multipart'=> false
+        );
+
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+
+        $this->email->from($email, $name);
+        $this->email->to($custEmail);
+        $this->email->subject('[Boat Master] Your Booking Approved!');
+        $this->email->message("Your booking ticket is already approved, please pay your booking before it's canceled at ".date('l, d-m-Y, h:i A', strtotime('+1 days')));
         
+        if($this->email->send()) {
+            $this->session->set_flashdata('message', '
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast toast-success show message" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body">
+                        Email message has been send!
+                    </div>
+                </div>
+            </div>');
+            redirect('dashboard/bookings');
+        }else {
+            $this->session->set_flashdata('message', '
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body">
+                        Sorry, your message could not be send!
+                    </div>
+                </div>
+            </div>');
+            redirect('dashboard/bookings');
+        }
+    }
+
+    public function autoCancelExpiredBooking() {
+        $expiredBooking = $this->M_bookings->autoCancelExpiredBooking();
+
+        if (!empty($expiredBooking)) {
+            $response = array(
+                'cancelledBookings' => count($expiredBookings),
+                'message' => 'Expired bookings cancelled successfully'
+            );
+        }else {
+            $response = array(
+                'cancelledBookings' => 0,
+                'message' => 'No Bookings cancelled'
+            );
+        }
+        echo json_encode($response);
     }
 
 }

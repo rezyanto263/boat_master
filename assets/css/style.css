@@ -382,6 +382,7 @@ i.notif-icon {
 :where(.profile-user, .tickets) i {
 	font-size: 35px;
 	color: white;
+	transition: all 0.3s ease-in-out;
 }
 
 :where(.profile-user, .tickets):hover i {
@@ -712,7 +713,7 @@ i.notif-icon {
 	font-size: 35px;
 }
 
-/* Hero Styles */
+/* Hero Section Styles */
 .hero-section {
 	background-color: var(--primary);
 	height: 750px;
@@ -733,10 +734,6 @@ i.notif-icon {
 .hero-section #hero .row {
 	max-height: 530px;
 	height: 100%;
-}
-
-.hero-section .row .container {
-	border-radius: 20px;
 }
 
 .tour-package h4 {
@@ -771,6 +768,10 @@ i.notif-icon {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.hero-choices {
+	border-radius: 20px;
 }
 
 /* Watch Section Styles */
@@ -950,7 +951,7 @@ i.notif-icon {
 }
 
 .cta-section p {
-	padding-inline: 270px;
+	max-width: 75%;
 	color: white;
 }
 
@@ -1097,14 +1098,14 @@ i.notif-icon {
 	scrollbar-width: none;
 }
 
-:where(.contact-faq-section, .information-section) .accordion-button {
+:where(.contact-faq-section, .information-section, .about-section) .accordion-button {
 	border-radius: 20px !important;
 	box-shadow: none !important;
 	height: 50px;
 	color: var(--primary) !important;
 }
 
-:where(.contact-faq-section, .information-section) .accordion-item {
+:where(.contact-faq-section, .information-section, .about-section) .accordion-item {
 	background-color: transparent;
 	color: white;
 	border: 0;
@@ -1751,6 +1752,11 @@ body.modal-open {
 	color: var(--secondary);
 }
 
+#founded {
+	color: var(--primary);
+	font-size: 14px;
+}
+
 /* Information Section Styles */
 .information-section .accordion-button {
 	color: var(--primary);
@@ -2027,13 +2033,12 @@ body.auth {
 
 .social-media-box {
     display: flex;
-    gap: 40px;
     margin-bottom: 20px;
 }
 
 .social-icon {
     width: 60px;
-    height: 45px;
+    height: 60px;
     background-color: var(--secondary);
     border-radius: 50%;
     display: flex;
@@ -2098,24 +2103,32 @@ body.auth {
     height: 200px !important; /* Adjust as needed */
 }
 
+
 /* About Section Styles */
 .about-details {
 	background-color: var(--primary);
 	border-radius: 20px;
-
 }
 
-.about-details h1 {
-	font-size: 60px;
-}
-
-.about-details h5{
+:where(.about-details, .about-hero) h5{
 	color: var(--secondary);
+}
+
+.about-story h5, .about-vision h2 {
+	color: var(--primary);
 }
 
 .about-details h3 {
 	text-align: justify;
 }
+
+.accordion-button {
+	background-color: white !important;
+	border: 1px solid var(--primary);
+}
+
+
+
 /* Responsive Configuration Start*/
 .container {
 	max-width: 1536px;
@@ -2136,12 +2149,13 @@ body.auth {
 /* xl */
 @media (max-width: 1280px) {
 	.container {
-		max-width: 1024px;
+		max-width: 1080px;
+		padding-inline: 0;
 	}
 }
 
 /* lg */
-@media (max-width: 1024px) {
+@media (max-width: 1080px) {
 	.container {
 		max-width: 768px;
 	}
@@ -2202,7 +2216,7 @@ body.auth {
 	}
 
 	.hero-section {
-		height: 100svh;
+		height: 100vh;
 	}
 }
 

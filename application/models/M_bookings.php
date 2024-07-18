@@ -72,6 +72,11 @@ class M_bookings extends CI_Model {
         return $this->db->insert('booking_extras', $bookextrasDatas);
     }
 
+    public function insertBookExpiredDateTime($bookId, $bookExpiredAt) {
+        $this->db->where('bookId', $bookId);
+        return $this->db->update('booking_ticket', array('bookExpiredAt' => $bookExpiredAt, 'bookStatus' => 'Not Paid'));
+    }
+
     public function editBooking($bookId, $bookingDatas) {
         $this->db->where('bookId', $bookId);
         return $this->db->update('booking_ticket', $bookingDatas);
@@ -88,6 +93,22 @@ class M_bookings extends CI_Model {
 
         $this->db->where('bookId', $bookId);
         return $this->db->delete('booking_ticket'); 
+    }
+
+    public function autoCancelExpiredBooking() {
+        $currentDateTime = date('Y-m-d H:i:s');
+        $this->db->where('bookExpiredAt <', $currentDateTime);
+        $this->db->where('bookStatus', 'Not Paid');
+        $expiredBookings = $this->db->get('booking_ticket')->result_array();
+
+        if (!empty($expiredBookings)) {
+            foreach ($expiredBookings as $booking) {
+                $this->db->where('bookId', $booking['bookId']);
+                $this->db->update('booking_ticket', array('bookStatus' => 'Cancelled'));
+            }
+        }
+
+        return $expiredBookings;
     }
 
 }

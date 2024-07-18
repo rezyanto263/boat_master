@@ -19,6 +19,31 @@
 <!-- DataTables -->
 <script src="<?= base_url('node_modules/datatables/datatables.min.js'); ?>"></script>
 
+<script type="text/javascript">
+$(document).ready(function (){
+
+    function cancelExpiredBookings() {
+        var xhr = new XMLHttpRequest();
+    
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response.message);
+                    console.log("Cancelled bookings count: " + response.cancelledBookings);
+                }
+            }
+        }
+    
+        xhr.open('GET', '<?= base_url('dashboard/Bookings/autoCancelExpiredBooking') ?>', true);
+        xhr.send();
+    }
+
+    setInterval(cancelExpiredBookings, 10000);
+    cancelExpiredBookings();
+});
+</script>
+
 <!-- Select2 -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 

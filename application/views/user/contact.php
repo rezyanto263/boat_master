@@ -45,7 +45,7 @@
             <div class="col-lg-6 col-md-12 mt-5 mb-5 find-us-container">
                 <h1>Let's Connect!</h1>
                 <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <div class="social-media-box d-flex justify-content-center align-items-center col-lg-6 col-md-12 mb-5">
+                <div class="social-media-box gap-4 d-flex align-items-center col-lg-6 col-md-12 mb-5 w-100">
                     <a class="social-icon d-flex align-items-center justify-content-center" href="#">
                         <i class="fa-brands fa-instagram"></i>
                     </a>

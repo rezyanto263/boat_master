@@ -112,7 +112,7 @@
                 <a class="btn-outline-secondary text-decoration-none" href="<?= base_url('boats') ?>">BOOK NOW</a>
             </div>
 
-            <?php }endforeach; ?>
+            <?php break;}endforeach; ?>
         </div>
     </section>
     <!-- Tickets Section End -->
@@ -311,7 +311,7 @@
                 <a class="btn-outline-secondary text-decoration-none" href="<?= base_url('boats') ?>">BOOK NOW</a>
             </div>
 
-            <?php }endforeach; ?>
+            <?php break;}endforeach; ?>
 
         </div>
     </section>

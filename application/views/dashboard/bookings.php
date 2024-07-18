@@ -25,6 +25,7 @@
                         <th class="text-start">Teens</th>
                         <th class="text-start">Toddlers</th>
                         <th class="text-start">Status</th>
+                        <th class="text-start">Expired At</th>
                         <th class="text-start">Promo Code</th>
                         <th class="text-start">Price</th>
                         <th class="text-start">Notes</th>
@@ -36,7 +37,7 @@
                     <tr>
                         <td><?= $num; ?></td>
                         <td><?= $key['custName']; ?></td>
-                        <td><?= $key['bookSchedule']; ?></td>
+                        <td><?= date('d-m-Y', strtotime($key['bookSchedule'])); ?></td>
                         <td><?= $key['boatName']; ?></td>
                         <td><?= $key['packageName']; ?></td>
                         <td><?= $key['boatStartPoint']; ?></td>
@@ -44,6 +45,7 @@
                         <td><?= $key['bookTeens']; ?></td>
                         <td><?= $key['bookToddlers']; ?></td>
                         <td><?= $key['bookStatus']; ?></td>
+                        <td><?= empty($key['bookExpiredAt'])?'NEED APPROVALS':date('D, d-m-Y h:i A', strtotime($key['bookExpiredAt'])); ?></td>
                         <td><?= $key['procodeName']; ?></td>
                         <td><?= number_format($key['bookPrice']); ?> IDR</td>
                         <td class="overflow-hidden"><?= $key['bookNotes']; ?></td>
@@ -55,6 +57,11 @@
                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editbooking<?= $key['bookId']; ?>">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
+                                <?php if ($key['bookStatus'] == 'Waiting') { ?>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#approvebooking<?= $key['bookId']; ?>">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                                <?php } ?>
                             </div>
                         </td>
                     </tr>
@@ -72,6 +79,7 @@
                         <th class="text-start">Teens</th>
                         <th class="text-start">Toddlers</th>
                         <th class="text-start">Status</th>
+                        <th class="text-start">Expired At</th>
                         <th class="text-start">Promo Code</th>
                         <th class="text-start">Price</th>
                         <th class="text-start">Notes</th>
@@ -162,7 +170,7 @@
                             <option value="Searching Guides">Searching Guides</option>
                             <option value="Enjoy">Wait For The Day!</option>
                             <option value="Done">Done</option>
-                            <option value="Canceled">Canceled</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
                     <div class="col-6">
@@ -265,7 +273,7 @@
                             <option value="Searching Guides" <?= $edit['bookStatus']=='Searching Guides'?'selected':''; ?>>Searching Guides</option>
                             <option value="Enjoy" <?= $edit['bookStatus']=='Enjoy'?'selected':''; ?>>Wait For The Day!</option>
                             <option value="Done" <?= $edit['bookStatus']=='Done'?'selected':''; ?>>Done</option>
-                            <option value="Canceled" <?= $edit['bookStatus']=='Canceled'?'selected':''; ?>>Canceled</option>
+                            <option value="Cancelled" <?= $edit['bookStatus']=='Cancelled'?'selected':''; ?>>Cancelled</option>
                         </select>
                     </div>
                     <div class="col-6">
@@ -326,6 +334,33 @@
     </div>
 </div>
 <?php endforeach;?>
+
+<?php 
+    foreach($booking as $approve): 
+        if ($approve['bookStatus'] == 'Waiting') {
+?>
+<!-- Modal Delete -->
+<div class="modal fade" id="approvebooking<?= $approve['bookId'] ?>" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="<?= base_url('dashboard/bookings/approveBooking'); ?>" method="POST">
+            <div class="modal-header">
+                <h1 class="mb-0 fs-5">APPROVE BOOKING</h3>
+            </div>
+            <div class="modal-body">
+                Do you want to approve this booking to set the booking status to 'Not Paid' and send an email notification to the customer?
+                <input type="hidden" name="bookId" value="<?= $approve['bookId']; ?>">
+                <input type="hidden" name="custEmail" value="<?= $approve['custEmail']; ?>">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">CLOSE</button>
+                <button type="submit" class="btn btn-secondary">APPROVE</button>
+            </div>  
+            </form>
+        </div>
+    </div>
+</div>
+<?php }endforeach;?>
 
 <?php
 $boatPrices = [];
