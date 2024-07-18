@@ -11,15 +11,6 @@ class M_chart extends CI_Model
         $this->load->database();
     }
 
-    // public function get_booking_data()
-    // {
-    //     $this->db->select('boatId, COUNT(bookId) as bookings');
-    //     $this->db->group_by('boatId');
-    //     $this->db->order_by('bookings', 'DESC');
-    //     $query = $this->db->get('booking_ticket');
-    //     return $query->result();
-    // }
-
     public function get_monthly_booking_data($year = null)
     {
 
