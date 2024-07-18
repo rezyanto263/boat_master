@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use Midtrans\Config;
 use Midtrans\Snap;
 use Midtrans\Transaction;
+require_once APPPATH . 'config/dotenv.php';
 
 class Checkout extends CI_Controller {
 
@@ -19,8 +20,11 @@ class Checkout extends CI_Controller {
             redirect('login');
         }
 
-        Config::$serverKey = 'SB-Mid-server-BroUXIm0N8bR6tcstnQhY6rt';
-        Config::$clientKey = 'SB-Mid-client-E6K5wSSVSntEVbWK';
+        $clientKey = getenv('MIDTRANS_CLIENT_KEY');
+        $serverKey = getenv('MIDTRANS_SERVER_KEY');
+
+        Config::$serverKey = $serverKey;
+        Config::$clientKey = $clientKey;
         Config::$isProduction = false;
         Config::$isSanitized = true;
         Config::$is3ds = true;
@@ -91,7 +95,7 @@ class Checkout extends CI_Controller {
 
     public function paymentSuccess($bookId, $procodeId, $bookPrice) {
         $this->M_bookings->editBooking($bookId, array(
-            'bookStatus' => 'Paid',
+            'bookStatus' => 'Searching Guides',
             'procodeId' => $procodeId,
             'bookPrice' => $bookPrice
         ));
