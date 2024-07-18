@@ -166,7 +166,6 @@
                         <select class="form-select w-100" name="bookStatus">
                             <option value="Waiting">Waiting for Approvals</option>
                             <option value="Not Paid">Not Paid</option>
-                            <option value="Paid">Paid</option>
                             <option value="Searching Guides">Searching Guides</option>
                             <option value="Enjoy">Wait For The Day!</option>
                             <option value="Done">Done</option>
@@ -269,7 +268,6 @@
                         <select class="form-select w-100" name="bookStatus">
                             <option value="Waiting" <?= $edit['bookStatus']=='Waiting'?'selected':''; ?>>Waiting for Approvals</option>
                             <option value="Not Paid" <?= $edit['bookStatus']=='Not Paid'?'selected':''; ?>>Not Paid</option>
-                            <option value="Paid" <?= $edit['bookStatus']=='Paid'?'selected':''; ?>>Paid</option>
                             <option value="Searching Guides" <?= $edit['bookStatus']=='Searching Guides'?'selected':''; ?>>Searching Guides</option>
                             <option value="Enjoy" <?= $edit['bookStatus']=='Enjoy'?'selected':''; ?>>Wait For The Day!</option>
                             <option value="Done" <?= $edit['bookStatus']=='Done'?'selected':''; ?>>Done</option>
