@@ -9,7 +9,6 @@ class Profile extends CI_Controller
 
         $this->load->model('M_profile');
         $this->load->model('M_auth');
-
         $this->load->helper('url');
         $this->load->library('form_validation');
         $this->load->library('session');
@@ -57,9 +56,6 @@ class Profile extends CI_Controller
         );
         $this->load->vars($datas);
         $this->load->view('master', $partials);
-
-        // Load the profile view with the user data
-        // $this->load->view('user/profile', $datas);
     }
 
 

@@ -1,8 +1,11 @@
-<?php 
+<?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+use SebastianBergmann\Environment\Console;
 
-class Dashboard extends CI_Controller {
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Dashboard extends CI_Controller
+{
 
     public function __construct()
     {
@@ -11,12 +14,33 @@ class Dashboard extends CI_Controller {
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
         }
+        $this->load->model('M_chart');
     }
 
     public function index()
     {
+
+        $selectedYear = $this->input->get('year');
+        if (!$selectedYear) {
+            $selectedYear = date('Y');
+        }
+
+        $monthlyData = $this->M_chart->get_monthly_booking_data($selectedYear);
+        $statusCounts = $this->M_chart->get_booking_status_counts();
+        $customerCount = $this->M_chart->get_customer_count();
+        $boatCount = $this->M_chart->get_boat_count();
+        $bookCount = $this->M_chart->get_booking_count();
+        $earnings = $this->M_chart->get_book_earnings();
+
         $datas = array(
             'title' => 'DASHBOARD',
+            'graph' => $monthlyData,
+            'statusCounts' => $statusCounts,
+            'selectedYear' => $selectedYear,
+            'customerCount' => $customerCount,
+            'boatCount' => $boatCount,
+            'bookCount' => $bookCount,
+            'earnings' => $earnings,
         );
 
         $partials = array(
@@ -29,9 +53,6 @@ class Dashboard extends CI_Controller {
         $this->load->vars($datas);
         $this->load->view('dashMaster', $partials);
     }
-
 }
 
 /* End of file Dashboard.php */
-
-?>

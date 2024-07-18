@@ -519,6 +519,8 @@ i.notif-icon {
 	color: white !important;
 }
 
+
+
 /* Button Styles */
 .btn-primary,
 .btn-primary:focus-visible {
@@ -634,6 +636,7 @@ i.notif-icon {
 .btn-play i {
 	font-size: 35px;
 }
+
 
 /* Hero Styles */
 .hero-section {
@@ -819,6 +822,59 @@ i.notif-icon {
 	font-size: 30px;
 	color: var(--primary);
 }
+
+/* dashboard */
+.card-dashboard {
+	background-color: white;
+	color: var(--primary);
+	font-weight: var(--fwbold);
+	border-radius: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	outline: 0;
+	transition: all 0.3s ease-in-out;
+	box-shadow: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	text-decoration: none;
+}
+
+.card-dashboard:hover,
+.card-dashboard:hover:active {
+	background-color: var(--primary);
+	color: white;
+}
+
+.card-link {
+	text-decoration: none;
+}
+
+.chart-select {
+	background-color: white;
+	color: var(--primary);
+	font-weight: var(--fwbold);
+	border-radius: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	outline: 0;
+	transition: all 0.3s ease-in-out;
+	box-shadow: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.chart-select:hover,
+.chart-select:hover:active {
+	background-color: var(--primary);
+	color: white;
+}
+
 
 /* How to Make a Booking? Section Styles */
 .booking-section {
@@ -1560,6 +1616,23 @@ footer.blue :where(p, a) {
 	color: var(--primary);
 	border: 2px solid var(--primary);
 	background-color: white;
+}
+
+/* Chart */
+.chart {
+	max-width: 900px;
+	height: 450px;
+	padding: 50px;
+	margin: 0 auto;
+}
+
+.chart .chart_types {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.chart .chart_types button {
+	padding: 10px 25px;
 }
 
 /* Profile section */
