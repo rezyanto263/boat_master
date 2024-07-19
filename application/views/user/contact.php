@@ -40,7 +40,9 @@
                         </div>
                         <button type="submit" class="btn-secondary w-75">SUBMIT</button>
                     </form>
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
                     <?= $this->session->flashdata('message'); ?>
+                </div>
             </div>
             <div class="col-lg-6 col-md-12 mt-5 mb-5 find-us-container">
                 <h1>Let's Connect!</h1>

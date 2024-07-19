@@ -643,7 +643,7 @@
                         </div>
                         <button type="submit" class="btn-secondary">SUBMIT</button>
                     </form>
-                    <?= $this->session->flashdata('message'); ?>
+                    
                 </div>
                 <div class="col-7 offset-1 p-0">
                     <h2>FREQUENTLY ASK QUESTION</h2>
@@ -748,5 +748,7 @@
     </section>
     <!-- Contact & FAQ Section End -->
 </main>
+<?= $this->session->flashdata('message'); ?>
+
 
 
