@@ -1,25 +1,3 @@
-<script type="text/javascript">
-    function cancelExpiredBookings() {
-        var xhr = new XMLHttpRequest();
-    
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    console.log(response.message);
-                    console.log("Cancelled bookings count: " + response.cancelledBookings);
-                }
-            }
-        }
-    
-        xhr.open('GET', '<?= base_url('dashboard/Bookings/autoCancelExpiredBooking') ?>', true);
-        xhr.send();
-    }
-
-    setInterval(cancelExpiredBookings, 10000);
-    cancelExpiredBookings();
-</script>
-
 <!-- JQuery -->
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -56,3 +34,27 @@
 
 <!-- My Script -->
 <script src="<?= base_url('assets/js/script.js') ?>"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    function cancelExpiredBookings() {
+        var xhr = new XMLHttpRequest();
+    
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response.message);
+                    console.log("Cancelled bookings count: " + response.cancelledBookings);
+                }
+            }
+        }
+    
+        xhr.open('GET', '<?= base_url('dashboard/Bookings/autoCancelExpiredBooking') ?>', true);
+        xhr.send();
+    }
+
+    setInterval(cancelExpiredBookings, 10000);
+    cancelExpiredBookings();
+});
+</script>

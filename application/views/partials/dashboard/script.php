@@ -19,9 +19,14 @@
 <!-- DataTables -->
 <script src="<?= base_url('node_modules/datatables/datatables.min.js'); ?>"></script>
 
+<!-- Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<!-- My Script -->
+<script src="<?= base_url('assets/js/script.js'); ?>"></script>
+
 <script type="text/javascript">
 $(document).ready(function (){
-
     function cancelExpiredBookings() {
         var xhr = new XMLHttpRequest();
     
@@ -43,9 +48,3 @@ $(document).ready(function (){
     cancelExpiredBookings();
 });
 </script>
-
-<!-- Select2 -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-<!-- My Script -->
-<script src="<?= base_url('assets/js/script.js'); ?>"></script>
