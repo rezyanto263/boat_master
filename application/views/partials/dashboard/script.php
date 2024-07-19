@@ -11,10 +11,7 @@
 <script src="<?= base_url('node_modules/bootstrap-datepicker/js/bootstrap-datepicker.js') ?>"></script>
 
 <!-- Font Awesome -->
-<script
-    src="https://kit.fontawesome.com/1a07ed5a89.js"
-    crossorigin="anonymous"
-></script>
+<script src="https://kit.fontawesome.com/1a07ed5a89.js" crossorigin="anonymous"></script>
 
 <!-- DataTables -->
 <script src="<?= base_url('node_modules/datatables/datatables.min.js'); ?>"></script>

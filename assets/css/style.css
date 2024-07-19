@@ -222,7 +222,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	color: var(--secondary);
 }
 
-input[type="checkbox" i].del-checkbox-tour {
+input[type="checkbox"i].del-checkbox-tour {
 	top: 15px;
 	position: relative;
 	width: 20px !important;
@@ -597,6 +597,8 @@ i.notif-icon {
 	color: white !important;
 }
 
+
+
 /* Button Styles */
 .btn-primary,
 .btn-primary:focus-visible {
@@ -713,7 +715,7 @@ i.notif-icon {
 	font-size: 35px;
 }
 
-/* Hero Section Styles */
+/* Hero Styles */
 .hero-section {
 	background-color: var(--primary);
 	height: 750px;
@@ -897,6 +899,59 @@ i.notif-icon {
 	font-size: 30px;
 	color: var(--primary);
 }
+
+/* dashboard */
+.card-dashboard {
+	background-color: white;
+	color: var(--primary);
+	font-weight: var(--fwbold);
+	border-radius: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	outline: 0;
+	transition: all 0.3s ease-in-out;
+	box-shadow: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	text-decoration: none;
+}
+
+.card-dashboard:hover,
+.card-dashboard:hover:active {
+	background-color: var(--primary);
+	color: white;
+}
+
+.card-link {
+	text-decoration: none;
+}
+
+.chart-select {
+	background-color: white;
+	color: var(--primary);
+	font-weight: var(--fwbold);
+	border-radius: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	outline: 0;
+	transition: all 0.3s ease-in-out;
+	box-shadow: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.chart-select:hover,
+.chart-select:hover:active {
+	background-color: var(--primary);
+	color: white;
+}
+
 
 /* How to Make a Booking? Section Styles */
 .booking-section {
@@ -1232,18 +1287,18 @@ footer.blue :where(p, a) {
 
 .card-header .boat-image {
 	position: relative;
-    overflow: hidden;
-    padding-bottom: 65%;
+	overflow: hidden;
+	padding-bottom: 65%;
 }
 
 .card-header img {
 	border-radius: 10px;
 	position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .badge {
@@ -1422,13 +1477,10 @@ footer.blue :where(p, a) {
 	right: 0;
 }
 
-.tour-packages
-	:where(
-		.accordion-item,
-		.accordion-header,
-		.accordion-body,
-		.accordion-collapse
-	) {
+.tour-packages:where(.accordion-item,
+	.accordion-header,
+	.accordion-body,
+	.accordion-collapse) {
 	border-radius: 20px !important;
 }
 
@@ -1762,6 +1814,23 @@ body.modal-open {
 	color: var(--primary);
 	border: 2px solid var(--primary);
 	background-color: white;
+}
+
+/* Chart */
+.chart {
+	max-width: 900px;
+	height: 450px;
+	padding: 50px;
+	margin: 0 auto;
+}
+
+.chart .chart_types {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.chart .chart_types button {
+	padding: 10px 25px;
 }
 
 /* Profile section */
@@ -2210,6 +2279,7 @@ body.auth {
 }
 
 @media (max-width: 992px) {
+
 	ul.navbar-nav,
 	.navbar-nav {
 		display: none !important;
@@ -2227,9 +2297,11 @@ body.auth {
 	0% {
 		transform: scaleY(0);
 	}
+
 	80% {
 		transform: scaleY(1.1);
 	}
+
 	100% {
 		transform: scaleY(1);
 	}
@@ -2239,9 +2311,11 @@ body.auth {
 	0% {
 		transform: scale(0);
 	}
+
 	80% {
 		transform: scale(1.1);
 	}
+
 	100% {
 		transform: scale(1);
 	}
@@ -2252,9 +2326,11 @@ body.auth {
 		opacity: 0;
 		transform: rotateX(-90deg);
 	}
+
 	50% {
 		transform: rotateX(-20deg);
 	}
+
 	100% {
 		opacity: 1;
 		transform: rotateX(0deg);

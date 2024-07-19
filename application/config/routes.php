@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -70,3 +70,4 @@ $route['checkout/(:any)'] = 'user/Checkout/index/$1';
 $route['gallery'] = 'user/Gallery';
 $route['about'] = 'user/About';
 $route['contact'] = 'user/Contact';
+

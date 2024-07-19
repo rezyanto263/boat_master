@@ -313,20 +313,21 @@
 </div>
 <?php endforeach; ?>
 
-<?php foreach($booking as $del): ?>
-<!-- Modal Delete -->
-<div class="modal fade" id="delbooking<?= $del['bookId'] ?>" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="mb-0 fs-5">DELETE BOOKING</h3>
-            </div>
-            <div class="modal-body">
-                Are you sure want to delete this data?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">CLOSE</button>
-                <a class="btn btn-secondary" href="<?= base_url('dashboard/bookings/delBooking/'.$del['bookId']); ?>">DELETE</a>
+<?php foreach ($booking as $del) : ?>
+    <!-- Modal Delete -->
+    <div class="modal fade" id="delbooking<?= $del['bookId'] ?>" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="mb-0 fs-5">DELETE BOOKING</h3>
+                </div>
+                <div class="modal-body">
+                    Are you sure want to delete this data?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">CLOSE</button>
+                    <a class="btn btn-secondary" href="<?= base_url('dashboard/bookings/delBooking/' . $del['bookId']); ?>">DELETE</a>
+                </div>
             </div>
         </div>
     </div>
@@ -413,24 +414,24 @@ document.addEventListener('DOMContentLoaded', function() {
         var perTeenPrice = 250000;
         var perToddlerPrice = 50000;
 
-        var extraPrice = 0;
-        var selectedExtras = [].slice.call(extraSelect.selectedOptions);
+            var extraPrice = 0;
+            var selectedExtras = [].slice.call(extraSelect.selectedOptions);
 
-        selectedExtras.forEach(function(option) {
-            var extraId = option.value;
-            extraPrice += parseFloat(extraPrices[extraId]) || 0;
-        });
+            selectedExtras.forEach(function(option) {
+                var extraId = option.value;
+                extraPrice += parseFloat(extraPrices[extraId]) || 0;
+            });
 
         var finalPrice = boatPrice + packagePrice + extraPrice + (adults * perAdultPrice) + (teens * perTeenPrice) + (toddlers * perToddlerPrice);
         var webDiscount = finalPrice - (finalPrice * 0.1);
         finalPrice = webDiscount - (webDiscount * (promoDiscount / 100));
 
-        finalPriceInput.value = finalPrice;
-        displayTotalPrice.textContent = new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR'
-        }).format(finalPrice);
-    }
+            finalPriceInput.value = finalPrice;
+            displayTotalPrice.textContent = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(finalPrice);
+        }
 
     function addEventListeners(modal) {
         var boatSelect = modal.querySelector('select[name="boatId"]');
