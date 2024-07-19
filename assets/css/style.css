@@ -1477,7 +1477,7 @@ footer.blue :where(p, a) {
 	right: 0;
 }
 
-.tour-packages:where(.accordion-item,
+.tour-packages :where(.accordion-item,
 	.accordion-header,
 	.accordion-body,
 	.accordion-collapse) {
@@ -2191,7 +2191,7 @@ body.auth {
 	text-align: justify;
 }
 
-.accordion-button {
+.about-section .accordion-button {
 	background-color: white !important;
 	border: 1px solid var(--primary);
 }
