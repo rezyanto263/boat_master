@@ -50,7 +50,7 @@ $(document).ready(function () {
             }
         }
     
-        xhr.open('GET', '<?= base_url('dashboard/Bookings/autoCancelExpiredBooking') ?>', true);
+        xhr.open('GET', '<?= base_url('user/Booking/autoCancelExpiredBooking') ?>', true);
         xhr.send();
     }
 

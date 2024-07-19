@@ -74,6 +74,23 @@ class Booking extends CI_Controller {
         }
     }
 
+    public function autoCancelExpiredBooking() {
+        $expiredBooking = $this->M_bookings->autoCancelExpiredBooking();
+
+        if (!empty($expiredBooking)) {
+            $response = array(
+                'cancelledBookings' => count($expiredBookings),
+                'message' => 'Expired bookings cancelled successfully'
+            );
+        }else {
+            $response = array(
+                'cancelledBookings' => 0,
+                'message' => 'No Bookings cancelled'
+            );
+        }
+        echo json_encode($response);
+    }
+
 }
 
 /* End of file Booking.php */
