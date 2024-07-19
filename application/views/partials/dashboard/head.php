@@ -16,4 +16,4 @@
 
 
 <!-- My Styles -->
-<link rel="stylesheet" href="<?= base_url('assets/css/style.css?v=1.0'); ?>" />
+<link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" />
