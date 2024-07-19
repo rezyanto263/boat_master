@@ -99,6 +99,8 @@ if (btn_edit_password != null) {
 }
 
 
+// Profile END
+
 // Data Tables
 dashboard = document.querySelector(".dashboard");
 if (dashboard != null) {
@@ -176,7 +178,7 @@ function isLetterSpaceKey(evt) {
 }
 
 function addTour() {
-	var container  = document.querySelector('.add-tour-input')
+	var container = document.querySelector(".add-tour-input");
 	var newContent = `
 	<label class="mt-3">Package Tour Details</label>
 	<div class="input-tour-container">
@@ -186,11 +188,11 @@ function addTour() {
 		</div>
 		<textarea class="form-control w-100" type="text" name="tourDescs[]" placeholder="Simple description about the tour..." maxlength="50"></textarea>
 	</div>`;
-	container.insertAdjacentHTML('beforeend', newContent);
+	container.insertAdjacentHTML("beforeend", newContent);
 }
 
 function addTourEdit(packageId) {
-	var container  = document.querySelector('.edit-tour-input'+packageId);
+	var container = document.querySelector(".edit-tour-input" + packageId);
 	var newContent = `
 	<label class="mt-3">Package Tour Details</label>
 	<div class="input-tour-container">
@@ -200,10 +202,10 @@ function addTourEdit(packageId) {
 		</div>
 		<textarea class="form-control w-100" type="text" name="tourDescs[]" placeholder="Simple description about the tour..." maxlength="50"></textarea>
 	</div>`;
-	container.insertAdjacentHTML('beforeend', newContent);
+	container.insertAdjacentHTML("beforeend", newContent);
 }
 
-var checkFancyBox = document.querySelector('.fancybox');
+var checkFancyBox = document.querySelector(".fancybox");
 if (checkFancyBox != null) {
 	Fancybox.bind('[data-fancybox="video"]', {
 		buttons: [
@@ -215,25 +217,25 @@ if (checkFancyBox != null) {
 		],
 		youtube: {
 			controls: 1,
-			showinfo: 0
+			showinfo: 0,
 		},
 		vimeo: {
-			color: "f00"
+			color: "f00",
 		},
 		iframe: {
 			css: {
-				width: '80%',
-				height: '80%'
-			}
+				width: "80%",
+				height: "80%",
+			},
 		},
-		protect: true,             
-		loop: true,                
-		transitionEffect: "slide", 
-		transitionDuration: 500,   
+		protect: true,
+		loop: true,
+		transitionEffect: "slide",
+		transitionDuration: 500,
 		thumbs: {
-			autoStart: true, 
-			axis: "x"        
-		}
+			autoStart: true,
+			axis: "x",
+		},
 	});
 
 	Fancybox.bind('[data-fancybox="gallery"]', {
@@ -258,37 +260,36 @@ if (checkFancyBox != null) {
 
 
 
-const playButton = document.getElementById('playButton');
-const videoContainer = document.getElementById('videoContainer');
-const video = document.getElementById('fullscreenVideo');
+const playButton = document.getElementById("playButton");
+const videoContainer = document.getElementById("videoContainer");
+const video = document.getElementById("fullscreenVideo");
 
 if ((video && playButton && videoContainer) != null) {
 	let isPlaying = false;
-	playButton.addEventListener('click', () => {
+	playButton.addEventListener("click", () => {
 		if (isPlaying) {
 			video.pause();
-			video.currentTime = 0
-			videoContainer.style.display = 'none';
+			video.currentTime = 0;
+			videoContainer.style.display = "none";
 		} else {
-			videoContainer.style.display = 'block';
+			videoContainer.style.display = "block";
 			video.play();
 		}
 		isPlaying = !isPlaying;
 	});
-	
 
 	function stopVideo() {
 		if (isPlaying) {
 			video.pause();
-			video.currentTime = 0
-			videoContainer.style.display = 'none';
-			isPlaying = false
+			video.currentTime = 0;
+			videoContainer.style.display = "none";
+			isPlaying = false;
 		}
 	}
 
-	window.addEventListener('scroll', stopVideo);
-	window.addEventListener('touchmove', stopVideo);
-	window.addEventListener('resize', stopVideo);
+	window.addEventListener("scroll", stopVideo);
+	window.addEventListener("touchmove", stopVideo);
+	window.addEventListener("resize", stopVideo);
 }
 
 $('.message').delay(3000).fadeOut(300);

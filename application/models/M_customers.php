@@ -1,10 +1,12 @@
-<?php 
+<?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_customers extends CI_Model {
+class M_customers extends CI_Model
+{
 
-    public function getAllCustomers() {
+    public function getAllCustomers()
+    {
         return $this->db->get('customer')->result_array();
     }
 
@@ -26,5 +28,3 @@ class M_customers extends CI_Model {
 }
 
 /* End of file M_customers.php */
-
-?>

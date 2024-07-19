@@ -8,7 +8,7 @@ class Profile extends CI_Controller
         parent::__construct();
         $this->load->model('M_customers');
 
-        if (!$this->session->userdata('custId')){
+        if (!$this->session->userdata('custId')) {
             redirect('login');
         }
     }
@@ -56,7 +56,7 @@ class Profile extends CI_Controller
             $config['max_size']             = 2048;
             $config['max_width']            = 0;
             $config['max_height']           = 0;
-            
+
             $this->upload->initialize($config);
 
             if ($this->upload->do_upload('custPicture')) {
