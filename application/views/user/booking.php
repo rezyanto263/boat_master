@@ -619,7 +619,7 @@
                                 <p class="item-name mb-1"><?= $boat[0]['boatName']; ?></p>
                                 <input type="number" name="boatId" value="<?= $boat[0]['boatId']; ?>" hidden>
                                 <p class="item-name mb-1" id="package-name"></p>
-                                <input type="number" name="packageId" hidden>
+                                <input type="number" name="packageId" hidden required>
                                 <div class="extra-name-container"></div>
                                 <p class="discount-name mb-1">Discount 10%</p>
                             </div>
