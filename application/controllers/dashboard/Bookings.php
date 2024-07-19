@@ -133,10 +133,10 @@ class Bookings extends CI_Controller {
         $this->load->library('email', $config);
         $this->email->initialize($config);
 
-        $this->email->from($email, $name);
+        $this->email->from('rezyanto263@gmail.com', 'BOAT MASTER');
         $this->email->to($custEmail);
-        $this->email->subject('[Boat Master] Your Booking Approved!');
-        $this->email->message("Your booking ticket is already approved, please pay your booking before it's canceled at ".date('l, d-m-Y, h:i A', strtotime('+1 days')));
+        $this->email->subject('[Boat Master] Your Booking is Approved!');
+        $this->email->message("Your booking ticket is already approved, please pay your booking before it's cancelled at ".date('l, d-m-Y h:i A', strtotime('+1 days')));
         
         if($this->email->send()) {
             $this->session->set_flashdata('message', '

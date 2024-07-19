@@ -5,8 +5,11 @@
             <h1 class="text-center">CURRENT TICKETS</h1>
             <?php 
             if (!empty($tickets)) {
+                $filteredTickets = array_filter($tickets, function($tickets) {
+                    return $tickets['bookStatus'] != 'Done' && $tickets['bookStatus'] != 'Cancelled';
+                });
             foreach($tickets as $key): 
-                if (($key['bookStatus'] != 'Canceled') && ($key['bookStatus'] != 'Done')) {
+                if ($key['bookStatus'] != 'Cancelled' && $key['bookStatus'] != 'Done') {
             ?>
             <div class="row d-flex justify-content-center mt-5">
                 <div class="col-3 p-0">
@@ -14,7 +17,7 @@
                         class="qr-code-ticket py-5 ps-4 pe-2 d-flex flex-column align-items-center justify-content-center"
                     >   
                         <div class="d-flex justify-content-center p-0">
-                            <img <?= $key['bookStatus']=='Waiting'?'class="blur-qr"':'' ?> src="data:image/png;base64,<?= base64_encode($qrcode[$key['bookId']]); ?>" alt="" />
+                            <img draggable="false" <?= $key['bookStatus']=='Waiting'?'class="blur-qr"':'' ?> src="data:image/png;base64,<?= base64_encode($qrcode[$key['bookId']]); ?>" alt="" />
                         </div>
                         <p class="mt-1 booking-status fw-bold">STATUS: <span><?= $key['bookStatus']!='Waiting'?strtoupper($key['bookStatus']):'WAITING FOR APPROVALS'; ?></span></p>
                         <?php if ($key['bookStatus'] == 'Not Paid') { ?>
@@ -105,16 +108,26 @@
                     </p>
                 </div>
             </div>
-            <?php 
-                } 
+            <?php }else if(empty($filteredTickets)) { ?>
+
+            <div class="d-flex flex-column align-items-center my-5">
+                <img class="w-25 mb-5" src="<?= base_url('assets/images/no-ticket.png'); ?>" alt="">
+                <p class="text-white">You haven't booked any ticket yet. Please booking our services.</p>
+                <a class="btn-outline-secondary text-decoration-none" href="<?= base_url('boats'); ?>">BOOK NOW</a>
+            </div>
+
+            <?php
+            break;}
             endforeach;
             }else {
             ?>
+
             <div class="d-flex flex-column align-items-center my-5">
                 <img class="w-25 mb-5" src="<?= base_url('assets/images/no-ticket.png') ?>" alt="">
                 <p class="text-white">You haven't booked any ticket yet. Please booking our services.</p>
                 <a class="btn-outline-secondary text-decoration-none" href="<?= base_url('boats') ?>">BOOK NOW</a>
             </div>
+
             <?php } ?>
         </div>
     </section>
@@ -161,8 +174,11 @@
 
             <?php 
             if (!empty($tickets)) {
+                $filteredTickets = array_filter($tickets, function($tickets) {
+                    return $tickets['bookStatus'] == 'Done' || $tickets['bookStatus'] == 'Cancelled';
+                });
             foreach($tickets as $history): 
-                if (($history['bookStatus'] == 'Done') && (!empty($history))) {
+                if ($history['bookStatus'] == 'Done') {
             ?>
 
             <div class="row d-flex justify-content-center mt-5">
@@ -183,6 +199,7 @@
                         class="details-ticket py-5 ps-lg-5 ps-xl-5 ps-xxl-5 ps-5 pe-4 d-flex flex-column justify-content-start"
                     >
                         <h1 class="mb-0"><?= strtoupper($history['packageName']); ?></h1>
+                        <h3 class="mb-0 text-white"><?= strtoupper($history['boatType']); ?> TOUR</h3>
                         <div class="time d-flex align-items-center gap-3 mt-3">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fa-solid fa-calendar-days"></i>
@@ -195,7 +212,6 @@
                             </div>
                             <p class="text-white mb-0">08:00 AM</p>
                         </div>
-                        <h3 class="mb-0 text-white"><?= strtoupper($history['boatType']); ?> TOUR</h3>
                         <div class="place d-flex align-items-center gap-3 mt-1">
                             <div class="d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-map-location-dot"></i>
@@ -235,7 +251,7 @@
                 </div>
             </div>
 
-            <?php }else if (($history['bookStatus']=='Canceled') && (!empty($history))) { ?>
+            <?php }else if ($history['bookStatus']=='Cancelled') { ?>
 
             <div class="row d-flex justify-content-center mt-5">
                 <div class="col-3 p-0">
@@ -255,6 +271,7 @@
                         class="details-ticket py-5 ps-lg-5 ps-xl-5 ps-xxl-5 ps-5 pe-4 d-flex flex-column justify-content-start"
                     >
                         <h1 class="mb-0"><?= strtoupper($history['packageName']); ?></h1>
+                        <h3 class="mb-0 text-white"><?= strtoupper($history['boatType']); ?> TOUR</h3>
                         <div class="time d-flex align-items-center gap-3 mt-3">
                             <div class="d-flex justify-content-center align-items-center">
                                 <i class="fa-solid fa-calendar-days"></i>
@@ -267,7 +284,6 @@
                             </div>
                             <p class="text-white mb-0">08:00 AM</p>
                         </div>
-                        <h3 class="mb-0 text-white"><?= strtoupper($history['boatType']); ?> TOUR</h3>
                         <div class="place d-flex align-items-center gap-3 mt-1">
                             <div class="d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-map-location-dot"></i>
@@ -307,7 +323,16 @@
                 </div>
             </div>
 
-                <?php } 
+            <?php }else if (empty($filteredTickets)) { ?>
+
+                <div class="d-flex flex-column align-items-center my-5">
+                    <img class="w-25 mb-5" src="<?= base_url('assets/images/no-ticket.png') ?>" alt="">
+                    <p>You haven't booked any ticket yet. Please booking our services.</p>
+                    <a class="btn-outline-secondary text-decoration-none" href="<?= base_url('boats') ?>">BOOK NOW</a>
+                </div>
+
+            <?php 
+            break;} 
             endforeach;
             }else {
             ?>
