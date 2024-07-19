@@ -4,6 +4,7 @@
         <div class="container pb-5">
             <h1 class="text-center">CURRENT TICKETS</h1>
             <?php 
+            if (!empty($tickets)) {
             foreach($tickets as $key): 
                 if (($key['bookStatus'] != 'Canceled') && ($key['bookStatus'] != 'Done')) {
             ?>
@@ -104,15 +105,17 @@
                     </p>
                 </div>
             </div>
-            <?php }else { ?>
-
+            <?php 
+                } 
+            endforeach;
+            }else {
+            ?>
             <div class="d-flex flex-column align-items-center my-5">
                 <img class="w-25 mb-5" src="<?= base_url('assets/images/no-ticket.png') ?>" alt="">
                 <p class="text-white">You haven't booked any ticket yet. Please booking our services.</p>
                 <a class="btn-outline-secondary text-decoration-none" href="<?= base_url('boats') ?>">BOOK NOW</a>
             </div>
-
-            <?php break;}endforeach; ?>
+            <?php } ?>
         </div>
     </section>
     <!-- Tickets Section End -->
@@ -157,6 +160,7 @@
             <h1 class="text-center">TICKETS HISTORY</h1>
 
             <?php 
+            if (!empty($tickets)) {
             foreach($tickets as $history): 
                 if (($history['bookStatus'] == 'Done') && (!empty($history))) {
             ?>
@@ -303,15 +307,18 @@
                 </div>
             </div>
 
-            <?php }else { ?>
+                <?php } 
+            endforeach;
+            }else {
+            ?>
 
-            <div class="d-flex flex-column align-items-center my-5">
-                <img class="w-25 mb-5" src="<?= base_url('assets/images/no-ticket.png') ?>" alt="">
-                <p>You haven't booked any ticket yet. Please booking our services.</p>
-                <a class="btn-outline-secondary text-decoration-none" href="<?= base_url('boats') ?>">BOOK NOW</a>
-            </div>
+                <div class="d-flex flex-column align-items-center my-5">
+                    <img class="w-25 mb-5" src="<?= base_url('assets/images/no-ticket.png') ?>" alt="">
+                    <p>You haven't booked any ticket yet. Please booking our services.</p>
+                    <a class="btn-outline-secondary text-decoration-none" href="<?= base_url('boats') ?>">BOOK NOW</a>
+                </div>
 
-            <?php break;}endforeach; ?>
+            <?php } ?>
 
         </div>
     </section>

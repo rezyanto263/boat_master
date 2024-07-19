@@ -48,7 +48,7 @@ class Tickets extends CI_Controller {
             'hidden' => '',
             'color' => 'blue',
             'tickets' => $ticketsDatas,
-            'qrcode' => $qr
+            'qrcode' => empty($qr)?'':$qr
         );
 
         $partials = array(
