@@ -540,7 +540,7 @@
             </div>
             <div class="col-4 pt-1 ps-0">
                 <div class="details-order sticky-top mt-5 p-4">
-                <form action="<?= base_url('user/Booking/addBooking') ?>" method="post">
+                <form action="<?= base_url('user/Booking/addBooking') ?>" method="post" class="needs-validation" novalidate>
                     <div class="details-header">
                         <h3 class="mb-1">Order Details</h3>
                         <hr class="border-2 mb-3 mt-2" />
@@ -619,7 +619,8 @@
                                 <p class="item-name mb-1"><?= $boat[0]['boatName']; ?></p>
                                 <input type="number" name="boatId" value="<?= $boat[0]['boatId']; ?>" hidden>
                                 <p class="item-name mb-1" id="package-name"></p>
-                                <input type="number" name="packageId" hidden required>
+                                
+                                <input type="number" name="packageId" id="packageId" hidden required>
                                 <div class="extra-name-container"></div>
                                 <p class="discount-name mb-1">Discount 10%</p>
                             </div>
@@ -627,6 +628,7 @@
                                 <p class="item-price mb-1"><?= number_format($boat[0]['boatPrice']); ?></p>
                                 <span class="packagePrice" hidden></span>
                                 <p class="item-price mb-1" id="package-price"></p>
+                                
                                 <div class="extra-price-container"></div>
                                 <p class="discount-price mb-1">- <?= number_format(($boat[0]['boatPrice']+400000)*0.1); ?></p>
                             </div>
@@ -640,6 +642,10 @@
                     </div>
                     <button type="submit" class="btn-secondary w-100">CHECKOUT!</button>
                     <hr class="border-2 my-4" />
+                    <input type="number" id="packageId" hidden required>
+                    <div class="invalid-feedback text-center">
+                        You must select a package tour!
+                    </div>
                 </form>                
                 </div>
             </div>
@@ -698,22 +704,31 @@ document.addEventListener('DOMContentLoaded', function() {
     var teenPrice = 250000;
     var toddlerPrice = 50000;
 
+    // var bookAdults = document.querySelector('#bookAdults');
+    // var bookTeens = document.querySelector('#bookTeens');
+    // var bookToddlers = document.querySelector('#bookToddlers');
+    // var bookAdultsPrice = document.querySelector('#bookAdultsPrice');
+    // var bookTeensPrice = document.querySelector('#bookTeensPrice');
+    // var bookToddlersPrice = document.querySelector('#bookToddlersPrice');
+
     var discountPrice = document.querySelector('.discount-price');
     var packPrice = document.querySelector('.packagePrice');
     packPrice.value = '';
-        displayPrice();
+    displayPrice();
 
     // adults
     aplus.addEventListener('click', function() {
         var totalPeople = parseInt(atotal.value) + parseInt(ttotal.value);
         if (totalPeople < maxPeople) {
             atotal.value = parseInt(atotal.value) + 1;
+            // bookAdults = 'Adults x' + atotal.value;
             displayPrice();
         }
     });
     aminus.addEventListener('click', function() {
         if (parseInt(atotal.value) > 1) {
             atotal.value = parseInt(atotal.value) - 1;
+            // bookAdults = 'Adults x' + atotal.value;
             displayPrice();
         }
     });
@@ -723,12 +738,14 @@ document.addEventListener('DOMContentLoaded', function() {
         var totalPeople = parseInt(atotal.value) + parseInt(ttotal.value);
         if (totalPeople < maxPeople) {
             ttotal.value = parseInt(ttotal.value) + 1;
+            // ttotal.value != 0? '':bookTeens.textContent = 'Teens x' + ttotal.value;
             displayPrice();
         }
     });
     tminus.addEventListener('click', function() {
         if (parseInt(ttotal.value) > 0) {
             ttotal.value = parseInt(ttotal.value) - 1;
+            // bookTeens = 'Teens x' + ttotal.value;
             displayPrice();
         }
     });
@@ -737,21 +754,25 @@ document.addEventListener('DOMContentLoaded', function() {
     tdplus.addEventListener('click', function() {
         if (parseInt(tdtotal.value) < 5) {
             tdtotal.value = parseInt(tdtotal.value) + 1;
+            // bookToddlers = 'Toddlers x' + tdtotal.value;
             displayPrice();
         }
     });
     tdminus.addEventListener('click', function() {
         if (parseInt(tdtotal.value) > 0) {
             tdtotal.value = parseInt(tdtotal.value) - 1;
+            // bookToddlers = 'Toddlers x' + tdtotal.value;
             displayPrice();
         }
     });
 
     var accordion = document.querySelector('#boat-tour-package');
-    var inputPackage = document.querySelector('input[name="packageId"]');
+    var inputPackage = document.querySelectorAll('#packageId');
     accordion.addEventListener('shown.bs.collapse', event => {
         var selectedValue = $(event.target).find('.accordion-body').data('value');
-        inputPackage.value = selectedValue;
+        inputPackage.forEach(function(input) {
+            input.value = selectedValue;
+        });
         var packageName = packageNames[selectedValue];
         var packagePrice = packagePrices[selectedValue];
         packPrice.value = packagePrice;
@@ -761,7 +782,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     accordion.addEventListener('hidden.bs.collapse', event => {
         var selectedValue = $(event.target).find('.accordion-body').data('value');
-        inputPackage.value = null;
+        inputPackage.forEach(function(input) {
+            input.value = null;
+        });
         var packageName = packageNames[selectedValue];
         var packagePrice = packagePrices[selectedValue];
         packPrice.value = ''; 
