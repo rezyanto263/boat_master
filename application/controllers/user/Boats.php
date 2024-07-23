@@ -17,7 +17,7 @@ class Boats extends CI_Controller {
         $bookAdults = $this->input->post('bookAdults') ?: 1;
         $bookTeens = $this->input->post('bookTeens') ?: 0;
         $bookToddlers = $this->input->post('bookToddlers') ?: 0;
-        $maxPeople = $bookAdults + $bookTeens + $bookToddlers;
+        $maxPeople = $bookAdults + $bookTeens;
         $bookSchedule =  $this->input->post('bookSchedule') ?: date('Y-m-d', strtotime('+2 days'));
 
         $searchDatas = array(
@@ -28,12 +28,14 @@ class Boats extends CI_Controller {
         );
 
         $boatDatas = $this->M_boats->searchBoat($searchDatas);
+        $bookedBoats = $this->M_boats->bookedBoats($searchDatas);
 
         $datas = array(
             'title' => 'Boats',
             'hidden' => '',
             'color' => 'blue',
             'boat' => $boatDatas,
+            'bookedBoats' => $bookedBoats,
             'bookAdults' => $bookAdults,
             'bookTeens' => $bookTeens,
             'bookToddlers' => $bookToddlers,

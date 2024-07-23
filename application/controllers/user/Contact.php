@@ -59,22 +59,7 @@ class Contact extends CI_Controller {
 		$this->form_validation->set_rules($validate);
 
         if ($this->form_validation->run() == false) {
-            $datas = array(
-                'title' => 'Home',
-                'hidden' => 'hidden',
-                'color' => ''
-            );
-    
-            $partials = array(
-                'head' => 'partials/user/head',
-                'navbar' => 'partials/user/navbar',
-                'content' => 'user/home',
-                'footer' => 'partials/user/footer',
-                'script' => 'partials/user/script',
-            );
-    
-            $this->load->vars($datas);
-            $this->load->view('master', $partials);
+            $this->index();
         } else {
 
             $config = array(

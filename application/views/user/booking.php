@@ -3,8 +3,6 @@
     <div
         class="container d-flex gap-3 align-items-center justify-content-center"
     >
-        <!-- align-items-center mengatur tata letak secara vertikal -->
-        <!-- justify-content-center mengatur tata letak secara horizontal-->
         <div class="step-boat">
             <div
                 class="circle checked mx-auto d-flex justify-content-center align-items-center"
@@ -140,7 +138,7 @@
                                 />
                             </div>
                             <div
-                                class="card-details d-flex flex-column position-relative"
+                                class="card-details d-flex flex-column position-relative  w-100"
                             >
                                 <div class="card-header border-0 p-0">
                                     <h4 class="mb-0">Boat Master Sanur Branch, Bali</h4>
@@ -152,10 +150,7 @@
                                         <p class="mb-0 fw-bold">08:00 - 09:00 AM</p>
                                     </div>
                                     <p class="description mb-0">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Morbi non libero nec purus mollis posuere sed eget
-                                        ligula. Morbi non libero nec purus mollis posuere sed
-                                        eget ligula.
+                                        <?= $boat[0]['boatDesc']; ?>
                                     </p>
                                 </div>
                                 <a class="maps" href="https://maps.app.goo.gl/uejex2vhLu7Lb17U7" target="blank">
@@ -173,7 +168,7 @@
                                 />
                             </div>
                             <div
-                                class="card-details d-flex flex-column position-relative"
+                                class="card-details d-flex flex-column position-relative w-100"
                             >
                                 <div class="card-header border-0 p-0">
                                     <h4 class="mb-0">Boat Master, Nusa Penida</h4>
@@ -185,10 +180,7 @@
                                         <p class="mb-0 fw-bold">08:00 - 09:00 AM</p>
                                     </div>
                                     <p class="description mb-0">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Morbi non libero nec purus mollis posuere sed eget
-                                        ligula. Morbi non libero nec purus mollis posuere sed
-                                        eget ligula.
+                                        <?= $boat[0]['boatDesc']; ?>
                                     </p>
                                 </div>
                                 <a class="maps" href="https://maps.app.goo.gl/QJ3kaQBUeSvZBhVK8" target="blank">
@@ -619,7 +611,9 @@
                                 <p class="item-name mb-1"><?= $boat[0]['boatName']; ?></p>
                                 <input type="number" name="boatId" value="<?= $boat[0]['boatId']; ?>" hidden>
                                 <p class="item-name mb-1" id="package-name"></p>
-                                
+                                <p class="item-name mb-1" id="bookAdults"></p>
+                                <p class="item-name mb-1" id="bookTeens"></p>
+                                <p class="item-name mb-1" id="bookToddlers"></p>
                                 <input type="number" name="packageId" id="packageId" hidden required>
                                 <div class="extra-name-container"></div>
                                 <p class="discount-name mb-1">Discount 10%</p>
@@ -628,7 +622,9 @@
                                 <p class="item-price mb-1"><?= number_format($boat[0]['boatPrice']); ?></p>
                                 <span class="packagePrice" hidden></span>
                                 <p class="item-price mb-1" id="package-price"></p>
-                                
+                                <p class="item-price mb-1" id="bookAdultsPrice"></p>
+                                <p class="item-price mb-1" id="bookTeensPrice"></p>
+                                <p class="item-price mb-1" id="bookToddlersPrice"></p>
                                 <div class="extra-price-container"></div>
                                 <p class="discount-price mb-1">- <?= number_format(($boat[0]['boatPrice']+400000)*0.1); ?></p>
                             </div>
@@ -683,7 +679,7 @@ var extraPrices = <?= json_encode($extraPrices); ?>;
     
 document.addEventListener('DOMContentLoaded', function() {
     var boatPrice = <?= $boat[0]['boatPrice']; ?>;
-    var maxPeople = <?= $boat[0]['maxPeople']; ?>;
+    var maxPeople = <?= !empty($bookedPassengers)?$boat[0]['maxPeople']-$bookedPassengers:$boat[0]['maxPeople']; ?>;
 
     var finalPrice = document.querySelector('input[name="bookPrice"]');
     var displayFinalPrice = document.querySelector('.final-price')
@@ -704,12 +700,26 @@ document.addEventListener('DOMContentLoaded', function() {
     var teenPrice = 250000;
     var toddlerPrice = 50000;
 
-    // var bookAdults = document.querySelector('#bookAdults');
-    // var bookTeens = document.querySelector('#bookTeens');
-    // var bookToddlers = document.querySelector('#bookToddlers');
-    // var bookAdultsPrice = document.querySelector('#bookAdultsPrice');
-    // var bookTeensPrice = document.querySelector('#bookTeensPrice');
-    // var bookToddlersPrice = document.querySelector('#bookToddlersPrice');
+    var bookAdults = document.querySelector('#bookAdults');
+    
+    var bookTeens = document.querySelector('#bookTeens');
+    var bookToddlers = document.querySelector('#bookToddlers');
+    var bookAdultsPrice = document.querySelector('#bookAdultsPrice');
+    var bookTeensPrice = document.querySelector('#bookTeensPrice');
+    var bookToddlersPrice = document.querySelector('#bookToddlersPrice');
+
+    bookAdults.textContent = 'Adults x'+<?= $bookAdults ?>;
+    bookAdultsPrice.textContent = new Intl.NumberFormat({
+        style: 'currency'
+    }).format(parseInt(atotal.value) * adultPrice);
+    <?= $bookTeens ?> == 0 ? '': bookTeens.textContent = 'Teens x'+<?= $bookTeens ?>;
+    <?= $bookTeens ?> == 0 ? '': bookTeensPrice.textContent = new Intl.NumberFormat({
+        style: 'currency'
+    }).format(parseInt(ttotal.value) * teenPrice);
+    <?= $bookToddlers ?> == 0 ? '': bookToddlers.textContent = 'Toddlers x'+<?= $bookToddlers ?>;
+    <?= $bookToddlers ?> == 0 ? '': bookToddlersPrice.textContent = new Intl.NumberFormat({
+        style: 'currency'
+    }).format(parseInt(tdtotal.value) * toddlerPrice);
 
     var discountPrice = document.querySelector('.discount-price');
     var packPrice = document.querySelector('.packagePrice');
@@ -721,14 +731,20 @@ document.addEventListener('DOMContentLoaded', function() {
         var totalPeople = parseInt(atotal.value) + parseInt(ttotal.value);
         if (totalPeople < maxPeople) {
             atotal.value = parseInt(atotal.value) + 1;
-            // bookAdults = 'Adults x' + atotal.value;
+            bookAdults.textContent = 'Adults x' + atotal.value;
+            bookAdultsPrice.textContent = new Intl.NumberFormat({
+                style: 'currency'
+            }).format(parseInt(atotal.value) * adultPrice);
             displayPrice();
         }
     });
     aminus.addEventListener('click', function() {
         if (parseInt(atotal.value) > 1) {
             atotal.value = parseInt(atotal.value) - 1;
-            // bookAdults = 'Adults x' + atotal.value;
+            bookAdults.textContent = 'Adults x' + atotal.value;
+            bookAdultsPrice.textContent = new Intl.NumberFormat({
+                style: 'currency'
+            }).format(parseInt(atotal.value) * adultPrice);
             displayPrice();
         }
     });
@@ -738,14 +754,21 @@ document.addEventListener('DOMContentLoaded', function() {
         var totalPeople = parseInt(atotal.value) + parseInt(ttotal.value);
         if (totalPeople < maxPeople) {
             ttotal.value = parseInt(ttotal.value) + 1;
-            // ttotal.value != 0? '':bookTeens.textContent = 'Teens x' + ttotal.value;
+            bookTeens.textContent = ttotal.value == 0? '' : 'Teens x' + ttotal.value;
+            bookTeensPrice.textContent = ttotal.value == 0? '' : new Intl.NumberFormat({
+                style: 'currency'
+            }).format(parseInt(ttotal.value) * teenPrice);
             displayPrice();
         }
     });
     tminus.addEventListener('click', function() {
         if (parseInt(ttotal.value) > 0) {
             ttotal.value = parseInt(ttotal.value) - 1;
-            // bookTeens = 'Teens x' + ttotal.value;
+            bookTeens.te = 'Teens x' + ttotal.value;
+            bookTeens.textContent = ttotal.value == 0? '' : 'Teens x' + ttotal.value;
+            bookTeensPrice.textContent = ttotal.value == 0? '' : new Intl.NumberFormat({
+                style: 'currency'
+            }).format(parseInt(ttotal.value) * teenPrice);
             displayPrice();
         }
     });
@@ -754,14 +777,20 @@ document.addEventListener('DOMContentLoaded', function() {
     tdplus.addEventListener('click', function() {
         if (parseInt(tdtotal.value) < 5) {
             tdtotal.value = parseInt(tdtotal.value) + 1;
-            // bookToddlers = 'Toddlers x' + tdtotal.value;
+            bookToddlers.textContent = tdtotal.value == 0? '' : 'Toddlers x' + tdtotal.value;
+            bookToddlersPrice.textContent = tdtotal.value == 0? '' : new Intl.NumberFormat({
+                style: 'currency'
+            }).format(parseInt(tdtotal.value) * toddlerPrice);
             displayPrice();
         }
     });
     tdminus.addEventListener('click', function() {
         if (parseInt(tdtotal.value) > 0) {
             tdtotal.value = parseInt(tdtotal.value) - 1;
-            // bookToddlers = 'Toddlers x' + tdtotal.value;
+            bookToddlers.textContent = tdtotal.value == 0? '' : 'Toddlers x' + tdtotal.value;
+            bookToddlersPrice.textContent = tdtotal.value == 0? '' : new Intl.NumberFormat({
+                style: 'currency'
+            }).format(parseInt(tdtotal.value) * toddlerPrice);
             displayPrice();
         }
     });

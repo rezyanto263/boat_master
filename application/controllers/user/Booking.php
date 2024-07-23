@@ -16,19 +16,21 @@ class Booking extends CI_Controller {
     }
     
 
-    public function index($boatId, $bookAdults, $bookTeens, $bookToddlers, $bookSchedule)
+    public function index($params)
     {
+        $bookingData = explode('~', base64_decode($params));
         $datas = array(
             'title' => 'Booking',
             'hidden' => '',
             'color' => 'blue',
-            'boat' => $this->M_boats->getAllBoatWithPicturesAndBadgesById($boatId),
+            'boat' => $this->M_boats->getAllBoatWithPicturesAndBadgesById($bookingData[0]),
             'package' => $this->M_packages->getAllPackagesWithToursAndBadges(),
             'extra' => $this->M_extras->getAllExtras(),
-            'bookAdults' => $bookAdults,
-            'bookTeens' => $bookTeens,
-            'bookToddlers' => $bookToddlers,
-            'bookSchedule' => $bookSchedule,
+            'bookAdults' => $bookingData[1],
+            'bookTeens' => $bookingData[2],
+            'bookToddlers' => $bookingData[3],
+            'bookSchedule' => $bookingData[4],
+            'bookedPassengers' => $bookingData[5],
         );
         
         $partials = array(

@@ -3,7 +3,6 @@
     <div class="container-fluid 100vh p-5">
         <div class="row">
             <div class="col-3">
-
                 <a href="<?= base_url('dashboard/bookings') ?>" class="card-link">
                     <div class="card-dashboard">
                         <div class="card-body">
@@ -15,29 +14,30 @@
                         </div>
                     </div>
                 </a>
-
             </div>
             <div class="col-3">
                 <div class="card-dashboard">
                     <div class="card-body">
                         <div class="number"><?= $customerCount ?></div>
-                        <div class="card-name">Customer</div>
+                        <div class="card-name">Customers</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-ship"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                 </div>
             </div>
             <div class="col-3">
-                <div class="card-dashboard">
-                    <div class="card-body">
-                        <div class="number">5</div>
-                        <div class="card-name">Reviews</div>
+                <a href="<?= base_url('dashboard/boats') ?>" class="card-link">
+                    <div class="card-dashboard">
+                        <div class="card-body">
+                            <div class="number"><?= $boatCount ?></div>
+                            <div class="card-name">Boats</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="fas fa-ship"></i>
+                        </div>
                     </div>
-                    <div class="icon-box">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                </div>
+                </a>
             </div>
             <div class="col-3">
                 <div class="card-dashboard">
@@ -58,8 +58,7 @@
                     <span>Bookings</span>
 
                     <form method="get" action="<?= base_url('dashboard/dashboard'); ?>">
-                        <label for="year">Select Year:</label>
-                        <select class="selectpicker " name="year" id="year" onchange="this.form.submit()">
+                        <select class="selectpicker" name="year" id="year" onchange="this.form.submit()">
                             <?php
                             $currentYear = date('Y');
                             $startYear = $currentYear - 3;

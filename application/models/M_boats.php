@@ -36,14 +36,18 @@ class M_Boats extends CI_Model {
     }
 
     public function searchBoat($searchDatas) {
-        if ($searchDatas['bookSchedule'] != 'All') {
-            $this->db->select('bt.boatId');
-            $this->db->from('booking_ticket bt');
-            $this->db->where('bt.bookSchedule', $searchDatas['bookSchedule']);
-            $bookDatas = $this->db->get()->result_array();
-        }
-
-        $this->db->select('b.*, 
+        $bookDatas = [];
+    
+        $this->db->select('bt.boatId, boat.maxPeople, boat.boatType, SUM(bt.bookAdults + bt.bookTeens) as bookedPassengers');
+        $this->db->from('booking_ticket bt');
+        $this->db->join('boat', 'bt.boatId = boat.boatId');
+        $this->db->where('bt.bookSchedule', $searchDatas['bookSchedule']);
+        $this->db->where('bt.bookStatus !=', 'Cancelled');
+        $this->db->group_by('bt.boatId');
+        $this->db->having('((bookedPassengers + '.$searchDatas["maxPeople"].') > boat.maxPeople AND boat.boatType = "Shared") OR boat.boatType = "Private"');
+        $bookDatas = $this->db->get()->result_array();
+    
+        $this->db->select('b.*,
             GROUP_CONCAT(DISTINCT bp.boatpictId ORDER BY bp.boatpictId SEPARATOR ",") as boatpictIds, 
             GROUP_CONCAT(DISTINCT m.mediaFile ORDER BY m.mediaFile SEPARATOR ",") as boatPictures, 
             GROUP_CONCAT(DISTINCT bb.badgeId ORDER BY bb.badgeId SEPARATOR ",") as boatbadgeIds, 
@@ -53,22 +57,39 @@ class M_Boats extends CI_Model {
         $this->db->join('media m', 'bp.mediaId = m.mediaId', 'left');
         $this->db->join('boat_badges bb', 'b.boatId = bb.boatId', 'left');
         $this->db->join('badge bg', 'bb.badgeId = bg.badgeId', 'left');
-        $this->db->group_by('b.boatId');
-
+        
         if ($searchDatas['boatStartPoint'] != 'All') {
             $this->db->where('b.boatStartPoint', $searchDatas['boatStartPoint']);
         }
         if ($searchDatas['boatType'] != 'All') {
-            $this->db->where_in('b.boatType', array('PriShare', $searchDatas['boatType']));
+            $this->db->where('b.boatType', $searchDatas['boatType']);
         }
-        $this->db->where('b.maxPeople >=', $searchDatas['maxPeople']);
         if (!empty($bookDatas)) {
             $bookedBoatIds = array_column($bookDatas, 'boatId');
             $this->db->where_not_in('b.boatId', $bookedBoatIds);
         }
-
+        $this->db->where('b.boatStatus !=', 'Repair');
+        if (isset($searchDatas['maxPeople'])) {
+            $this->db->where('b.maxPeople >=', $searchDatas['maxPeople']);
+        }
+        $this->db->group_by('b.boatId');
+        
         return $this->db->get()->result_array();
     }
+
+    public function bookedBoats($searchDatas) {
+        $bookDatas = [];
+        $this->db->select('bt.boatId, boat.maxPeople, boat.boatType, SUM(bt.bookAdults + bt.bookTeens) as bookedPassengers');
+        $this->db->from('booking_ticket bt');
+        $this->db->join('boat', 'bt.boatId = boat.boatId');
+        $this->db->where('bt.bookSchedule', $searchDatas['bookSchedule']);
+        $this->db->where('bt.bookStatus !=', 'Cancelled');
+        $this->db->group_by('bt.boatId');
+        $this->db->having('(bookedPassengers <= boat.maxPeople AND boat.boatType = "Shared") OR boat.boatType = "Private"');
+        $bookDatas = $this->db->get()->result_array();
+        return $bookDatas;
+    }
+    
 
     public function insertBadges($boatbadgesDatas) {
         return $this->db->insert('boat_badges', $boatbadgesDatas);
