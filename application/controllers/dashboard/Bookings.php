@@ -1,8 +1,9 @@
-<?php 
+<?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Bookings extends CI_Controller {
+class Bookings extends CI_Controller
+{
 
     public function __construct()
     {
@@ -20,7 +21,8 @@ class Bookings extends CI_Controller {
         }
     }
 
-    public function index() {
+    public function index()
+    {
         $datas = array(
             'title' => 'BOOKINGS',
             'notifications' => $this->M_bookings->getAllNotifications(),
@@ -50,7 +52,8 @@ class Bookings extends CI_Controller {
         $this->load->view('dashMaster', $partials);
     }
 
-    public function addBooking() {
+    public function addBooking()
+    {
         $bookingDatas = array(
             'custId' => $this->input->post('custId'),
             'bookSchedule' => $this->input->post('bookSchedule'),
@@ -69,7 +72,7 @@ class Bookings extends CI_Controller {
 
         if ($this->input->post('extraIds')) {
             $countExtra = count($_POST['extraIds']);
-            for ($i=0; $i < $countExtra; $i++) { 
+            for ($i = 0; $i < $countExtra; $i++) {
                 $bookextrasDatas = array(
                     'bookId' => $bookId,
                     'extraId' => $_POST['extraIds'][$i]
@@ -81,7 +84,8 @@ class Bookings extends CI_Controller {
         redirect('dashboard/bookings');
     }
 
-    public function editBooking() {
+    public function editBooking()
+    {
         $bookId = $this->input->post('bookId');
         $checkBooking = $this->M_bookings->checkBooking($bookId);
 
@@ -104,7 +108,7 @@ class Bookings extends CI_Controller {
             $this->M_bookings->deleteAllBookExtras($bookId);
             if ($this->input->post('extraIds')) {
                 $countExtra = count($_POST['extraIds']);
-                for ($i=0; $i < $countExtra; $i++) { 
+                for ($i = 0; $i < $countExtra; $i++) {
                     $bookextrasDatas = array(
                         'bookId' => $bookId,
                         'extraId' => $_POST['extraIds'][$i]
@@ -116,13 +120,15 @@ class Bookings extends CI_Controller {
         redirect('dashboard/bookings');
     }
 
-    public function delBooking($bookId) {
+    public function delBooking($bookId)
+    {
         $this->M_bookings->deleteBooking($bookId);
         $this->session->set_flashdata('message', '<div class="alert alert-danger message" role="alert">The booking has been deleted successfully!</div>');
         redirect('dashboard/bookings');
     }
 
-    public function approveBooking() {
+    public function approveBooking()
+    {
         $bookId = $this->input->post('bookId');
         $custEmail = $this->input->post('custEmail');
         $this->M_bookings->insertBookExpiredDateTime($bookId, date('Y-m-d H:i:s', strtotime('+1 days')));
@@ -137,7 +143,7 @@ class Bookings extends CI_Controller {
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n",
-            'send_multipart'=> false
+            'send_multipart' => false
         );
 
         $this->load->library('email', $config);
@@ -146,9 +152,9 @@ class Bookings extends CI_Controller {
         $this->email->from('rezyanto263@gmail.com', 'BOAT MASTER');
         $this->email->to($custEmail);
         $this->email->subject('[Boat Master] Your Booking is Approved!');
-        $this->email->message("Your booking ticket is already approved, please pay your booking before it's cancelled at ".date('l, d-m-Y h:i A', strtotime('+1 days')));
-        
-        if($this->email->send()) {
+        $this->email->message("Your booking ticket is already approved, please pay your booking before it's cancelled at " . date('l, d-m-Y h:i A', strtotime('+1 days')));
+
+        if ($this->email->send()) {
             $this->session->set_flashdata('message', '
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
                 <div id="liveToast" class="toast toast-success show message" role="alert" aria-live="assertive" aria-atomic="true">
@@ -158,7 +164,7 @@ class Bookings extends CI_Controller {
                 </div>
             </div>');
             redirect('dashboard/bookings');
-        }else {
+        } else {
             $this->session->set_flashdata('message', '
             <div class="toast-container position-fixed bottom-0 end-0 p-3">
                 <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
@@ -171,15 +177,16 @@ class Bookings extends CI_Controller {
         }
     }
 
-    public function autoCancelExpiredBooking() {
-        $expiredBooking = $this->M_bookings->autoCancelExpiredBooking();
+    public function autoCancelExpiredBooking()
+    {
+        $expiredBookings = $this->M_bookings->autoCancelExpiredBooking();
 
         if (!empty($expiredBooking)) {
             $response = array(
                 'cancelledBookings' => count($expiredBookings),
                 'message' => 'Expired bookings cancelled successfully'
             );
-        }else {
+        } else {
             $response = array(
                 'cancelledBookings' => 0,
                 'message' => 'No Bookings cancelled'
@@ -209,5 +216,3 @@ class Bookings extends CI_Controller {
 }
 
 /* End of file Bookings.php */
-
-?>
