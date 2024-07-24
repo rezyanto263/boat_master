@@ -10,6 +10,7 @@ class Badges extends CI_Controller {
         parent::__construct();
 
         $this->load->model('M_badges');
+        $this->load->model('M_bookings');
 
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -21,6 +22,7 @@ class Badges extends CI_Controller {
     {
         $datas = array(
             'title' => 'BADGES',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'badge' => $this->M_badges->getAllBadges()
         );
 

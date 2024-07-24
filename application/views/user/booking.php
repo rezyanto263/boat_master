@@ -891,6 +891,7 @@ document.addEventListener('DOMContentLoaded', function() {
         style: 'currency',
         }).format(parseFloat(finalPrice.value))+' IDR';
     }
+
     
 
 });

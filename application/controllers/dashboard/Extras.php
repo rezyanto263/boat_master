@@ -9,6 +9,7 @@ class Extras extends CI_Controller {
         parent::__construct();
 
         $this->load->model('M_extras');
+        $this->load->model('M_bookings');
         
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -19,6 +20,7 @@ class Extras extends CI_Controller {
     {
         $datas = array(
             'title' => 'EXTRAS',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'extra' => $this->M_extras->getAllExtras()
         );
         $partials = array(

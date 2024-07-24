@@ -57,7 +57,7 @@
                 <div class="table-content">
                     <span>Bookings</span>
 
-                    <form method="get" action="<?= base_url('dashboard/dashboard'); ?>">
+                    <form method="POST" action="<?= base_url('dashboard/dashboard'); ?>">
                         <select class="selectpicker" name="year" id="year" onchange="this.form.submit()">
                             <?php
                             $currentYear = date('Y');

@@ -43,5 +43,24 @@ $(document).ready(function (){
 
     setInterval(cancelExpiredBookings, 10000);
     cancelExpiredBookings();
+
+    var notifContainer = document.querySelector('#notifications');
+    
+    function getUpdateNotifications() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    notifContainer.innerHTML = xhr.responseText;
+                }
+            }
+        }
+    
+        xhr.open('GET', "<?= base_url('dashboard/Bookings/getUpdatedNotifications') ?>", true)
+        xhr.send();
+    }
+
+    setInterval(getUpdateNotifications, 10000);
+    getUpdateNotifications();
 });
 </script>

@@ -356,15 +356,15 @@
             <p>Follow this step to make a booking.</p>
             <div class="row mt-5">
                 <div class="col-3">
-                    <div class="card p-2">
-                        <div class="card-header border-0 d-flex align-items-center">
+                    <div class="card p-2 d-flex justify-content-center">
+                        <div class="card-header mb-0 py-0 border-0 d-flex align-items-center">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">1</h4></span
                             >
                             <h4 class="mb-0">Choose a Boat</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pt-0">
                             <p class="mb-0 text-justify">
                                 First, click the "Book Now" button or click the boats menu to choose the boat you want to use for your boat tour.
                             </p>
@@ -372,15 +372,15 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="card p-2">
-                        <div class="card-header border-0 d-flex align-items-center">
+                    <div class="card p-2 d-flex justify-content-center">
+                        <div class="card-header mb-0 py-0 border-0 d-flex align-items-center">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">2</h4></span
                             >
                             <h4 class="mb-0">Choose The Tour</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pt-0">
                             <p class="mb-0 text-justify">
                                 Select the tour package you want, and set the number of passengers and additional extras (for private tours only).
                             </p>
@@ -388,15 +388,15 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="card p-2">
-                        <div class="card-header border-0 d-flex align-items-center">
+                    <div class="card p-2 d-flex justify-content-center">
+                        <div class="card-header mb-0 py-0 border-0 d-flex align-items-center">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">3</h4></span
                             >
                             <h4 class="mb-0">Checkout & Pay</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pt-0">
                             <p class="mb-0 text-justify">
                                 Checkout your order to book the ticket and wait for admin confirmation to pay for your boat tour ticket.
                             </p>
@@ -404,15 +404,15 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="card p-2">
-                        <div class="card-header border-0 d-flex align-items-center">
+                    <div class="card p-2 d-flex justify-content-center">
+                        <div class="card-header mb-0 py-0 border-0 d-flex align-items-center">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center me-2"
                                 ><h4 class="mb-0">4</h4></span
                             >
                             <h4 class="mb-0">Enjoy!</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pt-0">
                             <p class="mb-0 text-justify">
                                 Lastly, the admin will arrange a guide for you. Wait for your boat tour day to arrive. Enjoy your boat tour!
                             </p>
@@ -440,10 +440,10 @@
     <section class="benefits-section py-5">
         <div class="container my-5">
             <h2>BENEFITS YOU WILL GET</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p>Discover the amazing benefits of booking with us!</p>
             <div class="row gy-4 gx-4 mt-4">
                 <div class="col-4">
-                    <div class="card p-2">
+                    <div class="card p-2 h-100">
                         <div class="card-header border-0 bg-white">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center"
@@ -453,14 +453,13 @@
                         </div>
                         <div class="card-body pt-0">
                             <p class="text-justify mb-0">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nostrum unde animi et autem a eligendi.
+                                Easily reserve your spot with our user-friendly online booking system. Whether you’re planning ahead or booking last-minute, securing your adventure is just a few clicks away.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card p-2">
+                    <div class="card p-2 h-100">
                         <div class="card-header border-0 bg-white">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center"
@@ -470,14 +469,13 @@
                         </div>
                         <div class="card-body pt-0">
                             <p class="text-justify mb-0">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nostrum unde animi et autem a eligendi.
+                                Plans changed? No worries. Our hassle-free cancellation policy ensures you can adjust your booking with ease, giving you peace of mind and flexibility.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="card p-2">
+                    <div class="card p-2 h-100">
                         <div class="card-header border-0 bg-white">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center"
@@ -487,14 +485,13 @@
                         </div>
                         <div class="card-body pt-0">
                             <p class="text-justify mb-0">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nostrum unde animi et autem a eligendi.
+                                Join the ranks of our satisfied customers! Our boat tours consistently receive high ratings, reflecting our commitment to exceptional service and unforgettable experiences.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="card p-2">
+                    <div class="card p-2 h-100">
                         <div class="card-header border-0 bg-white">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center"
@@ -504,14 +501,13 @@
                         </div>
                         <div class="card-body pt-0">
                             <p class="text-justify mb-0">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nostrum unde animi et autem a eligendi.
+                                Explore with confidence knowing our guides are certified and highly knowledgeable. They’ll share fascinating insights and ensure your trip is both safe and enjoyable.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="card p-2">
+                    <div class="card p-2 h-100">
                         <div class="card-header border-0 bg-white">
                             <span
                                 class="bg-icon d-flex align-items-center justify-content-center"
@@ -521,8 +517,7 @@
                         </div>
                         <div class="card-body pt-0">
                             <p class="text-justify mb-0">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Nostrum unde animi et autem a eligendi.
+                                Enjoy transparent pricing with no hidden fees. The price you see is the price you pay, allowing you to budget your trip without any surprises.
                             </p>
                         </div>
                     </div>
@@ -536,7 +531,7 @@
     <section class="teams-section py-5">
         <div class="container my-5">
             <h2>MEET OUR TEAMS</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
+            <p>Get to know the passionate and experienced team behind our boat tours.</p>
             <div class="row mt-5">
                 <div class="teams-slider owl-carousel owl-theme h-100">
                     <?php foreach($guides as $key): ?>
@@ -678,7 +673,7 @@
                             <div class="accordion-item mb-3">
                                 <h5 class="accordion-header">
                                     <button
-                                        class="accordion-button fw-bold bg-white"
+                                        class="accordion-button fw-bold bg-white collapsed"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#faq2"
                                         aria-expanded="false"
@@ -703,7 +698,7 @@
                             <div class="accordion-item">
                                 <h5 class="accordion-header">
                                     <button
-                                        class="accordion-button fw-bold bg-white"
+                                        class="accordion-button fw-bold bg-white collapsed"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#faq3"
                                         aria-expanded="false"

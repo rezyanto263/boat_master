@@ -396,7 +396,7 @@ i.notif-icon {
 	height: 55px;
 }
 
-.dashboard-navbar .dropdown-menu {
+.dashboard-navbar .dropdown .dropdown-menu {
 	animation: rotateX 300ms ease-in-out forwards;
 	margin-top: 80px !important;
 	margin-right: 30px !important;
@@ -404,20 +404,20 @@ i.notif-icon {
 	border-radius: 10px;
 }
 
-.dashboard-navbar .dropdown-item {
+.dashboard-navbar .dropdown .dropdown-item {
 	background-color: white;
 	color: red;
 	transition: all 0.3s ease;
 }
 
-.dashboard-navbar li:first-child .dropdown-item {
+.dashboard-navbar .dropdown li:first-child .dropdown-item {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
 
-.dashboard-navbar .dropdown-item:hover {
+.dashboard-navbar .dropdown .dropdown-item:hover {
 	background-color: red;
 	color: white;
 }
@@ -426,6 +426,71 @@ i.notif-icon {
 	color: var(--primary);
 	font-size: 32px;
 }
+
+.notifications i {
+	font-size: 30px;
+	color: var(--primary);
+}
+
+.dashboard-navbar .notifications {
+	background-color: transparent;
+	border: none;
+}
+
+.dashboard-navbar .menu .dropstart .dropdown-menu.show{
+	width: 350px !important;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none !important;
+	max-height: 200px;
+    overflow-y: auto;
+	display: flex;
+    flex-direction: column-reverse;
+	padding-inline: 5px !important;
+	padding-block: 3px;
+	border: 1px solid grey;
+	background-color: #ffffff60;
+	backdrop-filter: blur(2px);
+	top: -10px !important;
+	right: 45px !important;
+	position: absolute !important;
+	animation: growDown 300ms ease-in-out forwards;
+}
+
+.dashboard-navbar .menu .dropstart .dropdown-menu a.clicked {
+	background-color: var(--lightgrey2);
+	color: grey;
+	cursor: default;
+}
+
+.dashboard-navbar .menu .dropstart .dropdown-menu a.unclicked-booking {
+	background-color: var(--primary);
+	color: var(--secondary);
+	transition: all 0.3s ease;
+}
+
+.dashboard-navbar .menu .dropstart .dropdown-menu a.unclicked-booking:hover {
+	background-color: white;
+	outline: 1px solid var(--primary);
+}
+
+.dashboard-navbar .menu .dropstart .dropdown-menu a.unclicked-booking:hover p{
+	color: grey !important;
+}
+
+.dashboard-navbar .menu .dropstart .dropdown-menu a.unclicked-cancel {
+	background-color: var(--secondary);
+	color: var(--primary);
+	cursor: default;
+}
+
+.dashboard-navbar .menu .dropstart .dropdown-menu li a {
+	margin-block: 3px;
+}
+
+.dashboard-navbar .menu .dropstart .time {
+	font-size: 12px !important;
+}
+
 
 /* Dashboard Sidebar Styles */
 .dashboard-sidebar {

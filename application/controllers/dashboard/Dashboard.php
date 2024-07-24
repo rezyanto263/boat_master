@@ -11,16 +11,18 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
 
+        $this->load->model('M_chart');
+        $this->load->model('M_bookings');
+
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
         }
-        $this->load->model('M_chart');
     }
 
     public function index()
     {
 
-        $selectedYear = $this->input->get('year');
+        $selectedYear = $this->input->post('year');
         if (!$selectedYear) {
             $selectedYear = date('Y');
         }
@@ -35,6 +37,7 @@ class Dashboard extends CI_Controller
 
         $datas = array(
             'title' => 'DASHBOARD',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'graph' => $monthlyData,
             'monthlyDataByStatus' => $monthlyDataByStatus,
             'statusCounts' => $statusCounts,

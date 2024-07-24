@@ -10,6 +10,7 @@ class Guides extends CI_Controller {
         parent::__construct();
 
         $this->load->model('M_guides');
+        $this->load->model('M_bookings');
 
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -21,6 +22,7 @@ class Guides extends CI_Controller {
     {
         $datas = array(
             'title' => 'GUIDES',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'guides' => $this->M_guides->getAllGuides()
         );
 

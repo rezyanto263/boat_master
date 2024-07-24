@@ -60,6 +60,7 @@ class Booking extends CI_Controller {
                 'procodeId' => 1,
             );
             $bookId = $this->M_bookings->insertBooking($bookingDatas);
+            $this->M_bookings->addBookingNotification($bookId, $this->session->userdata('custId'));
 
             if (!empty($extraIds)) {
                 foreach($extraIds as $extraId) {
@@ -82,12 +83,12 @@ class Booking extends CI_Controller {
         if (!empty($expiredBooking)) {
             $response = array(
                 'cancelledBookings' => count($expiredBookings),
-                'message' => 'Expired bookings cancelled successfully'
+                'message' => 'Expired bookings cancelled successfully!'
             );
         }else {
             $response = array(
                 'cancelledBookings' => 0,
-                'message' => 'No Bookings cancelled'
+                'message' => 'No expired bookings cancelled'
             );
         }
         echo json_encode($response);

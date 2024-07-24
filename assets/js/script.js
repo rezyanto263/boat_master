@@ -306,3 +306,8 @@ if (datepicker != null) {
 		todayHighlight: true,
 	});
 }
+
+var dashboard = document.querySelector('.dashboard-admin');
+if (dashboard != null) {
+	
+}
