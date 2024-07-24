@@ -13,7 +13,7 @@ class M_customers extends CI_Model
     public function getCustomerById($custId)
     {
         $this->db->where('custId', $custId);
-        return $this->db->get('x')->row_array();
+        return $this->db->get('customer')->row_array();
     }
 
     public function editCustomer($custId, $customerDatas)
