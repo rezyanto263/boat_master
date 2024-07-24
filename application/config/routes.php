@@ -71,3 +71,4 @@ $route['gallery'] = 'user/Gallery';
 $route['about'] = 'user/About';
 $route['contact'] = 'user/Contact';
 
+

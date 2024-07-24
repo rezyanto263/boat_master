@@ -28,6 +28,23 @@ class M_chart extends CI_Model
         return $query->result();
     }
 
+    public function get_monthly_booking_data_by_status($year = null)
+    {
+        if ($year === null) {
+            $year = date('Y');
+        }
+
+        // Aggregate data by month and status
+        $this->db->select('DATE_FORMAT(bookSchedule, "%Y-%m") as month, bookStatus, COUNT(bookId) as bookings');
+        $this->db->from('booking_ticket');
+        $this->db->where('YEAR(bookSchedule)', $year);
+        $this->db->group_by(['month', 'bookStatus']);
+        $this->db->order_by('month', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
     public function get_booking_status_counts()
     {
         $this->db->select('bookStatus, COUNT(bookId) as count');
@@ -63,10 +80,18 @@ class M_chart extends CI_Model
 
     public function get_book_earnings()
     {
-        $this->db->select('SUM(bookPrice) as earnings');
+        $this->db->select('SUM(bookPrice) as earnings, bookStatus');
         $this->db->from('booking_ticket');
+        $this->db->where_in('bookStatus', ['Searching guides', 'Enjoy', 'Done']);
+        $this->db->group_by('bookStatus');
         $query = $this->db->get();
-        return $query->row()->earnings;
+
+        $totalEarnings = 0;
+        foreach ($query->result() as $row) {
+            $totalEarnings += $row->earnings;
+        }
+
+        return $totalEarnings;
     }
 }
 

@@ -26,6 +26,7 @@ class Dashboard extends CI_Controller
         }
 
         $monthlyData = $this->M_chart->get_monthly_booking_data($selectedYear);
+        $monthlyDataByStatus = $this->M_chart->get_monthly_booking_data_by_status($selectedYear);
         $statusCounts = $this->M_chart->get_booking_status_counts();
         $customerCount = $this->M_chart->get_customer_count();
         $boatCount = $this->M_chart->get_boat_count();
@@ -35,6 +36,7 @@ class Dashboard extends CI_Controller
         $datas = array(
             'title' => 'DASHBOARD',
             'graph' => $monthlyData,
+            'monthlyDataByStatus' => $monthlyDataByStatus,
             'statusCounts' => $statusCounts,
             'selectedYear' => $selectedYear,
             'customerCount' => $customerCount,
