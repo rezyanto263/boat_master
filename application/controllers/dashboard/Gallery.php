@@ -9,6 +9,7 @@ class Gallery extends CI_Controller {
         parent::__construct();
 
         $this->load->model('M_gallery');
+        $this->load->model('M_bookings');
 
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -19,6 +20,7 @@ class Gallery extends CI_Controller {
     {
         $datas = array(
             'title' => 'GALLERY',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'gallery' => $this->M_gallery->getAllGalleryWithMedias()
         );
         $partials = array(

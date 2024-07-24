@@ -23,6 +23,7 @@ class Bookings extends CI_Controller {
     public function index() {
         $datas = array(
             'title' => 'BOOKINGS',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'booking' => $this->M_bookings->getAllBookings(),
             'package' => $this->M_packages->getAllPackagesWithToursAndBadges(),
             'boat' => $this->M_boats->getAllBoatsWithPicturesAndBadges(),
@@ -30,6 +31,14 @@ class Bookings extends CI_Controller {
             'promo' => $this->M_promos->getAllPromos(),
             'extra' => $this->M_extras->getAllExtras()
         );
+        $datas['countUnclicked'] = 0;
+
+        foreach ($datas['notifications'] as $key) {
+            if ($key['notifStatus'] == 'Unclicked') {
+                $datas['countUnclicked'] += 1;
+            }
+        }
+
         $partials = array(
             'head' => 'partials/dashboard/head',
             'navigation' => 'partials/dashboard/navigation',
@@ -56,6 +65,7 @@ class Bookings extends CI_Controller {
             'bookNotes' => htmlspecialchars($this->input->post('bookNotes')),
         );
         $bookId = $this->M_bookings->insertBooking($bookingDatas);
+        $this->M_bookings->addBookingNotification($bookId, $this->input->post('custId'));
 
         if ($this->input->post('extraIds')) {
             $countExtra = count($_POST['extraIds']);
@@ -176,6 +186,24 @@ class Bookings extends CI_Controller {
             );
         }
         echo json_encode($response);
+    }
+
+    public function notificationsRedirect($notifId) {
+        $this->M_bookings->editNotificationStatus($notifId, 'Clicked');
+        redirect('dashboard/bookings');
+    }
+
+    public function getUpdatedNotifications() {
+        $notifData['notifications'] = $this->M_bookings->getAllNotifications();
+        $notifData['countUnclicked'] = 0;
+
+        foreach ($notifData['notifications'] as $key) {
+            if ($key['notifStatus'] == 'Unclicked') {
+                $notifData['countUnclicked'] += 1;
+            }
+        }
+        
+        $this->load->view('partials/dashboard/updateNotification', $notifData);
     }
 
 }

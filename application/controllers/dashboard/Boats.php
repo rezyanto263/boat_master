@@ -10,6 +10,7 @@ class Boats extends CI_Controller {
 
         $this->load->model('M_boats');
         $this->load->model('M_badges');
+        $this->load->model('M_bookings');
 
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -20,6 +21,7 @@ class Boats extends CI_Controller {
     {
         $datas = array(
             'title' => 'BOATS',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'boat' => $this->M_boats->getAllBoatsWithPicturesAndBadges(),
             'badge' => $this->M_badges->getAllBadges()
         );

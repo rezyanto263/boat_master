@@ -10,6 +10,7 @@ class Packages extends CI_Controller {
 
         $this->load->model('M_packages');
         $this->load->model('M_badges');
+        $this->load->model('M_bookings');
 
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -20,6 +21,7 @@ class Packages extends CI_Controller {
     {
         $datas = array(
             'title' => 'PACKAGES',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'package' => $this->M_packages->getAllPackagesWithToursAndBadges(),
             'badge' => $this->M_badges->getAllBadges()
         );

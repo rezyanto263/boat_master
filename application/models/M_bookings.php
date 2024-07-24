@@ -105,10 +105,32 @@ class M_bookings extends CI_Model {
             foreach ($expiredBookings as $booking) {
                 $this->db->where('bookId', $booking['bookId']);
                 $this->db->update('booking_ticket', array('bookStatus' => 'Cancelled'));
+                $this->cancelBookingNotification($booking['bookId'], $booking['custId']);
             }
         }
 
         return $expiredBookings;
+    }
+
+    public function getAllNotifications() {
+        return $this->db->get('notifications')->result_array();
+    }
+
+    public function addBookingNotification($bookId, $custId) {
+        $custData = $this->db->get_where('customer', array('custId' => $custId))->row_array();
+        
+        return $this->db->insert('notifications', array('bookId' => $bookId, 'custName' => $custData['custName'], 'notifStatus' => 'Unclicked', 'notifCreatedAt' => date('Y-m-d H:i:s')));
+    }
+
+    public function cancelBookingNotification($bookId, $custId) {
+        $custData = $this->db->get_where('customer', array('custId' => $custId))->row_array();
+        
+        return $this->db->insert('notifications', array('bookId' => $bookId, 'custName' => $custData['custName'], 'notifStatus' => 'Cancelled', 'notifCreatedAt' => date('Y-m-d H:i:s')));
+    }
+
+    public function editNotificationStatus($notifId, $notifStatus) {
+        $this->db->where('notifId', $notifId);
+        return $this->db->update('notifications', array('notifStatus' => $notifStatus));
     }
 
 }

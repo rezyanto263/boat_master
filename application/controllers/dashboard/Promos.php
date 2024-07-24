@@ -9,6 +9,7 @@ class Promos extends CI_Controller {
         parent::__construct();
         
         $this->load->model('M_promos');
+        $this->load->model('M_bookings');
         
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
@@ -19,6 +20,7 @@ class Promos extends CI_Controller {
     {
         $datas = array(
             'title' => 'PROMOS',
+            'notifications' => $this->M_bookings->getAllNotifications(),
             'promo' => $this->M_promos->getAllPromos()
         );
         $partials = array(
