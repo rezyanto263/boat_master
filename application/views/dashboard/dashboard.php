@@ -19,10 +19,10 @@
                 <div class="card-dashboard">
                     <div class="card-body">
                         <div class="number"><?= $customerCount ?></div>
-                        <div class="card-name">Customer</div>
+                        <div class="card-name">Customers</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                 </div>
             </div>

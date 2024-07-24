@@ -178,11 +178,20 @@
                         <p class="text-center mx-5" style="width:60%;">It seems the boat you're searching for isn't available right now. Please try again later or explore our other options. We're here to help you navigate through our services.</p>
                     </div>
                 <?php 
-                    }else {
-                    foreach($boat as $key): 
-                ?>
+                }else {
+                foreach($boat as $key): 
+                    $totalBoatPrice = $key['boatPrice'] + ($bookAdults*400000) + ($bookTeens*250000) + ($bookToddlers * 50000);
+                    $bookedPassengers=0;
+                    
+                    foreach($bookedBoats as $booked): 
+                        if($booked['boatId']==$key['boatId']) {
+                            $bookedPassengers = $booked['bookedPassengers'];
+                        }
+                    endforeach;
+                    ?>
                 <div class="col-3">
-                    <a class="card border-0" aria-hidden="true" href="<?= base_url('user/Booking/index/'.$key['boatId'].'/'.(!empty($bookAdults)?$bookAdults:1).'/'.(!empty($bookTeens)?$bookTeens:0).'/'.(!empty($bookToddlers)?$bookToddlers:0).'/'.(!empty($bookSchedule)?date('d-m-Y', strtotime($bookSchedule)):date('d-m-Y', strtotime('+2 days')))) ?>" target="_blank">
+                    <?php $params = base64_encode($key['boatId'].'~'.(!empty($bookAdults)?$bookAdults:1).'~'.(!empty($bookTeens)?$bookTeens:0).'~'.(!empty($bookToddlers)?$bookToddlers:0).'~'.(!empty($bookSchedule)?date('d-m-Y', strtotime($bookSchedule)):date('d-m-Y', strtotime('+2 days'))).'~'.$bookedPassengers); ?>
+                    <a class="card border-0" aria-hidden="true" href="<?= base_url('booking/'.$params); ?>" target="_blank">
                         <div class="card-header border-0 p-0">
                             <div class="boat-image d-flex">
                                 <img src="<?= base_url('assets/uploads/'.explode(', ', $key['boatPictures'])[0]) ?>" alt="" />
@@ -195,16 +204,24 @@
                             <div class="bottom-badges gap-3">
                                 <span class="badge"><?= strtoupper($key['boatType']); ?></span>
                                 <span class="badge">
-                                    <i class="fa-solid fa-users me-2"></i>
+                                    <i class="fa-solid fa-users"></i>
                                     <?= $key['maxPeople']; ?>
                                 </span>
+                                <?php 
+                                    if($bookedPassengers != 0) {
+                                ?>
+                                    <span class="badge">
+                                        BOOKED
+                                        <?= $bookedPassengers ?>
+                                    </span>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="card-body p-1">
                             <h5><?= $key['boatName'] ?></h5>
                             <p class="my-2"><?= $key['boatStartPoint']; ?></p>
                             <hr class="my-1" />
-                            <p class="price-idr mb-3"><?= number_format($key['boatPrice']) ?> IDR</p>
+                            <p class="price-idr mb-3"><?= number_format($totalBoatPrice = $totalBoatPrice - ($totalBoatPrice * 0.1)) ?> IDR</p>
                         </div>
                     </a>
                 </div>
