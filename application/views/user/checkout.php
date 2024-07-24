@@ -334,7 +334,7 @@
                     const token = xhr.responseText;
                     snap.pay(token, {
                         onSuccess: function(result){
-                            var url = "<?= base_url('user/Checkout/paymentSuccess/'.$checkout['bookId']) ?>/"+(procodeId.value?procodeId.value:'NO PROMO')+"/"+bookPrice.value;
+                            var url = "<?= base_url('user/Checkout/paymentSuccess/'.$checkout['bookId']) ?>/"+(procodeId.value?procodeId.value:1)+"/"+bookPrice.value;
                             window.location.href = url;
                         },
                         onPending: function(result){

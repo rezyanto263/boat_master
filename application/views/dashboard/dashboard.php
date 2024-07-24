@@ -31,7 +31,7 @@
                     <div class="card-dashboard">
                         <div class="card-body">
                             <div class="number"><?= $boatCount ?></div>
-                            <div class="card-name">Boat</div>
+                            <div class="card-name">Boats</div>
                         </div>
                         <div class="icon-box">
                             <i class="fas fa-ship"></i>
