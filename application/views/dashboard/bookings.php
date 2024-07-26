@@ -363,24 +363,23 @@
 
 <!-- Modal QR Scanner -->
 <div class="modal fade" id="qrscanner" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+            <h1 class="modal-title fs-5 mb-0" id="staticBackdropLabel">
                 SCAN TICKET QR CODE
             </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body d-flex justify-content-center">
-            <video id="ticket-scanner"></video>
+        <div class="modal-body d-flex justify-content-center modal-md p-0 mt-0">
+            <video class="overflow-hidden" style="border-bottom-left-radius: 7px; border-bottom-right-radius: 7px;" id="ticket-scanner"></video>
             <form action="<?= base_url('dashboard/bookings/scanTicketQRCode') ?>" method="POST" id="qrform">
                 <input type="text" name="qrdata" id="qrdata" hidden>
             </form>
         </div>
-        <div class="modal-footer">
+        <!-- <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
-        </div>
+        </div> -->
         </div>
     </div>
 </div>
