@@ -69,6 +69,11 @@
                         <?php } ?>
                         </ul>
                     </div>
+                    <?php if ($scanner) { ?>
+                    <button typ="button" class="scanner d-flex align-items-center jutify-content-center" data-bs-target="#qrscanner" data-bs-toggle="modal">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </button>
+                    <?php } ?>
                     <div class="dropdown">
                         <button class="border-0 profile d-flex align-items-center justify-content-center" data-bs-toggle="dropdown">
                             <i class="fa-solid fa-user"></i>

@@ -25,6 +25,7 @@ class Bookings extends CI_Controller
     {
         $datas = array(
             'title' => 'BOOKINGS',
+            'scanner' => true,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'booking' => $this->M_bookings->getAllBookings(),
             'package' => $this->M_packages->getAllPackagesWithToursAndBadges(),
@@ -211,6 +212,82 @@ class Bookings extends CI_Controller
         }
         
         $this->load->view('partials/dashboard/updateNotification', $notifData);
+    }
+
+    public function scanTicketQRCode() {
+        $QRData = explode('~', base64_decode($this->input->post('qrdata')));
+        $bookingDatas = $this->M_bookings->checkBooking($QRData[0])->row_array();
+        if (!empty($bookingDatas)) {
+            if ($QRData[1] == date('Y-m-d')) {
+                if ($bookingDatas['bookStatus'] == 'Enjoy') {
+                    $this->M_bookings->editBooking($QRData[0], array('bookStatus' => 'Done'));
+                    $this->session->set_flashdata('message', '
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                        <div id="liveToast" class="toast toast-success show message" style="width: 400px;" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-body text-start">
+                                This ticket has been successfully used. Enjoy your tour!
+                            </div>
+                        </div>
+                    </div>');
+                }else if ($bookingDatas['bookStatus'] == 'Cancelled') {
+                    $this->session->set_flashdata('message', '
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                        <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-body text-start">
+                                Sorry, your ticket cannot be used! (Status Cancelled)
+                            </div>
+                        </div>
+                    </div>');
+                }else if ($bookingDatas['bookStatus'] == 'Done') {
+                    $this->session->set_flashdata('message', '
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                        <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-body text-start">
+                                Sorry, you cannot reused this ticket! (Status Done)
+                            </div>
+                        </div>
+                    </div>');
+                }else {
+                    $this->session->set_flashdata('message', '
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                        <div id="liveToast" class="toast toast-error show message" style="width: 400px;" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-body text-start">
+                                Cannot be used, make sure your ticket status is "enjoy"!
+                            </div>
+                        </div>
+                    </div>');
+                }
+            }else if (strtotime($QRData[1]) < strtotime(date('Y-m-d'))) {
+                $this->session->set_flashdata('message', '
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                        <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-body text-start">
+                                Your ticket cannot be used yet
+                            </div>
+                        </div>
+                    </div>');
+            }else {
+                $this->session->set_flashdata('message', '
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-body text-start">
+                            Sorry, this ticket has expired!
+                        </div>
+                    </div>
+                </div>');
+            }
+        }else {
+            $this->session->set_flashdata('message', '
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast toast-error show message" style="width: 400px;" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body text-start">
+                        Sorry, your QR data not found. Please try again!
+                    </div>
+                </div>
+            </div>');
+        }
+
+        redirect('dashboard/bookings');
     }
 
 }

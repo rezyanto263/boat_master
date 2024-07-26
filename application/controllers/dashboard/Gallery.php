@@ -20,6 +20,7 @@ class Gallery extends CI_Controller {
     {
         $datas = array(
             'title' => 'GALLERY',
+            'scanner' => false,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'gallery' => $this->M_gallery->getAllGalleryWithMedias()
         );

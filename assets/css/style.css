@@ -491,6 +491,16 @@ i.notif-icon {
 	font-size: 12px !important;
 }
 
+.scanner i {
+	font-size: 30px;
+	color: var(--secondary);
+}
+
+.dashboard-navbar .scanner {
+	background-color: transparent;
+	border: none;
+}
+
 
 /* Dashboard Sidebar Styles */
 .dashboard-sidebar {

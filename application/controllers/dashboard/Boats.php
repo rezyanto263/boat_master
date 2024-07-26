@@ -21,6 +21,7 @@ class Boats extends CI_Controller {
     {
         $datas = array(
             'title' => 'BOATS',
+            'scanner' => false,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'boat' => $this->M_boats->getAllBoatsWithPicturesAndBadges(),
             'badge' => $this->M_badges->getAllBadges()

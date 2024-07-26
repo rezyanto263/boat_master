@@ -37,6 +37,7 @@ class Dashboard extends CI_Controller
 
         $datas = array(
             'title' => 'DASHBOARD',
+            'scanner' => false,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'graph' => $monthlyData,
             'monthlyDataByStatus' => $monthlyDataByStatus,

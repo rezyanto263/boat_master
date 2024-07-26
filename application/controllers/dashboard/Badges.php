@@ -22,6 +22,7 @@ class Badges extends CI_Controller {
     {
         $datas = array(
             'title' => 'BADGES',
+            'scanner' => false,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'badge' => $this->M_badges->getAllBadges()
         );

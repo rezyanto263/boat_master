@@ -22,6 +22,7 @@ class Guides extends CI_Controller {
     {
         $datas = array(
             'title' => 'GUIDES',
+            'scanner' => false,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'guides' => $this->M_guides->getAllGuides()
         );

@@ -20,6 +20,7 @@ class Promos extends CI_Controller {
     {
         $datas = array(
             'title' => 'PROMOS',
+            'scanner' => false,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'promo' => $this->M_promos->getAllPromos()
         );

@@ -20,6 +20,7 @@ class Extras extends CI_Controller {
     {
         $datas = array(
             'title' => 'EXTRAS',
+            'scanner' => false,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'extra' => $this->M_extras->getAllExtras()
         );

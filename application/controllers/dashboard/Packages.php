@@ -21,6 +21,7 @@ class Packages extends CI_Controller {
     {
         $datas = array(
             'title' => 'PACKAGES',
+            'scanner' => false,
             'notifications' => $this->M_bookings->getAllNotifications(),
             'package' => $this->M_packages->getAllPackagesWithToursAndBadges(),
             'badge' => $this->M_badges->getAllBadges()

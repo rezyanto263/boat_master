@@ -34,13 +34,8 @@ class Tickets extends CI_Controller {
         $ticketsDatas = $this->M_bookings->getAllBookingsByCustomerId($custId);
 
         foreach ($ticketsDatas as $key) {
-            if ($key['bookStatus'] == 'Searching Guides' && $key['bookStatus'] == 'Enjoy') {
-                $qr[$key['bookId']] = $this->generateQR('ap aja');
-            }else if ($key['bookStatus'] == 'Done' || $key['bookStatus'] == 'Canceled') {
-                $qr[$key['bookId']] = $this->generateQR('Dah koid ni booking bang, udahlah!');
-            }else {
-                $qr[$key['bookId']] = $this->generateQR('Bayar lah dulu bang, Cem mana pula abang ni?');
-            }
+            $url = base64_encode($key['bookId'].'~'.$key['bookSchedule']);
+            $qr[$key['bookId']] = $this->generateQR($url);
         }
         
         $datas = array(
