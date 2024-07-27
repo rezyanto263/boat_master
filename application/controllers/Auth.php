@@ -7,6 +7,7 @@ class Auth extends CI_Controller {
 		parent::__construct();
 		//Do your magic here
 		$this->load->model('M_auth');
+		$this->load->model('M_customers');
 
 	}
 	
@@ -53,21 +54,26 @@ class Auth extends CI_Controller {
 
         }else if ($custData) {
 			
-			if (password_verify($password, $custData['custPassword'])) {
-				$custSession = array(
-					'custId' => $custData['custId'],
-					'custName' => $custData['custName'],
-					'custEmail' => $custData['custEmail'],
-					'custPassword' => $custData['custPassword'],
-					'custAddress' => $custData['custAddress'],
-					'custPhone' => $custData['custPhone'],
-					'custPicture' => $custData['custPicture'],
-				);
-				$this->session->set_userdata($custSession);
-	
-				redirect('home');
+			if ($custData['custStatus'] == 'Active') {
+				if (password_verify($password, $custData['custPassword'])) {
+					$custSession = array(
+						'custId' => $custData['custId'],
+						'custName' => $custData['custName'],
+						'custEmail' => $custData['custEmail'],
+						'custPassword' => $custData['custPassword'],
+						'custAddress' => $custData['custAddress'],
+						'custPhone' => $custData['custPhone'],
+						'custPicture' => $custData['custPicture'],
+					);
+					$this->session->set_userdata($custSession);
+		
+					redirect('home');
+				}else {
+					$this->session->set_flashdata('message', '<small class="text-warning">Wrong password, try again!</small>');
+					redirect('login');
+				}
 			}else {
-				$this->session->set_flashdata('message', '<small class="text-warning">Wrong password, try again!</small>');
+				$this->session->set_flashdata('message', '<small class="text-warning">You must activate your account to login!</small>');
 				redirect('login');
 			}
 			
@@ -169,7 +175,10 @@ class Auth extends CI_Controller {
 				'custPassword' => password_hash($this->input->post('custPassword'), PASSWORD_DEFAULT),
 				'custAddress' => htmlspecialchars($this->input->post('custAddress')),
 				'custPhone' => htmlspecialchars($this->input->post('custPhone')),
+				'custStatus' => 'Unactivate',
+				'custToken' => base64_encode(random_bytes(32))
 			);
+			$this->sendEmail($custDetails);
 			$this->M_auth->registerAccount($custDetails);
 			redirect('login');
 		}
@@ -243,5 +252,88 @@ class Auth extends CI_Controller {
 	public function logoutAdmin() {
 		$this->session->sess_destroy();
 		redirect('loginadmin');
+	}
+
+	public function sendEmail($custData) {
+		$config = array(
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'rezyanto263@gmail.com',
+            'smtp_pass' => 'ehju llty rjht asbu',
+            'smtp_port' => 587,
+            'smtp_crypto' => 'tls',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n",
+			'charset' =>  'iso-8859-1',
+			'wordwrap' => TRUE
+        );
+
+		$this->load->library('email', $config);
+        $this->email->initialize($config);
+
+        $this->email->from('rezyanto263@gmail.com', 'BOAT MASTER');
+        $this->email->to($custData['custEmail']);
+        $this->email->subject('[Boat Master] Activate your account!');
+		$message = $this->load->view('user/accountActivation', $custData, TRUE);
+        $this->email->message($message);
+
+		if ($this->email->send()) {
+            $this->session->set_flashdata('message', '
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast toast-success show message" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body">
+                        Please check your email to activate your account!
+                    </div>
+                </div>
+            </div>');
+        } else {
+            $this->session->set_flashdata('message', '
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body">
+                        Sorry, we cannot send you an email for account verification!
+                    </div>
+                </div>
+            </div>');
+            $this->register();
+        }
+	}
+
+	public function activateAccount() {
+		$custToken = $this->input->get('custToken');
+		$customerDatas = $this->M_customers->getCustomerToken($custToken);
+
+		if (!empty($customerDatas) && $customerDatas['custStatus'] == 'Unactivate') {
+			$this->M_customers->editCustomer($customerDatas['custId'], array('custStatus' => 'Active'));
+			$this->session->set_flashdata('message', '
+			<div class="toast-container position-fixed bottom-0 end-0 p-3">
+				<div id="liveToast" class="toast toast-success show message" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="toast-body text-start">
+						Hooraay, your account is active, please login!
+					</div>
+				</div>
+			</div>');
+		}else if (!empty($customerDatas) && $customerDatas['custStatus'] == 'Active') {
+			$this->session->set_flashdata('message', '
+			<div class="toast-container position-fixed bottom-0 end-0 p-3">
+				<div id="liveToast" class="toast toast-success show message" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="toast-body text-start">
+						Your account already active, please login!
+					</div>
+				</div>
+			</div>');
+		}else {
+			$this->session->set_flashdata('message', '
+			<div class="toast-container position-fixed bottom-0 end-0 p-3">
+				<div id="liveToast" class="toast toast-success show message" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="toast-body text-start">
+						Account not found!
+					</div>
+				</div>
+			</div>');
+		}
+		
+		redirect('login');
 	}
 }

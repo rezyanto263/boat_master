@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @font-face {
+            font-family: "Raleway", sans-serif;
+            src: url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+        }
+
+        @font-face {
+            font-family: "Roboto", sans-serif;
+            src: url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+        }
+
+        html {
+            background-color: #f0f0f0;
+        }
+
+        body {
+            margin-block: 5%;
+            margin-inline: 25%;
+            background-color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            box-shadow: 0 0 12px 5px #b9b9b9;
+            border-radius: 20px;
+        }
+
+        .email-header {
+            background-color: #224870;
+            margin: 0;
+            padding-block: 24px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        img {
+            display: flex;
+            margin: auto;
+        }
+
+        hr {
+            border: 2px solid #fda43e;
+            margin: 0;
+        }
+
+        .email-content {
+            background-color: white;
+            padding: 54px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 36px;
+            color: #224870;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 800;
+        }
+
+        #activate-button {
+            border-radius: 20px;
+            border: 2px solid #fda43e;
+            background-color: #224870;
+            color: #fda43e;
+            padding-block: 10px;
+            padding-inline: 18px;
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        #activate-button:hover {
+            background-color: white;
+            box-shadow: 0 0 8px 2px #fda43e;
+        }
+
+        #cta-button {
+            display: flex;
+            justify-content: center;
+            padding-block: 54px;
+        }
+
+        #email-footer {
+            background-color: #224870;
+            padding: 18px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            column-gap: 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #email-footer a {
+            background-color: #fda43e;
+            border-radius: 50%;
+            padding: 2%;
+            color: #224870;
+            text-decoration: none;
+        }
+
+        #email-footer a i {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            fill: #224870;
+        }
+    </style>
+</head>
+<body>
+        <section class="email-header">
+            <img src="https://i.ibb.co.com/tCzL84B/Logo2.png" width="150">
+        </section>
+        <hr>
+        <section class="email-content">
+            <h2>Hello Reza Haryanto,</h2>
+            <p style="margin-bottom: 16px;">Welcome to Boat Master!</p>
+            <p>To activate your account please click the button below to verify your email address:</p>
+            <div id="cta-button">
+                <a type="button" href="" id="activate-button">ACTIVATE NOW!</a>
+            </div>
+            <p>Or paste this link into your browser :</p>
+            <a href="http://localhost/boat_master/activateAccount/adjasodiajisdiajsdoa">http://localhost/boat_master/activateAccount/adjasodiajisdiajsdoa</a>
+        </section>
+        <hr>
+        <section class="email-footer" id="email-footer">
+            <a href="https://tiktok.com">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://gmail.com">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://gmail.com">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://gmail.com">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </section>
+</body>
+</html>

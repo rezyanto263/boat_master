@@ -27,6 +27,14 @@ class M_customers extends CI_Model
         $this->db->where('custId', $custId);
         return $this->db->update('customer', array('custPassword' => $newcustPassword));
     }
+
+    public function getCustomerToken($custToken) 
+    {
+        $this->db->where('custToken', $custToken);
+        return $this->db->get('customer')->row_array();
+    }
+
+    
 }
 
 /* End of file M_customers.php */
