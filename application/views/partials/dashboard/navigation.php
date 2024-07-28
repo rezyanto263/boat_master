@@ -98,6 +98,7 @@
                 <h4 class="mt-2 text-center textmin mb-0">BOAT MASTER</h4>
             </div>
             <ul class="sidebar-nav">
+                <?php if ($this->session->userdata('adminRole') == 0) { ?>
                 <li class="sidebar-item <?= ($title=='DASHBOARD')? 'active':''; ?>">
                     <a class="gap-3" href="<?= base_url('dashboard'); ?>">
                         <div class="icon text-center">
@@ -106,6 +107,7 @@
                         <span class="textmin">Dashboard</span>
                     </a>
                 </li>
+                <?php } ?>
                 <li class="sidebar-item <?= ($title=='BOOKINGS')? 'active':''; ?>">
                     <a class="gap-3" href="<?= base_url('dashboard/bookings'); ?>">
                         <div class="icon text-center">

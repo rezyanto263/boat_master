@@ -31,9 +31,9 @@
                 <a class="nav-link" href="<?= base_url('contact'); ?>">Contact</a>
             </li>
         </ul>
-        <a class="btn btn-secondary btn-signin max navbar-nav" href="<?= base_url('login'); ?>"
-            >SIGN IN</a
-        >
+        <a class="btn btn-secondary btn-signin max navbar-nav" href="<?= base_url('login'); ?>">
+            SIGN IN
+        </a>
         <div class="wrapper btn-icon d-flex flex-row">
             <a
                 class="tickets d-flex align-items-center justify-content-center me-3 position-relative notification"

@@ -17,6 +17,17 @@ class Dashboard extends CI_Controller
         if (!$this->session->userdata('adminId')) {
             redirect('loginadmin');
         }
+
+        if ($this->session->userdata('adminRole') != 0) {
+            $this->session->flashdata('message', '<div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast toast-error show message" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body">
+                        Dashboard menu for owner only!
+                    </div>
+                </div>
+            </div>');
+            redirect('dashboard/bookings');
+        }
     }
 
     public function index()

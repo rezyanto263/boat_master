@@ -24,6 +24,15 @@
                 </ul>
             </div>
             <div class="col-3 d-flex align-items-center justify-content-end ">
+                <button
+                    class="btn me-3"
+                    id="offcanvas-navbar"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvas-navbar"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
                 <a class="btn btn-secondary max btn-signin" href="<?= base_url('login'); ?>">SIGN IN</a>
                 <div class="wrapper btn-icon d-flex flex-row">
                     <a

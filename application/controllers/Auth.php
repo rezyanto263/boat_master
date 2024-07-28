@@ -229,6 +229,7 @@ class Auth extends CI_Controller {
 					'adminId' => $adminData['adminId'],
 					'adminName' => $adminData['adminName'],
 					'adminPassword' => $adminData['adminPassword'],
+					'adminRole' => $adminData['adminRole']
 				);
 				$this->session->set_userdata($adminSession);
 

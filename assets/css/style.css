@@ -2304,6 +2304,11 @@ body.auth {
 		max-width: 768px;
 	}
 
+	ul.navbar-nav,
+	.navbar-nav {
+		display: none !important;
+	}
+
 	#offcanvas-navbar {
 		display: block;
 		color: white;
@@ -2313,6 +2318,19 @@ body.auth {
 	#offcanvas-navbar:hover {
 		color: var(--secondary);
 		outline: none;
+	}
+
+	.navbar-expand-lg.hidden {
+		top: -100px;
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.navbar2 {
+		display: block;
+		margin-top: -71px;
+		background-color: var(--primary);
+		color: white;
 	}
 }
 
@@ -2339,30 +2357,12 @@ body.auth {
 
 /* Navbar Hidden */
 @media (min-width: 992px) {
-	.navbar-expand-lg.hidden {
-		top: -100px;
-		opacity: 0;
-		visibility: hidden;
-	}
-
-	.navbar2 {
-		display: block;
-		margin-top: -71px;
-		background-color: var(--primary);
-		color: white;
-	}
+	
 }
 
 @media (max-width: 992px) {
 
-	ul.navbar-nav,
-	.navbar-nav {
-		display: none !important;
-	}
 
-	.hero-section {
-		height: 100vh;
-	}
 }
 
 /* Responsive Configuration End*/

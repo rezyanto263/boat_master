@@ -307,26 +307,32 @@ if (datepicker != null) {
 	});
 }
 
-const qrscanner = document.getElementById('qrscanner');
-let scanner = new Instascan.Scanner({ video: document.getElementById('ticket-scanner') });
-qrscanner.addEventListener('shown.bs.modal', event => {
-	scanner.addListener('scan', function (content) {
-		var data = content;
-		var qrdata = document.getElementById('qrdata');
-		qrdata.value = data;
-		document.getElementById('qrform').submit();
-	});
-	Instascan.Camera.getCameras().then(function (cameras) {
-		if (cameras.length > 0) {
-			scanner.start(cameras[0]);
-		} else {
-			console.error('No cameras found.');
-		}
-	}).catch(function (e) {
-		console.error(e);
-	});
-});
-
-qrscanner.addEventListener('hidden.bs.modal', event => {
-	scanner.stop();
-});
+var qrscanner = document.getElementById('qrscanner');
+if (qrscanner != null) {
+	try {
+		let scanner = new Instascan.Scanner({ video: document.getElementById('ticket-scanner') });
+		qrscanner.addEventListener('shown.bs.modal', event => {
+			scanner.addListener('scan', function (content) {
+				var data = content;
+				var qrdata = document.getElementById('qrdata');
+				qrdata.value = data;
+				document.getElementById('qrform').submit();
+			});
+			Instascan.Camera.getCameras().then(function (cameras) {
+				if (cameras.length > 0) {
+					scanner.start(cameras[0]);
+				} else {
+					console.error('No cameras found.');
+				}
+			}).catch(function (e) {
+				console.error(e);
+			});
+		});
+	
+		qrscanner.addEventListener('hidden.bs.modal', event => {
+			scanner.stop();
+		});	
+	} catch (error) {
+		console.error('Instascan initialization error:', error);
+	}
+}
