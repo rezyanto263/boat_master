@@ -29,7 +29,7 @@
                     id="offcanvas-navbar"
                     type="button"
                     data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvas-navbar"
+                    data-bs-target="#offcanvas-menu"
                 >
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -58,26 +58,28 @@
 
 <main class="user">
     <!-- Hero Section Start -->
-    <section class="hero-section pt-lg-0 pt-4">
+    <section class="hero-section pt-lg-0 py-4">
         <div class="container">
             <div class="row h-100" id="hero">
                 <div class="col-12">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-6 px-5 d-flex align-items-center">
-                                <div class="box w-100">
+                            <div class="col-12 col-xl-6 px-5 d-flex align-items-center">
+                                <div class="box w-100 pt-3 pt-xl-0">
                                     <h1>EXPLORE HEAVEN WITH BOAT MASTER</h1>
                                     <p>
                                         Experience the ultimate marine escape with Boat Master. Sail through crystal-clear waters, relax in style, and enjoy unparalleled ocean views. Start your adventure now!
                                     </p>
-                                    <a class="btn btn-secondary me-3" href="<?= base_url('boats') ?>">BOOK NOW</a>
+                                    <a class="btn btn-secondary me-3" href="<?= base_url('boats') ?>">
+                                        BOOK NOW
+                                    </a>
                                     <a class="btn btn-outline-primary" href="#wwyd-section">
                                         LEARN MORE
                                     </a>
                                 </div>
                             </div>
                             <div
-                                class="col-6 d-flex align-items-center justify-content-center"
+                                class="col-12 col-xl-6 py-5 py-xl-0 d-flex align-items-center justify-content-center"
                             >
                                 <button class="btn btn-play" id="playButton">
                                     <i class="fa-solid fa-play ms-1"></i>
@@ -94,7 +96,7 @@
                 </div>
             </div>
             <div class="row mt-3 tour-package">
-                <div class="col-6 col-lg-4">
+                <div class="col-6 col-xl-4">
                     <div class="bg-white px-5 py-3 h-100 hero-choices">
                         <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
                             <div class="row m-0 p-0">
@@ -113,7 +115,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-6 col-lg-4">
+                <div class="col-6 col-xl-4">
                     <div class="bg-white px-5 py-3 hero-choices">
                         <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
                             <div class="row m-0 p-0">
@@ -132,7 +134,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4">
+                <div class="col-12 mt-3 col-xl-4 mt-xl-0">
                     <div class="px-5 py-3 design-a-tour h-100 hero-choices">
                         <a class="text-decoration-none" href="<?= base_url('boats'); ?>">
                             <div class="row m-0 p-0">
